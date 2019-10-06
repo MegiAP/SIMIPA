@@ -243,7 +243,7 @@
                     android:layout_marginBottom="4dp"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:text="Agenda Hari Ini"
+                    android:text="Agenda"
                     android:textColor="#000"
                     android:textStyle="bold" />
 
