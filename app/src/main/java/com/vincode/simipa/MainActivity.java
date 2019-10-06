@@ -11,6 +11,7 @@ import com.vincode.simipa.ui.calendar.AcademicCalendarActivity;
 import com.vincode.simipa.ui.guidance.GuidanceScheduleActivity;
 import com.vincode.simipa.ui.presence.PresenceActivity;
 import com.vincode.simipa.ui.profil.ProfilActivity;
+import com.vincode.simipa.ui.service.ServiceActivity;
 import com.vincode.simipa.ui.study_progress.StudyProgressActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         CardView cvProgress = findViewById(R.id.cv_progress);
         cvProgress.setOnClickListener(this);
+
+        CardView cvService = findViewById(R.id.cv_service);
+        cvService.setOnClickListener(this);
     }
 
     @Override
@@ -62,6 +66,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.cv_progress:
                 Intent progressIntent = new Intent(this, StudyProgressActivity.class);
                 startActivity(progressIntent);
+                break;
+            case R.id.cv_service:
+                Intent serviceIntent = new Intent(this, ServiceActivity.class);
+                startActivity(serviceIntent);
                 break;
         }
     }

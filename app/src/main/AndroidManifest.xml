@@ -28,6 +28,7 @@
         <activity android:name=".ui.guidance.GuidanceScheduleActivity" />
         <activity android:name=".ui.presence.PresenceActivity" />
         <activity android:name=".ui.study_progress.StudyProgressActivity" />
+        <activity android:name=".ui.service.ServiceActivity" />
     </application>
 
 </manifest>
