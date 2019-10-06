@@ -22,5 +22,8 @@
     <string name="next">Next</string>
     <string name="skip">Skip</string>
     <string name="start">Mulai</string>
+    <string name="login">Login</string>
+    <string name="npm">NPM</string>
+    <string name="password">Password</string>
 
 </resources>
