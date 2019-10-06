@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_item_guidance"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true"
+    app:cardMaxElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_date_ta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_item"
+                android:layout_marginEnd="@dimen/margin_item"
+                android:layout_marginTop="@dimen/activity_margin_vertical"
+                android:text="21-10-2019"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                android:id="@+id/img_date_ta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_margin_horizontal"
+                android:layout_marginEnd="@dimen/activity_margin_horizontal"
+                android:src="@drawable/ic_today_black_24dp"
+                android:contentDescription="@string/content_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_date_ta"/>
+
+            <TextView
+                android:id="@+id/tv_time_ta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_item"
+                android:layout_marginEnd="@dimen/margin_item"
+                android:text="10.00"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_date_ta"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_marginEnd="@dimen/margin_item"
+            android:layout_marginTop="@dimen/margin_item"
+            android:layout_marginBottom="@dimen/margin_item"
+            android:layout_marginStart="@dimen/margin_item"/>
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title_ta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_vertical"
+                android:layout_marginStart="@dimen/margin_item"
+                android:text="Rancang Bangun Aplikasi SIMIPA"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_lecture_ta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_item"
+                android:layout_marginStart="@dimen/margin_item"
+                android:text="Ardiansyah, S.Kom."
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_place_ta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_item"
+                android:layout_marginBottom= "@dimen/margin_item"
+                android:layout_marginStart="@dimen/margin_item"
+                android:text="GIK Lt.1C"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_state_guidance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_item"
+                android:layout_marginEnd="@dimen/margin_item"
+                android:text="Terdaftar"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bg_btn_blue"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:layout_marginBottom="@dimen/activity_margin_vertical"/>
+                <!-- tv keterangan red & blue           -->
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

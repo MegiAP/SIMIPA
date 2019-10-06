@@ -29,7 +29,8 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginEnd="@dimen/activity_vertical_margin"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/content_description"/>
 
         <ImageView
             android:layout_width="35dp"
@@ -39,7 +40,8 @@
             android:src="@drawable/logo_unila"
             app:layout_constraintLeft_toLeftOf="@id/tv_dashboard"
             app:layout_constraintTop_toTopOf="@id/view"
-            app:layout_constraintEnd_toStartOf="@id/tv_dashboard"/>
+            app:layout_constraintEnd_toStartOf="@id/tv_dashboard"
+            android:contentDescription="@string/content_description"/>
 
         <TextView
             android:id="@+id/tv_dashboard"
@@ -63,11 +65,14 @@
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginTop="48dp"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_dashboard">
+            app:layout_constraintTop_toBottomOf="@id/tv_dashboard"
+            tools:ignore="KeyboardInaccessibleWidget">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
@@ -84,13 +89,14 @@
                     android:layout_height="50dp"
                     android:src="@drawable/ic_account_circle_black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/content_description"/>
 
                 <TextView
                     android:id="@+id/tv_home_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kelvin Putra"
+                    android:text="@string/tv_ex_name"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -101,7 +107,7 @@
                     android:id="@+id/tv_home_npm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1617051086"
+                    android:text="@string/tv_ex_npm"
                     android:textSize="14sp"
                     android:textColor="@color/colorSecondaryText"
                     app:layout_constraintStart_toEndOf="@id/img_user"

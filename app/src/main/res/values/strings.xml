@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">SIMIPA</string>
+    <string name="schedule">Jadwal</string>
+    <string name="content_description">Content Description</string>
+    <string name="krs">KRS</string>
+    <string name="presence">Presensi</string>
+    <string name="agenda">Agenda</string>
+    <string name="recapitulation">Rekapitulasi</string>
+    <string name="guidance">Bimbingan</string>
+    <string name="Service">Layanan</string>
+    <string name="achievment">Prestasi</string>
+    <string name="progress_study">Kemajuan</string>
+    <string name="scholarship">Beasiswa</string>
+    <string name="calendar_academic">Kalendar</string>
+    <string name="sub_app_name">Student Apps</string>
+
+    <string name="detail_slider1">SIMIPA merupakan aplikasi khusus untuk mahasiswa FMIPA sebagai fasilitas pendukung Mahasiswa FMIPA Universitas Lampung</string>
+    <string name="content_slider2">Jadwal kuliah, Absensi, Layanan akademik, Bimbingan, Prestasi saati ini ada di genggaman anda</string>
+    <string name="content_slider3">Login menggunakan NPM dan password anda seperti pada website FMIPA, lalu manfaatkan fasilitas pendukung akademik ini</string>
+    <string name="welcome">Selamat Datang</string>
+    <string name="cara_masuk">Cara Masuk</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="start">Mulai</string>
+    <string name="login">Login</string>
+    <string name="npm">NPM</string>
+    <string name="password">Password</string>
+    <string name="tv_ex_npm">1617051086</string>
+    <string name="tv_ex_name">Kelvin Putra</string>
+    <string name="test_year_calendar">Tahun Ajaran 2019/2020</string>
+    <string name="ex_data_calendar">Pengisian KRS</string>
+    <string name="ex_date_calendar">29-07-2019 s.d 20-07-2019</string>
+    <string name="strip">-</string>
+    <string name="calendar">Kalender Akademik</string>
+
+    <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="progress">Kemajuan Studi</string>
 </resources>
