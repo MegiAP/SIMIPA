@@ -27,5 +27,9 @@
     <string name="password">Password</string>
     <string name="tv_ex_npm">1617051086</string>
     <string name="tv_ex_name">Kelvin Putra</string>
+    <string name="test_year_calendar">Tahun Ajaran 2019/2020</string>
+    <string name="ex_data_calendar">Pengisian KRS</string>
+    <string name="ex_date_calendar">29-07-2019 s.d 20-07-2019</string>
+    <string name="strip">-</string>
 
 </resources>
