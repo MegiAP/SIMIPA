@@ -11,6 +11,8 @@
     </style>
 
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopUpOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <!-- awal style default    -->
     <style name="TextContentDefault">

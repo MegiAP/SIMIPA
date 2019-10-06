@@ -247,6 +247,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_guidance"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
@@ -259,7 +260,6 @@
             tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
-                android:id="@+id/btn_guidance"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground">
@@ -490,7 +490,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/btn_calendar"
+            android:id="@+id/cv_calendar"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
