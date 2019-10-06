@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">SIMIPA</string>
+    <string name="schedule">Jadwal</string>
+    <string name="content_description">Content Description</string>
+    <string name="krs">KRS</string>
+    <string name="presence">Presensi</string>
+    <string name="agenda">Agenda</string>
+    <string name="recapitulation">Rekapitulasi</string>
+    <string name="guidance">Bimbingan</string>
+    <string name="Service">Layanan</string>
+    <string name="achievment">Prestasi</string>
+    <string name="progress_study">Kemajuan</string>
+    <string name="scholarship">Beasiswa</string>
+    <string name="calendar_academic">Kalendar</string>
 </resources>
