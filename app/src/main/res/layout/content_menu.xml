@@ -106,6 +106,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_presence"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
@@ -117,7 +118,6 @@
             tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
-                android:id="@+id/btn_presence"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground">

@@ -26,6 +26,7 @@
         <activity android:name=".ui.calendar.AcademicCalendarActivity" />
         <activity android:name=".ui.guidance.DetailGuidanceActivity" />
         <activity android:name=".ui.guidance.GuidanceScheduleActivity" />
+        <activity android:name=".ui.presence.PresenceActivity" />
     </application>
 
 </manifest>

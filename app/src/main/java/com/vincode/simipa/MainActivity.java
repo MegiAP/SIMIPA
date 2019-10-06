@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.vincode.simipa.ui.calendar.AcademicCalendarActivity;
 import com.vincode.simipa.ui.guidance.GuidanceScheduleActivity;
+import com.vincode.simipa.ui.presence.PresenceActivity;
 import com.vincode.simipa.ui.profil.ProfilActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         CardView cvCalendar = findViewById(R.id.cv_calendar);
         cvCalendar.setOnClickListener(this);
+
+        CardView cvPresence = findViewById(R.id.cv_presence);
+        cvPresence.setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.cv_calendar:
                 Intent calendarIntent = new Intent(this, AcademicCalendarActivity.class);
                 startActivity(calendarIntent);
+                break;
+            case R.id.cv_presence:
+                Intent presentIntent = new Intent(this, PresenceActivity.class);
+                startActivity(presentIntent);
                 break;
 
         }
