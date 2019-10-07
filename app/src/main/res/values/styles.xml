@@ -29,7 +29,7 @@
     <style name="TextInputLayoutDefault">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">@dimen/activity_margin_vertical</item>
+        <item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
         <item name="android:textColorHint">#FFB3B3B3</item>
     </style>
 
