@@ -20,15 +20,15 @@
         tools:ignore="UselessParent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/home_mRide"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="0.33"
             android:clickable="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
                 android:id="@+id/btnJadwal"
@@ -39,82 +39,40 @@
                 <ImageView
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:layout_above="@+id/textView3"
+                    android:layout_above="@+id/tv_schedule"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/jadwal" />
+                    android:src="@drawable/jadwal"
+                    android:contentDescription="@string/content_description"/>
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tv_schedule"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
-                    android:text="Jadwal"
-                    android:textColor="#000"
-                    android:textStyle="bold" />
+                    android:text="@string/schedule"
+                    android:textColor="#000" />
 
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/home_mSend"
+            android:id="@+id/cv_krs"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="0.33"
             android:clickable="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
-
-            <RelativeLayout
-                android:id="@+id/btnKRS"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_above="@+id/textView2"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="5dp"
-                    android:padding="10dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/bookshelf" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="5dp"
-                    android:maxLines="1"
-                    android:text="KRS"
-                    android:textColor="#000"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/home_mCar"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="0.33"
-            android:clickable="true"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -124,25 +82,67 @@
                 <ImageView
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:layout_above="@+id/textView6"
+                    android:layout_above="@+id/tv_krs"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/presensi" />
+                    android:src="@drawable/bookshelf"
+                    android:contentDescription="@string/content_description"/>
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/tv_krs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
-                    android:text="Presensi"
-                    android:textColor="#000"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:text="@string/krs"
+                    android:textColor="#000" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_presence"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_weight="0.33"
+            android:clickable="true"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_above="@+id/tv_presence"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/presensi"
+                    android:contentDescription="@string/content_description"/>
+
+                <TextView
+                    android:id="@+id/tv_presence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:maxLines="1"
+                    android:text="@string/presence"
+                    android:textColor="#000" />
 
             </RelativeLayout>
 
@@ -163,14 +163,16 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_weight="0.33"
             android:clickable="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
+                android:id="@+id/btn_agenda"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground">
@@ -178,25 +180,24 @@
                 <ImageView
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:layout_above="@+id/textView12"
+                    android:layout_above="@+id/tv_agenda"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/agenda" />
+                    android:src="@drawable/agenda"
+                    android:contentDescription="@string/content_description"/>
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/tv_agenda"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
-                    android:text="Agenda"
-                    android:textColor="#000"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:text="@string/agenda"
+                    android:textColor="#000" />
 
             </RelativeLayout>
 
@@ -210,7 +211,8 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
                 android:id="@+id/btnRekap"
@@ -221,25 +223,24 @@
                 <ImageView
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:layout_above="@+id/textView18"
+                    android:layout_above="@+id/tv_rekap"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/rekap" />
+                    android:src="@drawable/rekap"
+                    android:contentDescription="@string/content_description"/>
 
                 <TextView
-                    android:id="@+id/textView18"
+                    android:id="@+id/tv_rekap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
-                    android:text="Rekapitulasi"
-                    android:textColor="#000"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:text="@string/recapitulation"
+                    android:textColor="#000"/>
 
             </RelativeLayout>
 
@@ -255,7 +256,8 @@
             android:layout_weight="0.33"
             android:clickable="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -270,7 +272,8 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_guidance" />
+                    android:src="@drawable/ic_guidance"
+                    android:contentDescription="@string/content_description"/>
 
                 <TextView
                     android:id="@+id/tv_guidance"
@@ -281,9 +284,8 @@
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:text="Bimbingan"
-                    android:textColor="#000"
-                    android:textStyle="bold" />
+                    android:text="@string/guidance"
+                    android:textColor="#000" />
 
             </RelativeLayout>
 
@@ -301,16 +303,17 @@
         tools:ignore="UselessParent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/home_mFood"
+            android:id="@+id/cv_service"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_weight="0.33"
             android:clickable="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -320,32 +323,30 @@
                 <ImageView
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:layout_above="@+id/textView21"
+                    android:layout_above="@+id/tv_service"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/layanan" />
+                    android:src="@drawable/layanan"
+                    android:contentDescription="@string/content_description"/>
 
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/tv_service"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
-                    android:text="Layanan"
-                    android:textColor="#000"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:text="@string/Service"
+                    android:textColor="#000"/>
 
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/home_mLaundry"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
@@ -353,9 +354,11 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
+                android:id="@+id/btn_achieve"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground">
@@ -363,25 +366,24 @@
                 <ImageView
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:layout_above="@+id/textView23"
+                    android:layout_above="@+id/tv_achieve"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_prestasi" />
+                    android:src="@drawable/ic_prestasi"
+                    android:contentDescription="@string/content_description"/>
 
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/tv_achieve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
-                    android:text="Prestasi"
-                    android:textColor="#000"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:text="@string/achievment"
+                    android:textColor="#000" />
 
             </RelativeLayout>
 
@@ -397,7 +399,8 @@
             android:layout_weight="0.33"
             android:clickable="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -412,7 +415,8 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_progress" />
+                    android:src="@drawable/ic_progress"
+                    android:contentDescription="@string/content_description"/>
 
                 <TextView
                     android:id="@+id/tv_progress"
@@ -423,9 +427,8 @@
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:text="Kemajuan Studi"
-                    android:textColor="#000"
-                    android:textStyle="bold" />
+                    android:text="@string/progress_study"
+                    android:textColor="#000" />
 
             </RelativeLayout>
 
@@ -447,12 +450,12 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="0.33"
             android:clickable="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -467,7 +470,8 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_beasiswa" />
+                    android:src="@drawable/ic_beasiswa"
+                    android:contentDescription="@string/content_description"/>
 
                 <TextView
                     android:id="@+id/tv_beasiswa"
@@ -478,24 +482,25 @@
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:text="Beasiswa"
-                    android:textColor="#000"
-                    android:textStyle="bold" />
+                    android:text="@string/scholarship"
+                    android:textColor="#000" />
 
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_calendar"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="0.33"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -505,25 +510,24 @@
                 <ImageView
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:layout_above="@+id/textView0"
+                    android:layout_above="@+id/tv_calendar"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/kalender" />
+                    android:src="@drawable/kalender"
+                    android:contentDescription="@string/content_description"/>
 
                 <TextView
-                    android:id="@+id/textView0"
+                    android:id="@+id/tv_calendar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
-                    android:text="Kalender Akademik"
-                    android:textColor="#000"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+                    android:text="@string/calendar_academic"
+                    android:textColor="#000" />
 
             </RelativeLayout>
 

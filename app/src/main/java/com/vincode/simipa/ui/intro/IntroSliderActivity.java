@@ -20,7 +20,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.vincode.simipa.MainActivity;
 import com.vincode.simipa.R;
 import com.vincode.simipa.ui.login.LoginActivity;
 

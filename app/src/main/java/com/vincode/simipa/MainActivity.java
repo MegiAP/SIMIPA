@@ -5,25 +5,54 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import com.vincode.simipa.beasiswa.Beasiswa;
 import com.vincode.simipa.beasiswa.BeasiswaActivity;
 import com.vincode.simipa.krs.KRSActivity;
+import com.vincode.simipa.ui.calendar.AcademicCalendarActivity;
+import com.vincode.simipa.ui.guidance.GuidanceScheduleActivity;
+import com.vincode.simipa.ui.presence.PresenceActivity;
+import com.vincode.simipa.ui.profil.ProfilActivity;
+import com.vincode.simipa.ui.service.ServiceActivity;
+import com.vincode.simipa.ui.study_progress.StudyProgressActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    CardView cvKRS, cvBeasiswa;
+    CardView cvKRS, cvBeasiswa, cvUser, cvGuidance, cvCalendar, cvPresence, cvProgress,cvService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cvBeasiswa = (CardView) findViewById(R.id.cv_beasiswa);
+        setCardClick();
+
+    }
+
+    private void setCardClick(){
+
+        cvUser = findViewById(R.id.cv_user);
+        cvUser.setOnClickListener(this);
+
+        cvGuidance = findViewById(R.id.cv_guidance);
+        cvGuidance.setOnClickListener(this);
+
+        cvCalendar = findViewById(R.id.cv_calendar);
+        cvCalendar.setOnClickListener(this);
+
+        cvPresence = findViewById(R.id.cv_presence);
+        cvPresence.setOnClickListener(this);
+
+        cvProgress = findViewById(R.id.cv_progress);
+        cvProgress.setOnClickListener(this);
+
+        cvService = findViewById(R.id.cv_service);
+        cvService.setOnClickListener(this);
+
+        cvBeasiswa = findViewById(R.id.cv_beasiswa);
         cvBeasiswa.setOnClickListener(this);
-        cvKRS = (CardView)findViewById(R.id.cv_KRS);
+
+        cvKRS = findViewById(R.id.cv_krs);
         cvKRS.setOnClickListener(this);
     }
 
@@ -34,9 +63,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent beasiswa = new Intent(MainActivity.this, BeasiswaActivity.class);
                 startActivity(beasiswa);
                 break;
-            case R.id.cv_KRS :
+            case R.id.cv_krs :
                 Intent krs = new Intent(MainActivity.this, KRSActivity.class);
                 startActivity(krs);
+                break;
+
+            case R.id.cv_user:
+                Intent intent = new Intent(MainActivity.this, ProfilActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.cv_guidance:
+                Intent guidanceIntent = new Intent(this, GuidanceScheduleActivity.class);
+                startActivity(guidanceIntent);
+                break;
+            case R.id.cv_calendar:
+                Intent calendarIntent = new Intent(this, AcademicCalendarActivity.class);
+                startActivity(calendarIntent);
+                break;
+            case R.id.cv_presence:
+                Intent presentIntent = new Intent(this, PresenceActivity.class);
+                startActivity(presentIntent);
+                break;
+            case R.id.cv_progress:
+                Intent progressIntent = new Intent(this, StudyProgressActivity.class);
+                startActivity(progressIntent);
+                break;
+            case R.id.cv_service:
+                Intent serviceIntent = new Intent(this, ServiceActivity.class);
+                startActivity(serviceIntent);
                 break;
         }
     }
