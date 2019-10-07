@@ -23,14 +23,17 @@
 
         <ImageView
             android:id="@+id/setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:src="@drawable/ic_settings"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginEnd="@dimen/activity_vertical_margin"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/content_description"/>
+            android:contentDescription="@string/content_description"
+            tools:ignore="KeyboardInaccessibleWidget" />
 
         <ImageView
             android:layout_width="35dp"

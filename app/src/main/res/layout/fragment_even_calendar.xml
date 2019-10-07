@@ -10,10 +10,11 @@
         android:id="@+id/tv_title_calendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_margin_vertical"
         android:layout_marginBottom="@dimen/activity_margin_horizontal"
         android:text="@string/test_year_calendar"
         android:textColor="@android:color/black"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

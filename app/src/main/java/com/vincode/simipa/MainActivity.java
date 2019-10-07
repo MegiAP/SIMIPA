@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.vincode.simipa.beasiswa.BeasiswaActivity;
 import com.vincode.simipa.krs.KRSActivity;
@@ -14,11 +15,13 @@ import com.vincode.simipa.ui.guidance.GuidanceScheduleActivity;
 import com.vincode.simipa.ui.presence.PresenceActivity;
 import com.vincode.simipa.ui.profil.ProfilActivity;
 import com.vincode.simipa.ui.service.ServiceActivity;
+import com.vincode.simipa.ui.settings.SettingActivity;
 import com.vincode.simipa.ui.study_progress.StudyProgressActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     CardView cvKRS, cvBeasiswa, cvUser, cvGuidance, cvCalendar, cvPresence, cvProgress,cvService;
+    ImageView imgSetting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setCardClick(){
+        imgSetting = findViewById(R.id.setting);
+        imgSetting.setOnClickListener(this);
 
         cvUser = findViewById(R.id.cv_user);
         cvUser.setOnClickListener(this);
@@ -68,6 +73,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(krs);
                 break;
 
+            case R.id.setting:
+                Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(settingIntent);
+                break;
             case R.id.cv_user:
                 Intent intent = new Intent(MainActivity.this, ProfilActivity.class);
                 startActivity(intent);

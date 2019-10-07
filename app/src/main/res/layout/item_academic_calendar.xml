@@ -8,6 +8,7 @@
         android:id="@+id/tv_data_calendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_margin_vertical"
         android:layout_marginEnd="@dimen/activity_margin_horizontal"
         android:layout_marginStart="@dimen/activity_margin_horizontal"
         android:text="@string/ex_data_calendar"
@@ -32,7 +33,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="@dimen/margin_item"
+        android:layout_marginTop="@dimen/activity_margin_vertical"
         android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
