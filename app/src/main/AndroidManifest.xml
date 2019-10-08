@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.Schedule.ScheduleMenu"
-            android:label="Menu Jadwal"></activity>
-        <activity android:name=".ui.Schedule.CollegeScheduleActivity"
-            android:label="Jadwal Kuliah"/>
+        <activity android:name=".ui.schedule.ScheduleMenu"
+            android:label="Menu Jadwal"/>
+        <activity android:name=".ui.schedule.CollegeScheduleActivity"
+            android:label="Jadwal Kuliah" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.settings.SettingActivity" />
         <activity android:name=".beasiswa.BeasiswaActivity" />
         <activity android:name=".krs.KRSActivity" />

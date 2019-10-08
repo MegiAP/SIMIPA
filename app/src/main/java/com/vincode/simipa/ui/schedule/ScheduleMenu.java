@@ -1,4 +1,4 @@
-package com.vincode.simipa.ui.Schedule;
+package com.vincode.simipa.ui.schedule;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.model.CollegeSchedule;
 
 public class ScheduleMenu extends AppCompatActivity implements View.OnClickListener {
     CardView cvJdkul, cvJdprak, cvJdsem;

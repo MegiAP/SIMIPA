@@ -1,7 +1,5 @@
-package com.vincode.simipa.ui.Schedule;
+package com.vincode.simipa.ui.schedule;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;

@@ -1,4 +1,4 @@
-package com.vincode.simipa.ui.Schedule;
+package com.vincode.simipa.ui.schedule;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

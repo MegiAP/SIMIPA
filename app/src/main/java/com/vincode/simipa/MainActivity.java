@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.vincode.simipa.beasiswa.BeasiswaActivity;
 import com.vincode.simipa.krs.KRSActivity;
-import com.vincode.simipa.ui.Schedule.ScheduleMenu;
+import com.vincode.simipa.ui.schedule.ScheduleMenu;
 import com.vincode.simipa.ui.calendar.AcademicCalendarActivity;
 import com.vincode.simipa.ui.guidance.GuidanceScheduleActivity;
 import com.vincode.simipa.ui.presence.PresenceActivity;
