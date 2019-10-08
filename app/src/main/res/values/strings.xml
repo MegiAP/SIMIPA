@@ -43,4 +43,18 @@
     <string name="change_language">Ubah Bahasa</string>
     <string name="change">Ubah</string>
     <string name="text_develop">Under Develop Process</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="jadwal_kuliah">Jadwal Kuliah</string>
+    <string name="jadwal_praktikum">Jadwal Praktikum</string>
+    <string name="selasa">Selasa</string>
+    <string name="rabu">Rabu</string>
+    <string name="mata_kuliah">Mata Kuliah</string>
+    <string name="kode">Kode</string>
+    <string name="dosen">Dosen</string>
+    <string name="ruang">Ruang</string>
+    <string name="jam">Jam</string>
+    <string name="jadwal_seminar">Jadwal Seminar</string>
 </resources>

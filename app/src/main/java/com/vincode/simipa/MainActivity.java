@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.vincode.simipa.beasiswa.BeasiswaActivity;
 import com.vincode.simipa.krs.KRSActivity;
+import com.vincode.simipa.ui.Schedule.ScheduleMenu;
 import com.vincode.simipa.ui.calendar.AcademicCalendarActivity;
 import com.vincode.simipa.ui.guidance.GuidanceScheduleActivity;
 import com.vincode.simipa.ui.presence.PresenceActivity;
@@ -20,7 +21,7 @@ import com.vincode.simipa.ui.study_progress.StudyProgressActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    CardView cvKRS, cvBeasiswa, cvUser, cvGuidance, cvCalendar, cvPresence, cvProgress,cvService;
+    CardView cvKRS, cvBeasiswa, cvUser, cvGuidance, cvCalendar, cvPresence, cvProgress,cvService, cvSchedule;
     ImageView imgSetting;
 
     @Override
@@ -59,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         cvKRS = findViewById(R.id.cv_krs);
         cvKRS.setOnClickListener(this);
+
+        cvSchedule = findViewById(R.id.cv_schedule);
+        cvSchedule.setOnClickListener(this);
     }
 
     @Override
@@ -100,6 +104,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.cv_service:
                 Intent serviceIntent = new Intent(this, ServiceActivity.class);
                 startActivity(serviceIntent);
+                break;
+            case R.id.cv_schedule:
+                Intent ScheduleIntent = new Intent(this, ScheduleMenu.class);
+                startActivity(ScheduleIntent );
                 break;
         }
     }
