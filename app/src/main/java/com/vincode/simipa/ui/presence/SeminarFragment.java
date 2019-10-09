@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.PresenceAdapter;
+import com.vincode.simipa.adapter.PresenceSeminarAdapter;
 import com.vincode.simipa.model.Presence;
 import com.vincode.simipa.util.TestPresence;
 
@@ -25,7 +26,7 @@ import java.util.ArrayList;
  */
 public class SeminarFragment extends Fragment {
 
-    private PresenceAdapter presenceAdapter;
+    private PresenceSeminarAdapter presenceSeminarAdapter;
     private RecyclerView rvSeminar;
     private ArrayList<Presence> list = new ArrayList<>();
 
@@ -48,7 +49,7 @@ public class SeminarFragment extends Fragment {
 
         rvSeminar = view.findViewById(R.id.rv_seminar);
         list.addAll(TestPresence.getListPresence());
-        presenceAdapter = new PresenceAdapter(getContext(), list);
+        presenceSeminarAdapter = new PresenceSeminarAdapter(getContext(), list);
 
         setLayout();
     }
@@ -56,7 +57,7 @@ public class SeminarFragment extends Fragment {
     private void setLayout(){
         rvSeminar.setLayoutManager(new LinearLayoutManager(getContext()));
         rvSeminar.setHasFixedSize(true);
-        rvSeminar.setAdapter(presenceAdapter);
+        rvSeminar.setAdapter(presenceSeminarAdapter);
     }
 
 }
