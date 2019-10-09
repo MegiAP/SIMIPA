@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_margin_vertical">
+
+        <TextView
+            android:id="@+id/tv_matkul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_item"
+            android:drawablePadding="@dimen/margin_item"
+            android:drawableStart="@drawable/ic_book_black_24dp"
+            android:text="Kapita Selekta"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_item"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="@dimen/margin_item"
+            android:drawableStart="@drawable/ic_bubble_chart_black_24dp"
+            android:text="COM6161621"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_matkul"/>
+
+        <TextView
+            android:id="@+id/tv_sks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_item"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="@dimen/margin_item"
+            android:drawableStart="@drawable/ic_bookmark_border_black_24dp"
+            android:text="3 SKS"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_code"/>
+
+        <TextView
+            android:id="@+id/tv_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/bg_circle_green"
+            android:padding="8dp"
+            android:text="A"
+            android:textColor="@color/colorIcons"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
