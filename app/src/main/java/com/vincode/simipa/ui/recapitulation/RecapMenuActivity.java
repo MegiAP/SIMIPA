@@ -36,6 +36,10 @@ public class RecapMenuActivity extends AppCompatActivity implements View.OnClick
                 Intent score = new Intent(RecapMenuActivity.this, ScoreRecapActivity.class);
                 startActivity(score);
                 break;
+            case R.id.cv_recGuidance :
+                Intent guidance = new Intent(RecapMenuActivity.this, GuidanceRecapActivity.class);
+                startActivity(guidance);
+                break;
         }
     }
 }
