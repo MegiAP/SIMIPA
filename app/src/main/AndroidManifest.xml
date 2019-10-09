@@ -13,6 +13,8 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".ui.recapitulation.RecapMenuActivity"
             android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".ui.recapitulation.GuidanceRecapActivity"
+            android:parentActivityName=".ui.recapitulation.RecapMenuActivity" />
         <activity
             android:name=".ui.schedule.LectureScheduleActivity"
             android:parentActivityName=".ui.schedule.ScheduleMenu"

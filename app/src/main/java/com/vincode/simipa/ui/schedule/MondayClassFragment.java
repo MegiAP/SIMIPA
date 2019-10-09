@@ -49,9 +49,9 @@ public class MondayClassFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         listCont = new ArrayList<>();
-        listCont.add(new CollegeSchedule("Kapita Selekta","COM616402","Ardiansyah, S.Kom., M.Kom.","GIK Lt.2","11.20"));
-        listCont.add(new CollegeSchedule("Kapita Selekta","COM616402","Ardiansyah, S.Kom., M.Kom.","GIK Lt.2","13.30"));
-        listCont.add(new CollegeSchedule("Kapita Selekta","COM616402","Ardiansyah, S.Kom., M.Kom.","GIK Lt.2","15.30"));
+        listCont.add(new CollegeSchedule("Kapita Selekta","COM616402","Ardiansyah, S.Kom., M.Kom."," ","11.20"));
+        listCont.add(new CollegeSchedule("Kapita Selekta","COM616402","Ardiansyah, S.Kom., M.Kom."," ","13.30"));
+        listCont.add(new CollegeSchedule("Kapita Selekta","COM616402","Ardiansyah, S.Kom., M.Kom."," ","15.30"));
 
     }
 

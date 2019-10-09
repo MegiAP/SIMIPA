@@ -21,9 +21,24 @@
             app:tabGravity="fill"/>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <TextView
+        android:id="@+id/tv_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GIK L1C"
+        app:layout_anchor="@+id/vp_collegeSchedule"
+        android:paddingTop="50dp"
+        android:paddingLeft="@dimen/margin_item"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#000"
+        android:paddingBottom="@dimen/activity_margin_horizontal"
+        app:layout_anchorGravity="top|center" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_collegeSchedule"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="25dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
