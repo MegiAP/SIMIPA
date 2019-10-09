@@ -25,7 +25,7 @@ public class PresenceActivity extends AppCompatActivity {
         CalendarPagerAdapter fragmentPagerAdapter = new CalendarPagerAdapter(getSupportFragmentManager());
         fragmentPagerAdapter.addFragment(new CollegeFragment(), "Kuliah");
         fragmentPagerAdapter.addFragment(new PracticeFragment(), "Praktikum");
-        fragmentPagerAdapter.addFragment(new CollegeFragment(), "Seminar");
+        fragmentPagerAdapter.addFragment(new SeminarFragment(), "Seminar");
         fragmentPagerAdapter.addFragment(new PracticeFragment(), "Bimbingan");
 
         viewPager.setAdapter(fragmentPagerAdapter);
