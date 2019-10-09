@@ -30,6 +30,9 @@ public class BeasiswaActivity extends AppCompatActivity {
         list = new ArrayList<>();
         list.addAll(BeasiswaData.getListData());
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Beasiswa");
+
         showRecyclerCardView();
 
     }

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.vincode.simipa.beasiswa.BeasiswaActivity;
 import com.vincode.simipa.krs.KRSActivity;
 import com.vincode.simipa.model.ScoreRecap;
+import com.vincode.simipa.ui.recapitulation.RecapMenuActivity;
 import com.vincode.simipa.ui.recapitulation.ScoreRecapActivity;
 import com.vincode.simipa.ui.schedule.ScheduleMenu;
 import com.vincode.simipa.ui.calendar.AcademicCalendarActivity;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(krs);
                 break;
             case R.id.cv_recap :
-                Intent recap = new Intent(MainActivity.this, ScoreRecapActivity.class);
+                Intent recap = new Intent(MainActivity.this, RecapMenuActivity.class);
                 startActivity(recap);
                 break;
             case R.id.setting:

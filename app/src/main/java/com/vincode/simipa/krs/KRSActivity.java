@@ -27,6 +27,9 @@ public class KRSActivity extends AppCompatActivity {
         list = new ArrayList<>();
         list.addAll(KRSData.getListData());
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("KRS");
+
         showRecyclerCardView();
 
     }

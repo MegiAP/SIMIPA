@@ -8,12 +8,14 @@
     <string name="recapitulation">Rekapitulasi</string>
     <string name="guidance">Bimbingan</string>
     <string name="Service">Layanan</string>
+    <string name="score">Nilai</string>
     <string name="achievment">Prestasi</string>
     <string name="progress_study">Kemajuan</string>
     <string name="scholarship">Beasiswa</string>
     <string name="calendar_academic">Kalendar</string>
     <string name="sub_app_name">Student Apps</string>
     <string name="collegeschedule">Jadwal Kuliah</string>
+    <string name="classschedule">Jadwal Ruangan</string>
 
     <string name="detail_slider1">SIMIPA merupakan aplikasi khusus untuk mahasiswa FMIPA sebagai fasilitas pendukung Mahasiswa FMIPA Universitas Lampung</string>
     <string name="content_slider2">Jadwal kuliah, Absensi, Layanan akademik, Bimbingan, Prestasi saati ini ada di genggaman anda</string>

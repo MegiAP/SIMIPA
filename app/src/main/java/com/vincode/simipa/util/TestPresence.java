@@ -20,7 +20,7 @@ public class TestPresence {
             presence.setCode(mData[3]);
             presence.setLecture(mData[4]);
             presence.setRoom(mData[5]);
-            presence.setState(mData[6]);
+            presence.setBab(mData[6]);
             listPresence.add(presence);
         }
 
