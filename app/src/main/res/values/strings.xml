@@ -14,7 +14,6 @@
     <string name="calendar_academic">Kalendar</string>
     <string name="sub_app_name">Student Apps</string>
     <string name="collegeschedule">Jadwal Kuliah</string>
-    <string name="seminarschedule">Jadwal Seminar</string>
 
     <string name="detail_slider1">SIMIPA merupakan aplikasi khusus untuk mahasiswa FMIPA sebagai fasilitas pendukung Mahasiswa FMIPA Universitas Lampung</string>
     <string name="content_slider2">Jadwal kuliah, Absensi, Layanan akademik, Bimbingan, Prestasi saati ini ada di genggaman anda</string>
@@ -31,7 +30,7 @@
     <string name="tv_ex_name">Kelvin Putra</string>
     <string name="test_year_calendar">Tahun Ajaran 2019/2020</string>
     <string name="ex_data_calendar">Pengisian KRS</string>
-    <string name="ex_date_calendar">29-07-2019 s.d 20-07-2019</string>
+    <string name="ex_date_calendar">29–07–2019 s.d 20–07–2019</string>
     <string name="strip">-</string>
     <string name="calendar">Kalender Akademik</string>
 
@@ -59,10 +58,11 @@
     <string name="ruang">Ruang</string>
     <string name="jam">Jam</string>
     <string name="jadwal_seminar">Seminar</string>
-    <string name="tglSeminar">22-10-2019</string>
+    <string name="tglSeminar">22–10–2019</string>
     <string name="nama_mahasiswa_seminar">Nama Mahasiswa</string>
     <string name="judul_seminar">Judul</string>
     <string name="ruang_seminar">Ruang</string>
     <string name="jenis_seminar">Jenis Seminar</string>
     <string name="join_seminar">Join</string>
+    <string name="seminarschedule">Jadwal Seminar</string>
 </resources>
