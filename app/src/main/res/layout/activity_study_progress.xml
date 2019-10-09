@@ -21,28 +21,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <ImageView
-            android:id="@+id/img_back"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin_vertical"
-            android:layout_marginStart="@dimen/activity_margin_vertical"
-            android:src="@drawable/ic_arrow_back_white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/content_description"/>
-
-        <TextView
-            android:id="@+id/tv_title_progress"
-            style="@style/TextContentDefault.white"
-            android:layout_marginTop="@dimen/activity_margin_vertical"
-            android:text="@string/progress"
-            android:textSize="20sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/img_back"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_vertical"
+                android:layout_marginStart="@dimen/activity_margin_vertical"
+                android:src="@drawable/ic_arrow_back_white"
+                android:contentDescription="@string/content_description"/>
+
+            <TextView
+                android:id="@+id/tv_title_progress"
+                style="@style/TextContentDefault.white"
+                android:layout_marginTop="@dimen/activity_margin_vertical"
+                android:layout_centerHorizontal="true"
+                android:text="@string/progress"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/line_chart"
