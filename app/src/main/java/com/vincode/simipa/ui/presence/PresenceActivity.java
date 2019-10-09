@@ -26,7 +26,7 @@ public class PresenceActivity extends AppCompatActivity {
         fragmentPagerAdapter.addFragment(new CollegeFragment(), "Kuliah");
         fragmentPagerAdapter.addFragment(new PracticeFragment(), "Praktikum");
         fragmentPagerAdapter.addFragment(new SeminarFragment(), "Seminar");
-        fragmentPagerAdapter.addFragment(new PracticeFragment(), "Bimbingan");
+        fragmentPagerAdapter.addFragment(new GuidanceFragment(), "Bimbingan");
 
         viewPager.setAdapter(fragmentPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

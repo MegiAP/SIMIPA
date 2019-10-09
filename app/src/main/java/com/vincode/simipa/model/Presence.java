@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class Presence implements Parcelable {
 
-    private String timeOne, timeTwo, title, code, lecture, room, state;
+    private String timeOne, timeTwo, title, code, lecture, room, state, bab;
 
     public String getTimeOne() {
         return timeOne;
@@ -63,6 +63,15 @@ public class Presence implements Parcelable {
         this.state = state;
     }
 
+    public String getBab() {
+        return bab;
+    }
+
+    public void setBab(String bab) {
+        this.bab = bab;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -77,6 +86,7 @@ public class Presence implements Parcelable {
         dest.writeString(this.lecture);
         dest.writeString(this.room);
         dest.writeString(this.state);
+        dest.writeString(this.bab);
     }
 
     public Presence() {
@@ -90,6 +100,7 @@ public class Presence implements Parcelable {
         this.lecture = in.readString();
         this.room = in.readString();
         this.state = in.readString();
+        this.bab = in.readString();
     }
 
     public static final Creator<Presence> CREATOR = new Creator<Presence>() {
