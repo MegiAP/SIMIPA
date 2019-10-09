@@ -13,6 +13,8 @@
     <string name="scholarship">Beasiswa</string>
     <string name="calendar_academic">Kalendar</string>
     <string name="sub_app_name">Student Apps</string>
+    <string name="collegeschedule">Jadwal Kuliah</string>
+    <string name="seminarschedule">Jadwal Seminar</string>
 
     <string name="detail_slider1">SIMIPA merupakan aplikasi khusus untuk mahasiswa FMIPA sebagai fasilitas pendukung Mahasiswa FMIPA Universitas Lampung</string>
     <string name="content_slider2">Jadwal kuliah, Absensi, Layanan akademik, Bimbingan, Prestasi saati ini ada di genggaman anda</string>
@@ -47,8 +49,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="jadwal_kuliah">Jadwal Kuliah</string>
-    <string name="jadwal_praktikum">Jadwal Praktikum</string>
+    <string name="jadwal_kuliah">Kuliah</string>
+    <string name="jadwal_praktikum">Praktikum</string>
     <string name="selasa">Selasa</string>
     <string name="rabu">Rabu</string>
     <string name="mata_kuliah">Mata Kuliah</string>
@@ -56,5 +58,11 @@
     <string name="dosen">Dosen</string>
     <string name="ruang">Ruang</string>
     <string name="jam">Jam</string>
-    <string name="jadwal_seminar">Jadwal Seminar</string>
+    <string name="jadwal_seminar">Seminar</string>
+    <string name="tglSeminar">22-10-2019</string>
+    <string name="nama_mahasiswa_seminar">Nama Mahasiswa</string>
+    <string name="judul_seminar">Judul</string>
+    <string name="ruang_seminar">Ruang</string>
+    <string name="jenis_seminar">Jenis Seminar</string>
+    <string name="join_seminar">Join</string>
 </resources>

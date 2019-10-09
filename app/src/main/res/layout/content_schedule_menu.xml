@@ -55,6 +55,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
+                    android:textStyle="bold"
                     android:maxLines="1"
                     android:text="@string/jadwal_kuliah"
                     android:textColor="#000" />
@@ -89,18 +90,18 @@
                     android:padding="10dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/jadwal"
-                    android:contentDescription="@string/content_description"/>                    />
+                    android:contentDescription="@string/content_description"/>
 
                 <TextView
                     android:id="@+id/tv_jdprak"
-                    android:layout_width="110dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
+                    android:textStyle="bold"
                     android:text="@string/jadwal_praktikum"
-                    android:textSize="12sp"
                     android:textColor="#000" />
 
             </RelativeLayout>
@@ -137,12 +138,13 @@
 
                 <TextView
                     android:id="@+id/tv_jdseminar"
-                    android:layout_width="110dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
+                    android:textStyle="bold"
                     android:text="@string/jadwal_seminar"
                     android:textColor="#000" />
 

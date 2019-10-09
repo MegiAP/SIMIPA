@@ -16,22 +16,27 @@ import com.vincode.simipa.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CollegeScheduleActivity extends AppCompatActivity {
+public class SeminarScheduleActivity extends AppCompatActivity {
+
+
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_college_schedule);
-        viewPager = findViewById(R.id.vp_collegeSchedule);
-        setupViewPager(viewPager);
-        Toolbar toolbar = findViewById(R.id.tb_collegeSchedule);
+        setContentView(R.layout.activity_seminar_schedule);
 
-        tabLayout = findViewById(R.id.tl_collegeSchedule);
+        viewPager = findViewById(R.id.vp_seminarSchedule);
+        setupViewPager(viewPager);
+
+        tabLayout = findViewById(R.id.tl_seminarSchedule);
         tabLayout.setupWithViewPager(viewPager);
+
+        Toolbar toolbar = findViewById(R.id.tb_seminarSchedule);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null){
-            getSupportActionBar().setTitle(R.string.collegeschedule);
+            getSupportActionBar().setTitle(R.string.seminarschedule);
         }
 
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white);
@@ -41,13 +46,11 @@ public class CollegeScheduleActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
-
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        CollegeScheduleActivity.ViewPagerAdapter adapter = new CollegeScheduleActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new JadkulFragment(), "Senin");
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new JadsemFragment(), "Senin");
         adapter.addFrag(new dump1(), "Selasa");
         adapter.addFrag(new dump2(), "Rabu");
         adapter.addFrag(new dump3(), "Kamis");
@@ -83,5 +86,5 @@ public class CollegeScheduleActivity extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
-
 }
+

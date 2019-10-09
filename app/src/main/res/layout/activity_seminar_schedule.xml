@@ -9,12 +9,12 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_collegeSchedule"
+            android:id="@+id/tb_seminarSchedule"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tl_collegeSchedule"
+            android:id="@+id/tl_seminarSchedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabMaxWidth="0dp"
@@ -22,7 +22,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vp_collegeSchedule"
+        android:id="@+id/vp_seminarSchedule"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
