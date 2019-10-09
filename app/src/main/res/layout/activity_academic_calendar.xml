@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.calendarAcademic.AcademicCalendarActivity">
+    tools:context=".ui.calendar.AcademicCalendarActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -15,7 +15,8 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_calendar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|enterAlways|snap"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tl_calendar"

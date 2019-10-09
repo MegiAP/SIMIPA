@@ -24,7 +24,7 @@
         <activity
             android:name=".ui.schedule.CollegeScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.settings.SettingActivity" />
+        <activity android:name=".ui.settings.SettingActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".beasiswa.BeasiswaActivity"
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".krs.KRSActivity"

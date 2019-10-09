@@ -65,4 +65,5 @@
     <string name="jenis_seminar">Jenis Seminar</string>
     <string name="join_seminar">Join</string>
     <string name="seminarschedule">Jadwal Seminar</string>
+    <string name="setting">Pengaturan</string>
 </resources>

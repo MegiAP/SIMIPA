@@ -17,6 +17,10 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setTitle(R.string.setting);
+        }
+
         final Button btnChange = findViewById(R.id.btn_change_language);
         btnChange.setOnClickListener(new View.OnClickListener() {
             @Override
