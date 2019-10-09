@@ -57,7 +57,7 @@ public class CardViewBeasiswaAdapter extends RecyclerView.Adapter<CardViewBeasis
         public CardViewViewHolder(View itemView) {
             super(itemView);
             tvStatus = (TextView)itemView.findViewById(R.id.tv_status);
-            tvName = (TextView)itemView.findViewById(R.id.tv_item_name);
+            tvName = (TextView)itemView.findViewById(R.id.tv_scholarship);
             tvRemarks = (TextView)itemView.findViewById(R.id.tv_item_remarks);
         }
     }

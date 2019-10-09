@@ -11,9 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".ui.schedule.LectureScheduleActivity"
+            android:parentActivityName=".ui.schedule.ScheduleMenu"/>
+        <activity android:name=".ui.schedule.ClassScheduleActivity"
+            android:parentActivityName=".ui.schedule.ScheduleMenu"/>
         <activity
             android:name=".ui.schedule.SeminarScheduleActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.schedule.ScheduleMenu"
             android:label="Menu Jadwal" />
@@ -21,8 +25,10 @@
             android:name=".ui.schedule.CollegeScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.settings.SettingActivity" />
-        <activity android:name=".beasiswa.BeasiswaActivity" />
-        <activity android:name=".krs.KRSActivity" />
+        <activity android:name=".beasiswa.BeasiswaActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".krs.KRSActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />

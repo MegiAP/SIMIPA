@@ -10,7 +10,7 @@ import android.view.View;
 import com.vincode.simipa.R;
 
 public class ScheduleMenu extends AppCompatActivity implements View.OnClickListener {
-    CardView cvJdkul, cvJdprak, cvJdsem;
+    CardView cvJdkul, cvJdprak, cvJdsem, cvJdruang, cvJddosen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +29,12 @@ public class ScheduleMenu extends AppCompatActivity implements View.OnClickListe
 
         cvJdsem = findViewById(R.id.cv_jdseminar);
         cvJdsem.setOnClickListener(this);
+
+        cvJddosen = findViewById(R.id.cv_jddosen);
+        cvJddosen.setOnClickListener(this);
+
+        cvJdruang = findViewById(R.id.cv_jdruang);
+        cvJdruang.setOnClickListener(this);
     }
 
     @Override
@@ -41,6 +47,14 @@ public class ScheduleMenu extends AppCompatActivity implements View.OnClickListe
             case R.id.cv_jdseminar:
                 Intent jdsem = new Intent (ScheduleMenu.this, SeminarScheduleActivity.class);
                 startActivity(jdsem);
+                break;
+            case R.id.cv_jdruang :
+                Intent ruang = new Intent(ScheduleMenu.this, ClassScheduleActivity.class);
+                startActivity(ruang);
+                break;
+            case R.id.cv_jddosen :
+                Intent dosen = new Intent(ScheduleMenu.this, LectureScheduleActivity.class);
+                startActivity(dosen);
                 break;
 
         }
