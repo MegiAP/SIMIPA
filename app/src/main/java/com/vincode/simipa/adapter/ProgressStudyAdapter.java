@@ -2,7 +2,10 @@ package com.vincode.simipa.adapter;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.model.ProgressStudy;
+import com.vincode.simipa.ui.study_progress.DetailMatkulActivity;
 
 import java.util.ArrayList;
 
@@ -33,11 +37,19 @@ public class ProgressStudyAdapter extends RecyclerView.Adapter<ProgressStudyAdap
 
     @Override
     public void onBindViewHolder(@NonNull ProgressViewHolder progressViewHolder, int i) {
-        ProgressStudy progressStudy = listProgress.get(i);
+        final ProgressStudy progressStudy = listProgress.get(i);
 
         progressViewHolder.tvSemester.setText(progressStudy.getSemester());
         progressViewHolder.tvValueIpk.setText(progressStudy.getIpk());
         progressViewHolder.tvValueSks.setText(progressStudy.getSks());
+        progressViewHolder.cvProgress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent moveIntent = new Intent(mContext, DetailMatkulActivity.class);
+                moveIntent.putExtra(DetailMatkulActivity.EXTRA_INTENT, progressStudy);
+                mContext.startActivity(moveIntent);
+            }
+        });
     }
 
     @Override
@@ -45,15 +57,17 @@ public class ProgressStudyAdapter extends RecyclerView.Adapter<ProgressStudyAdap
         return listProgress.size();
     }
 
-    public class ProgressViewHolder extends RecyclerView.ViewHolder {
+     class ProgressViewHolder extends RecyclerView.ViewHolder {
         TextView tvSemester, tvValueIpk, tvValueSks;
+        CardView cvProgress;
 
-        public ProgressViewHolder(@NonNull View itemView) {
+         ProgressViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvSemester = itemView.findViewById(R.id.tv_progress_semester);
             tvValueIpk = itemView.findViewById(R.id.tv_value_ipk);
             tvValueSks = itemView.findViewById(R.id.tv_value_sks);
+            cvProgress = itemView.findViewById(R.id.cv_item_progress);
         }
     }
 }

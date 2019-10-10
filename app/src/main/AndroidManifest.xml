@@ -16,7 +16,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".ui.schedule.DetailLectureActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".ui.recapitulation.RecapMenuActivity"
@@ -90,6 +90,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.study_progress.DetailMatkulActivity" android:parentActivityName=".ui.study_progress.StudyProgressActivity"/>
     </application>
 
 </manifest>
