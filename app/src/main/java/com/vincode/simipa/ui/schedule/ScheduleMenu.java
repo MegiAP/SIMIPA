@@ -56,6 +56,10 @@ public class ScheduleMenu extends AppCompatActivity implements View.OnClickListe
                 Intent dosen = new Intent(ScheduleMenu.this, LectureScheduleActivity.class);
                 startActivity(dosen);
                 break;
+            case R.id.cv_jdprak:
+                Intent jdpractice = new Intent( ScheduleMenu.this, PracticeScheduleActivity.class);
+                startActivity(jdpractice);
+                break;
 
         }
     }

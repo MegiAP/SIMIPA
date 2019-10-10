@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class TestPresence {
 
     private static String[][]dataTest = new String[][]{
-            {"07.30", "09.10", "Teknologi Mobile", "COM616163", "Ardiansyah, M.Kom.", "GIK L1.C", "1"}
+            {"07.30", "09.10", "Teknologi Mobile", "COM616163", "Ardiansyah, M.Kom.", "GIK L1.C", "Bimbingan I"}
     };
 
     public static ArrayList<Presence> getListPresence(){

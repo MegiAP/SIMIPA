@@ -103,8 +103,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:src="@drawable/books"
                     android:layout_marginTop="4dp"
                     android:layout_marginStart="@dimen/margin_item"/>

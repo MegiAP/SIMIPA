@@ -11,9 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.recapitulation.RecapMenuActivity"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".ui.recapitulation.GuidanceRecapActivity"
+        <activity android:name=".ui.schedule.PracticeScheduleActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.recapitulation.RecapMenuActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ui.recapitulation.GuidanceRecapActivity"
             android:parentActivityName=".ui.recapitulation.RecapMenuActivity" />
         <activity
             android:name=".ui.schedule.LectureScheduleActivity"
@@ -28,14 +32,15 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.schedule.ScheduleMenu"
-            android:parentActivityName=".MainActivity"
-            android:label="Menu Jadwal" />
+            android:label="Menu Jadwal"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ui.schedule.CollegeScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.settings.SettingActivity" />
-        <activity android:name=".ui.recapitulation.ScoreRecapActivity"
-            android:parentActivityName=".ui.recapitulation.RecapMenuActivity"/>
+        <activity
+            android:name=".ui.recapitulation.ScoreRecapActivity"
+            android:parentActivityName=".ui.recapitulation.RecapMenuActivity" />
         <activity
             android:name=".beasiswa.BeasiswaActivity"
             android:parentActivityName=".MainActivity" />

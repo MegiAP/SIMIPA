@@ -68,4 +68,6 @@
     <string name="join_seminar">Join</string>
     <string name="seminarschedule">Jadwal Seminar</string>
     <string name="setting">Pengaturan</string>
+    <string name="practiceschedule">Jadwal praktikum</string>
+
 </resources>
