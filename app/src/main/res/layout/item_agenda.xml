@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginTop="9dp"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardCornerRadius="18dp">
+
+    <TextView
+        android:id="@+id/tv_jenisAgenda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="160dp"
+        android:rotation="270"
+        android:text="Jenis"
+        android:textColor="#FFFF"
+        android:textSize="18sp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_agenda1"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="18dp">
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_jam1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:text="07.30" />
+
+            <ImageView
+                android:layout_marginTop="7dp"
+                android:src="@drawable/ic_clock_black_24dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/tv_jam2"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09.10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="3dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="90dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/tv_judulAgenda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/judul"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_mhsAgenda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/nama_mahasiswa"
+            android:textSize="15sp" />
+
+        <TextView
+            android:paddingBottom="10dp"
+            android:id="@+id/tv_rAgenda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="70dp"
+            android:text="@string/ruangan"
+            android:textSize="15sp" />
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.cardview.widget.CardView>
