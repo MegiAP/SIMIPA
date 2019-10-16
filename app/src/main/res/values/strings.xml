@@ -69,5 +69,9 @@
     <string name="seminarschedule">Jadwal Seminar</string>
     <string name="setting">Pengaturan</string>
     <string name="practiceschedule">Jadwal praktikum</string>
+    <string name="CheckRecapPresence">Check</string>
+    <string name="presence_kehadiran">Kehadiran</string>
+    <string name="dosen_pembimbing">Dosen Pembimbing</string>
+    <string name="seminar">Seminar</string>
 
 </resources>

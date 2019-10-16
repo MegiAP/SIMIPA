@@ -11,7 +11,7 @@ import com.vincode.simipa.R;
 
 public class RecapMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
-    CardView cvScore, cvGuidance;
+    CardView cvScore, cvGuidance, cvPresence, cvSeminar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,12 @@ public class RecapMenuActivity extends AppCompatActivity implements View.OnClick
 
         cvGuidance = findViewById(R.id.cv_recGuidance);
         cvGuidance.setOnClickListener(this);
+
+        cvPresence = findViewById(R.id.cv_recPresence);
+        cvPresence.setOnClickListener(this);
+
+        cvSeminar = findViewById(R.id.cv_recSeminar);
+        cvSeminar.setOnClickListener(this);
     }
 
     @Override
@@ -39,6 +45,14 @@ public class RecapMenuActivity extends AppCompatActivity implements View.OnClick
             case R.id.cv_recGuidance :
                 Intent guidance = new Intent(RecapMenuActivity.this, GuidanceRecapActivity.class);
                 startActivity(guidance);
+                break;
+            case R.id.cv_recPresence :
+                Intent presence = new Intent(RecapMenuActivity.this, PresenceRecapActivity.class);
+                startActivity(presence);
+                break;
+            case R.id.cv_recSeminar :
+                Intent seminar = new Intent(RecapMenuActivity.this, SeminarRecapActivity.class);
+                startActivity(seminar);
                 break;
         }
     }
