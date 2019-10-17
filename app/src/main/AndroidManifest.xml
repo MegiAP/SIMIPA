@@ -11,9 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.agenda.AgendaActivity"
+        <activity android:name=".ui.achievement.AchievementActivity"></activity>
+        <activity
+            android:name=".ui.agenda.AgendaActivity"
             android:label="Agenda"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.schedule.PracticeScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
