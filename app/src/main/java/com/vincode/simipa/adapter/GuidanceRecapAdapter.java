@@ -1,11 +1,6 @@
 package com.vincode.simipa.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,40 +9,48 @@ import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.model.GuidanceRecap;
-import com.vincode.simipa.model.GuidanceSchedule;
-import com.vincode.simipa.model.ScoreRecap;
 import com.vincode.simipa.ui.guidance.DetailGuidanceActivity;
+import com.vincode.simipa.ui.recapitulation.GuidanceRecapActivity;
 
 import java.util.ArrayList;
 
-public class GuidanceScheduleAdapter extends RecyclerView.Adapter<GuidanceScheduleAdapter.GuidanceViewHolder> {
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
-    private ArrayList<GuidanceSchedule> listGuidance;
+public class GuidanceRecapAdapter extends RecyclerView.Adapter<GuidanceRecapAdapter.GuidanceViewHolder>{
+    private ArrayList<GuidanceRecap> listGuidanceRecap;
     private final Context context;
 
-
-    public GuidanceScheduleAdapter(Context context, ArrayList<GuidanceSchedule> listGuidance) {
-        this.listGuidance = listGuidance;
+    public GuidanceRecapAdapter(Context context) {
         this.context = context;
+    }
+
+    public ArrayList<GuidanceRecap> getlistGuidanceRecap() {
+        return listGuidanceRecap;
+    }
+
+    public void setlistGuidanceRecap(ArrayList<GuidanceRecap> listGuidanceRecap) {
+        this.listGuidanceRecap = listGuidanceRecap;
     }
 
     @NonNull
     @Override
-    public GuidanceViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public GuidanceRecapAdapter.GuidanceViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_guidance, viewGroup, false);
-        return new GuidanceViewHolder(view);
+        return new GuidanceRecapAdapter.GuidanceViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GuidanceViewHolder guidanceViewHolder, int i) {
-        GuidanceSchedule guidanceSchedule = listGuidance.get(i);
+    public void onBindViewHolder(@NonNull GuidanceViewHolder holder, int position) {
+        GuidanceRecap guidanceRecap = listGuidanceRecap.get(position);
 
-        guidanceViewHolder.tvTitle.setText(guidanceSchedule.getTitle());
-        guidanceViewHolder.tvLecture.setText(guidanceSchedule.getLecture());
-        guidanceViewHolder.tvLocation.setText(guidanceSchedule.getLocation());
-        guidanceViewHolder.tvDate.setText(guidanceSchedule.getDate());
-        guidanceViewHolder.tvTime.setText(guidanceSchedule.getTime());
-        guidanceViewHolder.cvGuidance.setOnClickListener(new View.OnClickListener() {
+        holder.tvTitle.setText(guidanceRecap.getTitle());
+        holder.tvLecture.setText(guidanceRecap.getLecture());
+        holder.tvLocation.setText(guidanceRecap.getLocation());
+        holder.tvDate.setText(guidanceRecap.getDate());
+        holder.tvTime.setText(guidanceRecap.getTime());
+        holder.cvGuidance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailGuidanceActivity.class);
@@ -58,7 +61,7 @@ public class GuidanceScheduleAdapter extends RecyclerView.Adapter<GuidanceSchedu
 
     @Override
     public int getItemCount() {
-        return listGuidance.size();
+        return listGuidanceRecap.size();
     }
 
     public class GuidanceViewHolder extends RecyclerView.ViewHolder {
@@ -75,4 +78,5 @@ public class GuidanceScheduleAdapter extends RecyclerView.Adapter<GuidanceSchedu
             cvGuidance = itemView.findViewById(R.id.cv_item_guidance);
         }
     }
+
 }
