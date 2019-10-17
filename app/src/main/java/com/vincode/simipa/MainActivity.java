@@ -7,14 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.vincode.simipa.beasiswa.BeasiswaActivity;
 import com.vincode.simipa.krs.KRSActivity;
-import com.vincode.simipa.model.ScoreRecap;
 import com.vincode.simipa.ui.achievement.AchievementActivity;
 import com.vincode.simipa.ui.agenda.AgendaActivity;
+import com.vincode.simipa.ui.login.LoginActivity;
 import com.vincode.simipa.ui.recapitulation.RecapMenuActivity;
-import com.vincode.simipa.ui.recapitulation.ScoreRecapActivity;
 import com.vincode.simipa.ui.schedule.ScheduleMenu;
 import com.vincode.simipa.ui.calendar.AcademicCalendarActivity;
 import com.vincode.simipa.ui.guidance.GuidanceScheduleActivity;
@@ -34,6 +34,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView tvName = findViewById(R.id.tv_home_name);
+        TextView tvNpm = findViewById(R.id.tv_home_npm);
+
+        tvName.setText(SharedPrefManager.getInstance(this).getUser().getDisplayName());
+        tvNpm.setText(SharedPrefManager.getInstance(this).getUser().getUserLogin());
+
+        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
+        }
         setCardClick();
 
     }
