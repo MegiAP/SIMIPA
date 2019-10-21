@@ -12,9 +12,10 @@ public class SharedPrefManager {
 
     private static String PREF_NAME_LOGIN = "pref_name_login";
 
-    private static final String KEY_ID = "kei_id";
+    private static final String KEY_ID = "key_id";
     private static final String KEY_NAME = "key_name";
     private static final String KEY_NPM = "key_npm";
+    private static final String KEY_EMAIL = "key_email";
 
     private SharedPrefManager(Context context) {
         this.context = context;
@@ -49,7 +50,8 @@ public class SharedPrefManager {
         return new UserData(
                 sharedPreferences.getLong(KEY_ID, 0),
                 sharedPreferences.getString(KEY_NPM, null),
-                sharedPreferences.getString(KEY_NAME, null)
+                sharedPreferences.getString(KEY_NAME, null),
+                sharedPreferences.getString(KEY_EMAIL, null)
         );
     }
 }
