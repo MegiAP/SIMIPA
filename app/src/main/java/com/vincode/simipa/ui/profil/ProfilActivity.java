@@ -41,7 +41,7 @@ public class ProfilActivity extends AppCompatActivity {
         tvProfilNPM.setText(SharedPrefManager.getInstance(this).getUser().getUserLogin());
         tvProfilEmail.setText(ProfilEmail);
 
-        getUserData(ProfilEmail);
+        getUserData(SharedPrefManager.getInstance(this).getUser().getUserLogin());
 
         ImageView imgBack = findViewById(R.id.img_back_profil);
         imgBack.setOnClickListener(new View.OnClickListener() {
@@ -59,13 +59,13 @@ public class ProfilActivity extends AppCompatActivity {
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<ProfileResponse> call = apiInterface.getUserData(email);
+        Call<ProfileResponse> call = apiInterface.UserProfile(email);
 
         call.enqueue(new Callback<ProfileResponse>() {
             @Override
             public void onResponse(@NonNull Call<ProfileResponse> call, @NonNull Response<ProfileResponse> response) {
                 progressDialog.dismiss();
-                ProfilEmail = response.body().getEmail().toString();
+                ProfilEmail = response.body().getProfile().toString();
             }
 
             @Override

@@ -20,7 +20,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("read-profile.php")
-    Call<ProfileResponse> getUserData(
-            @Field("Email") String email
+    Call<ProfileResponse> UserProfile(
+            @Field("npm") String npm
     );
 }

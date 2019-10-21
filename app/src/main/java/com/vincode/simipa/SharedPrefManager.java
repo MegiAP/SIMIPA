@@ -50,8 +50,7 @@ public class SharedPrefManager {
         return new UserData(
                 sharedPreferences.getLong(KEY_ID, 0),
                 sharedPreferences.getString(KEY_NPM, null),
-                sharedPreferences.getString(KEY_NAME, null),
-                sharedPreferences.getString(KEY_EMAIL, null)
+                sharedPreferences.getString(KEY_NAME, null)
         );
     }
 }

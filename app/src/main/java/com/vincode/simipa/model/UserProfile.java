@@ -2,7 +2,7 @@ package com.vincode.simipa.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UserData {
+public class UserProfile {
 
     @SerializedName("Id")
     private long id;
@@ -13,13 +13,16 @@ public class UserData {
     @SerializedName("Display Name")
     private String displayName;
 
-    public UserData(long id, String userLogin, String displayName) {
+    @SerializedName("Email")
+    private String email;
+
+    public UserProfile(long id, String userLogin, String displayName) {
         this.id = id;
         this.userLogin = userLogin;
         this.displayName = displayName;
     }
 
-    public UserData(String userLogin, String displayName) {
+    public UserProfile(String userLogin, String displayName) {
         this.userLogin = userLogin;
         this.displayName = displayName;
     }

@@ -11,8 +11,8 @@ public class ProfileResponse {
     @SerializedName("message")
     private String message;
 
-    @SerializedName("Email")
-    private UserData email;
+    @SerializedName("User Profile")
+    private UserData profile;
 
     public boolean isError() {
         return error;
@@ -22,14 +22,14 @@ public class ProfileResponse {
         return message;
     }
 
-    public UserData getEmail() {
-        return email;
+    public UserData getProfile() {
+        return profile;
     }
 
-    public ProfileResponse(boolean error, String message, UserData email) {
+    public ProfileResponse(boolean error, String message, UserData profile) {
         this.error = error;
         this.message = message;
-        this.email = email;
+        this.profile = profile;
 
     }
 }
