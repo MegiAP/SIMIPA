@@ -1,5 +1,7 @@
 package com.vincode.simipa.network;
 
+import android.widget.TextView;
+
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.ProfileResponse;
 
@@ -8,6 +10,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
 
@@ -18,9 +21,8 @@ public interface ApiInterface {
             @Field("pass") String password
     );
 
-    @FormUrlEncoded
-    @POST("read-profile.php")
-    Call<ProfileResponse> UserProfile(
-            @Field("npm") String npm
+    @GET("read-profile.php")
+    Call<ProfileResponse> userProfile(
+            @Query("npm") String npm
     );
 }

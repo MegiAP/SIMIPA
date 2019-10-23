@@ -20,13 +20,15 @@ import com.vincode.simipa.R;
 import com.vincode.simipa.SharedPrefManager;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.ProfileResponse;
+import com.vincode.simipa.model.UserProfile;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 
+import java.util.List;
+
 public class ProfilActivity extends AppCompatActivity {
 
-    TextView tvProfilName, tvProfilNPM, tvProfilEmail;
-    String ProfilEmail;
+    TextView tvProfilName, tvProfilNPM, tvProfilEmail, tvProfilJurusan, tvTanggalLahir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +38,10 @@ public class ProfilActivity extends AppCompatActivity {
         tvProfilName = findViewById(R.id.tv_name_profil);
         tvProfilNPM = findViewById(R.id.tv_npm_profil);
         tvProfilEmail = findViewById(R.id.tv_email_profil);
+        tvProfilJurusan = findViewById(R.id.tv_jurusan_profil);
+        tvTanggalLahir = findViewById(R.id.tv_tanggal_profil);
 
-        tvProfilName.setText(SharedPrefManager.getInstance(this).getUser().getDisplayName());
-        tvProfilNPM.setText(SharedPrefManager.getInstance(this).getUser().getUserLogin());
-        tvProfilEmail.setText(ProfilEmail);
-
-        getUserData(SharedPrefManager.getInstance(this).getUser().getUserLogin());
+        getUserData();
 
         ImageView imgBack = findViewById(R.id.img_back_profil);
         imgBack.setOnClickListener(new View.OnClickListener() {
@@ -52,20 +52,27 @@ public class ProfilActivity extends AppCompatActivity {
         });
     }
 
-    private void getUserData(String email) {
+    private void getUserData() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<ProfileResponse> call = apiInterface.UserProfile(email);
+        Call<ProfileResponse> call = apiInterface.userProfile(SharedPrefManager.getInstance(this).getUser().getUserLogin());
 
         call.enqueue(new Callback<ProfileResponse>() {
             @Override
             public void onResponse(@NonNull Call<ProfileResponse> call, @NonNull Response<ProfileResponse> response) {
                 progressDialog.dismiss();
-                ProfilEmail = response.body().getProfile().toString();
+                List<UserProfile> userProfile = response.body().getUserProfiles();
+                tvProfilName.setText(userProfile.get(0).getDisplayName());
+                tvProfilNPM.setText(userProfile.get(0).getNpm());
+                tvProfilEmail.setText(userProfile.get(0).getEmail());
+                tvProfilJurusan.setText(userProfile.get(0).getJurusan());
+                String Birth = userProfile.get(0).getTanggalLahir();
+                String tanggal = Birth.substring(8,10);
+                String bulan = Birth.substring(5,7);
+                String tahun = Birth.substring(0,4);
+                tvTanggalLahir.setText(tanggal + "-" + bulan + "-" + tahun);
             }
 
             @Override

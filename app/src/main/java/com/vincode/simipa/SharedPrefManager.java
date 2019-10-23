@@ -15,7 +15,6 @@ public class SharedPrefManager {
     private static final String KEY_ID = "key_id";
     private static final String KEY_NAME = "key_name";
     private static final String KEY_NPM = "key_npm";
-    private static final String KEY_EMAIL = "key_email";
 
     private SharedPrefManager(Context context) {
         this.context = context;
