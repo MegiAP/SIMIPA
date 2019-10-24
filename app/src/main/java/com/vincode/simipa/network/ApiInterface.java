@@ -1,6 +1,5 @@
 package com.vincode.simipa.network;
 
-import android.widget.TextView;
 
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.ProfileResponse;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,171 +8,170 @@
     android:background="@color/colorBgPrimary"
     tools:context=".ui.profil.ProfilActivity">
 
-    <View
-        android:id="@+id/view"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:background="@drawable/bg_gradient_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/img_back_profil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_margin_vertical"
-        android:layout_marginStart="@dimen/activity_margin_horizontal"
-        android:src="@drawable/ic_arrow_back_white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:background="@drawable/bg_gradient_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <ImageView
-        android:id="@+id/img_user"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/ic_account_circle_white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        <ImageView
+            android:id="@+id/img_back_profil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin_vertical"
+            android:layout_marginStart="@dimen/activity_margin_horizontal"
+            android:src="@drawable/ic_arrow_back_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/content_description"/>
 
-    <TextView
-        android:id="@+id/tv_name_profil"
-        style="@style/TextContentDefault.white"
-        android:text="Kelvin Putra"
-        android:textSize="32sp"
-        app:layout_constraintTop_toBottomOf="@id/img_user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_user"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
+            android:src="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/tv_npm_profil"
-        style="@style/TextContentDefault.white"
-        android:text="1617051086"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/tv_name_profil"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tv_name_profil"
+            style="@style/TextContentDefault.white"
+            android:textSize="32sp"
+            app:layout_constraintTop_toBottomOf="@id/img_user"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_margin_horizontal"
-        android:layout_marginStart="@dimen/activity_margin_horizontal"
-        android:layout_marginTop="@dimen/activity_margin_vertical"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_npm_profil">
+        <TextView
+            android:id="@+id/tv_npm_profil"
+            style="@style/TextContentDefault.white"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_profil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/activity_margin_vertical">
+            android:layout_marginEnd="@dimen/activity_margin_horizontal"
+            android:layout_marginStart="@dimen/activity_margin_horizontal"
+            android:layout_marginTop="@dimen/activity_margin_vertical"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_npm_profil">
 
-            <TextView
-                android:id="@+id/tv_biodata"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_btn_blue"
-                android:paddingBottom="4dp"
-                android:paddingTop="4dp"
-                android:text="Biodata Mahasiswa"
-                android:textAlignment="center"
-                android:textColor="@color/colorIcons"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:paddingBottom="@dimen/activity_margin_vertical">
 
-            <TextView
-                android:id="@+id/tv_label_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_item"
-                android:layout_marginStart="@dimen/margin_item"
-                android:layout_marginTop="@dimen/activity_margin_vertical"
-                android:text="Email"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_biodata"/>
+                <TextView
+                    android:id="@+id/tv_biodata"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_btn_blue"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:text="Biodata Mahasiswa"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorIcons"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_email_profil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_item"
-                android:layout_marginStart="@dimen/margin_item"
-                android:text="kelvinputra0210@gmail.com"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_label_email"/>
+                <TextView
+                    android:id="@+id/tv_label_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_item"
+                    android:layout_marginStart="@dimen/margin_item"
+                    android:layout_marginTop="@dimen/activity_margin_vertical"
+                    android:text="Email"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_biodata"/>
 
-            <TextView
-                android:id="@+id/tv_label_jurusan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_item"
-                android:layout_marginStart="@dimen/margin_item"
-                android:layout_marginTop="@dimen/activity_margin_vertical"
-                android:text="Jurusan"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_email_profil"/>
+                <TextView
+                    android:id="@+id/tv_email_profil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_item"
+                    android:layout_marginStart="@dimen/margin_item"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_label_email"/>
 
-            <TextView
-                android:id="@+id/tv_jurusan_profil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_item"
-                android:layout_marginStart="@dimen/margin_item"
-                android:text="Ilmu Komputer"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_label_jurusan"/>
+                <TextView
+                    android:id="@+id/tv_label_jurusan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_item"
+                    android:layout_marginStart="@dimen/margin_item"
+                    android:layout_marginTop="@dimen/activity_margin_vertical"
+                    android:text="Jurusan"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_email_profil"/>
 
-            <TextView
-                android:id="@+id/tv_label_birth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_item"
-                android:layout_marginStart="@dimen/margin_item"
-                android:layout_marginTop="@dimen/activity_margin_vertical"
-                android:text="Tempat, Tanggal Lahir"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_jurusan_profil"/>
+                <TextView
+                    android:id="@+id/tv_jurusan_profil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_item"
+                    android:layout_marginStart="@dimen/margin_item"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_label_jurusan"/>
 
-            <TextView
-                android:id="@+id/tv_tanggal_profil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_item"
-                android:layout_marginStart="@dimen/margin_item"
-                android:text="Gisting, 02-10-1998"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_label_birth"/>
+                <TextView
+                    android:id="@+id/tv_label_birth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_item"
+                    android:layout_marginStart="@dimen/margin_item"
+                    android:layout_marginTop="@dimen/activity_margin_vertical"
+                    android:text="Tanggal Lahir"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_jurusan_profil"/>
 
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/tv_tanggal_profil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_item"
+                    android:layout_marginStart="@dimen/margin_item"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_label_birth"/>
 
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

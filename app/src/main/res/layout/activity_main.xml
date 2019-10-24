@@ -85,23 +85,21 @@
                 android:paddingStart="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin">
 
-                <!--circleimage-->
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_user"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/ic_account_circle_black"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/content_description"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_home_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_ex_name"
+                    android:layout_marginStart="@dimen/activity_margin_horizontal"
+                    android:layout_marginTop="@dimen/margin_item"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/img_user"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -110,7 +108,7 @@
                     android:id="@+id/tv_home_npm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tv_ex_npm"
+                    android:layout_marginStart="@dimen/activity_margin_horizontal"
                     android:textSize="14sp"
                     android:textColor="@color/colorSecondaryText"
                     app:layout_constraintStart_toEndOf="@id/img_user"

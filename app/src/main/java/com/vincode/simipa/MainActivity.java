@@ -1,5 +1,6 @@
 package com.vincode.simipa;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -9,8 +10,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.vincode.simipa.beasiswa.BeasiswaActivity;
 import com.vincode.simipa.krs.KRSActivity;
+import com.vincode.simipa.model.ProfileResponse;
+import com.vincode.simipa.model.UserProfile;
+import com.vincode.simipa.network.ApiClient;
+import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.ui.achievement.AchievementActivity;
 import com.vincode.simipa.ui.agenda.AgendaActivity;
 import com.vincode.simipa.ui.login.LoginActivity;
@@ -24,68 +31,104 @@ import com.vincode.simipa.ui.service.ServiceActivity;
 import com.vincode.simipa.ui.settings.SettingActivity;
 import com.vincode.simipa.ui.study_progress.StudyProgressActivity;
 
+import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    CardView cvKRS, cvBeasiswa, cvUser, cvGuidance, cvCalendar, cvPresence, cvProgress,cvService, cvSchedule, cvRecap, cvAgenda,cvAchieve;
-    ImageView imgSetting;
+    private CircleImageView imageUser;
+    private TextView tvName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView tvName = findViewById(R.id.tv_home_name);
-        TextView tvNpm = findViewById(R.id.tv_home_npm);
+        imageUser = findViewById(R.id.img_user);
+        tvName = findViewById(R.id.tv_home_name);
 
-        tvName.setText(SharedPrefManager.getInstance(this).getUser().getDisplayName());
+        TextView tvNpm = findViewById(R.id.tv_home_npm);
         tvNpm.setText(SharedPrefManager.getInstance(this).getUser().getUserLogin());
 
         if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
+
+
         setCardClick();
+        getDataProfil();
 
     }
 
+    private void getDataProfil (){
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<ProfileResponse> call = apiInterface.userProfile(SharedPrefManager.getInstance(this).getUser().getUserLogin());
+
+        call.enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<ProfileResponse> call, @NonNull Response<ProfileResponse> response) {
+                if (response.body() != null) {
+                    List<UserProfile> userProfiles = response.body().getUserProfiles();
+                    Glide.with(getApplicationContext())
+                            .load(userProfiles.get(0).getFoto())
+                            .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error))
+                            .into(imageUser);
+                    tvName.setText(userProfiles.get(0).getDisplayName());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ProfileResponse> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
     private void setCardClick(){
-        imgSetting = findViewById(R.id.setting);
+        ImageView imgSetting = findViewById(R.id.setting);
         imgSetting.setOnClickListener(this);
 
-        cvUser = findViewById(R.id.cv_user);
+        CardView cvUser = findViewById(R.id.cv_user);
         cvUser.setOnClickListener(this);
 
-        cvGuidance = findViewById(R.id.cv_guidance);
+        CardView cvGuidance = findViewById(R.id.cv_guidance);
         cvGuidance.setOnClickListener(this);
 
-        cvCalendar = findViewById(R.id.cv_calendar);
+        CardView cvCalendar = findViewById(R.id.cv_calendar);
         cvCalendar.setOnClickListener(this);
 
-        cvPresence = findViewById(R.id.cv_presence);
+        CardView cvPresence = findViewById(R.id.cv_presence);
         cvPresence.setOnClickListener(this);
 
-        cvProgress = findViewById(R.id.cv_progress);
+        CardView cvProgress = findViewById(R.id.cv_progress);
         cvProgress.setOnClickListener(this);
 
-        cvService = findViewById(R.id.cv_service);
+        CardView cvService = findViewById(R.id.cv_service);
         cvService.setOnClickListener(this);
 
-        cvBeasiswa = findViewById(R.id.cv_beasiswa);
+        CardView cvBeasiswa = findViewById(R.id.cv_beasiswa);
         cvBeasiswa.setOnClickListener(this);
 
-        cvKRS = findViewById(R.id.cv_krs);
+        CardView cvKRS = findViewById(R.id.cv_krs);
         cvKRS.setOnClickListener(this);
 
-        cvRecap = findViewById(R.id.cv_recap);
+        CardView cvRecap = findViewById(R.id.cv_recap);
         cvRecap.setOnClickListener(this);
 
-        cvSchedule = findViewById(R.id.cv_schedule);
+        CardView cvSchedule = findViewById(R.id.cv_schedule);
         cvSchedule.setOnClickListener(this);
 
-        cvAgenda = findViewById(R.id.cv_agenda);
+        CardView cvAgenda = findViewById(R.id.cv_agenda);
         cvAgenda.setOnClickListener(this);
 
-        cvAchieve = findViewById(R.id.cv_achieve);
+        CardView cvAchieve = findViewById(R.id.cv_achieve);
         cvAchieve.setOnClickListener(this);
     }
 
