@@ -3,6 +3,7 @@ package com.vincode.simipa.network;
 
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.ProfileResponse;
+import com.vincode.simipa.model.SplashResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -23,5 +24,10 @@ public interface ApiInterface {
     @GET("read-profile.php")
     Call<ProfileResponse> userProfile(
             @Query("npm") String npm
+    );
+
+    @GET("read-update-splashscreen.php")
+    Call<SplashResponse> getSplashImage(
+            @Query("flag") String flag
     );
 }

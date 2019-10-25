@@ -52,4 +52,12 @@ public class SharedPrefManager {
                 sharedPreferences.getString(KEY_NAME, null)
         );
     }
+
+    public boolean logout(){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME_LOGIN, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+        return true;
+    }
 }
