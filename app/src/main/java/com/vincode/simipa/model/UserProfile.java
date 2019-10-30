@@ -31,7 +31,7 @@ public class UserProfile {
 
     @SerializedName("Tempat Lahir")
     @Expose
-    private Object tempatLahir;
+    private String tempatLahir;
 
     @SerializedName("Tanggal Lahir")
     @Expose
@@ -101,11 +101,11 @@ public class UserProfile {
         this.agama = agama;
     }
 
-    public Object getTempatLahir() {
+    public String getTempatLahir() {
         return tempatLahir;
     }
 
-    public void setTempatLahir(Object tempatLahir) {
+    public void setTempatLahir(String tempatLahir) {
         this.tempatLahir = tempatLahir;
     }
 

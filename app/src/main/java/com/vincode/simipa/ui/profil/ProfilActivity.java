@@ -30,7 +30,7 @@ import java.util.List;
 
 public class ProfilActivity extends AppCompatActivity {
 
-    private TextView tvProfilName, tvProfilNPM, tvProfilEmail, tvProfilJurusan, tvTanggalLahir;
+    private TextView tvProfilName, tvProfilNPM, tvProfilEmail, tvProfilJurusan, tvTanggalLahir, tvTempatLahir;
     private CircleImageView imageUser;
 
     @Override
@@ -43,6 +43,7 @@ public class ProfilActivity extends AppCompatActivity {
         tvProfilEmail = findViewById(R.id.tv_email_profil);
         tvProfilJurusan = findViewById(R.id.tv_jurusan_profil);
         tvTanggalLahir = findViewById(R.id.tv_tanggal_profil);
+        tvTempatLahir = findViewById(R.id.tv_tempat_profil);
         imageUser = findViewById(R.id.img_user);
 
         getUserData();
@@ -74,11 +75,12 @@ public class ProfilActivity extends AppCompatActivity {
                     tvProfilNPM.setText(userProfile.get(0).getNpm());
                     tvProfilEmail.setText(userProfile.get(0).getEmail());
                     tvProfilJurusan.setText(userProfile.get(0).getJurusan());
+                    tvTempatLahir.setText(userProfile.get(0).getTempatLahir());
                     String Birth = userProfile.get(0).getTanggalLahir();
                     String tanggal = Birth.substring(8,10);
                     String bulan = Birth.substring(5,7);
                     String tahun = Birth.substring(0,4);
-                    tvTanggalLahir.setText(String.format("%s-%s-%s", tanggal, bulan, tahun));
+                    tvTanggalLahir.setText(String.format(" / %s-%s-%s", tanggal, bulan, tahun));
 
                     Glide.with(getApplicationContext())
                             .load(userProfile.get(0).getFoto())
