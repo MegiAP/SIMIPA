@@ -7,16 +7,25 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.CalendarAcademicAdapter;
-import com.vincode.simipa.util.TestData;
-import com.vincode.simipa.model.CalendarAcademic;
+import com.vincode.simipa.model.CalendarResponse;
+import com.vincode.simipa.network.ApiClient;
+import com.vincode.simipa.network.ApiInterface;
+import com.vincode.simipa.util.TimeUtil;
 
-import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +34,8 @@ public class EvenCalendarFragment extends Fragment {
 
     private CalendarAcademicAdapter calendarAcademicAdapter;
     private RecyclerView rvEvenCalendar;
-    private ArrayList<CalendarAcademic> list = new ArrayList<>();
+    private ProgressBar progressBar;
+    private TextView academicYear;
 
     public EvenCalendarFragment() {
         // Required empty public constructor
@@ -45,15 +55,54 @@ public class EvenCalendarFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         rvEvenCalendar = view.findViewById(R.id.rv_even_calendar);
-        list.addAll(TestData.getListCalendar());
-        calendarAcademicAdapter = new CalendarAcademicAdapter(getContext(), list);
+        progressBar = view.findViewById(R.id.progress_bar);
+        academicYear = view.findViewById(R.id.tv_title_calendar);
 
-        setLayout();
     }
 
-    void setLayout(){
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        progressBar.setVisibility(View.VISIBLE);
+        calendarAcademicAdapter = new CalendarAcademicAdapter(getActivity());
+
+        TimeUtil timeUtil = new TimeUtil();
+        String tahun = timeUtil.getWaktu();
+        academicYear.setText(String.format("Tahun akademik %s", tahun));
+
+        setLayout();
+        getData(tahun);
+
+    }
+
+    private void setLayout(){
         rvEvenCalendar.setLayoutManager(new LinearLayoutManager(getContext()));
         rvEvenCalendar.setHasFixedSize(true);
         rvEvenCalendar.setAdapter(calendarAcademicAdapter);
+    }
+
+    private void getData(String tahun){
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<CalendarResponse> call = apiInterface.getCalendarAcademic("genap", tahun);
+        call.enqueue(new Callback<CalendarResponse>() {
+
+            @Override
+            public void onResponse(@NonNull Call<CalendarResponse> call, @NonNull Response<CalendarResponse> response) {
+                progressBar.setVisibility(View.GONE);
+
+                if (response.body() != null) {
+                    calendarAcademicAdapter.setListCalendar(response.body().getRecords());
+                    calendarAcademicAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CalendarResponse> call,@NonNull Throwable t) {
+                Log.d("c", t.getMessage());
+            }
+        });
     }
 }

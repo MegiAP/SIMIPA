@@ -1,6 +1,6 @@
 package com.vincode.simipa.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,21 +9,28 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.model.Service;
+import com.vincode.simipa.model.ServiceResult;
+import com.vincode.simipa.util.TimeUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceViewHolder> {
 
-    private ArrayList<Service> listService;
-    private final Context mContext;
+    private List<ServiceResult> listService = new ArrayList<>();
+    private final Activity activity;
 
-    public ServiceAdapter(Context mContext, ArrayList<Service> listService) {
-        this.listService = listService;
-        this.mContext = mContext;
+    public ServiceAdapter(Activity activity) {
+        this.activity = activity;
     }
 
+    public void setListService(List<ServiceResult> serviceResults){
 
+        if (serviceResults == null)return;
+        this.listService.clear();
+        this.listService.addAll(serviceResults);
+
+    }
 
     @NonNull
     @Override
@@ -34,18 +41,23 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
 
     @Override
     public void onBindViewHolder(@NonNull ServiceViewHolder serviceViewHolder, int i) {
-        Service service = listService.get(i);
+        ServiceResult dataService = listService.get(i);
+        TimeUtil timeUtil = new TimeUtil();
+        String date = dataService.getCreated().substring(0,9);
+        serviceViewHolder.tvFormService.setText(dataService.getNamaLayanan());//calendarAcademic.getData()
+        serviceViewHolder.tvDateService.setText(timeUtil.converDate(date
+        ));
 
-        serviceViewHolder.tvFormService.setText(service.getForm());//calendarAcademic.getData()
-        serviceViewHolder.tvDateService.setText(service.getDate());
-
-        if (service.getState() == 0){
+        if (dataService.getStatus().equals("0")){
             serviceViewHolder.tvStateService.setText("Belum Selesai");
             serviceViewHolder.tvStateService.setBackgroundResource(R.drawable.bg_state_red);
         }else {
             serviceViewHolder.tvStateService.setText("Selesai");
             serviceViewHolder.tvStateService.setBackgroundResource(R.drawable.bg_btn_blue);
         }
+
+
+
     }
 
     @Override
@@ -53,10 +65,10 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
         return listService.size();
     }
 
-    public class ServiceViewHolder extends RecyclerView.ViewHolder {
+    class ServiceViewHolder extends RecyclerView.ViewHolder {
         TextView tvFormService, tvDateService, tvStateService;
 
-        public ServiceViewHolder(@NonNull View itemView) {
+        ServiceViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvFormService = itemView.findViewById(R.id.tv_service_form);

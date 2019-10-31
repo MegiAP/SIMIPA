@@ -7,26 +7,32 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.vincode.simipa.R;
+import com.vincode.simipa.SharedPrefManager;
 import com.vincode.simipa.adapter.ServiceAdapter;
-import com.vincode.simipa.util.TestDataService;
-import com.vincode.simipa.model.Service;
+import com.vincode.simipa.model.ServiceResponse;
+import com.vincode.simipa.network.ApiClient;
+import com.vincode.simipa.network.ApiInterface;
 
-import java.util.ArrayList;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AcademicServiceFragment extends Fragment implements View.OnClickListener {
+public class AcademicServiceFragment extends Fragment {
 
     private ServiceAdapter serviceAdapter;
     private RecyclerView rvAcademicService;
-    private ArrayList<Service> list = new ArrayList<>();
-//    private FloatingActionButton fabAdd;
+    private ProgressBar progressBar;
 
     public AcademicServiceFragment() {
         // Required empty public constructor
@@ -45,30 +51,50 @@ public class AcademicServiceFragment extends Fragment implements View.OnClickLis
         super.onViewCreated(view, savedInstanceState);
 
         rvAcademicService = view.findViewById(R.id.rv_service_academic);
-
-        list.addAll(TestDataService.getListService());
-        serviceAdapter = new ServiceAdapter(getContext(), list);
-
-//        fabAdd = view.findViewById(R.id.fab_add);
-//        fabAdd.setOnClickListener(this);
-
-        setLayout();
+        progressBar = view.findViewById(R.id.progress_bar);
     }
 
-    void setLayout(){
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        progressBar.setVisibility(View.VISIBLE);
+        serviceAdapter = new ServiceAdapter(getActivity());
+
+
+        setLayout();
+        getData();
+
+    }
+
+    private void setLayout(){
         rvAcademicService.setLayoutManager(new LinearLayoutManager(getContext()));
         rvAcademicService.setHasFixedSize(true);
         rvAcademicService.setAdapter(serviceAdapter);
     }
 
-    @Override
-    public void onClick(View v) {
-//        if (v.getId() == R.id.fab_add){
-//            showSnackbarMessage("Test Fab Add");
-//        }
+
+    private void getData(){
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<ServiceResponse> call = apiInterface.getServiceData(
+                SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin(), "form-layanan-akademik");
+        call.enqueue(new Callback<ServiceResponse>() {
+
+            @Override
+            public void onResponse(@NonNull Call<ServiceResponse> call, @NonNull Response<ServiceResponse> response) {
+                progressBar.setVisibility(View.GONE);
+
+                if (response.body() != null) {
+                    serviceAdapter.setListService(response.body().getServices());
+                    serviceAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ServiceResponse> call,@NonNull Throwable t) {
+                Log.d("c", t.getMessage());
+            }
+        });
     }
-//
-//    private void showSnackbarMessage(String message) {
-//        Snackbar.make(fabAdd, message, Snackbar.LENGTH_SHORT).show();
-//    }
+
 }

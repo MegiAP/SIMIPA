@@ -7,16 +7,25 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.CalendarAcademicAdapter;
-import com.vincode.simipa.util.TestData;
-import com.vincode.simipa.model.CalendarAcademic;
+import com.vincode.simipa.model.CalendarResponse;
+import com.vincode.simipa.network.ApiClient;
+import com.vincode.simipa.network.ApiInterface;
+import com.vincode.simipa.util.TimeUtil;
 
-import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +33,8 @@ import java.util.ArrayList;
 public class OddCalendarFragment extends Fragment {
     private CalendarAcademicAdapter calendarAcademicAdapter;
     private RecyclerView rvOddCalendar;
-    private ArrayList<CalendarAcademic> list = new ArrayList<>();
+    private ProgressBar progressBar;
+    private TextView academicYear;
 
     public OddCalendarFragment() {
         // Required empty public constructor
@@ -42,17 +52,51 @@ public class OddCalendarFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         rvOddCalendar = view.findViewById(R.id.rv_odd_calendar);
-        list.addAll(TestData.getListCalendar());
-        calendarAcademicAdapter = new CalendarAcademicAdapter(getContext(), list);
-
-        setLayout();
+        progressBar = view.findViewById(R.id.progress_bar);
+        academicYear = view.findViewById(R.id.tv_title_calendar);
     }
 
-    void setLayout(){
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        progressBar.setVisibility(View.VISIBLE);
+        calendarAcademicAdapter = new CalendarAcademicAdapter(getActivity());
+        TimeUtil timeUtil = new TimeUtil();
+        String tahun = timeUtil.getWaktu();
+        academicYear.setText(String.format("Tahun Akademik %s", tahun));
+
+        setLayout();
+        getData(tahun);
+
+    }
+
+    private void setLayout(){
         rvOddCalendar.setLayoutManager(new LinearLayoutManager(getContext()));
         rvOddCalendar.setHasFixedSize(true);
         rvOddCalendar.setAdapter(calendarAcademicAdapter);
+    }
+
+    private void getData(String tahun){
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<CalendarResponse> call = apiInterface.getCalendarAcademic("ganjil", tahun);
+        call.enqueue(new Callback<CalendarResponse>() {
+
+            @Override
+            public void onResponse(@NonNull Call<CalendarResponse> call, @NonNull Response<CalendarResponse> response) {
+                progressBar.setVisibility(View.GONE);
+
+                if (response.body() != null) {
+                    calendarAcademicAdapter.setListCalendar(response.body().getRecords());
+                    calendarAcademicAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CalendarResponse> call,@NonNull Throwable t) {
+                Log.d("c", t.getMessage());
+            }
+        });
     }
 }
