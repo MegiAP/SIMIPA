@@ -31,8 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="16sp"
             android:text="Surat Keterangan Aktif Kuliah"
             android:textColor="@color/colorPrimaryText"
             android:layout_marginBottom="4dp"/>
@@ -47,7 +46,7 @@
             android:gravity="start"
             android:text="Selesai"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"/>
 
         <Button

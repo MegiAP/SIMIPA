@@ -9,7 +9,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -77,10 +76,13 @@ public class ProfilActivity extends AppCompatActivity {
                     tvProfilJurusan.setText(userProfile.get(0).getJurusan());
                     tvTempatLahir.setText(userProfile.get(0).getTempatLahir());
                     String Birth = userProfile.get(0).getTanggalLahir();
-                    String tanggal = Birth.substring(8,10);
-                    String bulan = Birth.substring(5,7);
-                    String tahun = Birth.substring(0,4);
-                    tvTanggalLahir.setText(String.format(" / %s-%s-%s", tanggal, bulan, tahun));
+                    if (Birth != null){
+                        String tanggal = Birth.substring(8,10);
+                        String bulan = Birth.substring(5,7);
+                        String tahun = Birth.substring(0,4);
+                        tvTanggalLahir.setText(String.format(" / %s-%s-%s", tanggal, bulan, tahun));
+                    }
+
 
                     Glide.with(getApplicationContext())
                             .load(userProfile.get(0).getFoto())
