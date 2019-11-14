@@ -1,6 +1,6 @@
 package com.vincode.simipa.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,42 +12,50 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.model.Presence;
+import com.vincode.simipa.model.PresenceResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PresenceAdapter extends RecyclerView.Adapter<PresenceAdapter.PresenceViewHolder> {
 
-    private ArrayList<Presence> listPresence;
-    private final Context context;
+    private List<PresenceResult> listPresence = new ArrayList<>();
+    private final Activity activity;
 
 
-    public PresenceAdapter(Context context, ArrayList<Presence> listPresence) {
-        this.listPresence = listPresence;
-        this.context = context;
+    public PresenceAdapter(Activity activity) {
+        this.activity = activity;
+    }
+
+    public void setListPresence(List<PresenceResult> presenceList){
+
+        if (presenceList == null)return;
+        this.listPresence.clear();
+        this.listPresence.addAll(presenceList);
+
     }
 
     @NonNull
     @Override
     public PresenceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_presence, parent, false);
+        View view = LayoutInflater.from(activity).inflate(R.layout.item_presence, parent, false);
         return new PresenceViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PresenceViewHolder holder, int position) {
-        Presence presence = listPresence.get(position);
+        PresenceResult presence = listPresence.get(position);
 
-        holder.tvTimeOne.setText(presence.getTimeOne());
-        holder.tvTimeTwo.setText(presence.getTimeTwo());
-        holder.tvTitle.setText(presence.getTitle());
-        holder.tvCode.setText(presence.getCode());
-        holder.tvLecture.setText(presence.getLecture());
-        holder.tvRoom.setText(presence.getRoom());
+        holder.tvTimeOne.setText(presence.getMulai());
+        holder.tvTimeTwo.setText(presence.getSelesai());
+        holder.tvTitle.setText(presence.getMataKuliah());
+        holder.tvCode.setText(presence.getKodeMK());
+        holder.tvLecture.setText(presence.getDosenPJ());
+        holder.tvRoom.setText(presence.getRuang());
         holder.btnAbsent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Lagi tes button", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Lagi tes button", Toast.LENGTH_SHORT).show();
             }
         });
     }

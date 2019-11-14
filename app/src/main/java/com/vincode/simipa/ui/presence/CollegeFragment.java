@@ -9,16 +9,24 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.vincode.simipa.R;
+import com.vincode.simipa.SharedPrefManager;
 import com.vincode.simipa.adapter.PresenceAdapter;
-import com.vincode.simipa.model.Presence;
-import com.vincode.simipa.util.TestPresence;
+import com.vincode.simipa.model.PresenceResponse;
+import com.vincode.simipa.network.ApiClient;
+import com.vincode.simipa.network.ApiInterface;
 
-import java.util.ArrayList;
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +35,7 @@ public class CollegeFragment extends Fragment {
 
     private PresenceAdapter presenceAdapter;
     private RecyclerView rvCollege;
-    private ArrayList<Presence> list = new ArrayList<>();
+    private ProgressBar progressBar;
 
     public CollegeFragment() {
         // Required empty public constructor
@@ -47,15 +55,49 @@ public class CollegeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         rvCollege = view.findViewById(R.id.rv_college);
-        list.addAll(TestPresence.getListPresence());
-        presenceAdapter = new PresenceAdapter(getContext(), list);
+        progressBar = view.findViewById(R.id.progress_bar);
+    }
+
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        progressBar.setVisibility(View.VISIBLE);
+        presenceAdapter = new PresenceAdapter(getActivity());
 
         setLayout();
+        getData();
+
     }
 
     private void setLayout(){
         rvCollege.setLayoutManager(new LinearLayoutManager(getContext()));
         rvCollege.setHasFixedSize(true);
         rvCollege.setAdapter(presenceAdapter);
+    }
+
+    private void getData(){
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<PresenceResponse> call = apiInterface.getPresenceData(
+                SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin(), "2019-11-12 13:48:11","Teori");
+
+        call.enqueue(new Callback<PresenceResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<PresenceResponse> call, @NonNull Response<PresenceResponse> response) {
+                progressBar.setVisibility(View.GONE);
+                if (response.body() != null) {
+                    presenceAdapter.setListPresence(response.body().getRecords());
+                    presenceAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<PresenceResponse> call, @NonNull Throwable t) {
+                Log.d("c", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+
     }
 }

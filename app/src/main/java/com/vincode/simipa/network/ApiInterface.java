@@ -3,6 +3,7 @@ package com.vincode.simipa.network;
 
 import com.vincode.simipa.model.CalendarResponse;
 import com.vincode.simipa.model.LoginResponse;
+import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.ProfileResponse;
 import com.vincode.simipa.model.ServiceResponse;
 import com.vincode.simipa.model.SplashResponse;
@@ -43,5 +44,12 @@ public interface ApiInterface {
     Call<ServiceResponse> getServiceData(
             @Query("npm") String npm,
             @Query("jenis") String jenis
+    );
+
+    @GET("read-presensi-mhs.php")
+    Call<PresenceResponse> getPresenceData(
+            @Query("npm") String npm,
+            @Query("tgl") String tanggal,
+            @Query("type") String type
     );
 }

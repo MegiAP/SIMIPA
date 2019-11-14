@@ -17,7 +17,7 @@ import java.util.List;
 
 public class CalendarAcademicAdapter extends RecyclerView.Adapter<CalendarAcademicAdapter.CalendarViewHolder> {
 
-    private  List<CalendarResult> listCalendar = new ArrayList<>();
+    private List<CalendarResult> listCalendar = new ArrayList<>();
     private final Activity activity;
 
     public CalendarAcademicAdapter(Activity activity) {
