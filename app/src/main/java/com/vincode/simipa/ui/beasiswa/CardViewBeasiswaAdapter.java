@@ -1,4 +1,4 @@
-package com.vincode.simipa.beasiswa;
+package com.vincode.simipa.ui.beasiswa;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.beasiswa.Beasiswa;
 
 import java.util.ArrayList;
 

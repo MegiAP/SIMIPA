@@ -1,4 +1,4 @@
-package com.vincode.simipa;
+package com.vincode.simipa.ui.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +12,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.vincode.simipa.beasiswa.BeasiswaActivity;
-import com.vincode.simipa.krs.KRSActivity;
+import com.vincode.simipa.R;
+import com.vincode.simipa.util.SharedPrefManager;
+import com.vincode.simipa.ui.beasiswa.BeasiswaActivity;
+import com.vincode.simipa.ui.krs.KRSActivity;
 import com.vincode.simipa.model.ProfileResponse;
 import com.vincode.simipa.model.UserProfile;
 import com.vincode.simipa.network.ApiClient;

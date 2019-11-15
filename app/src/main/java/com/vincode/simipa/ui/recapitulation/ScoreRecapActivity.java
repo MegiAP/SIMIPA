@@ -8,9 +8,6 @@ import android.os.Bundle;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.ScoreRecapAdapter;
-import com.vincode.simipa.krs.CardViewKRSAdapter;
-import com.vincode.simipa.krs.KRS;
-import com.vincode.simipa.krs.KRSData;
 import com.vincode.simipa.model.ScoreRecap;
 import com.vincode.simipa.util.TestScoreData;
 

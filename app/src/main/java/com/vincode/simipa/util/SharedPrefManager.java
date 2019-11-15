@@ -1,4 +1,4 @@
-package com.vincode.simipa;
+package com.vincode.simipa.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

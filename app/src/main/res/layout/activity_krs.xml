@@ -4,7 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".krs.KRSActivity">
+    tools:context=".ui.krs.KRSActivity">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_category"
         android:layout_width="match_parent"

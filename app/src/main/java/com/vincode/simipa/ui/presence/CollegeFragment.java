@@ -1,10 +1,12 @@
 package com.vincode.simipa.ui.presence;
 
 
+import android.Manifest;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.SharedPrefManager;
+import com.vincode.simipa.util.SharedPrefManager;
 import com.vincode.simipa.adapter.PresenceAdapter;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.network.ApiClient;
@@ -36,6 +38,8 @@ public class CollegeFragment extends Fragment {
     private PresenceAdapter presenceAdapter;
     private RecyclerView rvCollege;
     private ProgressBar progressBar;
+    private static final int REQUEST_LOCATION = 1;
+
 
     public CollegeFragment() {
         // Required empty public constructor
@@ -66,6 +70,8 @@ public class CollegeFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         presenceAdapter = new PresenceAdapter(getActivity());
 
+        ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()), new String[]{
+                Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         setLayout();
         getData();
 

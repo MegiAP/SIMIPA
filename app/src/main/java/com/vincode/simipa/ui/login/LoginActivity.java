@@ -12,9 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.vincode.simipa.MainActivity;
+import com.vincode.simipa.ui.main.MainActivity;
 import com.vincode.simipa.R;
-import com.vincode.simipa.SharedPrefManager;
+import com.vincode.simipa.util.SharedPrefManager;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;

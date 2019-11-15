@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.vincode.simipa">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,8 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.achievement.AchievementActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.presence.ResultPresenceActivity"></activity>
+        <activity android:name=".ui.presence.ScanPresenceActivity" />
+        <activity
+            android:name=".ui.achievement.AchievementActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.agenda.AgendaActivity"
             android:label="Agenda"
@@ -30,7 +28,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.recapitulation.RecapMenuActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.recapitulation.GuidanceRecapActivity"
             android:parentActivityName=".ui.recapitulation.RecapMenuActivity" />
@@ -47,7 +45,7 @@
         <activity
             android:name=".ui.schedule.ScheduleMenu"
             android:label="Menu Jadwal"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.schedule.CollegeScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -56,13 +54,13 @@
             android:name=".ui.recapitulation.ScoreRecapActivity"
             android:parentActivityName=".ui.recapitulation.RecapMenuActivity" />
         <activity
-            android:name=".beasiswa.BeasiswaActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ui.beasiswa.BeasiswaActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
-            android:name=".krs.KRSActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ui.krs.KRSActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.calendar.AcademicCalendarActivity"
@@ -106,5 +104,13 @@
         <activity android:name=".ui.recapitulation.PresenceRecapActivity" />
         <activity android:name=".ui.recapitulation.SeminarRecapActivity" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 </manifest>

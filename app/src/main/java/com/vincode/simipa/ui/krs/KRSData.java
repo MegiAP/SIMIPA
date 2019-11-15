@@ -1,4 +1,4 @@
-package com.vincode.simipa.krs;
+package com.vincode.simipa.ui.krs;
 
 import java.util.ArrayList;
 

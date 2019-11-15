@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.vincode.simipa.R;
-import com.vincode.simipa.SharedPrefManager;
+import com.vincode.simipa.util.SharedPrefManager;
 import com.vincode.simipa.ui.login.LoginActivity;
 
 import java.net.InetAddress;

@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.vincode.simipa.R;
-import com.vincode.simipa.SharedPrefManager;
+import com.vincode.simipa.util.SharedPrefManager;
 import com.vincode.simipa.model.ProfileResponse;
 import com.vincode.simipa.model.UserProfile;
 import com.vincode.simipa.network.ApiClient;
