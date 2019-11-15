@@ -63,7 +63,7 @@ public class TuesdayCollegeFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(collegeScheduleAdapter);
     }
-
+    //ini Error
     private void getData(){
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
