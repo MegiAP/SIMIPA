@@ -1,4 +1,4 @@
-package com.vincode.simipa.beasiswa;
+package com.vincode.simipa.ui.krs;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,30 +8,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.krs.CardViewKRSAdapter;
-import com.vincode.simipa.krs.KRS;
-import com.vincode.simipa.krs.KRSData;
 
 import java.util.ArrayList;
 
-public class BeasiswaActivity extends AppCompatActivity {
+public class KRSActivity extends AppCompatActivity {
 
     private RecyclerView rvCategory;
-    private ArrayList<Beasiswa> list;
+    private ArrayList<KRS> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_beasiswa);
+        setContentView(R.layout.activity_krs);
 
         rvCategory = (RecyclerView)findViewById(R.id.rv_category);
         rvCategory.setHasFixedSize(true);
 
         list = new ArrayList<>();
-        list.addAll(BeasiswaData.getListData());
+        list.addAll(KRSData.getListData());
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Beasiswa");
+        actionBar.setTitle("KRS");
 
         showRecyclerCardView();
 
@@ -39,7 +36,7 @@ public class BeasiswaActivity extends AppCompatActivity {
 
     private void showRecyclerCardView(){
         rvCategory.setLayoutManager(new LinearLayoutManager(this));
-        CardViewBeasiswaAdapter cardViewPresidentAdapter = new CardViewBeasiswaAdapter(this);
+        CardViewKRSAdapter cardViewPresidentAdapter = new CardViewKRSAdapter(this);
         cardViewPresidentAdapter.setListPresident(list);
         rvCategory.setAdapter(cardViewPresidentAdapter);
     }

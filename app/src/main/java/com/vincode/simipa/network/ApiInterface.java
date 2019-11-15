@@ -21,7 +21,8 @@ public interface ApiInterface {
     @POST("login.php")
     Call<LoginResponse> userLogin(
             @Field("user") String username,
-            @Field("pass") String password
+            @Field("pass") String password,
+            @Query("status") String status
     );
 
     @GET("read-profile.php")

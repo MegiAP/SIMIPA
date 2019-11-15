@@ -15,13 +15,12 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.SharedPrefManager;
+import com.vincode.simipa.util.SharedPrefManager;
 import com.vincode.simipa.adapter.PresenceAdapter;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 import retrofit2.Call;

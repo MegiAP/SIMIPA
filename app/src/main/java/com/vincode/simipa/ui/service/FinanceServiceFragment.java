@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.SharedPrefManager;
+import com.vincode.simipa.util.SharedPrefManager;
 import com.vincode.simipa.adapter.ServiceAdapter;
 import com.vincode.simipa.model.ServiceResponse;
 import com.vincode.simipa.network.ApiClient;

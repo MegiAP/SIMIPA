@@ -1,4 +1,4 @@
-package com.vincode.simipa.beasiswa;
+package com.vincode.simipa.ui.beasiswa;
 
 public class Beasiswa {
     private String name;

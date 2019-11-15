@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vincode.simipa.R;
@@ -49,6 +50,10 @@ public class CalendarAcademicAdapter extends RecyclerView.Adapter<CalendarAcadem
         calendarViewHolder.tvDateCalendar.setText(timeUtil.converDate(dataCalendar.getDate())
         );
 
+        if (dataCalendar.getStatus().equals("1")){
+            calendarViewHolder.imgCalendar.setImageResource(R.drawable.ic_beasiswa);
+        }
+
     }
 
     @Override
@@ -58,12 +63,14 @@ public class CalendarAcademicAdapter extends RecyclerView.Adapter<CalendarAcadem
 
     class CalendarViewHolder extends RecyclerView.ViewHolder {
         TextView tvDataCalendar, tvDateCalendar;
+        ImageView imgCalendar;
 
         CalendarViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvDataCalendar = itemView.findViewById(R.id.tv_data_calendar);
             tvDateCalendar = itemView.findViewById(R.id.tv_date_calendar);
+            imgCalendar = itemView.findViewById(R.id.img_calendar);
         }
     }
 }
