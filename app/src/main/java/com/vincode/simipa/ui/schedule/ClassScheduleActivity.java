@@ -49,10 +49,10 @@ public class ClassScheduleActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ClassScheduleActivity.ViewPagerAdapter adapter = new ClassScheduleActivity.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new MondayClassFragment(), "Senin");
-        adapter.addFrag(new dump1(), "Selasa");
-        adapter.addFrag(new dump2(), "Rabu");
-        adapter.addFrag(new dump3(), "Kamis");
-        adapter.addFrag(new dump4(), "Jumat");
+        adapter.addFrag(new TuesdayClassFragment(), "Selasa");
+        adapter.addFrag(new WednesdayClassFragment(), "Rabu");
+        adapter.addFrag(new ThursdayClassFragment(), "Kamis");
+        adapter.addFrag(new FridayClassFragment(), "Jumat");
         viewPager.setAdapter(adapter);
     }
 

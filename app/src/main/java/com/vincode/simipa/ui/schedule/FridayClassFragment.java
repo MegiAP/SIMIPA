@@ -1,6 +1,7 @@
 package com.vincode.simipa.ui.schedule;
 
-
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,43 +17,35 @@ import android.view.ViewGroup;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.ClassScheduleAdapter;
-import com.vincode.simipa.adapter.CollegeScheduleAdapter;
 import com.vincode.simipa.model.ClassScheduleResponse;
-import com.vincode.simipa.model.CollegeSchedule;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-public class MondayClassFragment extends Fragment {
-
+public class FridayClassFragment extends Fragment {
     private ClassScheduleAdapter classScheduleAdapter;
     private RecyclerView recyclerView;
-
-    public MondayClassFragment() {
+    public FridayClassFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_monday_class, container, false);
+        return inflater.inflate(R.layout.fragment_friday_class, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView = view.findViewById(R.id.rvclassMonday);
+        recyclerView = view.findViewById(R.id.rvclassFriday);
     }
 
     @Override
@@ -74,7 +67,7 @@ public class MondayClassFragment extends Fragment {
     private void getData(){
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<ClassScheduleResponse> call = apiInterface.getClassData("senin", "Ilmu Komputer");
+        Call<ClassScheduleResponse> call = apiInterface.getClassData("jumat", "Ilmu Komputer");
 
         call.enqueue(new Callback<ClassScheduleResponse>() {
             @Override

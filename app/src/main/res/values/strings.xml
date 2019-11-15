@@ -92,5 +92,6 @@
     <string name="ruangan">Ruangan</string>
     <string name="nama_mahasiswa">Nama Mahasiswa</string>
     <string name="judul">Judul</string>
+    <string name="nip">NIP</string>
 
 </resources>

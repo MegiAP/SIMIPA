@@ -2,6 +2,7 @@ package com.vincode.simipa.network;
 
 
 import com.vincode.simipa.model.CalendarResponse;
+import com.vincode.simipa.model.ClassScheduleResponse;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.ProfileResponse;
@@ -52,5 +53,10 @@ public interface ApiInterface {
             @Query("npm") String npm,
             @Query("tgl") String tanggal,
             @Query("type") String type
+    );
+    @GET("read-jadwal-ruang.php")
+    Call<ClassScheduleResponse> getClassData(
+            @Query("hari") String hari,
+            @Query("jurusan") String jurusan
     );
 }
