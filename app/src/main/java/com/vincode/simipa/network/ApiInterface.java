@@ -3,6 +3,7 @@ package com.vincode.simipa.network;
 
 import com.vincode.simipa.model.CalendarResponse;
 import com.vincode.simipa.model.ClassScheduleResponse;
+import com.vincode.simipa.model.CollegeScheduleResponse;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.ProfileResponse;
@@ -22,7 +23,8 @@ public interface ApiInterface {
     @POST("login.php")
     Call<LoginResponse> userLogin(
             @Field("user") String username,
-            @Field("pass") String password
+            @Field("pass") String password,
+            @Query("status") String status
     );
 
     @GET("read-profile.php")
@@ -57,5 +59,14 @@ public interface ApiInterface {
     Call<ClassScheduleResponse> getClassData(
             @Query("hari") String hari,
             @Query("jurusan") String jurusan
+    );
+    @GET("read-jadwal-mhs.php")
+    Call<CollegeScheduleResponse> getCollegeData(
+            @Query("hari") String hari,
+            @Query("npm") String npm,
+            @Query("tahun_akademik") String tahun_akademik,
+            @Query("semester") String semester,
+            @Query("type") String type
+
     );
 }

@@ -47,8 +47,8 @@ public class CollegeScheduleActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         CollegeScheduleActivity.ViewPagerAdapter adapter = new CollegeScheduleActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new JadkulFragment(), "Senin");
-        adapter.addFrag(new dump1(), "Selasa");
+        adapter.addFrag(new dump1(), "Senin");
+        adapter.addFrag(new MondayCollegeFragment(), "Selasa");
         adapter.addFrag(new dump2(), "Rabu");
         adapter.addFrag(new dump3(), "Kamis");
         adapter.addFrag(new dump4(), "Jumat");

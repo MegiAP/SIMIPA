@@ -7,37 +7,178 @@ public class CollegeScheduleResult {
     @SerializedName("id")
     @Expose
     private String id;
-
-    @SerializedName("hari")
-    @Expose
-    private String hari;
-
     @SerializedName("kodeMK")
     @Expose
     private String kodeMK;
-
-    @SerializedName("tahun_akademik")
+    @SerializedName("Mata Kuliah")
     @Expose
-    private String tahun_akademik;
-
-    @SerializedName("semester")
+    private String mataKuliah;
+    @SerializedName("Prodi")
+    @Expose
+    private String prodi;
+    @SerializedName("Ruang")
+    @Expose
+    private String ruang;
+    @SerializedName("Nip1")
+    @Expose
+    private String nip1;
+    @SerializedName("Dosen PJ")
+    @Expose
+    private String dosenPJ;
+    @SerializedName("Nip2")
+    @Expose
+    private Object nip2;
+    @SerializedName("Dosen Anggota")
+    @Expose
+    private Object dosenAnggota;
+    @SerializedName("Hari")
+    @Expose
+    private String hari;
+    @SerializedName("Tahun Akademik")
+    @Expose
+    private String tahunAkademik;
+    @SerializedName("Jenis")
+    @Expose
+    private String jenis;
+    @SerializedName("Semester")
     @Expose
     private String semester;
-
-    @SerializedName("kodeDosen")
+    @SerializedName("Kelas")
     @Expose
-    private String kodeDosen;
-
-    @SerializedName("namaDosen")
+    private String kelas;
+    @SerializedName("Mulai")
     @Expose
-    private String namaDosen;
-
-    @SerializedName("ruang_kuliah")
+    private String mulai;
+    @SerializedName("Selesai")
     @Expose
-    private String ruang_kuliahl;
+    private String selesai;
 
-    @SerializedName("jam_kuliah")
-    @Expose
-    private String jam_kuliah;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getKodeMK() {
+        return kodeMK;
+    }
+
+    public void setKodeMK(String kodeMK) {
+        this.kodeMK = kodeMK;
+    }
+
+    public String getMataKuliah() {
+        return mataKuliah;
+    }
+
+    public void setMataKuliah(String mataKuliah) {
+        this.mataKuliah = mataKuliah;
+    }
+
+    public String getProdi() {
+        return prodi;
+    }
+
+    public void setProdi(String prodi) {
+        this.prodi = prodi;
+    }
+
+    public String getRuang() {
+        return ruang;
+    }
+
+    public void setRuang(String ruang) {
+        this.ruang = ruang;
+    }
+
+    public String getNip1() {
+        return nip1;
+    }
+
+    public void setNip1(String nip1) {
+        this.nip1 = nip1;
+    }
+
+    public String getDosenPJ() {
+        return dosenPJ;
+    }
+
+    public void setDosenPJ(String dosenPJ) {
+        this.dosenPJ = dosenPJ;
+    }
+
+    public Object getNip2() {
+        return nip2;
+    }
+
+    public void setNip2(Object nip2) {
+        this.nip2 = nip2;
+    }
+
+    public Object getDosenAnggota() {
+        return dosenAnggota;
+    }
+
+    public void setDosenAnggota(Object dosenAnggota) {
+        this.dosenAnggota = dosenAnggota;
+    }
+
+    public String getHari() {
+        return hari;
+    }
+
+    public void setHari(String hari) {
+        this.hari = hari;
+    }
+
+    public String getTahunAkademik() {
+        return tahunAkademik;
+    }
+
+    public void setTahunAkademik(String tahunAkademik) {
+        this.tahunAkademik = tahunAkademik;
+    }
+
+    public String getJenis() {
+        return jenis;
+    }
+
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    public String getKelas() {
+        return kelas;
+    }
+
+    public void setKelas(String kelas) {
+        this.kelas = kelas;
+    }
+
+    public String getMulai() {
+        return mulai;
+    }
+
+    public void setMulai(String mulai) {
+        this.mulai = mulai;
+    }
+
+    public String getSelesai() {
+        return selesai;
+    }
+
+    public void setSelesai(String selesai) {
+        this.selesai = selesai;
+    }
 
 }

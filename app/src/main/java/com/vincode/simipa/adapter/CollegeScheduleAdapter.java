@@ -1,68 +1,76 @@
 package com.vincode.simipa.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.model.CollegeSchedule;
+import com.vincode.simipa.model.CollegeScheduleResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CollegeScheduleAdapter extends RecyclerView.Adapter<CollegeScheduleAdapter.MyViewHolder>  {
-    Context context;
-    List<CollegeSchedule> modelList;
+public class CollegeScheduleAdapter extends RecyclerView.Adapter<CollegeScheduleAdapter.ViewHolder>  {
 
-    public CollegeScheduleAdapter(Context context, List<CollegeSchedule> modelList) {
-        this.context = context;
-        this.modelList = modelList;
+    private List<CollegeScheduleResult> listCollegeSchedule = new ArrayList<>();
+    private final Activity activity;
+
+    public CollegeScheduleAdapter(Activity activity) {
+        this.activity = activity;
+    }
+
+    public void setListCollegeSchedule(List<CollegeScheduleResult> collegeScheduleList){
+
+        if (collegeScheduleList == null)return;
+        this.listCollegeSchedule.clear();
+        this.listCollegeSchedule.addAll(collegeScheduleList);
+
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(activity).inflate(R.layout.item_college_schedule, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public CollegeScheduleAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v;
-        v = LayoutInflater.from(context).inflate(R.layout.item_college_schedule, parent, false);
-        CollegeScheduleAdapter.MyViewHolder myViewHolder = new CollegeScheduleAdapter.MyViewHolder(v);
-        return myViewHolder;
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        final CollegeScheduleResult dataResult = listCollegeSchedule.get(position);
+
+        holder.colmatkul.setText(dataResult.getMataKuliah());
+        holder.colmkkode.setText(dataResult.getKodeMK());
+        holder.coldosen.setText(dataResult.getDosenPJ());
+        holder.colnip.setText(dataResult.getNip1());
+        holder.colruang.setText(dataResult.getRuang());
+        holder.coljammulai.setText(dataResult.getMulai());
+        holder.coljamselesai.setText(dataResult.getSelesai());
+        holder.colprodi.setText(dataResult.getProdi());
     }
-
-
-    @Override
-    public void onBindViewHolder(CollegeScheduleAdapter.MyViewHolder holder, int position) {
-
-        holder.jdmatkul.setText(modelList.get(position).getJdmatkul());
-        holder.jdmatkode.setText(modelList.get(position).getJdmatkode());
-        holder.jddosen.setText(modelList.get(position).getJddosen());
-        holder.jdruang.setText(modelList.get(position).getJdruang());
-        holder.jdjam.setText(modelList.get(position).getJdjam());
-
-
-    }
-
 
     @Override
     public int getItemCount() {
-        return modelList.size();
+        return listCollegeSchedule.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView jdmatkul,jdmatkode,jddosen, jdruang, jdjam;
-
-
-        public MyViewHolder(View itemView) {
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView colmatkul,colmkkode,coldosen, colnip, colruang, coljammulai, coljamselesai, colprodi;
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            jdmatkul = itemView.findViewById(R.id.jd_matkul);
-            jdmatkode = itemView.findViewById(R.id.jd_matkode);
-            jddosen= itemView.findViewById(R.id.jd_dosen);
-            jdruang = itemView.findViewById(R.id.jd_ruang);
-            jdjam = itemView.findViewById(R.id.jd_jam);
-
+            colmatkul = itemView.findViewById(R.id.col_matkul);
+            colmkkode = itemView.findViewById(R.id.col_matkode);
+            coldosen= itemView.findViewById(R.id.col_dosen);
+            colnip = itemView.findViewById(R.id.col_nip);
+            colruang = itemView.findViewById(R.id.col_ruang);
+            colprodi = itemView.findViewById(R.id.col_prodi);
+            coljammulai = itemView.findViewById(R.id.col_jammulai);
+            coljamselesai =itemView.findViewById(R.id.col_jamselesai);
         }
     }
 }
-

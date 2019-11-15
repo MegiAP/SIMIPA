@@ -11,5 +11,7 @@ public class CollegeScheduleResponse {
     private List<CollegeScheduleResult> records = null;
     public List<CollegeScheduleResult> getRecords() {return records;}
 
-    public void setRecords(List<CollegeScheduleResult> records) { this.records = records;}
+    public void setRecords(List<CollegeScheduleResult> records) {
+        this.records = records;
+    }
 }

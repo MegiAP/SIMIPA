@@ -93,5 +93,6 @@
     <string name="nama_mahasiswa">Nama Mahasiswa</string>
     <string name="judul">Judul</string>
     <string name="nip">NIP</string>
+    <string name="prodi">Prodi</string>
 
 </resources>

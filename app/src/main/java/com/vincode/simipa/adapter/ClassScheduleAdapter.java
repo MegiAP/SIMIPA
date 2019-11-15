@@ -24,11 +24,11 @@ public class ClassScheduleAdapter extends RecyclerView.Adapter<ClassScheduleAdap
         this.activity = activity;
     }
 
-    public void setListClassSchedule(List<ClassScheduleResult> calendarList){
+    public void setListClassSchedule(List<ClassScheduleResult> classScheduleList){
 
-        if (calendarList == null)return;
+        if (classScheduleList == null)return;
         this.listClassSchedule.clear();
-        this.listClassSchedule.addAll(calendarList);
+        this.listClassSchedule.addAll(classScheduleList);
 
     }
 
