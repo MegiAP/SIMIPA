@@ -1,12 +1,14 @@
 package com.vincode.simipa.network;
 
 
+import com.vincode.simipa.model.AchievementResponse;
 import com.vincode.simipa.model.CalendarResponse;
 import com.vincode.simipa.model.ClassScheduleResponse;
 import com.vincode.simipa.model.CollegeScheduleResponse;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.ProfileResponse;
+import com.vincode.simipa.model.ScholarshipResponse;
 import com.vincode.simipa.model.ServiceResponse;
 import com.vincode.simipa.model.SplashResponse;
 
@@ -68,5 +70,13 @@ public interface ApiInterface {
             @Query("semester") String semester,
             @Query("type") String type
 
+    );
+    @GET("read-beasiswa.php")
+    Call<ScholarshipResponse> getScholarshipData(
+            @Query("npm") String npm
+    );
+    @GET("read-prestasi.php")
+    Call<AchievementResponse> getAchievementData(
+            @Query("npm") String npm
     );
 }

@@ -15,7 +15,7 @@
         <activity android:name=".ui.presence.ScanPresenceActivity" />
         <activity
             android:name=".ui.achievement.AchievementActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".ui.main.MainActivity"/>
         <activity
             android:name=".ui.agenda.AgendaActivity"
             android:label="Agenda"
