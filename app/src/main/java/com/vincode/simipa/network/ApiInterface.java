@@ -5,6 +5,7 @@ import com.vincode.simipa.model.AchievementResponse;
 import com.vincode.simipa.model.CalendarResponse;
 import com.vincode.simipa.model.ClassScheduleResponse;
 import com.vincode.simipa.model.CollegeScheduleResponse;
+import com.vincode.simipa.model.KRSResponse;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.ProfileResponse;
@@ -77,6 +78,11 @@ public interface ApiInterface {
     );
     @GET("read-prestasi.php")
     Call<AchievementResponse> getAchievementData(
+            @Query("npm") String npm
+    );
+    @GET("read-krs-student.php")
+    Call<KRSResponse> getKRSData(
+            @Query("semester") String semester,
             @Query("npm") String npm
     );
 }

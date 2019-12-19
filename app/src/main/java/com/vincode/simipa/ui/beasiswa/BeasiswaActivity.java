@@ -13,13 +13,10 @@ import android.util.Log;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.ScholarshipAdapter;
-import com.vincode.simipa.model.ClassScheduleResponse;
 import com.vincode.simipa.model.ScholarshipResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.SharedPrefManager;
-
-import java.util.ArrayList;
 
 public class BeasiswaActivity extends AppCompatActivity {
 

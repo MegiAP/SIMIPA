@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.model.AchievementResult;
-import com.vincode.simipa.model.ScholarshipResult;
 
 import java.util.ArrayList;
 import java.util.List;

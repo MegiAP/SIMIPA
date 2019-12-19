@@ -1,43 +1,47 @@
 package com.vincode.simipa.ui.krs;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.google.android.material.tabs.TabLayout;
 import com.vincode.simipa.R;
-
-import java.util.ArrayList;
+import com.vincode.simipa.adapter.KRSPagerAdapter;
 
 public class KRSActivity extends AppCompatActivity {
-
-    private RecyclerView rvCategory;
-    private ArrayList<KRS> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_krs);
 
-        rvCategory = (RecyclerView)findViewById(R.id.rv_category);
-        rvCategory.setHasFixedSize(true);
+        TabLayout tabLayout = findViewById(R.id.tl_krs);
+        ViewPager viewPager = findViewById(R.id.vp_krs);
+        Toolbar toolbar = findViewById(R.id.tb_krs);
 
-        list = new ArrayList<>();
-        list.addAll(KRSData.getListData());
+        KRSPagerAdapter fragmentPagerAdapter = new KRSPagerAdapter(getSupportFragmentManager());
+        fragmentPagerAdapter.addFragment(new FormKRSFragment(), "Fill KRS");
+        fragmentPagerAdapter.addFragment(new MyKRSFragment(), "My KRS");
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("KRS");
+        viewPager.setAdapter(fragmentPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
 
-        showRecyclerCardView();
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setTitle(R.string.krs);
+        }
+
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 
-    private void showRecyclerCardView(){
-        rvCategory.setLayoutManager(new LinearLayoutManager(this));
-        CardViewKRSAdapter cardViewPresidentAdapter = new CardViewKRSAdapter(this);
-        cardViewPresidentAdapter.setListPresident(list);
-        rvCategory.setAdapter(cardViewPresidentAdapter);
-    }
 }

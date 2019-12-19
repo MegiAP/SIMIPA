@@ -58,7 +58,7 @@
             android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.krs.KRSActivity"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
