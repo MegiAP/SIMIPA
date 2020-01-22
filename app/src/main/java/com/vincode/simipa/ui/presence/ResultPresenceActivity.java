@@ -89,7 +89,7 @@ public class ResultPresenceActivity extends AppCompatActivity {
         Call<Value> call = apiInterface.updatePresence(jsonObject.toString());
 
         call.enqueue(new Callback<Value>() {
-            
+
             @Override
             public void onResponse(@NonNull Call<Value> call, @NonNull Response<Value> response) {
                 //String value = response.body().getValue();
@@ -117,16 +117,4 @@ public class ResultPresenceActivity extends AppCompatActivity {
         });
 
     }
-//
-//    private String getCurrentDate(){
-//        Calendar calendar = Calendar.getInstance();
-//        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        return dateFormat.format(calendar.getTime());
-//    }
-//
-//    private String getCurrentTime(){
-//        Calendar calendar = Calendar.getInstance();
-//        @SuppressLint("SimpleDateFormat") SimpleDateFormat timeFormat = new SimpleDateFormat("HH-mm-ss");
-//        return timeFormat.format(calendar.getTime());
-//    }
 }
