@@ -5,12 +5,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class PresenceResult {
 
+    @SerializedName("ID_presensi")
+    @Expose
+    private String idPresence;
+
     @SerializedName("MataKuliah")
     @Expose
     private String mataKuliah;
     @SerializedName("KodeMK")
     @Expose
     private String kodeMK;
+
 
     @SerializedName("Kelas")
     @Expose
@@ -35,6 +40,10 @@ public class PresenceResult {
     @SerializedName("Due Date Absen")
     @Expose
     private String dueDateAbsen;
+
+    public String getIdPresence() {
+        return idPresence;
+    }
 
     public String getMataKuliah() {
         return mataKuliah;

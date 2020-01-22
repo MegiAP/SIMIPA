@@ -23,6 +23,8 @@ import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.TimeUtil;
 
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -101,7 +103,7 @@ public class EvenCalendarFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<CalendarResponse> call,@NonNull Throwable t) {
-                Log.d("c", t.getMessage());
+                Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
         });
     }

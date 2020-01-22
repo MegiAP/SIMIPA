@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
@@ -34,6 +33,7 @@ public class ScanPresenceActivity extends AppCompatActivity {
         final String location = getIntent().getStringExtra("a");
         final double lat = getIntent().getDoubleExtra("b", 0);
         final double longi = getIntent().getDoubleExtra("c", 0);
+        final String idPresence = getIntent().getStringExtra("d");
 
         codeScanner = new CodeScanner(this, codeScannerView);
         codeScanner.setDecodeCallback(new DecodeCallback() {
@@ -42,7 +42,7 @@ public class ScanPresenceActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        getDataTointent(result.getText(), longi, lat, location);
+                        getDataTointent(result.getText(), longi, lat, location, idPresence);
                     }
                 });
             }
@@ -51,13 +51,14 @@ public class ScanPresenceActivity extends AppCompatActivity {
         checkPermissionCamera();
     }
 
-    private void getDataTointent(String result, double longi, double lati, String location){
+    private void getDataTointent(String result, double longi, double lati, String location, String idPresence){
 
         Intent moveIntent = new Intent(ScanPresenceActivity.this, ResultPresenceActivity.class);
         moveIntent.putExtra(ResultPresenceActivity.EXTRA_INTENT, result);
         moveIntent.putExtra(ResultPresenceActivity.EXTRA_LONGI, longi);
         moveIntent.putExtra(ResultPresenceActivity.EXTRA_LATI, lati);
         moveIntent.putExtra(ResultPresenceActivity.EXTRA_ADDRESS, location);
+        moveIntent.putExtra(ResultPresenceActivity.EXTRA_ID, idPresence);
         startActivity(moveIntent);
     }
 

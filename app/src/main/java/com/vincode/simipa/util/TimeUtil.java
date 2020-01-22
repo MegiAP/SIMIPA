@@ -1,19 +1,26 @@
 package com.vincode.simipa.util;
 
+
+import android.annotation.SuppressLint;
 import android.util.Log;
-import java.util.Calendar;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TimeUtil {
 
     public String getWaktu(){
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        String resultYear = null;
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd-M-yyyy");
+        String date = dateFormat.format(new Date());
+        String[] dates = date.split("-");
+
+        int month = Integer.parseInt(dates[1]);
+        int year = Integer.parseInt(dates[2]);
+        String resultYear = "";
 
         if (month >= 1 && month <= 6){
             int yearPrev = year - 1;
-            resultYear = year +"/"+ yearPrev;
+            resultYear = yearPrev +"/"+ year;
         }else if (month >= 7){
             int yearNext = year + 1;
             resultYear = year +"/"+ yearNext;

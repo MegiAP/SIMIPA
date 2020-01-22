@@ -1,10 +1,13 @@
 package com.vincode.simipa.ui.study_progress;
 
 import android.graphics.Color;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,17 +20,23 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.ProgressStudyAdapter;
-import com.vincode.simipa.util.TestProgress;
-import com.vincode.simipa.model.ProgressStudy;
+import com.vincode.simipa.model.StudyResponse;
+import com.vincode.simipa.network.ApiClient;
+import com.vincode.simipa.network.ApiInterface;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StudyProgressActivity extends AppCompatActivity {
 
     private ProgressStudyAdapter progressStudyAdapter;
     private RecyclerView rvProgressStudy;
-    private ArrayList<ProgressStudy> list = new ArrayList<>();
+    private ProgressBar progressBar;
+//    private ArrayList<ProgressStudy> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +44,11 @@ public class StudyProgressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_study_progress);
 
         rvProgressStudy = findViewById(R.id.rv_study_progress);
+        progressBar = findViewById(R.id.progress_bar);
 
-        list.addAll(TestProgress.getListProgress());
-        progressStudyAdapter = new ProgressStudyAdapter(this, list);
+        //list.addAll(TestProgress.getListProgress());
+        progressStudyAdapter = new ProgressStudyAdapter(this);
+        progressBar.setVisibility(View.VISIBLE);
 
         ImageView imgBack = findViewById(R.id.img_back);
         imgBack.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +60,29 @@ public class StudyProgressActivity extends AppCompatActivity {
 
         drawLineChart();
         setLayout();
+        getData();
+    }
+
+    private void getData() {
+        //api latihan
+        ApiInterface apiInterface = ApiClient.getClientLocal().create(ApiInterface.class);
+
+        Call<StudyResponse> call = apiInterface.getStudi("1617051103");
+        call.enqueue(new Callback<StudyResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<StudyResponse> call, @NonNull Response<StudyResponse> response) {
+                progressBar.setVisibility(View.GONE);
+                if (response.body() != null) {
+                    progressStudyAdapter.setListCalendar(response.body().getResult());
+                    progressStudyAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<StudyResponse> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 
     private void drawLineChart(){
@@ -95,14 +129,8 @@ public class StudyProgressActivity extends AppCompatActivity {
     private List<Entry> getDataSet() {
 
         List<Entry> lineEntry = new ArrayList<>();
-        lineEntry.add(new Entry(1,1));
-        lineEntry.add(new Entry(2,2));
-        lineEntry.add(new Entry(3,3));
-        lineEntry.add(new Entry(4,4));
-        lineEntry.add(new Entry(5,3));
-        lineEntry.add(new Entry(6,2));
-        lineEntry.add(new Entry(7,1));
-        lineEntry.add(new Entry(8,3));
+        lineEntry.add(new Entry(1, 3.3f));
+        lineEntry.add(new Entry(2,3.45f));
 
         return lineEntry;
     }

@@ -69,7 +69,7 @@ public class PracticeFragment extends Fragment {
 
         //praktikum
         Call<PresenceResponse> call = apiInterface.getPresenceData(
-                SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin(), "2019-11-12 13:48:11","Teori");
+                SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin(), "2019-11-12 13:48:11","Teori", "Ganjil");
 
         call.enqueue(new Callback<PresenceResponse>() {
             @Override

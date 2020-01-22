@@ -60,8 +60,8 @@ public class PresenceAdapter extends RecyclerView.Adapter<PresenceAdapter.Presen
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PresenceViewHolder holder, int position) {
-        PresenceResult presence = listPresence.get(position);
+    public void onBindViewHolder(@NonNull final PresenceViewHolder holder, int position) {
+        final PresenceResult presence = listPresence.get(position);
 
         holder.tvTimeOne.setText(presence.getMulai());
         holder.tvTimeTwo.setText(presence.getSelesai());
@@ -80,7 +80,7 @@ public class PresenceAdapter extends RecyclerView.Adapter<PresenceAdapter.Presen
                     onGPS();
                 }else {
                     //gps udah hidup get location
-                    getLocation();
+                    getLocation(presence.getIdPresence());
                 }
 
                 //Toast.makeText(activity, "tes", Toast.LENGTH_SHORT).show();
@@ -88,7 +88,7 @@ public class PresenceAdapter extends RecyclerView.Adapter<PresenceAdapter.Presen
         });
     }
 
-    private void getLocation() {
+    private void getLocation(String idPresence) {
         if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity,
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity, new String[]{
@@ -107,7 +107,7 @@ public class PresenceAdapter extends RecyclerView.Adapter<PresenceAdapter.Presen
                 double longi = locationGps.getLongitude();
 
                 Toast.makeText(activity,  getAddress(lat, longi), Toast.LENGTH_LONG).show();
-                alertPosition(lat, longi);
+                alertPosition(lat, longi, idPresence);
 
             } else if (locationNetwork != null) {
                 double lat = locationNetwork.getLatitude();
@@ -115,19 +115,19 @@ public class PresenceAdapter extends RecyclerView.Adapter<PresenceAdapter.Presen
 
                 //alertPosition(lat, longi);
                 Toast.makeText(activity,  getAddress(lat, longi) , Toast.LENGTH_LONG).show();
-                alertPosition(lat, longi);
+                alertPosition(lat, longi, idPresence);
 
             } else if (locationPassive != null) {
                 double lat = locationPassive.getLatitude();
                 double longi = locationPassive.getLongitude();
 
                 Toast.makeText(activity,  getAddress(lat, longi), Toast.LENGTH_LONG).show();
-                alertPosition(lat, longi);
+                alertPosition(lat, longi, idPresence);
             } else if (locationCriteria != null) {
                 double lat = locationCriteria.getLatitude();
                 double longi = locationCriteria.getLongitude();
 
-                alertPosition(lat, longi);
+                alertPosition(lat, longi, idPresence);
                 Toast.makeText(activity,  getAddress(lat, longi), Toast.LENGTH_LONG).show();
 
             } else {
@@ -136,10 +136,11 @@ public class PresenceAdapter extends RecyclerView.Adapter<PresenceAdapter.Presen
         }
     }
 
-    private void alertPosition(final double lat, final double longi){
+    private void alertPosition(final double lat, final double longi, final String idPresence){
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-        builder.setMessage("Posisi anda saat ini berada di " + getAddress(lat, longi)).setCancelable(false).setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        builder.setMessage("Posisi anda saat ini berada di id " +idPresence+ " dan lokasi nya" + getAddress(lat, longi) +
+                "Apakah anda yakin untuk absen kehadiran?").setCancelable(false).setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //activity.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
@@ -147,6 +148,7 @@ public class PresenceAdapter extends RecyclerView.Adapter<PresenceAdapter.Presen
                 scanIntent.putExtra("a", getAddress(lat, longi));
                 scanIntent.putExtra("b", lat);
                 scanIntent.putExtra("c", longi);
+                scanIntent.putExtra("d", idPresence);
                 activity.startActivity(scanIntent);
             }
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {

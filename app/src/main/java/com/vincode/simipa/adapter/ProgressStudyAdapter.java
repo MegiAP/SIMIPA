@@ -1,6 +1,6 @@
 package com.vincode.simipa.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,19 +12,28 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.model.ProgressStudy;
+import com.vincode.simipa.model.StudyResult;
 import com.vincode.simipa.ui.study_progress.DetailMatkulActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
+//api latihan
 public class ProgressStudyAdapter extends RecyclerView.Adapter<ProgressStudyAdapter.ProgressViewHolder> {
 
-    private ArrayList<ProgressStudy> listProgress;
-    private final Context mContext;
+    private List<StudyResult> listStudy = new ArrayList<>();
+    private final Activity activity;
 
-    public ProgressStudyAdapter( Context mContext, ArrayList<ProgressStudy> listCalendar) {
-        this.listProgress = listCalendar;
-        this.mContext = mContext;
+    public ProgressStudyAdapter(Activity activity) {
+        this.activity = activity;
+    }
+
+    public void setListCalendar(List<StudyResult> studyList){
+
+        if (studyList == null)return;
+        this.listStudy.clear();
+        this.listStudy.addAll(studyList);
+
     }
 
 
@@ -37,24 +46,24 @@ public class ProgressStudyAdapter extends RecyclerView.Adapter<ProgressStudyAdap
 
     @Override
     public void onBindViewHolder(@NonNull ProgressViewHolder progressViewHolder, int i) {
-        final ProgressStudy progressStudy = listProgress.get(i);
+        final StudyResult progressStudy = listStudy.get(i);
 
         progressViewHolder.tvSemester.setText(progressStudy.getSemester());
-        progressViewHolder.tvValueIpk.setText(progressStudy.getIpk());
+        progressViewHolder.tvValueIpk.setText(progressStudy.getIp());
         progressViewHolder.tvValueSks.setText(progressStudy.getSks());
         progressViewHolder.cvProgress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent moveIntent = new Intent(mContext, DetailMatkulActivity.class);
-                moveIntent.putExtra(DetailMatkulActivity.EXTRA_INTENT, progressStudy);
-                mContext.startActivity(moveIntent);
+                Intent moveIntent = new Intent(activity, DetailMatkulActivity.class);
+                //moveIntent.putExtra(DetailMatkulActivity.EXTRA_INTENT, );
+                activity.startActivity(moveIntent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return listProgress.size();
+        return listStudy.size();
     }
 
      class ProgressViewHolder extends RecyclerView.ViewHolder {
