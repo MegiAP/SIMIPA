@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.krs.FormKRSFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/krs"
-        android:layout_below="@+id/rv_form_krs"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_form_krs"
         android:layout_width="match_parent"

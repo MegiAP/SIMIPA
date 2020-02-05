@@ -23,8 +23,8 @@ public class KRSActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.tb_krs);
 
         KRSPagerAdapter fragmentPagerAdapter = new KRSPagerAdapter(getSupportFragmentManager());
-        fragmentPagerAdapter.addFragment(new FormKRSFragment(), "Fill KRS");
-        fragmentPagerAdapter.addFragment(new MyKRSFragment(), "My KRS");
+        fragmentPagerAdapter.addFragment(new FormKRSFragment(), getResources().getString(R.string.fill_krs));
+        fragmentPagerAdapter.addFragment(new MyKRSFragment(), getResources().getString(R.string.my_krs));
 
         viewPager.setAdapter(fragmentPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

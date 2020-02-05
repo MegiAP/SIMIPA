@@ -32,7 +32,7 @@ public class BeasiswaActivity extends AppCompatActivity {
         scholarshipAdapter = new ScholarshipAdapter();
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Beasiswa");
+        actionBar.setTitle(R.string.scholarship);
 
         showRecyclerCardView();
         getData();
