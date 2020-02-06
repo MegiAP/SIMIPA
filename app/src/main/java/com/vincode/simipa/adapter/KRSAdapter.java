@@ -31,7 +31,7 @@ public class KRSAdapter extends RecyclerView.Adapter<KRSAdapter.KRSViewHolder> {
     @NonNull
     @Override
     public KRSAdapter.KRSViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.item_cardview_krs, parent, false);
+        View view = LayoutInflater.from(activity).inflate(R.layout.item_my_krs, parent, false);
         return new KRSViewHolder(view);
     }
 

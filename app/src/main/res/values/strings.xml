@@ -16,6 +16,8 @@
     <string name="sub_app_name">Student Apps</string>
     <string name="collegeschedule">Jadwal Kuliah</string>
     <string name="classschedule">Jadwal Ruangan</string>
+    <string name="fill_krs">Fill KRS</string>
+    <string name="my_krs">My KRS</string>
 
     <string name="detail_slider1">SIMIPA merupakan aplikasi khusus untuk mahasiswa FMIPA sebagai fasilitas pendukung Mahasiswa FMIPA Universitas Lampung</string>
     <string name="content_slider2">Jadwal kuliah, Absensi, Layanan akademik, Bimbingan, Prestasi saati ini ada di genggaman anda</string>
@@ -28,8 +30,6 @@
     <string name="login">Login</string>
     <string name="npm">NPM</string>
     <string name="password">Password</string>
-    <string name="tv_ex_npm">1617051086</string>
-    <string name="tv_ex_name">Kelvin Putra</string>
     <string name="test_year_calendar">Tahun Ajaran 2019/2020</string>
     <string name="ex_data_calendar">Pengisian KRS</string>
     <string name="ex_date_calendar">29–07–2019 s.d 20–07–2019</string>
@@ -48,7 +48,6 @@
     <string name="text_develop">Under Develop Process</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="jadwal_kuliah">Kuliah</string>
     <string name="jadwal_praktikum">Praktikum</string>
@@ -73,22 +72,12 @@
     <string name="presence_kehadiran">Kehadiran</string>
     <string name="dosen_pembimbing">Dosen Pembimbing</string>
     <string name="seminar">Seminar</string>
-    <string name="title_activity_agenda">Settings</string>
 
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="ruangan">Ruangan</string>
     <string name="nama_mahasiswa">Nama Mahasiswa</string>
     <string name="judul">Judul</string>

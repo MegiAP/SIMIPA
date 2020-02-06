@@ -24,14 +24,11 @@ import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.SharedPrefManager;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class MyKRSFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private KRSAdapter krsAdapter;
-
 
     public MyKRSFragment() {
         // Required empty public constructor

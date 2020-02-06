@@ -39,7 +39,7 @@ public class AchievementActivity extends AppCompatActivity {
         tvNpm.setText(SharedPrefManager.getInstance(this).getUser().getUserLogin());
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Prestasi");
+        actionBar.setTitle(R.string.achievment);
 
         showRecyclerCardView();
         getData();
