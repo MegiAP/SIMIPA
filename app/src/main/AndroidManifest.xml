@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.presence.ResultPresenceActivity"></activity>
+        <activity android:name=".ui.presence.ResultPresenceActivity"/>
         <activity android:name=".ui.presence.ScanPresenceActivity" />
         <activity
             android:name=".ui.achievement.AchievementActivity"
@@ -104,7 +104,8 @@
         <activity android:name=".ui.recapitulation.PresenceRecapActivity" />
         <activity android:name=".ui.recapitulation.SeminarRecapActivity" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"
+        tools:ignore="ManifestOrder" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

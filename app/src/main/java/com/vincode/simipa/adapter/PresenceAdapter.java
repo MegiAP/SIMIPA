@@ -1,6 +1,7 @@
 package com.vincode.simipa.adapter;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.model.PresenceResult;
+import com.vincode.simipa.ui.presence.ResultPresenceActivity;
 import com.vincode.simipa.ui.presence.ScanPresenceActivity;
 
 import java.io.IOException;
@@ -139,19 +142,64 @@ public class PresenceAdapter extends RecyclerView.Adapter<PresenceAdapter.Presen
     private void alertPosition(final double lat, final double longi, final String idPresence){
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-        builder.setMessage("Posisi anda saat ini berada di id " +idPresence+ " dan lokasi nya" + getAddress(lat, longi) +
-                "Apakah anda yakin untuk absen kehadiran?").setCancelable(false).setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        builder.setMessage("Posisi anda saat ini berada di "+ getAddress(lat, longi) +
+                " Apakah anda yakin untuk absen kehadiran? Silahkan memilih jenis absen!").
+                setCancelable(false).setPositiveButton("QR Code", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //activity.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+
                 Intent scanIntent = new Intent(activity, ScanPresenceActivity.class);
                 scanIntent.putExtra("a", getAddress(lat, longi));
                 scanIntent.putExtra("b", lat);
                 scanIntent.putExtra("c", longi);
                 scanIntent.putExtra("d", idPresence);
                 activity.startActivity(scanIntent);
+
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton("Kode", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                final AlertDialog alert = new AlertDialog.Builder(activity).create();
+                LayoutInflater inflater = activity.getLayoutInflater();
+                @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.custom_alert_resence, null);
+
+                final EditText edtKode = dialogView.findViewById(R.id.edt_alert);
+                Button btnCancel = dialogView.findViewById(R.id.btn_cancel);
+                Button btnKirim = dialogView.findViewById(R.id.btn_submit);
+
+
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        //Toast.makeText(activity, a,Toast.LENGTH_SHORT).show();
+                        alert.dismiss();
+                    }
+                });
+
+                btnKirim.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String a = edtKode.getText().toString().trim();
+                        Toast.makeText(activity, a,Toast.LENGTH_SHORT).show();
+                        Intent moveIntent = new Intent(activity, ResultPresenceActivity.class);
+                        moveIntent.putExtra(ResultPresenceActivity.EXTRA_INTENT, a);
+                        moveIntent.putExtra(ResultPresenceActivity.EXTRA_LONGI, longi);
+                        moveIntent.putExtra(ResultPresenceActivity.EXTRA_LATI, lat);
+                        moveIntent.putExtra(ResultPresenceActivity.EXTRA_ADDRESS, getAddress(lat, longi));
+                        moveIntent.putExtra(ResultPresenceActivity.EXTRA_ID, idPresence);
+                        //moveIntent.putExtra("a", "qr code");
+                        activity.startActivity(moveIntent);
+                        //activity.startActivity(new Intent(activity, MainActivity.class));
+
+                    }
+                });
+
+                alert.setView(dialogView);
+                alert.show();
+
+            }
+        }).setNeutralButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();

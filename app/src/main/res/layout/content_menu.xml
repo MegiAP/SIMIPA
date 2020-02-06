@@ -45,7 +45,7 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/jadwal"
+                    android:src="@drawable/ic_new_jadwal"
                     android:contentDescription="@string/content_description"/>
 
                 <TextView
@@ -88,7 +88,7 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/bookshelf"
+                    android:src="@drawable/ic_new_krs"
                     android:contentDescription="@string/content_description"/>
 
                 <TextView
@@ -131,7 +131,7 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/presensi"
+                    android:src="@drawable/ic_new_absen"
                     android:contentDescription="@string/content_description"/>
 
                 <TextView
@@ -187,7 +187,7 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/agenda"
+                    android:src="@drawable/ic_new_agenda"
                     android:contentDescription="@string/content_description"/>
 
                 <TextView
@@ -231,7 +231,7 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/rekap"
+                    android:src="@drawable/ic_new_rekap"
                     android:contentDescription="@string/content_description"/>
 
                 <TextView
@@ -275,7 +275,7 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_guidance"
+                    android:src="@drawable/ic_new_bimbingan"
                     android:contentDescription="@string/content_description"/>
 
                 <TextView
@@ -331,7 +331,7 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/layanan"
+                    android:src="@drawable/ic_new_layanan"
                     android:contentDescription="@string/content_description"/>
 
                 <TextView
@@ -375,7 +375,7 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_prestasi"
+                    android:src="@drawable/ic_new_prestasi"
                     android:contentDescription="@string/content_description"/>
 
                 <TextView
@@ -419,7 +419,7 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_progress"
+                    android:src="@drawable/ic_new_kemajuan"
                     android:contentDescription="@string/content_description"/>
 
                 <TextView
@@ -474,7 +474,7 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_beasiswa"
+                    android:src="@drawable/ic_new_beasiswa"
                     android:contentDescription="@string/content_description"/>
 
                 <TextView
@@ -519,7 +519,7 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/kalender"
+                    android:src="@drawable/ic_new_calender"
                     android:contentDescription="@string/content_description"/>
 
                 <TextView
