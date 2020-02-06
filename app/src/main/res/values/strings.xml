@@ -94,5 +94,8 @@
     <string name="judul">Judul</string>
     <string name="nip">NIP</string>
     <string name="prodi">Prodi</string>
+    <string name="npm1">NPM</string>
+    <string name="bimbingan_pa">Bimbingan PA</string>
+    <string name="bimbingan_ta">Bimbingan TA</string>
 
 </resources>

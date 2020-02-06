@@ -16,8 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.adapter.CollegeScheduleAdapter;
-import com.vincode.simipa.model.CollegeScheduleResponse;
+import com.vincode.simipa.adapter.SeminarScheduleAdapter;
+import com.vincode.simipa.model.SeminarScheduleResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 
@@ -27,11 +27,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TuesdayCollegeFragment extends Fragment {
-    private CollegeScheduleAdapter collegeScheduleAdapter;
+public class SeminarKompreFragment extends Fragment {
+    private SeminarScheduleAdapter seminarScheduleAdapter;
     private RecyclerView recyclerView;
 
-    public TuesdayCollegeFragment() {
+    public SeminarKompreFragment() {
         // Required empty public constructor
     }
 
@@ -39,19 +39,19 @@ public class TuesdayCollegeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tuesday_college, container, false);
+        return inflater.inflate(R.layout.fragment_seminar_kompre, container, false);
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView = view.findViewById(R.id.rvCollegeTuesday);
+        recyclerView = view.findViewById(R.id.rv_kompre);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        collegeScheduleAdapter = new CollegeScheduleAdapter(getActivity());
+        seminarScheduleAdapter = new SeminarScheduleAdapter(getActivity());
 
         setLayout();
         getData();
@@ -61,25 +61,25 @@ public class TuesdayCollegeFragment extends Fragment {
     private void setLayout(){
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(collegeScheduleAdapter);
+        recyclerView.setAdapter(seminarScheduleAdapter);
     }
-    //ini Error
+
     private void getData(){
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("selasa", "COM612406", "2018/2019", "Ganjil");
+        Call<SeminarScheduleResponse> call = apiInterface.getSeminarData("Sidang Komprehensif", "Fisika", "2019-11-19");
 
-        call.enqueue(new Callback<CollegeScheduleResponse>() {
+        call.enqueue(new Callback<SeminarScheduleResponse>() {
             @Override
-            public void onResponse(Call<CollegeScheduleResponse> call, Response<CollegeScheduleResponse> response) {
+            public void onResponse(Call<SeminarScheduleResponse> call, Response<SeminarScheduleResponse> response) {
                 if (response.body() != null) {
-                    collegeScheduleAdapter.setListCollegeSchedule(response.body().getRecords());
-                    collegeScheduleAdapter.notifyDataSetChanged();
+                    seminarScheduleAdapter.setListSeminarSchedule(response.body().getRecords());
+                    seminarScheduleAdapter.notifyDataSetChanged();
                 }
             }
 
             @Override
-            public void onFailure(Call<CollegeScheduleResponse> call, Throwable t) {
+            public void onFailure(Call<SeminarScheduleResponse> call, Throwable t) {
                 Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
         });
@@ -87,4 +87,6 @@ public class TuesdayCollegeFragment extends Fragment {
 
 
     }
+
+
 }

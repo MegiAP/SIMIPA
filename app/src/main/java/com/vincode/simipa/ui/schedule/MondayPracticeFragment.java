@@ -34,7 +34,7 @@ public class MondayPracticeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_monday_practice, container, false);
-        recyclerView = v.findViewById(R.id.rvjdprac);
+        recyclerView = v.findViewById(R.id.rv_mondaypractice);
         return v;
     }
 }

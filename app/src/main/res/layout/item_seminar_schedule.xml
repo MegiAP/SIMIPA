@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="386dp"
-    android:layout_height="120dp"
-    android:layout_marginLeft="6dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="9dp"
     android:orientation="vertical"
     app:cardCornerRadius="18dp">
 
     <LinearLayout
         android:layout_width="90dp"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_tglsem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
+            android:layout_marginStart="7dp"
             android:layout_marginTop="3dp"
             android:text="@string/tglSeminar" />
 
         <ImageView
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginEnd="2dp"
             android:layout_gravity="center"
             android:layout_marginTop="1dp"
             android:src="@drawable/ic_jadwal_24dp" />
@@ -35,93 +34,59 @@
             android:id="@+id/tv_jamsem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="1dp"
-            android:text="13.30" />
+            android:text="10:00:00" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="3dp"
-        android:layout_height="90dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="90dp"
-        android:background="#FFF" />
+        android:layout_marginStart="104dp"
+        android:background="@drawable/bg_btn_blue" />
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="110dp"
-        android:src="@drawable/ic_person_black_24dp"/>
 
     <TextView
-        android:id="@+id/tv_mhsSem"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_npmSem"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/nama_mahasiswa_seminar"
-        android:textSize="15sp" />
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginLeft="110dp"
-        android:src="@drawable/ic_book_black_24dp"/>
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/npm1"
+        android:textSize="12sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tv_judulSem"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="25dp"
+        android:scrollbars="vertical"
         android:text="@string/judul_seminar"
-        android:textSize="15sp" />
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginLeft="110dp"
-        android:src="@drawable/ic_home_black_24dp"/>
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:maxLength="45"/>
 
     <TextView
         android:id="@+id/tv_ruangSem"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="60dp"
         android:text="@string/ruang_seminar"
-        android:textSize="15sp" />
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="90dp"
-        android:layout_marginLeft="110dp"
-        android:src="@drawable/ic_bookmark_border_black_24dp"/>
+        android:textSize="12sp"
+        android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/tv_jenisSem"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_nipSeminar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="90dp"
-        android:text="@string/jenis_seminar"
-        android:textSize="15sp" />
-
-    <Button
-        android:id="@+id/btn_joinSem"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="280dp"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="80dp"
-        android:textSize="12dp"
-        android:textStyle="bold"
-        android:textColor="#FFFF"
-        android:background="@drawable/bg_btn_blue"
-        android:text="@string/join_seminar" />
+        android:text="@string/nip"
+        android:textSize="12sp" />
 
 
 </androidx.cardview.widget.CardView>

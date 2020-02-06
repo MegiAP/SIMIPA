@@ -9,6 +9,7 @@ import com.vincode.simipa.model.KRSResponse;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.ProfileResponse;
+import com.vincode.simipa.model.SeminarScheduleResponse;
 import com.vincode.simipa.model.ScholarshipResponse;
 import com.vincode.simipa.model.ServiceResponse;
 import com.vincode.simipa.model.SplashResponse;
@@ -73,10 +74,15 @@ public interface ApiInterface {
     @GET("read-jadwal-mhs.php")
     Call<CollegeScheduleResponse> getCollegeData(
             @Query("hari") String hari,
-            @Query("npm") String npm,
+            @Query("kodeMK") String kodeMK,
             @Query("tahun_akademik") String tahun_akademik,
-            @Query("semester") String semester,
-            @Query("type") String type
+            @Query("semester") String semester
+    );
+    @GET("read-seminar.php")
+    Call<SeminarScheduleResponse> getSeminarData(
+            @Query("jenis") String jenis,
+            @Query("jurusan") String jurusan,
+            @Query("tgl") String tgl
     );
 
     @GET("read-beasiswa.php")

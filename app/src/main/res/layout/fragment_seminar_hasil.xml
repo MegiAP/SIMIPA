@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.schedule.MondayPracticeFragment">
+    tools:context=".ui.schedule.SeminarHasilFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_mondaypractice"
+        android:id="@+id/rv_hasil"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_practice_schedule"/>
+        tools:listitem="@layout/item_seminar_schedule"/>
 
 </RelativeLayout>

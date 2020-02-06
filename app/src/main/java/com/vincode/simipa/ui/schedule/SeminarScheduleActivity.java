@@ -50,11 +50,10 @@ public class SeminarScheduleActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new JadsemFragment(), "Senin");
-        adapter.addFrag(new dump1(), "Selasa");
-        adapter.addFrag(new dump2(), "Rabu");
-        adapter.addFrag(new dump3(), "Kamis");
-        adapter.addFrag(new dump4(), "Jumat");
+        adapter.addFrag(new KpFragment(), "KP");
+        adapter.addFrag(new SeminarUsulFragment(), "Usul");
+        adapter.addFrag(new SeminarHasilFragment(), "Hasil");
+        adapter.addFrag(new SeminarKompreFragment(), "Kompre");
         viewPager.setAdapter(adapter);
     }
 
