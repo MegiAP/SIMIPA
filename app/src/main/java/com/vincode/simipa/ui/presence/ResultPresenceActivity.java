@@ -3,9 +3,13 @@ package com.vincode.simipa.ui.presence;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,11 +17,14 @@ import com.vincode.simipa.R;
 import com.vincode.simipa.model.Value;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
+import com.vincode.simipa.ui.main.MainActivity;
+import com.vincode.simipa.ui.recapitulation.RecapMenuActivity;
 import com.vincode.simipa.util.SharedPrefManager;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,40 +38,53 @@ public class ResultPresenceActivity extends AppCompatActivity {
     public static final String EXTRA_ADDRESS = "extra_addres";
     public static final String EXTRA_ID = "extra_id";
 
+    private ProgressBar progressBar;
+    private TextView tvStatus;
+    private ImageView imgStatus;
+    private Button btnRekap, btnHome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_presence);
 
-        String value = getIntent().getStringExtra(EXTRA_INTENT);
+        //String value = getIntent().getStringExtra(EXTRA_INTENT);
         double latitude = getIntent().getDoubleExtra(EXTRA_LATI,0);
         double longitude = getIntent().getDoubleExtra(EXTRA_LONGI, 0);
         String address = getIntent().getStringExtra(EXTRA_ADDRESS);
         String idPresence = getIntent().getStringExtra(EXTRA_ID);
 
-        TextView tvValue = findViewById(R.id.tv_value);
-        tvValue.setText(value);
-
-        TextView tvLongi = findViewById(R.id.tv_longi);
-        tvLongi.setText(String.valueOf(longitude));
-
-        TextView tvLati = findViewById(R.id.tv_lati);
-        tvLati.setText(String.valueOf(latitude));
-
-        TextView tvLocation = findViewById(R.id.tv_addres_location);
-        tvLocation.setText(address);
+        progressBar = findViewById(R.id.progress_bar);
+        tvStatus = findViewById(R.id.tv_status_presence);
+        imgStatus = findViewById(R.id.img_status_presence);
+        btnRekap = findViewById(R.id.btn_rekap);
+        btnHome = findViewById(R.id.btn_home);
 
         updateStudent(longitude, latitude, address, idPresence);
 
+        progressBar.setVisibility(View.VISIBLE);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ResultPresenceActivity.this, MainActivity.class));
+            }
+        });
+
+        btnRekap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ResultPresenceActivity.this, RecapMenuActivity.class));
+            }
+        });
 
     }
 
     private void updateStudent( final double longi, final double lati, final String location, String idPresence){
 
         //Api latihan
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+//        final ProgressDialog progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Loading...");
+//        progressDialog.show();
 
         String latitude = String.valueOf(lati);
         String longitude = String.valueOf(longi);
@@ -89,7 +109,7 @@ public class ResultPresenceActivity extends AppCompatActivity {
         Call<Value> call = apiInterface.updatePresence(jsonObject.toString());
 
         call.enqueue(new Callback<Value>() {
-            
+
             @Override
             public void onResponse(@NonNull Call<Value> call, @NonNull Response<Value> response) {
                 //String value = response.body().getValue();
@@ -97,36 +117,21 @@ public class ResultPresenceActivity extends AppCompatActivity {
                 if (response.body() != null) {
                     String message = response.body().getMessage();
                     Toast.makeText(ResultPresenceActivity.this, message, Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    tvStatus.setVisibility(View.VISIBLE);
+                    imgStatus.setVisibility(View.VISIBLE);
+                    btnHome.setVisibility(View.VISIBLE);
+                    btnRekap.setVisibility(View.VISIBLE);
                 }
-                progressDialog.dismiss();
-//                if (value.equals("1")){
-//                    Toast.makeText(ResultPresenceActivity.this, message, Toast.LENGTH_SHORT).show();
-//                    //getDataTointent(result, longi, lati, location);
-//                }else {
-//                    Toast.makeText(ResultPresenceActivity.this, message, Toast.LENGTH_SHORT).show();
-//                }
-
             }
 
             @Override
             public void onFailure(@NonNull Call<Value> call, @NonNull Throwable t) {
-                progressDialog.dismiss();
+                //progressDialog.dismiss();
                 Toast.makeText(ResultPresenceActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.d("njir 2", "error" );
             }
         });
 
     }
-//
-//    private String getCurrentDate(){
-//        Calendar calendar = Calendar.getInstance();
-//        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        return dateFormat.format(calendar.getTime());
-//    }
-//
-//    private String getCurrentTime(){
-//        Calendar calendar = Calendar.getInstance();
-//        @SuppressLint("SimpleDateFormat") SimpleDateFormat timeFormat = new SimpleDateFormat("HH-mm-ss");
-//        return timeFormat.format(calendar.getTime());
-//    }
 }

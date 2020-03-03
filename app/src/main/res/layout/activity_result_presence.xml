@@ -4,55 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ui.presence.ResultPresenceActivity">
 
-    <TextView
-        android:id="@+id/tv_label"
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ini Hasil scan"
-        android:textSize="20sp"
-        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/tv_value"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_status_presence"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="xxx"
-        android:textSize="14sp"
+        android:text="Absen anda berhasil"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.4"/>
+
+
+    <ImageView
+        android:id="@+id/img_status_presence"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_succes"
+        android:contentDescription="@string/content_description"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_label"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_status_presence"/>
 
-    <TextView
-        android:id="@+id/tv_longi"
+    <Button
+        android:id="@+id/btn_rekap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="xxx"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/tv_value"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/bg_btn_blue"
+        android:padding="8dp"
+        android:text="Rekapitulasi"
+        android:textColor="@color/colorIcons"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_status_presence"
+        />
 
-    <TextView
-        android:id="@+id/tv_lati"
+    <Button
+        android:id="@+id/btn_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="xxx"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/tv_longi"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/bg_btn_blue"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:text="Home"
+        android:textColor="@color/colorIcons"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_status_presence"
+        />
 
-    <TextView
-        android:id="@+id/tv_addres_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="xxx"
-        app:layout_constraintTop_toBottomOf="@id/tv_lati"
-        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
