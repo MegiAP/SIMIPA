@@ -1,5 +1,6 @@
 package com.vincode.simipa.ui.recapitulation;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -17,6 +18,9 @@ public class RecapMenuActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recap_menu);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(R.string.recapitulation);
 
         setCardClick();
     }

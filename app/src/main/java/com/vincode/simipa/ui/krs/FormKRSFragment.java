@@ -15,6 +15,7 @@ import retrofit2.Response;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.FormKRSAdapter;
@@ -29,6 +30,7 @@ public class FormKRSFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private FormKRSAdapter krsAdapter;
+    private ProgressBar pgBar;
 
     public FormKRSFragment() {
         // Required empty public constructor
@@ -47,12 +49,14 @@ public class FormKRSFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.rv_form_krs);
+        pgBar = view.findViewById(R.id.pg_bar);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         krsAdapter = new FormKRSAdapter(getActivity());
+        pgBar.setVisibility(View.VISIBLE);
 
         setLayout();
         getData();
@@ -67,6 +71,7 @@ public class FormKRSFragment extends Fragment {
             @Override
             public void onResponse(Call<KRSResponse> call, Response<KRSResponse> response) {
                 if (response.body() != null) {
+                    pgBar.setVisibility(View.GONE);
                     krsAdapter.setListFormKRS(response.body().getRecords());
                     krsAdapter.notifyDataSetChanged();
                 }

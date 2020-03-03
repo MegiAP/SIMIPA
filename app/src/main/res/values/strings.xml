@@ -83,8 +83,11 @@
     <string name="judul">Judul</string>
     <string name="nip">NIP</string>
     <string name="prodi">Prodi</string>
-    <string name="npm1">NPM</string>
-    <string name="bimbingan_pa">Bimbingan PA</string>
-    <string name="bimbingan_ta">Bimbingan TA</string>
+    <string name="bimbingan_ta">bimbingan ta</string>
+    <string name="bimbingan_pa">bimbingan pa</string>
+    <string name="tanggal">tanggal</string>
+    <string name="name">name</string>
+    <string name="rank">rank</string>
+    <string name="npm1">npm1</string>
 
 </resources>

@@ -37,6 +37,7 @@ public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.
         final AchievementResult dataAchievement = listAchievement.get(position);
 
         holder.tvAchievement.setText(dataAchievement.getNamaKegiatan());
+        holder.tvRank.setText(dataAchievement.getPrestasi());
     }
 
     @Override
@@ -45,12 +46,13 @@ public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.
     }
 
     public class AchievementViewHolder extends RecyclerView.ViewHolder {
-        TextView tvAchievement;
+        TextView tvAchievement, tvRank;
 
         public AchievementViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvAchievement = itemView.findViewById(R.id.tv_achievement);
+            tvRank = itemView.findViewById(R.id.tv_rank);
         }
     }
 }

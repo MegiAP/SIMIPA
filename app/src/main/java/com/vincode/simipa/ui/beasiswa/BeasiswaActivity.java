@@ -10,6 +10,8 @@ import retrofit2.Response;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.ScholarshipAdapter;
@@ -22,6 +24,7 @@ public class BeasiswaActivity extends AppCompatActivity {
 
     private RecyclerView rvCategory;
     private ScholarshipAdapter scholarshipAdapter;
+    private ProgressBar pgBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class BeasiswaActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(R.string.scholarship);
+        pgBar = findViewById(R.id.pg_bar);
+        pgBar.setVisibility(View.VISIBLE);
 
         showRecyclerCardView();
         getData();
@@ -53,6 +58,7 @@ public class BeasiswaActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ScholarshipResponse> call, Response<ScholarshipResponse> response) {
                 if (response.body() != null) {
+                    pgBar.setVisibility(View.GONE);
                     scholarshipAdapter.setListScholarship(response.body().getRecords());
                     scholarshipAdapter.notifyDataSetChanged();
                 }

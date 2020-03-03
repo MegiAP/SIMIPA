@@ -9,6 +9,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.vincode.simipa.R;
@@ -22,6 +24,7 @@ public class AchievementActivity extends AppCompatActivity {
 
     private AchievementAdapter achievementAdapter;
     private RecyclerView rvCategory;
+    private ProgressBar pgBar;
 
     private TextView tvName, tvNpm;
 
@@ -40,6 +43,8 @@ public class AchievementActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(R.string.achievment);
+        pgBar = findViewById(R.id.pg_bar);
+        pgBar.setVisibility(View.VISIBLE);
 
         showRecyclerCardView();
         getData();
@@ -59,6 +64,7 @@ public class AchievementActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AchievementResponse> call, Response<AchievementResponse> response) {
                 if (response.body() != null) {
+                    pgBar.setVisibility(View.GONE);
                     achievementAdapter.setListAchievement(response.body().getRecords());
                     achievementAdapter.notifyDataSetChanged();
                 }
