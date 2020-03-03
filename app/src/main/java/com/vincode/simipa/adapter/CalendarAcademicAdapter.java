@@ -51,7 +51,7 @@ public class CalendarAcademicAdapter extends RecyclerView.Adapter<CalendarAcadem
         );
 
         if (dataCalendar.getStatus().equals("1")){
-            calendarViewHolder.imgCalendar.setImageResource(R.drawable.ic_beasiswa);
+            calendarViewHolder.imgCalendar.setImageResource(R.drawable.ic_new_beasiswa);
         }
 
     }
@@ -61,7 +61,7 @@ public class CalendarAcademicAdapter extends RecyclerView.Adapter<CalendarAcadem
         return listCalendar.size();
     }
 
-    class CalendarViewHolder extends RecyclerView.ViewHolder {
+    static class CalendarViewHolder extends RecyclerView.ViewHolder {
         TextView tvDataCalendar, tvDateCalendar;
         ImageView imgCalendar;
 
