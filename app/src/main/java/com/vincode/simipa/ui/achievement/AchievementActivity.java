@@ -1,5 +1,6 @@
 package com.vincode.simipa.ui.achievement;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,8 +28,6 @@ public class AchievementActivity extends AppCompatActivity {
     private RecyclerView rvCategory;
     private ProgressBar pgBar;
 
-    private TextView tvName, tvNpm;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +36,13 @@ public class AchievementActivity extends AppCompatActivity {
         rvCategory = findViewById(R.id.rv_category);
         achievementAdapter = new AchievementAdapter();
 
-        tvName = findViewById(R.id.tv_achiev_name);
-        tvNpm = findViewById(R.id.tv_achiev_npm);
+        TextView tvName = findViewById(R.id.tv_achiev_name);
+        TextView tvNpm = findViewById(R.id.tv_achiev_npm);
         tvName.setText(SharedPrefManager.getInstance(this).getUser().getDisplayName());
         tvNpm.setText(SharedPrefManager.getInstance(this).getUser().getUserLogin());
 
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setTitle(R.string.achievment);
         pgBar = findViewById(R.id.pg_bar);
         pgBar.setVisibility(View.VISIBLE);
@@ -62,7 +63,7 @@ public class AchievementActivity extends AppCompatActivity {
         Call<AchievementResponse> call = apiInterface.getAchievementData(SharedPrefManager.getInstance(this).getUser().getUserLogin());
         call.enqueue(new Callback<AchievementResponse>() {
             @Override
-            public void onResponse(Call<AchievementResponse> call, Response<AchievementResponse> response) {
+            public void onResponse(@NonNull Call<AchievementResponse> call, @NonNull Response<AchievementResponse> response) {
                 if (response.body() != null) {
                     pgBar.setVisibility(View.GONE);
                     achievementAdapter.setListAchievement(response.body().getRecords());
@@ -71,8 +72,8 @@ public class AchievementActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<AchievementResponse> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<AchievementResponse> call, @NonNull Throwable t) {
+                Log.d("Failure", " ");
             }
         });
     }

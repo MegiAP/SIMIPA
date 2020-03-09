@@ -28,8 +28,7 @@ public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.
     @Override
     public AchievementAdapter.AchievementViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_achievement, parent, false);
-        AchievementAdapter.AchievementViewHolder viewHolder = new AchievementAdapter.AchievementViewHolder(view);
-        return viewHolder;
+        return new AchievementViewHolder(view);
     }
 
     @Override
@@ -45,10 +44,10 @@ public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.
         return listAchievement.size();
     }
 
-    public class AchievementViewHolder extends RecyclerView.ViewHolder {
+    static class AchievementViewHolder extends RecyclerView.ViewHolder {
         TextView tvAchievement, tvRank;
 
-        public AchievementViewHolder(@NonNull View itemView) {
+        AchievementViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvAchievement = itemView.findViewById(R.id.tv_achievement);

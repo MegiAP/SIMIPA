@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ScholarshipAdapter extends RecyclerView.Adapter<ScholarshipAdapter.ScholarshipViewHolder> {
 
     private List<ScholarshipResult> listScholarship = new ArrayList<>();
-    private Context context;
 
     public void setListScholarship(List<ScholarshipResult> listScholarship) {
         if (listScholarship == null) return;
@@ -30,8 +29,7 @@ public class ScholarshipAdapter extends RecyclerView.Adapter<ScholarshipAdapter.
     @Override
     public ScholarshipAdapter.ScholarshipViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cardview_beasiswa, parent, false);
-        ScholarshipAdapter.ScholarshipViewHolder viewHolder = new ScholarshipAdapter.ScholarshipViewHolder(view);
-        return viewHolder;
+        return new ScholarshipViewHolder(view);
     }
 
     @Override
@@ -50,10 +48,10 @@ public class ScholarshipAdapter extends RecyclerView.Adapter<ScholarshipAdapter.
         return listScholarship.size();
     }
 
-    public class ScholarshipViewHolder extends RecyclerView.ViewHolder {
+    static class ScholarshipViewHolder extends RecyclerView.ViewHolder {
         TextView tvNameScholarship, tvStatus, tvTahun,tvSemester;
 
-        public ScholarshipViewHolder(@NonNull View itemView) {
+        ScholarshipViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvNameScholarship = itemView.findViewById(R.id.tv_scholarship);
