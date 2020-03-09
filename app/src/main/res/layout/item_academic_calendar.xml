@@ -1,66 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/margin_item"
-    android:layout_marginEnd="@dimen/margin_item"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="1dp"
-    app:cardUseCompatPadding="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/img_calendar"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="@dimen/margin_item"
+        android:src="@drawable/ic_autorenew"
+        android:contentDescription="@string/content_description"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_data_calendar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_marginTop="@dimen/activity_margin_vertical"
+        android:layout_marginEnd="@dimen/activity_margin_horizontal"
+        android:layout_marginStart="@dimen/activity_margin_horizontal"
+        android:text="@string/ex_data_calendar"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/img_calendar"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <ImageView
-            android:id="@+id/img_calendar"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_new_beasiswa"
-            android:contentDescription="@string/content_description"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <TextView
-            android:id="@+id/tv_date_calendar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/activity_margin_horizontal"
-            android:layout_marginStart="@dimen/activity_margin_horizontal"
-            android:text="@string/ex_date_calendar"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/img_calendar"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <View
-            android:id="@+id/view_linear"
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginEnd="@dimen/activity_margin_horizontal"
-            android:layout_marginStart="@dimen/activity_margin_horizontal"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toEndOf="@+id/img_calendar"
-            app:layout_constraintTop_toBottomOf="@id/tv_date_calendar" />
-
-        <TextView
-            android:id="@+id/tv_data_calendar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/activity_margin_horizontal"
-            android:layout_marginStart="@dimen/activity_margin_horizontal"
-            android:layout_marginTop="4dp"
-            android:text="@string/ex_data_calendar"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@id/img_calendar"
-            app:layout_constraintTop_toBottomOf="@id/view_linear"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/tv_date_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_margin_horizontal"
+        android:layout_marginStart="@dimen/activity_margin_horizontal"
+        android:text="@string/ex_date_calendar"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/img_calendar"
+        app:layout_constraintTop_toBottomOf="@id/tv_data_calendar"/>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/activity_margin_vertical"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_date_calendar"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

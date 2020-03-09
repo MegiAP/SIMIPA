@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.presence.ResultPresenceActivity"/>
+        <activity android:name=".ui.presence.ResultPresenceActivity" />
         <activity android:name=".ui.presence.ScanPresenceActivity" />
         <activity
             android:name=".ui.achievement.AchievementActivity"
@@ -57,7 +57,8 @@
         <activity
             android:name=".ui.schedule.CollegeScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.settings.SettingActivity" />
+        <activity android:name=".ui.settings.SettingActivity"
+            android:parentActivityName=".ui.main.MainActivity"/>
         <activity
             android:name=".ui.recapitulation.ScoreRecapActivity"
             android:parentActivityName=".ui.recapitulation.RecapMenuActivity" />
@@ -112,7 +113,5 @@
         <activity android:name=".ui.recapitulation.PresenceRecapActivity" />
         <activity android:name=".ui.recapitulation.SeminarRecapActivity" />
     </application>
-
-
 
 </manifest>
