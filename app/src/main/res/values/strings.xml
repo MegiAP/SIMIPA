@@ -89,5 +89,9 @@
     <string name="name">name</string>
     <string name="rank">rank</string>
     <string name="npm1">npm1</string>
+    <string name="non_akademik">Non Akademik</string>
+    <string name="akademik">Akademik</string>
+    <string name="semester">Semester</string>
+    <string name="status">Status</string>
 
 </resources>

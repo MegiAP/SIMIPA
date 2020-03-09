@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         edtPassword = findViewById(R.id.edt_pw_login);
 
         btnLogin.setOnClickListener(this);
-
     }
 
     @Override
@@ -89,7 +88,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
                 progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-
             }
         });
 
