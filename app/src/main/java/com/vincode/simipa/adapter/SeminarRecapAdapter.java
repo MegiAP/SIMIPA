@@ -48,12 +48,6 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         holder.tvSjudul.setText(p.getSjudul());
         holder.tvSdosen.setText(p.getSdosen());
         holder.tvSjenis.setText(p.getSjenis());
-        holder.btnPresence.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Tes", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     @Override
@@ -70,7 +64,6 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
             tvSjudul = itemView.findViewById(R.id.tv_rec_JudulSem);
             tvSdosen = itemView.findViewById(R.id.tv_rec_dosenSem);
             tvSjenis = itemView.findViewById(R.id.tv_recJenisSem);
-            btnPresence = itemView.findViewById(R.id.btn_CheckSeminar);
         }
     }
 }

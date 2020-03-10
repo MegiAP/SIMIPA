@@ -99,5 +99,7 @@
     <string name="kelas_gik">GIK Lt.1C</string>
     <string name="ardiansyah_s_kom">Ardiansyah, S.Kom.</string>
     <string name="absen">ABSEN</string>
+    
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -110,8 +110,10 @@
         <activity
             android:name=".ui.study_progress.DetailMatkulActivity"
             android:parentActivityName=".ui.study_progress.StudyProgressActivity" />
-        <activity android:name=".ui.recapitulation.PresenceRecapActivity" />
-        <activity android:name=".ui.recapitulation.SeminarRecapActivity" />
+        <activity android:name=".ui.recapitulation.PresenceRecapActivity"
+            android:parentActivityName=".ui.main.MainActivity"/>
+        <activity android:name=".ui.recapitulation.SeminarRecapActivity"
+            android:parentActivityName=".ui.main.MainActivity"/>
     </application>
 
 </manifest>

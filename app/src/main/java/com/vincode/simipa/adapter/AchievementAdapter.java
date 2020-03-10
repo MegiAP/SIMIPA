@@ -1,5 +1,6 @@
 package com.vincode.simipa.adapter;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.AchievementViewHolder> {
 
     private List<AchievementResult> listAchievement = new ArrayList<>();
+    private final Activity activity;
 
     public void setListAchievement(List<AchievementResult> listAchievement) {
         if (listAchievement == null) return;
         this.listAchievement.clear();
         this.listAchievement.addAll(listAchievement);
+    }
+
+    public AchievementAdapter(Activity activity) {
+        this.activity = activity;
     }
 
     @NonNull

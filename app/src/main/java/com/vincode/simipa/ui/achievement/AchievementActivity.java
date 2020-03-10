@@ -17,24 +17,31 @@ import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.AchievementAdapter;
+import com.vincode.simipa.adapter.AchievementPagerAdapter;
+import com.vincode.simipa.adapter.KRSPagerAdapter;
 import com.vincode.simipa.model.AchievementResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
+import com.vincode.simipa.ui.krs.FormKRSFragment;
+import com.vincode.simipa.ui.krs.MyKRSFragment;
 import com.vincode.simipa.util.SharedPrefManager;
 
 public class AchievementActivity extends AppCompatActivity {
 
-    private AchievementAdapter achievementAdapter;
+/*    private AchievementAdapter achievementAdapter;
     private RecyclerView rvCategory;
-    private ProgressBar pgBar;
+    private ProgressBar pgBar;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_achievement);
 
-        rvCategory = findViewById(R.id.rv_category);
-        achievementAdapter = new AchievementAdapter();
+/*        rvCategory = findViewById(R.id.rv_category);
+
+        AchievementPagerAdapter fragmentPagerAdapter = new AchievementPagerAdapter(getSupportFragmentManager());
+        fragmentPagerAdapter.addFragment(new FormKRSFragment(), getResources().getString(R.string.fill_krs));
+        fragmentPagerAdapter.addFragment(new MyKRSFragment(), getResources().getString(R.string.my_krs));*/
 
         TextView tvName = findViewById(R.id.tv_achiev_name);
         TextView tvNpm = findViewById(R.id.tv_achiev_npm);
@@ -44,14 +51,28 @@ public class AchievementActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle(R.string.achievment);
-        pgBar = findViewById(R.id.pg_bar);
+
+        AcademicAchievementFragment academicAchievementFragment = new AcademicAchievementFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, academicAchievementFragment).commit();
+
+/*        pgBar = findViewById(R.id.pg_bar);
         pgBar.setVisibility(View.VISIBLE);
 
         showRecyclerCardView();
-        getData();
+        getData();*/
     }
 
-    private void showRecyclerCardView(){
+    public void cacademic (View view) {
+        AcademicAchievementFragment academicAchievementFragment = new AcademicAchievementFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, academicAchievementFragment).commit();
+    }
+
+    public void cnonacademic (View view) {
+        NonAcademicAchievementFragment nonAcademicAchievementFragment = new NonAcademicAchievementFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, nonAcademicAchievementFragment).commit();
+    }
+
+/*    private void showRecyclerCardView(){
         rvCategory.setLayoutManager(new LinearLayoutManager(this));
         rvCategory.setHasFixedSize(true);
         rvCategory.setAdapter(achievementAdapter);
@@ -76,5 +97,5 @@ public class AchievementActivity extends AppCompatActivity {
                 Log.d("Failure", " ");
             }
         });
-    }
+    }*/
 }

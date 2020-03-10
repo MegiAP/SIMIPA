@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class TestSeminarRecapData {
     public static String[][] data = new String[][]{
-        {"Cindy Prakasa Putra", "Rancang Bangun SIMIPA", "Ardiansyah, S.Kom., M.Kom.", "Hasil"},
-        {"Kelvin Putra",  "Rancang Bangun SIMIPA", "Ardiansyah, S.Kom., M.Kom.", "Hasil"}
+        {"Cindy Prakasa Putra", "Rancang Bangun SIMIPA", "Ardiansyah, S.Kom., M.Kom.", "29 Maret 2019"},
+        {"Kelvin Putra",  "Rancang Bangun SIMIPA", "Ardiansyah, S.Kom., M.Kom.", "12 Januari 2020"}
 
 };
         public static ArrayList<SeminarRecap> getListSeminar() {
