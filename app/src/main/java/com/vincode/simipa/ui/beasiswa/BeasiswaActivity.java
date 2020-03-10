@@ -1,5 +1,6 @@
 package com.vincode.simipa.ui.beasiswa;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,13 +36,13 @@ public class BeasiswaActivity extends AppCompatActivity {
         scholarshipAdapter = new ScholarshipAdapter();
 
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setTitle(R.string.scholarship);
         pgBar = findViewById(R.id.pg_bar);
         pgBar.setVisibility(View.VISIBLE);
 
         showRecyclerCardView();
         getData();
-
     }
 
     private void showRecyclerCardView(){
@@ -56,20 +57,20 @@ public class BeasiswaActivity extends AppCompatActivity {
         Call<ScholarshipResponse> call = apiInterface.getScholarshipData(SharedPrefManager.getInstance(this).getUser().getUserLogin());
         call.enqueue(new Callback<ScholarshipResponse>() {
             @Override
-            public void onResponse(Call<ScholarshipResponse> call, Response<ScholarshipResponse> response) {
+            public void onResponse(@NonNull Call<ScholarshipResponse> call, @NonNull Response<ScholarshipResponse> response) {
                 if (response.body() != null) {
                     pgBar.setVisibility(View.GONE);
                     scholarshipAdapter.setListScholarship(response.body().getRecords());
                     scholarshipAdapter.notifyDataSetChanged();
                 }
                 else {
-                    Log.d("tes", "ssss");
+                    Log.d("Success", " ");
                 }
             }
 
             @Override
-            public void onFailure(Call<ScholarshipResponse> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<ScholarshipResponse> call, @NonNull Throwable t) {
+                Log.d("Failure", " ");
             }
         });
     }

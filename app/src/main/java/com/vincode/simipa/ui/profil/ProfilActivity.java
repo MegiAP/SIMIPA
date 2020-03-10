@@ -58,17 +58,14 @@ public class ProfilActivity extends AppCompatActivity {
 
     private void getUserData() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-
         Call<ProfileResponse> call = apiInterface.userProfile(SharedPrefManager.getInstance(this).getUser().getUserLogin());
-
         call.enqueue(new Callback<ProfileResponse>() {
             @Override
             public void onResponse(@NonNull Call<ProfileResponse> call, @NonNull Response<ProfileResponse> response) {
                 progressDialog.dismiss();
-                if (response.body() != null) {
 
+                if (response.body() != null) {
                     List<UserProfile> userProfile = response.body().getUserProfiles();
                     tvProfilName.setText(userProfile.get(0).getDisplayName());
                     tvProfilNPM.setText(userProfile.get(0).getNpm());
@@ -83,22 +80,18 @@ public class ProfilActivity extends AppCompatActivity {
                         tvTanggalLahir.setText(String.format(" / %s-%s-%s", tanggal, bulan, tahun));
                     }
 
-
                     Glide.with(getApplicationContext())
                             .load(userProfile.get(0).getFoto())
                             .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                             .error(R.drawable.ic_error))
                             .into(imageUser);
-
                 }
-
-
             }
 
             @Override
             public void onFailure(@NonNull Call<ProfileResponse> call, @NonNull Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
 
             }
         });

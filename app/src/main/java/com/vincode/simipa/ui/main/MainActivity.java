@@ -40,8 +40,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class
-MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private CircleImageView imageUser;
     private TextView tvName;
@@ -78,16 +77,11 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
             public void onResponse(@NonNull Call<ProfileResponse> call, @NonNull Response<ProfileResponse> response) {
                 if (response.body() != null) {
                     List<UserProfile> userProfiles = response.body().getUserProfiles();
-                    if (userProfiles.get(0).getFoto() != null){
-                        Glide.with(getApplicationContext())
-                                .load(userProfiles.get(0).getFoto())
-                                .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
-                                        .error(R.drawable.ic_error))
-                                .into(imageUser);
-                    }else {
-                        imageUser.setImageResource(R.drawable.ic_account_circle_black);
-                    }
-
+                    Glide.with(getApplicationContext())
+                            .load(userProfiles.get(0).getFoto())
+                            .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error))
+                            .into(imageUser);
                     tvName.setText(userProfiles.get(0).getDisplayName());
                 }
             }

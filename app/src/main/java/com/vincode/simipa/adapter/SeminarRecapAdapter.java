@@ -25,7 +25,7 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         this.context = context;
     }
 
-    public ArrayList<SeminarRecap> getlistSeminar() {
+    private ArrayList<SeminarRecap> getlistSeminar() {
         return listSeminar;
     }
 
@@ -37,8 +37,7 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
     @Override
     public SeminarRecapAdapter.CardViewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_seminar_recap, parent, false);
-        SeminarRecapAdapter.CardViewViewHolder viewHolder = new SeminarRecapAdapter.CardViewViewHolder(view);
-        return viewHolder;
+        return new CardViewViewHolder(view);
     }
 
     @Override
@@ -49,10 +48,10 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         holder.tvSjudul.setText(p.getSjudul());
         holder.tvSdosen.setText(p.getSdosen());
         holder.tvSjenis.setText(p.getSjenis());
-        holder.btnCheckPresence.setOnClickListener(new View.OnClickListener() {
+        holder.btnPresence.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Lagi tes button", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Tes", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -62,16 +61,16 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         return getlistSeminar().size();
     }
 
-    public class CardViewViewHolder extends RecyclerView.ViewHolder{
+    static class CardViewViewHolder extends RecyclerView.ViewHolder{
         TextView tvName, tvSjudul, tvSdosen, tvSjenis;
-        private Button btnCheckPresence;
-        public CardViewViewHolder(View itemView) {
+        private Button btnPresence;
+        CardViewViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_recMhsSem);
             tvSjudul = itemView.findViewById(R.id.tv_rec_JudulSem);
             tvSdosen = itemView.findViewById(R.id.tv_rec_dosenSem);
             tvSjenis = itemView.findViewById(R.id.tv_recJenisSem);
-            btnCheckPresence = itemView.findViewById(R.id.btn_CheckSeminar);
+            btnPresence = itemView.findViewById(R.id.btn_CheckSeminar);
         }
     }
 }

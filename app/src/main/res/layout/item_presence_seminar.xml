@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_item"
                 android:layout_marginEnd="@dimen/margin_item"
-                android:text="07.30"
+                android:text="@string/_7_30"
                 android:textColor="@color/colorPrimaryText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_item"
                 android:layout_marginEnd="@dimen/margin_item"
-                android:text="09.10"
+                android:text="@string/_9_10"
                 android:textColor="@color/colorPrimaryText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +83,8 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_book_black_24dp"
                     android:layout_marginTop="@dimen/activity_margin_vertical"
-                    android:layout_marginStart="@dimen/margin_item"/>
+                    android:layout_marginStart="@dimen/margin_item"
+                    android:contentDescription="@string/judul" />
 
             <TextView
                 android:id="@+id/tv_name_absent"
@@ -91,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_margin_vertical"
                 android:layout_marginStart="@dimen/margin_item"
-                android:text="Rancang Bangun Aplikasi SIMIPA"
+                android:text="@string/rancang_bangun_aplikasi_simipa"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="16sp"/>
 
@@ -115,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_item"
                 android:layout_marginTop="@dimen/margin_item"
-                android:text="GIK Lt.1C"
+                android:text="@string/kelas_gik"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="14sp"/>
 
@@ -139,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_item"
                 android:layout_marginStart="@dimen/margin_item"
-                android:text="Ardiansyah, S.Kom."
+                android:text="@string/ardiansyah_s_kom"
                 android:layout_marginBottom= "@dimen/margin_item"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="14sp"/>
@@ -153,7 +154,7 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="@dimen/activity_margin_horizontal"
                 android:background="@drawable/bg_btn_blue"
-                android:text="ABSEN"
+                android:text="@string/absen"
                 android:textColor="@color/colorIcons"
                 android:textStyle="bold" />
 
