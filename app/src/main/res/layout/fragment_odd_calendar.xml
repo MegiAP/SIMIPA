@@ -9,25 +9,21 @@
 
     <TextView
         android:id="@+id/tv_title_calendar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FFF"
+        android:padding="8dp"
         android:layout_marginTop="@dimen/activity_margin_vertical"
         android:layout_marginBottom="@dimen/activity_margin_horizontal"
+        android:layout_marginEnd="@dimen/activity_margin_horizontal"
+        android:layout_marginStart="@dimen/activity_margin_horizontal"
         android:text="@string/test_year_calendar"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/margin_item"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_calendar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_odd_calendar"

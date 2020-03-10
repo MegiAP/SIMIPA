@@ -52,9 +52,7 @@ public class CalendarAcademicAdapter extends RecyclerView.Adapter<CalendarAcadem
         if (dataCalendar.getDate().equals(dataCalendar.getDueDate())){
             calendarViewHolder.tvDateCalendar.setText(timeUtil.converDate(dataCalendar.getDate()));
         }else{
-            calendarViewHolder.tvDateCalendar
-
-                    .setText(timeUtil.converDate(dataCalendar.getDate())+" - "+timeUtil.converDate(dataCalendar.getDueDate()));
+            calendarViewHolder.tvDateCalendar.setText(timeUtil.converDate(dataCalendar.getDate())+" - "+timeUtil.converDate(dataCalendar.getDueDate()));
         }
 
 
