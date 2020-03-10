@@ -1,5 +1,6 @@
 package com.vincode.simipa.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,18 +41,36 @@ public class CalendarAcademicAdapter extends RecyclerView.Adapter<CalendarAcadem
         return new CalendarViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CalendarViewHolder calendarViewHolder, int i) {
 
         final CalendarResult dataCalendar = listCalendar.get(i);
         TimeUtil timeUtil = new TimeUtil();
 
-        calendarViewHolder.tvDataCalendar.setText(dataCalendar.getKeterangan());
-        calendarViewHolder.tvDateCalendar.setText(timeUtil.converDate(dataCalendar.getDate())
-        );
+        calendarViewHolder.tvDataCalendar.setText(dataCalendar.getKegiatan());
+        if (dataCalendar.getDate().equals(dataCalendar.getDueDate())){
+            calendarViewHolder.tvDateCalendar.setText(timeUtil.converDate(dataCalendar.getDate()));
+        }else{
+            calendarViewHolder.tvDateCalendar
 
-        if (dataCalendar.getStatus().equals("1")){
-            calendarViewHolder.imgCalendar.setImageResource(R.drawable.ic_new_beasiswa);
+                    .setText(timeUtil.converDate(dataCalendar.getDate())+" - "+timeUtil.converDate(dataCalendar.getDueDate()));
+        }
+
+
+        switch (dataCalendar.getStatus()) {
+            case "1":
+                calendarViewHolder.imgCalendar.setImageResource(R.drawable.ic_new_beasiswa);
+                break;
+            case "2":
+                calendarViewHolder.imgCalendar.setImageResource(R.drawable.ic_monetization_on_black_24dp);
+                break;
+            case "3":
+                calendarViewHolder.imgCalendar.setImageResource(R.drawable.ic_new_bimbingan);
+                break;
+            default:
+                calendarViewHolder.imgCalendar.setImageResource(R.color.colorPrimary);
+                break;
         }
 
     }

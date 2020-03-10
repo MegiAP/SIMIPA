@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/margin_item"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.calendar.OddCalendarFragment">
 
@@ -27,10 +28,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_odd_calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="@dimen/margin_item"
         tools:listitem="@layout/item_academic_calendar"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_calendar"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_title_calendar"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ProgressBar
         android:id="@+id/progress_bar"
