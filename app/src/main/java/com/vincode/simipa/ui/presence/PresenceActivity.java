@@ -23,8 +23,6 @@ public class PresenceActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.tb_presence);
 
         CalendarPagerAdapter fragmentPagerAdapter = new CalendarPagerAdapter(getSupportFragmentManager());
-        fragmentPagerAdapter.addFragment(new CollegeFragment(), "Kuliah");
-        fragmentPagerAdapter.addFragment(new PracticeFragment(), "Praktikum");
         fragmentPagerAdapter.addFragment(new SeminarFragment(), "Seminar");
         fragmentPagerAdapter.addFragment(new GuidanceFragment(), "Bimbingan");
 

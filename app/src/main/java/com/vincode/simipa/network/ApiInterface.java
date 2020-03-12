@@ -9,6 +9,7 @@ import com.vincode.simipa.model.KRSResponse;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.ProfileResponse;
+import com.vincode.simipa.model.SeminarResponse;
 import com.vincode.simipa.model.SeminarScheduleResponse;
 import com.vincode.simipa.model.ScholarshipResponse;
 import com.vincode.simipa.model.ServiceResponse;
@@ -16,7 +17,6 @@ import com.vincode.simipa.model.SplashResponse;
 import com.vincode.simipa.model.StudyResponse;
 import com.vincode.simipa.model.Value;
 
-import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -132,5 +132,10 @@ public interface ApiInterface {
     @GET("read_studi.php")
     Call<StudyResponse> getStudi(
             @Query("npm") String npm
+    );
+
+    @GET("read_seminar.php")
+    Call<SeminarResponse> getSeminar(
+
     );
 }

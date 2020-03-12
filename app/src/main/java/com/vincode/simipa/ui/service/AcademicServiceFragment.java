@@ -21,6 +21,8 @@ import com.vincode.simipa.model.ServiceResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -92,7 +94,7 @@ public class AcademicServiceFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<ServiceResponse> call,@NonNull Throwable t) {
-                Log.d("c", t.getMessage());
+                Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
         });
     }

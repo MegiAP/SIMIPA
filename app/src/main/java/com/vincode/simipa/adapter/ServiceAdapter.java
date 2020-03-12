@@ -65,7 +65,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
         return listService.size();
     }
 
-    class ServiceViewHolder extends RecyclerView.ViewHolder {
+    static class ServiceViewHolder extends RecyclerView.ViewHolder {
         TextView tvFormService, tvDateService, tvStateService;
 
         ServiceViewHolder(@NonNull View itemView) {

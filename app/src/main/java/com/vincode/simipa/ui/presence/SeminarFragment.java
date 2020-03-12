@@ -16,9 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.util.SharedPrefManager;
-import com.vincode.simipa.adapter.PresenceAdapter;
-import com.vincode.simipa.model.PresenceResponse;
+import com.vincode.simipa.adapter.SeminarPresenceAdapter;
+import com.vincode.simipa.model.SeminarResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 
@@ -33,7 +32,7 @@ import retrofit2.Response;
  */
 public class SeminarFragment extends Fragment {
 
-    private PresenceAdapter presenceAdapter;
+    private SeminarPresenceAdapter adapter;
     private RecyclerView rvSeminar;
     private ProgressBar progressBar;
 
@@ -62,7 +61,7 @@ public class SeminarFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         progressBar.setVisibility(View.VISIBLE);
-        presenceAdapter = new PresenceAdapter(getActivity());
+        adapter = new SeminarPresenceAdapter(getActivity());
 
         setLayout();
         getData();
@@ -72,32 +71,54 @@ public class SeminarFragment extends Fragment {
     private void setLayout(){
         rvSeminar.setLayoutManager(new LinearLayoutManager(getContext()));
         rvSeminar.setHasFixedSize(true);
-        rvSeminar.setAdapter(presenceAdapter);
+        rvSeminar.setAdapter(adapter);
     }
 
-
-    //seminar
     private void getData(){
-        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        ApiInterface apiInterface = ApiClient.getClientLocal().create(ApiInterface.class);
 
-        Call<PresenceResponse> call = apiInterface.getPresenceData(
-                SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin(), "2019-11-12 13:48:11","Teori", "Ganjil");
+        Call<SeminarResponse> call = apiInterface.getSeminar();
 
-        call.enqueue(new Callback<PresenceResponse>() {
+        call.enqueue(new Callback<SeminarResponse>() {
             @Override
-            public void onResponse(@NonNull Call<PresenceResponse> call, @NonNull Response<PresenceResponse> response) {
+            public void onResponse(@NonNull Call<SeminarResponse> call, @NonNull Response<SeminarResponse> response) {
                 progressBar.setVisibility(View.GONE);
                 if (response.body() != null) {
-                    presenceAdapter.setListPresence(response.body().getRecords());
-                    presenceAdapter.notifyDataSetChanged();
+                    adapter.setListSeminar(response.body().getResult());
+                    adapter.notifyDataSetChanged();
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<PresenceResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<SeminarResponse> call, @NonNull Throwable t) {
                 Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
         });
-
     }
+
+
+    //seminar
+//    private void getData(){
+//        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+//
+//        Call<PresenceResponse> call = apiInterface.getPresenceData(
+//                SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin(), "2019-11-12 13:48:11","Teori", "Ganjil");
+//
+//        call.enqueue(new Callback<PresenceResponse>() {
+//            @Override
+//            public void onResponse(@NonNull Call<PresenceResponse> call, @NonNull Response<PresenceResponse> response) {
+//                progressBar.setVisibility(View.GONE);
+//                if (response.body() != null) {
+//                    presenceAdapter.setListPresence(response.body().getRecords());
+//                    presenceAdapter.notifyDataSetChanged();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<PresenceResponse> call, @NonNull Throwable t) {
+//                Log.d("c", Objects.requireNonNull(t.getMessage()));
+//            }
+//        });
+//
+//    }
 }
