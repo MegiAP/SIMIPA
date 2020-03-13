@@ -1,93 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:orientation="vertical"
-    android:background="#fff"
-    android:layout_margin="2dp"
-    app:cardCornerRadius="16dp">
+    android:layout_gravity="center"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="3dp"
+    app:cardBackgroundColor="#03A9F4"
+    card_view:cardCornerRadius="16dp">
 
-    <ImageView
-        android:id="@+id/iv_image"
-        android:layout_width="100dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="4dp"
-        android:src="@drawable/ic_person_black_24dp"/>
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/iv_image"
-        android:src="@drawable/ic_person_black_24dp"/>
-
-    <TextView
-        android:id="@+id/tv_recMhsSem"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_marginLeft="42dp"
-        android:layout_toRightOf="@id/iv_image"
-        android:text="@string/nama_mahasiswa_seminar"
-        android:textSize="15sp" />
+        android:layout_gravity="center"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        card_view:cardCornerRadius="16dp">
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/iv_image"
-        android:src="@drawable/ic_book_black_24dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:orientation="vertical"
+            android:layout_margin="2dp">
 
-    <TextView
-        android:id="@+id/tv_rec_JudulSem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="42dp"
-        android:layout_toRightOf="@id/iv_image"
-        android:layout_marginTop="34dp"
-        android:text="@string/judul_seminar"
-        android:textSize="15sp" />
+            <TextView
+                android:id="@+id/iv_image"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:text="Seminar Proposal"
+                android:textStyle="bold"
+                android:rotation="310"
+                android:textColor="#000"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/ic_person_black_24dp"/>
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="60dp"
-        android:layout_toRightOf="@id/iv_image"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/ic_person_black_24dp"/>
+            <ImageView
+                android:id="@+id/ic_rec_mhs"
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@id/iv_image"
+                android:src="@drawable/ic_person_black_24dp"/>
 
-    <TextView
-        android:id="@+id/tv_rec_dosenSem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="65dp"
-        android:layout_toRightOf="@id/iv_image"
-        android:text="@string/dosen_pembimbing"
-        android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_recMhsSem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/ic_rec_mhs"
+                android:text="@string/nama_mahasiswa_seminar"
+                android:textSize="15sp" />
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="93dp"
-        android:layout_toRightOf="@id/iv_image"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/ic_bookmark_border_black_24dp"/>
+            <TextView
+                android:id="@+id/tv_recNpm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/ic_rec_mhs"
+                android:layout_below="@id/tv_recMhsSem"
+                android:text="@string/npm"
+                android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/tv_recJenisSem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="42dp"
-        android:layout_toRightOf="@id/iv_image"
-        android:layout_marginTop="93dp"
-        android:text="29 Maret 2020"
-        android:textSize="15sp" />
+            <ImageView
+                android:id="@+id/id_rec_dosen"
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="46dp"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@id/iv_image"
+                android:src="@drawable/ic_person_black_24dp"/>
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/tv_rec_JudulSem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/id_rec_dosen"
+                android:layout_below="@id/tv_recNpm"
+                android:layout_marginTop="8dp"
+                android:text="@string/dosen_pembimbing"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/id_judul"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="70dp"
+                android:layout_toRightOf="@id/iv_image"
+                android:layout_marginLeft="4dp"
+                android:src="@drawable/ic_book_black_24dp"/>
+
+            <TextView
+                android:id="@+id/tv_rec_dosenSem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_rec_JudulSem"
+                android:layout_toRightOf="@id/id_judul"
+                android:maxLines="1"
+                android:layout_marginTop="5dp"
+                android:text="@string/judul_seminar"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/ic_tanggal"
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="100dp"
+                android:layout_toRightOf="@id/iv_image"
+                android:layout_marginLeft="4dp"
+                android:src="@drawable/ic_jadwal_24dp"/>
+
+            <TextView
+                android:id="@+id/tv_recJenisSem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/ic_tanggal"
+                android:layout_below="@id/tv_rec_dosenSem"
+                android:layout_marginTop="6dp"
+                android:text="1 Maret 2020"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.cardview.widget.CardView>

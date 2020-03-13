@@ -59,7 +59,7 @@ public class NonAcademicAchievementFragment extends Fragment {
         getData();
     }
 
-    private void showRecyclerCardView(){
+    private void showRecyclerCardView() {
         rvCategory.setLayoutManager(new LinearLayoutManager(getContext()));
         rvCategory.setHasFixedSize(true);
         rvCategory.setAdapter(achievementAdapter);

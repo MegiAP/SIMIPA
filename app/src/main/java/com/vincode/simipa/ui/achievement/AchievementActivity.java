@@ -27,75 +27,41 @@ import com.vincode.simipa.ui.krs.MyKRSFragment;
 import com.vincode.simipa.util.SharedPrefManager;
 
 public class AchievementActivity extends AppCompatActivity {
-
-/*    private AchievementAdapter achievementAdapter;
-    private RecyclerView rvCategory;
-    private ProgressBar pgBar;*/
+    private TextView tvAcademic, tvNonAcademic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_achievement);
 
-/*        rvCategory = findViewById(R.id.rv_category);
-
-        AchievementPagerAdapter fragmentPagerAdapter = new AchievementPagerAdapter(getSupportFragmentManager());
-        fragmentPagerAdapter.addFragment(new FormKRSFragment(), getResources().getString(R.string.fill_krs));
-        fragmentPagerAdapter.addFragment(new MyKRSFragment(), getResources().getString(R.string.my_krs));*/
-
         TextView tvName = findViewById(R.id.tv_achiev_name);
         TextView tvNpm = findViewById(R.id.tv_achiev_npm);
         tvName.setText(SharedPrefManager.getInstance(this).getUser().getDisplayName());
         tvNpm.setText(SharedPrefManager.getInstance(this).getUser().getUserLogin());
+        tvAcademic = findViewById(R.id.academic);
+        tvNonAcademic = findViewById(R.id.non_academic);
+        tvAcademic.setEnabled(false);
 
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle(R.string.achievment);
 
         AcademicAchievementFragment academicAchievementFragment = new AcademicAchievementFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, academicAchievementFragment).commit();
-
-/*        pgBar = findViewById(R.id.pg_bar);
-        pgBar.setVisibility(View.VISIBLE);
-
-        showRecyclerCardView();
-        getData();*/
+        getSupportFragmentManager().beginTransaction().replace(R.id.scroll_layout, academicAchievementFragment).commit();
     }
 
     public void cacademic (View view) {
         AcademicAchievementFragment academicAchievementFragment = new AcademicAchievementFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, academicAchievementFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.scroll_layout, academicAchievementFragment).commit();
+        tvAcademic.setEnabled(false);
+        tvNonAcademic.setEnabled(true);
     }
 
     public void cnonacademic (View view) {
         NonAcademicAchievementFragment nonAcademicAchievementFragment = new NonAcademicAchievementFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, nonAcademicAchievementFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.scroll_layout, nonAcademicAchievementFragment).commit();
+        tvAcademic.setEnabled(true);
+        tvNonAcademic.setEnabled(false);
     }
 
-/*    private void showRecyclerCardView(){
-        rvCategory.setLayoutManager(new LinearLayoutManager(this));
-        rvCategory.setHasFixedSize(true);
-        rvCategory.setAdapter(achievementAdapter);
-    }
-
-    private void getData() {
-        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-
-        Call<AchievementResponse> call = apiInterface.getAchievementData(SharedPrefManager.getInstance(this).getUser().getUserLogin());
-        call.enqueue(new Callback<AchievementResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<AchievementResponse> call, @NonNull Response<AchievementResponse> response) {
-                if (response.body() != null) {
-                    pgBar.setVisibility(View.GONE);
-                    achievementAdapter.setListAchievement(response.body().getRecords());
-                    achievementAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AchievementResponse> call, @NonNull Throwable t) {
-                Log.d("Failure", " ");
-            }
-        });
-    }*/
 }

@@ -50,17 +50,17 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginBottom="8dp"
-                    android:src="@drawable/ic_jadwal_24dp"
+                    android:src="@drawable/ic_access_time_black_24dp"
                     android:contentDescription="@string/tanggal"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/img_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginBottom="8dp"
-                    android:src="@drawable/ic_access_time_black_24dp" />
+                    android:src="@drawable/ic_jadwal_24dp" />
 
                 <ImageView
                     android:id="@+id/img_ket"
@@ -81,21 +81,20 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_tahun"
-                android:layout_width="match_parent"
+                android:id="@+id/tv_smstr"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:layout_toEndOf="@id/icon"
-                android:text="@string/tanggal"
+                android:text="@string/semester"
                 android:textColor="#000"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_smstr"
+                android:id="@+id/tv_tahun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_tahun"
-                android:layout_marginBottom="12dp"
+                android:layout_below="@id/tv_smstr"
                 android:layout_toEndOf="@id/icon"
                 android:text="@string/semester"
                 android:textColor="#000" />
@@ -104,7 +103,7 @@
                 android:id="@+id/tv_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_semester"
+                android:layout_below="@id/tv_tahun"
                 android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/icon"
                 android:text="@string/status"
@@ -114,10 +113,10 @@
                 android:id="@+id/tv_semester"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_tahun"
                 android:layout_marginStart="4dp"
-                android:layout_toEndOf="@id/tv_smstr"
+                android:layout_toRightOf="@+id/tv_smstr"
                 android:text="@string/semester"
+                android:textSize="16sp"
                 android:textColor="#000" />
 
         </RelativeLayout>

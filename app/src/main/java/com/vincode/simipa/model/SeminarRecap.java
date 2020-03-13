@@ -1,7 +1,15 @@
 package com.vincode.simipa.model;
 
 public class SeminarRecap {
-    private String name, sjudul, sdosen, sjenis;
+    private String name, npm, sjudul, sdosen, sjenis;
+
+    public String getNpm() {
+        return npm;
+    }
+
+    public void setNpm(String npm) {
+        this.npm = npm;
+    }
 
     public String getName() {
         return name;

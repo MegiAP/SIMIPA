@@ -45,6 +45,7 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         SeminarRecap p = getlistSeminar().get(position);
 
         holder.tvName.setText(p.getName());
+        holder.tvNpm.setText(p.getNpm());
         holder.tvSjudul.setText(p.getSjudul());
         holder.tvSdosen.setText(p.getSdosen());
         holder.tvSjenis.setText(p.getSjenis());
@@ -56,11 +57,11 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
     }
 
     static class CardViewViewHolder extends RecyclerView.ViewHolder{
-        TextView tvName, tvSjudul, tvSdosen, tvSjenis;
-        private Button btnPresence;
+        TextView tvName, tvNpm, tvSjudul, tvSdosen, tvSjenis;
         CardViewViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_recMhsSem);
+            tvNpm = itemView.findViewById(R.id.tv_recNpm);
             tvSjudul = itemView.findViewById(R.id.tv_rec_JudulSem);
             tvSdosen = itemView.findViewById(R.id.tv_rec_dosenSem);
             tvSjenis = itemView.findViewById(R.id.tv_recJenisSem);
