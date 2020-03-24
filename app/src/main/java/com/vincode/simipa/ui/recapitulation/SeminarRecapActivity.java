@@ -14,15 +14,12 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.adapter.PresenceRecapAdapter;
 import com.vincode.simipa.adapter.SeminarRecapAdapter;
 import com.vincode.simipa.model.SeminarRecap;
 import com.vincode.simipa.model.SeminarResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.SharedPrefManager;
-import com.vincode.simipa.util.TestPresenceRecapData;
-import com.vincode.simipa.util.TestSeminarRecapData;
 
 import java.util.ArrayList;
 
@@ -43,9 +40,6 @@ public class SeminarRecapActivity extends AppCompatActivity {
         seminarRecapAdapter = new SeminarRecapAdapter();
 
         rvCategory = findViewById(R.id.rv_seminar_recap);
-/*
-        list = new ArrayList<>();
-        list.addAll(TestSeminarRecapData.getListSeminar());*/
 
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
@@ -57,7 +51,6 @@ public class SeminarRecapActivity extends AppCompatActivity {
 
     private void showRecyclerCardView(){
         rvCategory.setLayoutManager(new LinearLayoutManager(this));
-//        seminarRecapAdapter.setListSeminar(list);
         rvCategory.setHasFixedSize(true);
         rvCategory.setAdapter(seminarRecapAdapter);
     }
