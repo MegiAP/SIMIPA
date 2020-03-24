@@ -18,7 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.model.SeminarResult;
+import com.vincode.simipa.model.SeminarPresenceResult;
 import com.vincode.simipa.model.Value;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
@@ -37,14 +37,14 @@ import retrofit2.Response;
 
 public class SeminarPresenceAdapter extends RecyclerView.Adapter<SeminarPresenceAdapter.ViewHolder> {
 
-    private List<SeminarResult> listSeminar = new ArrayList<>();
+    private List<SeminarPresenceResult> listSeminar = new ArrayList<>();
     private final Activity activity;
 
     public SeminarPresenceAdapter(Activity activity) {
         this.activity = activity;
     }
 
-    public void setListSeminar(List<SeminarResult> seminarResults){
+    public void setListSeminar(List<SeminarPresenceResult> seminarResults){
 
         if (seminarResults == null)return;
         this.listSeminar.clear();
@@ -62,7 +62,7 @@ public class SeminarPresenceAdapter extends RecyclerView.Adapter<SeminarPresence
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        final SeminarResult data = listSeminar.get(position);
+        final SeminarPresenceResult data = listSeminar.get(position);
         TimeUtil timeUtil = new TimeUtil();
         holder.tvName.setText(data.getNama());
         holder.tvNpm.setText(data.getNpm());

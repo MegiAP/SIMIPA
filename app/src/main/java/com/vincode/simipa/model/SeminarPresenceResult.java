@@ -3,14 +3,13 @@ package com.vincode.simipa.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SeminarResult {
+public class SeminarPresenceResult {
 
 
 
-
-    @SerializedName("Nama Pbg1")
+    @SerializedName("id")
     @Expose
-    private String pem1;
+    private String id;
     @SerializedName("nama")
     @Expose
     private String nama;
@@ -30,12 +29,12 @@ public class SeminarResult {
     @Expose
     private String tanggal;
 
-    public String getPem1() {
-        return pem1;
+    public String getId() {
+        return id;
     }
 
-    public void setPem1(String pem1) {
-        this.pem1 = pem1;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNama() {

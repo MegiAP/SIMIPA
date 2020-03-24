@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_margin_horizontal"
             android:layout_marginStart="@dimen/activity_margin_horizontal"
-            tools:text="MIPA T Lt.2 Ruang Seminar"
+            android:text="MIPA T Lt.2 Ruang Seminar"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_time"

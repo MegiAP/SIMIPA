@@ -17,7 +17,8 @@ import android.widget.ProgressBar;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.SeminarPresenceAdapter;
-import com.vincode.simipa.model.SeminarResponse;
+
+import com.vincode.simipa.model.SeminarPresenceResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 
@@ -77,11 +78,11 @@ public class SeminarFragment extends Fragment {
     private void getData(){
         ApiInterface apiInterface = ApiClient.getClientLocal().create(ApiInterface.class);
 
-        Call<SeminarResponse> call = apiInterface.getSeminar();
+        Call<SeminarPresenceResponse> call = apiInterface.getSeminar();
 
-        call.enqueue(new Callback<SeminarResponse>() {
+        call.enqueue(new Callback<SeminarPresenceResponse>() {
             @Override
-            public void onResponse(@NonNull Call<SeminarResponse> call, @NonNull Response<SeminarResponse> response) {
+            public void onResponse(@NonNull Call<SeminarPresenceResponse> call, @NonNull Response<SeminarPresenceResponse> response) {
                 progressBar.setVisibility(View.GONE);
                 if (response.body() != null) {
                     adapter.setListSeminar(response.body().getResult());
@@ -90,7 +91,7 @@ public class SeminarFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(@NonNull Call<SeminarResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<SeminarPresenceResponse> call, @NonNull Throwable t) {
                 Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
         });

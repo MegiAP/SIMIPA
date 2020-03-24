@@ -9,6 +9,7 @@ import com.vincode.simipa.model.KRSResponse;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.ProfileResponse;
+import com.vincode.simipa.model.SeminarPresenceResponse;
 import com.vincode.simipa.model.SeminarResponse;
 import com.vincode.simipa.model.SeminarScheduleResponse;
 import com.vincode.simipa.model.ScholarshipResponse;
@@ -143,7 +144,7 @@ public interface ApiInterface {
     );
 
     @GET("read_seminar.php")
-    Call<SeminarResponse> getSeminar(
+    Call<SeminarPresenceResponse> getSeminar(
 
     );
 
