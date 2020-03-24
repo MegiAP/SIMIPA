@@ -4,32 +4,24 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.model.SeminarRecap;
-
+import com.vincode.simipa.model.SeminarResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapter.CardViewViewHolder> {
-    private ArrayList<SeminarRecap> listSeminar;
-    private Context context;
+    private List<SeminarResult> listSeminar = new ArrayList<>();
 
-    public SeminarRecapAdapter(Context context) {
-        this.context = context;
-    }
-
-    private ArrayList<SeminarRecap> getlistSeminar() {
-        return listSeminar;
-    }
-
-    public void setListSeminar(ArrayList<SeminarRecap> listSeminar) {
+    public void setListSeminar(List<SeminarResult> listSeminar) {
+        if (listSeminar == null) return;
+        this.listSeminar.clear();
         this.listSeminar = listSeminar;
     }
 
@@ -42,28 +34,46 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
 
     @Override
     public void onBindViewHolder(@NonNull SeminarRecapAdapter.CardViewViewHolder holder, int position) {
-        SeminarRecap p = getlistSeminar().get(position);
+        SeminarResult p = listSeminar.get(position);
 
-        holder.tvName.setText(p.getName());
-        holder.tvSjudul.setText(p.getSjudul());
-        holder.tvSdosen.setText(p.getSdosen());
-        holder.tvSjenis.setText(p.getSjenis());
+        holder.tvName.setText(p.getNama());
+        holder.tvNpm.setText(p.getNpm());
+        holder.tvSjudul.setText(p.getPem1());
+        holder.tvSdosen.setText(p.getJudul());
+        holder.tvSjenis.setText(p.getTanggal());
+
+        holder.ivImage.setText(p.getJenis());
+        switch (p.getJenis()) {
+            case "Seminar Kerja Praktek" :
+                holder.ivImage.setBackgroundResource(R.drawable.bg_blue_skies);
+                break;
+            case "Seminar Usul" :
+                holder.ivImage.setBackgroundResource(R.drawable.bg_blue_dark);
+                break;
+            case "Seminar Hasil" :
+                holder.ivImage.setBackgroundResource(R.drawable.bg_green);
+                break;
+            case "Seminar Komprehensif" :
+                holder.ivImage.setBackgroundResource(R.drawable.bg_red);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return getlistSeminar().size();
+        return listSeminar.size();
     }
 
     static class CardViewViewHolder extends RecyclerView.ViewHolder{
-        TextView tvName, tvSjudul, tvSdosen, tvSjenis;
-        private Button btnPresence;
+        TextView tvName, tvNpm, tvSjudul, tvSdosen, tvSjenis;
+        TextView ivImage;
         CardViewViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_recMhsSem);
+            tvNpm = itemView.findViewById(R.id.tv_recNpm);
             tvSjudul = itemView.findViewById(R.id.tv_rec_JudulSem);
             tvSdosen = itemView.findViewById(R.id.tv_rec_dosenSem);
             tvSjenis = itemView.findViewById(R.id.tv_recJenisSem);
+            ivImage = itemView.findViewById(R.id.iv_image);
         }
     }
 }

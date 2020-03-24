@@ -91,7 +91,8 @@ public interface ApiInterface {
     );
     @GET("read-prestasi.php")
     Call<AchievementResponse> getAchievementData(
-            @Query("npm") String npm
+            @Query("npm") String npm,
+            @Query("kategori") String kategori
     );
 
     @GET("read-krs-student.php")
@@ -144,5 +145,10 @@ public interface ApiInterface {
     @GET("read_seminar.php")
     Call<SeminarResponse> getSeminar(
 
+    );
+
+    @GET("read-rekapitulasi-seminar-mhs.php")
+    Call<SeminarResponse> getRecapSeminar(
+            @Query("npm") String npm
     );
 }

@@ -59,7 +59,7 @@ public class NonAcademicAchievementFragment extends Fragment {
         getData();
     }
 
-    private void showRecyclerCardView(){
+    private void showRecyclerCardView() {
         rvCategory.setLayoutManager(new LinearLayoutManager(getContext()));
         rvCategory.setHasFixedSize(true);
         rvCategory.setAdapter(achievementAdapter);
@@ -68,7 +68,7 @@ public class NonAcademicAchievementFragment extends Fragment {
     private void getData() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<AchievementResponse> call = apiInterface.getAchievementData(SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin());
+        Call<AchievementResponse> call = apiInterface.getAchievementData(SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin(),"Non Akademik");
         call.enqueue(new Callback<AchievementResponse>() {
             @Override
             public void onResponse(@NonNull Call<AchievementResponse> call, @NonNull Response<AchievementResponse> response) {
