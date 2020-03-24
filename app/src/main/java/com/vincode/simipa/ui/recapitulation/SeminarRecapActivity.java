@@ -30,6 +30,7 @@ public class SeminarRecapActivity extends AppCompatActivity {
     private RecyclerView rvCategory;
     private ArrayList<SeminarRecap> list;
 
+    SeminarRecapAdapter seminarRecapAdapter;
     private ProgressBar pgBar;
 
     @Override
@@ -39,37 +40,38 @@ public class SeminarRecapActivity extends AppCompatActivity {
 
         pgBar = findViewById(R.id.pg_bar);
         pgBar.setVisibility(View.VISIBLE);
+        seminarRecapAdapter = new SeminarRecapAdapter();
 
         rvCategory = findViewById(R.id.rv_seminar_recap);
-        rvCategory.setHasFixedSize(true);
-
+/*
         list = new ArrayList<>();
-        list.addAll(TestSeminarRecapData.getListSeminar());
+        list.addAll(TestSeminarRecapData.getListSeminar());*/
 
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle(R.string.seminar);
 
         showRecyclerCardView();
-//        getData();
+        getData();
     }
 
     private void showRecyclerCardView(){
         rvCategory.setLayoutManager(new LinearLayoutManager(this));
-        SeminarRecapAdapter seminarRecapAdapter = new SeminarRecapAdapter(this);
-        seminarRecapAdapter.setListSeminar(list);
+//        seminarRecapAdapter.setListSeminar(list);
+        rvCategory.setHasFixedSize(true);
         rvCategory.setAdapter(seminarRecapAdapter);
-        pgBar.setVisibility(View.GONE);
     }
 
-/*    private void getData() {
+    private void getData() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<SeminarResponse> call = apiInterface.getRecapSeminar(SharedPrefManager.getInstance(this).getUser().getUserLogin());
         call.enqueue(new Callback<SeminarResponse>() {
             @Override
             public void onResponse(Call<SeminarResponse> call, Response<SeminarResponse> response) {
                 if (response.body() != null) {
-
+                    seminarRecapAdapter.setListSeminar(response.body().getResult());
+                    seminarRecapAdapter.notifyDataSetChanged();
+                    pgBar.setVisibility(View.GONE);
                 } else {
                     Log.d("Tes ", " ");
                 }
@@ -80,5 +82,5 @@ public class SeminarRecapActivity extends AppCompatActivity {
                 Log.d("gagal", " ");
             }
         });
-    }*/
+    }
 }

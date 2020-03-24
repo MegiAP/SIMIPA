@@ -5,24 +5,35 @@ import com.google.gson.annotations.SerializedName;
 
 public class SeminarResult {
 
-    @SerializedName("nama")
+    @SerializedName("Nama")
     @Expose
     private String nama;
-    @SerializedName("npm")
+    @SerializedName("NPM")
     @Expose
     private String npm;
-    @SerializedName("judul")
+    @SerializedName("Judul")
     @Expose
     private String judul;
-    @SerializedName("jenis")
+    @SerializedName("Jenis")
     @Expose
     private String jenis;
     @SerializedName("jam")
     @Expose
     private String jam;
-    @SerializedName("tanggal")
+    @SerializedName("Tanggal")
     @Expose
     private String tanggal;
+    @SerializedName("Nama Pbg1")
+    @Expose
+    private String pem1;
+
+    public String getPem1() {
+        return pem1;
+    }
+
+    public void setPem1(String pem1) {
+        this.pem1 = pem1;
+    }
 
 
     public String getNama() {

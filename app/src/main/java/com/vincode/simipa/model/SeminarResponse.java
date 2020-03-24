@@ -10,10 +10,9 @@ public class SeminarResponse {
     @SerializedName("value")
     @Expose
     private Integer value;
-    @SerializedName("result")
+    @SerializedName("records")
     @Expose
     private List<SeminarResult> result = null;
-
 
     public List<SeminarResult> getResult() {
         return result;

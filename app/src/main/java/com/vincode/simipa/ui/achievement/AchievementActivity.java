@@ -1,29 +1,13 @@
 package com.vincode.simipa.ui.achievement;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.adapter.AchievementAdapter;
-import com.vincode.simipa.adapter.AchievementPagerAdapter;
-import com.vincode.simipa.adapter.KRSPagerAdapter;
-import com.vincode.simipa.model.AchievementResponse;
-import com.vincode.simipa.network.ApiClient;
-import com.vincode.simipa.network.ApiInterface;
-import com.vincode.simipa.ui.krs.FormKRSFragment;
-import com.vincode.simipa.ui.krs.MyKRSFragment;
 import com.vincode.simipa.util.SharedPrefManager;
 
 public class AchievementActivity extends AppCompatActivity {

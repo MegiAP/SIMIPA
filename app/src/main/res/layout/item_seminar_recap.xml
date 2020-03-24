@@ -35,8 +35,7 @@
                 android:layout_height="120dp"
                 android:text="Seminar Proposal"
                 android:textStyle="bold"
-                android:rotation="310"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:gravity="center"
                 android:layout_marginTop="4dp"
                 android:src="@drawable/ic_person_black_24dp"/>
@@ -57,6 +56,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/ic_rec_mhs"
                 android:text="@string/nama_mahasiswa_seminar"
+                android:textColor="#000"
                 android:textSize="15sp" />
 
             <TextView
@@ -83,6 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/id_rec_dosen"
                 android:layout_below="@id/tv_recNpm"
+                android:maxLines="1"
                 android:layout_marginTop="8dp"
                 android:text="@string/dosen_pembimbing"
                 android:textSize="15sp" />
