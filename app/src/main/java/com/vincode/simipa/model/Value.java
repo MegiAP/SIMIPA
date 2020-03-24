@@ -9,12 +9,24 @@ public class Value {
     @Expose
     private String message;
 
+    @SerializedName("value")
+    @Expose
+    private String value;
+
+    @SerializedName("kuota")
+    @Expose
+    private String kuota;
+
+    public String getKuota() {
+        return kuota;
+    }
+
+    public String getValue() {
+        return value;
+    }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }

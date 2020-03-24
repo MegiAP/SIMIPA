@@ -100,20 +100,27 @@ public interface ApiInterface {
             @Query("npm") String npm
     );
 
-    //api lokal
+    //api tes untuk kehadiran seminar
     @FormUrlEncoded
-    @POST("absen.php")
-    Call<Value> setPresence(
-            @Field("ID_presensi") String id_presensi,
+    @POST("insert_daftar_seminar.php")
+    Call<Value> setHadirSeminar(
+            @Field("npm") String npm,
+            @Field("nama") String nama,
             @Field("status") String status,
-            @Field("latitude") String latitude,
-            @Field("longitude") String longitude,
-            @Field("alamat") String alamat,
-            @Field("npm") String npm
+            @Field("id") String id_seminar
+    );
 
+    @FormUrlEncoded
+    @POST("update_peserta_seminar.php")
+    Call<Value> updateHadirSeminar(
+            @Field("npm") String npm,
+            @Field("id") String id_seminar
+    );
 
-
-
+    @GET("cek_daftar_seminar.php")
+    Call<Value> cekDaftarSeminar(
+            @Query("npm") String npm,
+            @Query("id") String id_seminar
     );
 
     @Headers("Content-Type: application/json")

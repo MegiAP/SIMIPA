@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_item_guidance"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -23,7 +23,6 @@
             android:background="@drawable/bg_btn_blue"
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
-            android:text="Seminar Proposal"
             android:textAlignment="center"
             android:textColor="@color/colorIcons"
             android:textSize="20sp"
@@ -37,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_margin_horizontal"
             android:layout_marginTop="@dimen/activity_margin_vertical"
-            android:text="09.20"
             android:textSize="12sp"
             app:layout_constraintTop_toBottomOf="@id/tv_jenis"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -49,7 +47,6 @@
             android:layout_marginEnd="@dimen/activity_margin_horizontal"
             android:layout_marginStart="@dimen/activity_margin_horizontal"
             android:layout_marginTop="@dimen/activity_margin_vertical"
-            android:text="27 Februari 2020"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_jenis"/>
@@ -60,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_margin_horizontal"
             android:layout_marginStart="@dimen/activity_margin_horizontal"
-            android:text="MIPA T Lt.2 Ruang Seminar"
+            tools:text="MIPA T Lt.2 Ruang Seminar"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_time"
@@ -85,7 +82,7 @@
             android:layout_marginEnd="@dimen/activity_margin_horizontal"
             android:layout_marginStart="@dimen/activity_margin_horizontal"
             android:layout_marginTop="@dimen/margin_item"
-            android:text="Kelvin Putra"
+            tools:text="Kelvin Putra"
             android:textColor="#000"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_margin_horizontal"
             android:layout_marginStart="@dimen/activity_margin_horizontal"
-            android:text="1617051086"
+            tools:text="1617051086"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_name"
@@ -110,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_margin_horizontal"
             android:layout_marginStart="@dimen/activity_margin_horizontal"
-            android:text="Rancang bangun android simipa"
+            tools:text="Rancang bangun android simipa"
             android:textColor="#514E4E"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -122,18 +119,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_margin_horizontal"
-            android:text="16/30"
+            tools:text="16/30"
             android:textColor="#514E4E"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title"/>
 
         <ProgressBar
-            android:id="@+id/progres_bar"
+            android:id="@+id/pb_kuota"
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="8dp"
-            android:progress="50"
+            tools:progress="6"
             android:layout_marginEnd="@dimen/activity_margin_horizontal"
             android:layout_marginStart="@dimen/activity_margin_horizontal"
             android:layout_marginTop="5dp"
@@ -149,7 +146,8 @@
             android:background="@drawable/bg_btn_blue"
             android:text="Hadir"
             android:textColor="@color/colorIcons"
-            app:layout_constraintTop_toBottomOf="@id/progres_bar"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/pb_kuota"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <Button
@@ -162,7 +160,7 @@
             android:text="Batal"
             android:textColor="@color/colorIcons"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/progres_bar"
+            app:layout_constraintTop_toBottomOf="@id/pb_kuota"
             app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

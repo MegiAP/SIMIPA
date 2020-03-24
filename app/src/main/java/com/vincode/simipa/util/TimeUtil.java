@@ -6,11 +6,18 @@ import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class TimeUtil {
 
+    public String getWaktuNow(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-M", Locale.getDefault());
+        String date = dateFormat.format(new Date());
+        return date;
+    }
+
     public String getWaktu(){
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd-M-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-M-yyyy", Locale.getDefault());
         String date = dateFormat.format(new Date());
         String[] dates = date.split("-");
 
