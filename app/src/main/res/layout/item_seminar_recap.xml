@@ -29,15 +29,25 @@
             android:orientation="vertical"
             android:layout_margin="2dp">
 
+            <ImageView
+                android:id="@+id/iv_ic_seminar"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:paddingTop="8dp"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_beasiswa"/>
+
             <TextView
                 android:id="@+id/iv_image"
                 android:layout_width="100dp"
-                android:layout_height="120dp"
+                android:layout_height="wrap_content"
                 android:text="Seminar Proposal"
                 android:textStyle="bold"
-                android:textColor="#fff"
+                android:textSize="12sp"
+                android:textColor="#000"
                 android:gravity="center"
-                android:layout_marginTop="4dp"
+                android:layout_below="@id/iv_ic_seminar"
                 android:src="@drawable/ic_person_black_24dp"/>
 
             <ImageView

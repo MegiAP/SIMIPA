@@ -41,7 +41,7 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         holder.tvSjenis.setText(p.getTanggal());
 
         holder.ivImage.setText(p.getJenis());
-        switch (p.getJenis()) {
+        /*switch (p.getJenis()) {
             case "Seminar Kerja Praktek" :
                 holder.ivImage.setBackgroundResource(R.drawable.bg_blue_skies);
                 break;
@@ -53,7 +53,7 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
                 break;
             case "Seminar Komprehensif" :
                 holder.ivImage.setBackgroundResource(R.drawable.bg_red);
-        }
+        }*/
     }
 
     @Override
