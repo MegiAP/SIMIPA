@@ -22,7 +22,6 @@
             android:layout_margin="10dp"
             android:layout_marginStart="5dp"
             android:layout_weight="0.33"
-            android:clickable="true"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
             tools:ignore="KeyboardInaccessibleWidget">
@@ -30,15 +29,18 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground">
+                android:background="@drawable/bg_green_beach">
 
                 <TextView
+                    android:id="@+id/jumlah_kp"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_above="@+id/tv_rec_kp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
+                    android:textSize="24sp"
+                    android:textColor="#fff"
                     android:text="Jumlah"
                     android:gravity="center"
                     android:contentDescription="@string/content_description"/>
@@ -53,7 +55,7 @@
                     android:textStyle="bold"
                     android:maxLines="1"
                     android:text="Seminar KP"
-                    android:textColor="#000" />
+                    android:textColor="#fff" />
 
             </RelativeLayout>
 
@@ -66,7 +68,6 @@
             android:layout_margin="10dp"
             android:layout_marginStart="5dp"
             android:layout_weight="0.33"
-            android:clickable="true"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
             tools:ignore="KeyboardInaccessibleWidget">
@@ -74,15 +75,18 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground">
+                android:background="@drawable/bg_blue_skies">
 
                 <TextView
+                    android:id="@+id/jumlah_usul"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_above="@+id/tv_rec_usul"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
+                    android:textSize="24sp"
+                    android:textColor="#fff"
                     android:text="Jumlah"
                     android:gravity="center"
                     android:contentDescription="@string/content_description"/>
@@ -97,7 +101,7 @@
                     android:maxLines="1"
                     android:textStyle="bold"
                     android:text="Seminar Proposal"
-                    android:textColor="#000" />
+                    android:textColor="#fff"/>
 
             </RelativeLayout>
 
@@ -110,7 +114,6 @@
             android:layout_margin="10dp"
             android:layout_marginStart="5dp"
             android:layout_weight="0.33"
-            android:clickable="true"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
             tools:ignore="KeyboardInaccessibleWidget">
@@ -118,9 +121,10 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground">
+                android:background="@drawable/bg_red_gradient">
 
                 <TextView
+                    android:id="@+id/jumlah_hasil"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_above="@+id/tv_rec_hasil"
@@ -128,6 +132,8 @@
                     android:layout_marginBottom="5dp"
                     android:padding="10dp"
                     android:gravity="center"
+                    android:textColor="#fff"
+                    android:textSize="24sp"
                     android:text="Jumlah"
                     android:contentDescription="@string/content_description"/>
 
@@ -141,7 +147,7 @@
                     android:maxLines="1"
                     android:textStyle="bold"
                     android:text="Seminar Hasil"
-                    android:textColor="#000" />
+                    android:textColor="#fff" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

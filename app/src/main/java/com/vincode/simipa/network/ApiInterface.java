@@ -5,6 +5,7 @@ import com.vincode.simipa.model.AchievementResponse;
 import com.vincode.simipa.model.CalendarResponse;
 import com.vincode.simipa.model.ClassScheduleResponse;
 import com.vincode.simipa.model.CollegeScheduleResponse;
+import com.vincode.simipa.model.CountSeminarResponse;
 import com.vincode.simipa.model.KRSResponse;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PresenceResponse;
@@ -150,6 +151,11 @@ public interface ApiInterface {
 
     @GET("read-rekapitulasi-seminar-mhs.php")
     Call<SeminarResponse> getRecapSeminar(
+            @Query("npm") String npm
+    );
+
+    @GET("read-jumlah-seminar.php")
+    Call<CountSeminarResponse> getCountSeminar(
             @Query("npm") String npm
     );
 }

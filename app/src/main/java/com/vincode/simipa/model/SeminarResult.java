@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class SeminarResult {
 
-    @SerializedName("Nama Pbg1")
+    @SerializedName("Pembimbing 1")
     @Expose
     private String pem1;
     @SerializedName("Nama")
@@ -82,4 +82,5 @@ public class SeminarResult {
     public void setTanggal(String tanggal) {
         this.tanggal = tanggal;
     }
+
 }
