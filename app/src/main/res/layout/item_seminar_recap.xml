@@ -88,7 +88,7 @@
                 android:src="@drawable/ic_person_black_24dp"/>
 
             <TextView
-                android:id="@+id/tv_rec_JudulSem"
+                android:id="@+id/tv_rec_dosenSem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/id_rec_dosen"
@@ -108,10 +108,10 @@
                 android:src="@drawable/ic_book_black_24dp"/>
 
             <TextView
-                android:id="@+id/tv_rec_dosenSem"
+                android:id="@+id/tv_rec_judulSem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_rec_JudulSem"
+                android:layout_below="@id/tv_rec_dosenSem"
                 android:layout_toRightOf="@id/id_judul"
                 android:maxLines="1"
                 android:layout_marginTop="5dp"
@@ -132,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/ic_tanggal"
-                android:layout_below="@id/tv_rec_dosenSem"
+                android:layout_below="@id/tv_rec_judulSem"
                 android:layout_marginTop="6dp"
                 android:text="1 Maret 2020"
                 android:textSize="15sp" />

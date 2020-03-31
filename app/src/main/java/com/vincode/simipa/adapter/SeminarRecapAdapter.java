@@ -1,5 +1,6 @@
 package com.vincode.simipa.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,9 +8,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import com.vincode.simipa.R;
+import com.vincode.simipa.model.LectureResponse;
+import com.vincode.simipa.model.LectureResult;
 import com.vincode.simipa.model.SeminarResult;
+import com.vincode.simipa.network.ApiClient;
+import com.vincode.simipa.network.ApiInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,16 +39,32 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SeminarRecapAdapter.CardViewViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final SeminarRecapAdapter.CardViewViewHolder holder, int position) {
         SeminarResult p = listSeminar.get(position);
 
         holder.tvName.setText(p.getNama());
         holder.tvNpm.setText(p.getNpm());
-        holder.tvSjudul.setText(p.getPem1());
-        holder.tvSdosen.setText(p.getJudul());
+        holder.tvSjudul.setText(p.getJudul());
+        holder.tvSdosen.setText(p.getPem1());
         holder.tvSjenis.setText(p.getTanggal());
 
         holder.ivImage.setText(p.getJenis());
+
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<LectureResponse> call = apiInterface.getLecture(holder.tvSdosen.getText().toString());
+        call.enqueue(new Callback<LectureResponse>() {
+            @Override
+            public void onResponse(Call<LectureResponse> call, Response<LectureResponse> response) {
+                assert response.body() != null;
+                List<LectureResult> lectureResults = response.body().getRecords();
+                holder.tvSdosen.setText(lectureResults.get(0).getLectureName());
+            }
+
+            @Override
+            public void onFailure(Call<LectureResponse> call, Throwable t) {
+                Log.d(holder.tvSdosen.getText().toString(), " ");
+            }
+        });
         /*switch (p.getJenis()) {
             case "Seminar Kerja Praktek" :
                 holder.ivImage.setBackgroundResource(R.drawable.bg_blue_skies);
@@ -68,7 +92,7 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_recMhsSem);
             tvNpm = itemView.findViewById(R.id.tv_recNpm);
-            tvSjudul = itemView.findViewById(R.id.tv_rec_JudulSem);
+            tvSjudul = itemView.findViewById(R.id.tv_rec_judulSem);
             tvSdosen = itemView.findViewById(R.id.tv_rec_dosenSem);
             tvSjenis = itemView.findViewById(R.id.tv_recJenisSem);
             ivImage = itemView.findViewById(R.id.iv_image);

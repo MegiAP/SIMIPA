@@ -23,6 +23,10 @@ public class RecapMenuActivity extends AppCompatActivity implements View.OnClick
         assert actionBar != null;
         actionBar.setTitle(R.string.recapitulation);
 
+        //langsung ke SeminarRecapActivity untuk sementara
+        Intent seminar = new Intent(RecapMenuActivity.this, SeminarRecapActivity.class);
+        startActivity(seminar);
+
         setCardClick();
     }
 
