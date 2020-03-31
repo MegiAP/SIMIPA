@@ -1,7 +1,5 @@
 package com.vincode.simipa.ui.schedule;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,25 +25,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TuesdayCollegeFragment extends Fragment {
+
+public class ThursdayCollegeFragment extends Fragment {
     private CollegeScheduleAdapter collegeScheduleAdapter;
     private RecyclerView recyclerView;
 
-    public TuesdayCollegeFragment() {
+    public ThursdayCollegeFragment() {
         // Required empty public constructor
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tuesday_college, container, false);
+        return inflater.inflate(R.layout.fragment_thursday_college, container, false);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView = view.findViewById(R.id.rvCollegeTuesday);
+        recyclerView = view.findViewById(R.id.rvCollegeThursday);
     }
 
     @Override
@@ -66,7 +64,7 @@ public class TuesdayCollegeFragment extends Fragment {
 
     private void getCollegeData(){
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("selasa" , "1617051103","2019/2020","Ganjil", "Teori" );
+        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("kamis" , "1617051103","2019/2020","Ganjil", "Teori" );
 
         call.enqueue(new Callback<CollegeScheduleResponse>() {
             @Override

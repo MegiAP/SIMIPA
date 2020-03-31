@@ -48,7 +48,7 @@ public class PracticeScheduleActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         PracticeScheduleActivity.ViewPagerAdapter adapter = new PracticeScheduleActivity.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new MondayPracticeFragment(), "Senin");
-        adapter.addFrag(new dump1(), "Selasa");
+        adapter.addFrag(new TuesdayPracticeFragment(), "Selasa");
         adapter.addFrag(new dump2(), "Rabu");
         adapter.addFrag(new dump3(), "Kamis");
         adapter.addFrag(new dump4(), "Jumat");

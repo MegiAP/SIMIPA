@@ -79,7 +79,7 @@ public interface ApiInterface {
             @Query("npm") String npm,
             @Query("tahun_akademik") String tahun_akademik,
             @Query("semester") String semester,
-            @Query("tipe") String tipe
+            @Query("type") String type
     );
     @GET("read-seminar.php")
     Call<SeminarScheduleResponse> getSeminarData(
