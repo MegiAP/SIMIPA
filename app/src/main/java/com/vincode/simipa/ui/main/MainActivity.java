@@ -3,6 +3,8 @@ package com.vincode.simipa.ui.main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +15,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.vincode.simipa.R;
+import com.vincode.simipa.adapter.BeritaAdapter;
+import com.vincode.simipa.model.BeritaResponse;
+import com.vincode.simipa.ui.berita.BeritaActivity;
+import com.vincode.simipa.ui.presence.PresenceSeminarActivity;
 import com.vincode.simipa.util.SharedPrefManager;
 import com.vincode.simipa.ui.beasiswa.BeasiswaActivity;
 import com.vincode.simipa.ui.krs.KRSActivity;
@@ -27,7 +33,6 @@ import com.vincode.simipa.ui.recapitulation.RecapMenuActivity;
 import com.vincode.simipa.ui.schedule.ScheduleMenu;
 import com.vincode.simipa.ui.calendar.AcademicCalendarActivity;
 import com.vincode.simipa.ui.guidance.GuidanceScheduleActivity;
-import com.vincode.simipa.ui.presence.PresenceActivity;
 import com.vincode.simipa.ui.profil.ProfilActivity;
 import com.vincode.simipa.ui.service.ServiceActivity;
 import com.vincode.simipa.ui.settings.SettingActivity;
@@ -44,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private CircleImageView imageUser;
     private TextView tvName;
+    private BeritaAdapter adapter;
+    private RecyclerView rvBerita;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageUser = findViewById(R.id.img_user);
         tvName = findViewById(R.id.tv_home_name);
 
+        rvBerita = findViewById(R.id.rv_berita);
+        adapter = new BeritaAdapter(this);
+
         TextView tvNpm = findViewById(R.id.tv_home_npm);
         tvNpm.setText(SharedPrefManager.getInstance(this).getUser().getUserLogin());
 
@@ -61,10 +71,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, LoginActivity.class));
         }
 
+        TextView tvBerita = findViewById(R.id.tv_berita);
+        tvBerita.setOnClickListener(this);
+
+        setLayout();
+        getData();
 
         setCardClick();
         getDataProfil();
 
+    }
+
+    private void setLayout(){
+        rvBerita.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        rvBerita.setHasFixedSize(true);
+        rvBerita.setAdapter(adapter);
+    }
+
+    private void getData(){
+        ApiInterface apiInterface = ApiClient.getClientMovie().create(ApiInterface.class);
+
+        Call<BeritaResponse> call = apiInterface.getListMovie("e96328e96ce61fcd26a32771b816d85c", "en-US");
+        call.enqueue(new Callback<BeritaResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<BeritaResponse> call, @NonNull Response<BeritaResponse> response) {
+                if (response.body() != null) {
+                    adapter.setListBerita(response.body().getMovies());
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<BeritaResponse> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 
     private void getDataProfil (){
@@ -136,11 +177,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         CardView cvAchieve = findViewById(R.id.cv_achieve);
         cvAchieve.setOnClickListener(this);
+
+        TextView tvBerita = findViewById(R.id.tv_berita);
+        tvBerita.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.tv_berita :
+                Intent berita = new Intent(MainActivity.this, BeritaActivity.class);
+                startActivity(berita);
+                break;
             case R.id.cv_beasiswa :
                 Intent beasiswa = new Intent(MainActivity.this, BeasiswaActivity.class);
                 startActivity(beasiswa);
@@ -170,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(calendarIntent);
                 break;
             case R.id.cv_presence:
-                Intent presentIntent = new Intent(this, PresenceActivity.class);
+                Intent presentIntent = new Intent(this, PresenceSeminarActivity.class);
                 startActivity(presentIntent);
                 break;
             case R.id.cv_progress:

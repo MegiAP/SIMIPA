@@ -3,14 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.vincode.simipa">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,11 +11,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".ui.berita.DetailBeritaActvity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.berita.BeritaActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
+        <activity
+            android:name=".ui.presence.PresenceSeminarActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity android:name=".ui.presence.ResultPresenceActivity" />
         <activity android:name=".ui.presence.ScanPresenceActivity" />
         <activity
             android:name=".ui.achievement.AchievementActivity"
-            android:parentActivityName=".ui.main.MainActivity"/>
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.agenda.AgendaActivity"
             android:label="Agenda"
@@ -57,8 +57,9 @@
         <activity
             android:name=".ui.schedule.CollegeScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.settings.SettingActivity"
-            android:parentActivityName=".ui.main.MainActivity"/>
+        <activity
+            android:name=".ui.settings.SettingActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.recapitulation.ScoreRecapActivity"
             android:parentActivityName=".ui.recapitulation.RecapMenuActivity" />
@@ -67,7 +68,7 @@
             android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.krs.KRSActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -110,10 +111,20 @@
         <activity
             android:name=".ui.study_progress.DetailMatkulActivity"
             android:parentActivityName=".ui.study_progress.StudyProgressActivity" />
-        <activity android:name=".ui.recapitulation.PresenceRecapActivity"
-            android:parentActivityName=".ui.main.MainActivity"/>
-        <activity android:name=".ui.recapitulation.SeminarRecapActivity"
-            android:parentActivityName=".ui.main.MainActivity"/>
+        <activity
+            android:name=".ui.recapitulation.PresenceRecapActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
+        <activity
+            android:name=".ui.recapitulation.SeminarRecapActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 </manifest>

@@ -63,6 +63,18 @@
             app:layout_constraintTop_toBottomOf="@id/tv_time"
             app:layout_constraintStart_toStartOf="parent"/>
 
+        <TextView
+            android:id="@+id/tv_jurusan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/activity_margin_horizontal"
+            android:layout_marginStart="@dimen/activity_margin_horizontal"
+            android:text="Ilmu Komputer"
+            android:textColor="#000"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_room"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <View
             android:id="@+id/view_linear"
@@ -73,7 +85,7 @@
             android:layout_marginStart="@dimen/activity_margin_horizontal"
             android:layout_marginTop="4dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_room" />
+            app:layout_constraintTop_toBottomOf="@id/tv_jurusan" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -137,6 +149,22 @@
             android:layout_marginBottom="5dp"
             app:layout_constraintTop_toBottomOf="@id/tv_kuota"/>
 
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/activity_margin_horizontal"
+            android:layout_marginStart="@dimen/activity_margin_horizontal"
+            android:layout_marginTop="@dimen/margin_item"
+            android:text="Anda telah terdaftar pada seminar ini"
+            android:textColor="#514E4E"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pb_kuota"
+            app:layout_constraintStart_toStartOf="parent"/>
+
         <Button
             android:id="@+id/btn_hadir"
             android:layout_width="wrap_content"
@@ -147,7 +175,7 @@
             android:text="Hadir"
             android:textColor="@color/colorIcons"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/pb_kuota"
+            app:layout_constraintTop_toBottomOf="@id/tv_status"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <Button
@@ -160,7 +188,7 @@
             android:text="Batal"
             android:textColor="@color/colorIcons"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/pb_kuota"
+            app:layout_constraintTop_toBottomOf="@id/tv_status"
             app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
