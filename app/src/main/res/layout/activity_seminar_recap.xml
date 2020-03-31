@@ -1,20 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.recapitulation.SeminarRecapActivity">
+
+    <LinearLayout
+        android:id="@+id/linear_ket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        tools:ignore="UselessParent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_rec_kp"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_weight="0.33"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_green_beach">
+
+                <TextView
+                    android:id="@+id/jumlah_kp"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_above="@+id/tv_rec_kp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:padding="10dp"
+                    android:textSize="24sp"
+                    android:textColor="#fff"
+                    android:text="Jumlah"
+                    android:gravity="center"
+                    android:contentDescription="@string/content_description"/>
+
+                <TextView
+                    android:id="@+id/tv_rec_kp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:text="Seminar KP"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_rec_usul"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_weight="0.33"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_blue_skies">
+
+                <TextView
+                    android:id="@+id/jumlah_usul"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_above="@+id/tv_rec_usul"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:padding="10dp"
+                    android:textSize="24sp"
+                    android:textColor="#fff"
+                    android:text="Jumlah"
+                    android:gravity="center"
+                    android:contentDescription="@string/content_description"/>
+
+                <TextView
+                    android:id="@+id/tv_rec_usul"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:text="Seminar Proposal"
+                    android:textColor="#fff"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_rec_hasil"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_weight="0.33"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_red_gradient">
+
+                <TextView
+                    android:id="@+id/jumlah_hasil"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_above="@+id/tv_rec_hasil"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:textSize="24sp"
+                    android:text="Jumlah"
+                    android:contentDescription="@string/content_description"/>
+
+                <TextView
+                    android:id="@+id/tv_rec_hasil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:text="Seminar Hasil"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_seminar_recap"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linear_ket"/>
 
     <ProgressBar
         android:id="@+id/pg_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
+
+
 
 </RelativeLayout>

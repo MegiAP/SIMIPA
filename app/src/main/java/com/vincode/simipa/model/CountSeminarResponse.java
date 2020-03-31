@@ -5,17 +5,17 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class SeminarResponse {
+public class CountSeminarResponse {
 
     @SerializedName("records")
     @Expose
-    private List<SeminarResult> result = null;
+    private List<CountSeminarResult> result = null;
 
-    public List<SeminarResult> getResult() {
+    public List<CountSeminarResult> getResult() {
         return result;
     }
 
-    public void setResult(List<SeminarResult> result) {
+    public void setResult(List<CountSeminarResult> result) {
         this.result = result;
     }
 }

@@ -6,6 +6,7 @@ import com.vincode.simipa.model.BeritaResponse;
 import com.vincode.simipa.model.CalendarResponse;
 import com.vincode.simipa.model.ClassScheduleResponse;
 import com.vincode.simipa.model.CollegeScheduleResponse;
+import com.vincode.simipa.model.CountSeminarResponse;
 import com.vincode.simipa.model.KRSResponse;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PresenceResponse;
@@ -84,9 +85,10 @@ public interface ApiInterface {
     @GET("read-jadwal-mhs.php")
     Call<CollegeScheduleResponse> getCollegeData(
             @Query("hari") String hari,
-            @Query("kodeMK") String kodeMK,
+            @Query("npm") String npm,
             @Query("tahun_akademik") String tahun_akademik,
-            @Query("semester") String semester
+            @Query("semester") String semester,
+            @Query("tipe") String tipe
     );
     @GET("read-seminar.php")
     Call<SeminarScheduleResponse> getSeminarData(
@@ -162,26 +164,8 @@ public interface ApiInterface {
             @Query("npm") String npm
     );
 
-    @GET("read-list-seminar.php")
-    Call<PresenceSeminarResponse> getPresenceSeminar(
-            @Query("tgl") String tgl
-    );
-
-    @GET("read-cek-hadir-seminar.php")
-    Call<Status> cekSeminar(
-            @Query("npm") String npm,
-            @Query("id_seminar") String id_seminar
-    );
-
-    @Headers("Content-Type: application/json")
-    @POST("create-peserta-seminar.php")
-    Call<Value> insertPesertaSeminar(
-            @Body String result
-    );
-
-    @Headers("Content-Type: application/json")
-    @POST("delete-peserta-seminar.php")
-    Call<Value> deletePesertaSeminar(
-            @Body String result
+    @GET("read-jumlah-seminar.php")
+    Call<CountSeminarResponse> getCountSeminar(
+            @Query("npm") String npm
     );
 }

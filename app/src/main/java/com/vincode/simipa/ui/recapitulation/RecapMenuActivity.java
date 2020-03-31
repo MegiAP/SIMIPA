@@ -20,20 +20,21 @@ public class RecapMenuActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_recap_menu);
 
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setTitle(R.string.recapitulation);
 
         setCardClick();
     }
 
     private void setCardClick() {
-        cvScore = findViewById(R.id.cv_recScore);
+/*        cvScore = findViewById(R.id.cv_recScore);
         cvScore.setOnClickListener(this);
 
         cvGuidance = findViewById(R.id.cv_recGuidance);
         cvGuidance.setOnClickListener(this);
 
         cvPresence = findViewById(R.id.cv_recPresence);
-        cvPresence.setOnClickListener(this);
+        cvPresence.setOnClickListener(this);*/
 
         cvSeminar = findViewById(R.id.cv_recSeminar);
         cvSeminar.setOnClickListener(this);
@@ -42,7 +43,7 @@ public class RecapMenuActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.cv_recScore :
+/*            case R.id.cv_recScore :
                 Intent score = new Intent(RecapMenuActivity.this, ScoreRecapActivity.class);
                 startActivity(score);
                 break;
@@ -53,7 +54,7 @@ public class RecapMenuActivity extends AppCompatActivity implements View.OnClick
             case R.id.cv_recPresence :
                 Intent presence = new Intent(RecapMenuActivity.this, PresenceRecapActivity.class);
                 startActivity(presence);
-                break;
+                break;*/
             case R.id.cv_recSeminar :
                 Intent seminar = new Intent(RecapMenuActivity.this, SeminarRecapActivity.class);
                 startActivity(seminar);
