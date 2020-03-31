@@ -76,9 +76,10 @@ public interface ApiInterface {
     @GET("read-jadwal-mhs.php")
     Call<CollegeScheduleResponse> getCollegeData(
             @Query("hari") String hari,
-            @Query("kodeMK") String kodeMK,
+            @Query("npm") String npm,
             @Query("tahun_akademik") String tahun_akademik,
-            @Query("semester") String semester
+            @Query("semester") String semester,
+            @Query("tipe") String tipe
     );
     @GET("read-seminar.php")
     Call<SeminarScheduleResponse> getSeminarData(

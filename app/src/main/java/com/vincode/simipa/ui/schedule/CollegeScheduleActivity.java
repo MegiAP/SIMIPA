@@ -41,14 +41,12 @@ public class CollegeScheduleActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
-
     }
 
     private void setupViewPager(ViewPager viewPager) {
         CollegeScheduleActivity.ViewPagerAdapter adapter = new CollegeScheduleActivity.ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new dump1(), "Senin");
-        adapter.addFrag(new MondayCollegeFragment(), "Selasa");
+        adapter.addFrag(new MondayCollegeFragment(), "Senin");
+        adapter.addFrag(new TuesdayCollegeFragment(), "Selasa");
         adapter.addFrag(new dump2(), "Rabu");
         adapter.addFrag(new dump3(), "Kamis");
         adapter.addFrag(new dump4(), "Jumat");

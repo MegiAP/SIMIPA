@@ -67,7 +67,7 @@ public class TuesdayCollegeFragment extends Fragment {
     private void getData(){
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("selasa", "COM612406", "2018/2019", "Ganjil");
+        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("selasa", "1617051103", "2019/2020", "Ganjil", "Teori");
 
         call.enqueue(new Callback<CollegeScheduleResponse>() {
             @Override
