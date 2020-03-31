@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class LectureResponse {
-
     @SerializedName("records")
     @Expose
     private List<LectureResult> records = null;

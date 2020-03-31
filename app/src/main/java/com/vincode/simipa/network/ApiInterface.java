@@ -2,6 +2,7 @@ package com.vincode.simipa.network;
 
 
 import com.vincode.simipa.model.AchievementResponse;
+import com.vincode.simipa.model.BeritaResponse;
 import com.vincode.simipa.model.CalendarResponse;
 import com.vincode.simipa.model.ClassScheduleResponse;
 import com.vincode.simipa.model.CollegeScheduleResponse;
@@ -11,6 +12,7 @@ import com.vincode.simipa.model.LectureResponse;
 import com.vincode.simipa.model.LectureResult;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PresenceResponse;
+import com.vincode.simipa.model.PresenceSeminarResponse;
 import com.vincode.simipa.model.ProfileResponse;
 import com.vincode.simipa.model.SeminarPresenceResponse;
 import com.vincode.simipa.model.SeminarResponse;
@@ -18,6 +20,7 @@ import com.vincode.simipa.model.SeminarScheduleResponse;
 import com.vincode.simipa.model.ScholarshipResponse;
 import com.vincode.simipa.model.ServiceResponse;
 import com.vincode.simipa.model.SplashResponse;
+import com.vincode.simipa.model.Status;
 import com.vincode.simipa.model.StudyResponse;
 import com.vincode.simipa.model.Value;
 
@@ -32,6 +35,12 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
+
+    @GET("discover/movie")
+    Call<BeritaResponse> getListMovie(
+            @Query("api_key") String apikey,
+            @Query("language") String language
+    );
 
     @FormUrlEncoded
     @POST("login.php")
@@ -78,9 +87,10 @@ public interface ApiInterface {
     @GET("read-jadwal-mhs.php")
     Call<CollegeScheduleResponse> getCollegeData(
             @Query("hari") String hari,
-            @Query("kodeMK") String kodeMK,
+            @Query("npm") String npm,
             @Query("tahun_akademik") String tahun_akademik,
-            @Query("semester") String semester
+            @Query("semester") String semester,
+            @Query("type") String type
     );
     @GET("read-seminar.php")
     Call<SeminarScheduleResponse> getSeminarData(
@@ -128,6 +138,11 @@ public interface ApiInterface {
             @Query("id") String id_seminar
     );
 
+    @GET("read-profile-dosen.php")
+    Call<LectureResponse> getLecture(
+            @Query("nip") String nip
+    );
+
     @Headers("Content-Type: application/json")
     @POST("update-presensi-mhs.php")
     Call<Value> updatePresence(
@@ -161,8 +176,26 @@ public interface ApiInterface {
             @Query("npm") String npm
     );
 
-    @GET("read-profile-dosen.php")
-    Call<LectureResponse> getLecture(
-            @Query("nip") String nip
+    @GET("read-list-seminar.php")
+    Call<PresenceSeminarResponse> getPresenceSeminar(
+            @Query("tgl") String tgl
+    );
+
+    @GET("read-cek-hadir-seminar.php")
+    Call<Status> cekSeminar(
+            @Query("npm") String npm,
+            @Query("id_seminar") String id_seminar
+    );
+
+    @Headers("Content-Type: application/json")
+    @POST("create-peserta-seminar.php")
+    Call<Value> insertPesertaSeminar(
+            @Body String result
+    );
+
+    @Headers("Content-Type: application/json")
+    @POST("delete-peserta-seminar.php")
+    Call<Value> deletePesertaSeminar(
+            @Body String result
     );
 }

@@ -1,5 +1,6 @@
 package com.vincode.simipa.ui.recapitulation;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,7 +21,6 @@ import com.vincode.simipa.model.CountSeminarResponse;
 import com.vincode.simipa.model.CountSeminarResult;
 import com.vincode.simipa.model.SeminarRecap;
 import com.vincode.simipa.model.SeminarResponse;
-import com.vincode.simipa.model.SeminarResult;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.SharedPrefManager;
@@ -71,7 +71,7 @@ public class SeminarRecapActivity extends AppCompatActivity {
         Call<CountSeminarResponse> call = apiInterface.getCountSeminar(SharedPrefManager.getInstance(this).getUser().getUserLogin());
         call.enqueue(new Callback<CountSeminarResponse>() {
             @Override
-            public void onResponse(Call<CountSeminarResponse> call, Response<CountSeminarResponse> response) {
+            public void onResponse(@NonNull Call<CountSeminarResponse> call, Response<CountSeminarResponse> response) {
                 assert response.body() != null;
                 List<CountSeminarResult> countSeminar = response.body().getResult();
                 jmlKP.setText(countSeminar.get(0).getJumlahSemKP());
@@ -80,7 +80,7 @@ public class SeminarRecapActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<CountSeminarResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<CountSeminarResponse> call, Throwable t) {
 
             }
         });
@@ -91,7 +91,7 @@ public class SeminarRecapActivity extends AppCompatActivity {
         Call<SeminarResponse> call = apiInterface.getRecapSeminar(SharedPrefManager.getInstance(this).getUser().getUserLogin());
         call.enqueue(new Callback<SeminarResponse>() {
             @Override
-            public void onResponse(Call<SeminarResponse> call, Response<SeminarResponse> response) {
+            public void onResponse(@NonNull Call<SeminarResponse> call, Response<SeminarResponse> response) {
 
                 if (response.body() != null) {
                     seminarRecapAdapter.setListSeminar(response.body().getResult());
@@ -103,7 +103,7 @@ public class SeminarRecapActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<SeminarResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<SeminarResponse> call, Throwable t) {
                 Log.d("gagal", " ");
             }
         });

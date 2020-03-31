@@ -54,17 +54,18 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         Call<LectureResponse> call = apiInterface.getLecture(holder.tvSdosen.getText().toString());
         call.enqueue(new Callback<LectureResponse>() {
             @Override
-            public void onResponse(Call<LectureResponse> call, Response<LectureResponse> response) {
+            public void onResponse(@NonNull Call<LectureResponse> call, Response<LectureResponse> response) {
                 assert response.body() != null;
                 List<LectureResult> lectureResults = response.body().getRecords();
                 holder.tvSdosen.setText(lectureResults.get(0).getLectureName());
             }
 
             @Override
-            public void onFailure(Call<LectureResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<LectureResponse> call, Throwable t) {
                 Log.d(holder.tvSdosen.getText().toString(), " ");
             }
         });
+
         /*switch (p.getJenis()) {
             case "Seminar Kerja Praktek" :
                 holder.ivImage.setBackgroundResource(R.drawable.bg_blue_skies);

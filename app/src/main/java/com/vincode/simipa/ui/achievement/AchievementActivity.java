@@ -74,6 +74,7 @@ public class AchievementActivity extends AppCompatActivity {
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
                 assert response.body() != null;
                 List<UserProfile> userProfile = response.body().getUserProfiles();
+
                 Glide.with(getApplicationContext())
                         .load(userProfile.get(0).getFoto())
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
