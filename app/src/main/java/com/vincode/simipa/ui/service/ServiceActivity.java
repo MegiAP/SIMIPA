@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.CalendarPagerAdapter;
+import com.vincode.simipa.ui.presence.CollegeFragment;
 
 public class ServiceActivity extends AppCompatActivity {
 
