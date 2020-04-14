@@ -4,54 +4,70 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.AgendaAdapter;
+import com.vincode.simipa.adapter.CollegeScheduleAdapter;
 import com.vincode.simipa.model.Agenda;
+import com.vincode.simipa.model.CollegeScheduleResponse;
+import com.vincode.simipa.network.ApiClient;
+import com.vincode.simipa.network.ApiInterface;
+import com.vincode.simipa.util.SharedPrefManager;
+import com.vincode.simipa.util.TimeUtil;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class AgendaActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
+    private ProgressBar pgBar;
     private AgendaAdapter adapter;
-    private ArrayList<Agenda> agendaArrayList;
 
-    private androidx.appcompat.widget.Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agenda);
 
-        toolbar = (Toolbar) findViewById(R.id.tb_agenda);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        TimeUtil timeUtil = new TimeUtil();
+        //String semester = timeUtil.getSemester();
+        String tahun = timeUtil.getWaktu();
 
-        addData();
+        getData(tahun);
 
-        recyclerView = (RecyclerView) findViewById(R.id.rv_Agenda);
-
-        adapter = new AgendaAdapter(agendaArrayList);
+        pgBar = findViewById(R.id.pg_bar);
+        pgBar.setVisibility(View.VISIBLE);
+        RecyclerView rvCategory = findViewById(R.id.rv_Agenda);
+        adapter = new AgendaAdapter();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(AgendaActivity.this);
-
-        recyclerView.setLayoutManager(layoutManager);
-
-        recyclerView.setAdapter(adapter);
+        rvCategory.setLayoutManager(layoutManager);
+        rvCategory.setAdapter(adapter);
     }
-    void addData(){
-        agendaArrayList = new ArrayList<>();
-        agendaArrayList.add(new Agenda("07.30", "09.10", "Android", "Putra", "GIK", "Kuliah"));
-        agendaArrayList.add(new Agenda("07.30", "09.10", "Android", "Putra", "GIK", "Kuliah"));
-        agendaArrayList.add(new Agenda("07.30", "09.10", "Android", "Putra", "GIK", "Seminar"));
-        agendaArrayList.add(new Agenda("07.30", "09.10", "Android", "Putra", "GIK", "Kuliah"));
-        agendaArrayList.add(new Agenda("07.30", "09.10", "Android", "Putra", "GIK", "Kuliah"));
-        agendaArrayList.add(new Agenda("07.30", "09.10", "Android", "Putra", "GIK", "Kuliah"));
-        agendaArrayList.add(new Agenda("07.30", "09.10", "Android", "Putra", "GIK", "Kuliah"));
-        agendaArrayList.add(new Agenda("07.30", "09.10", "Android", "Putra", "GIK", "Kuliah"));
-        agendaArrayList.add(new Agenda("07.30", "09.10", "Android", "Putra", "GIK", "Kuliah"));
 
+    private void getData(String tahun) {
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("Selasa", SharedPrefManager.getInstance(this).getUser().getUserLogin(), tahun, "Ganjil", "Teori");
+        call.enqueue(new Callback<CollegeScheduleResponse>() {
+            @Override
+            public void onResponse(Call<CollegeScheduleResponse> call, Response<CollegeScheduleResponse> response) {
+                if (response.body() != null) {
+                    adapter.setAgendaList(response.body().getRecords());
+                    adapter.notifyDataSetChanged();
+                    pgBar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CollegeScheduleResponse> call, Throwable t) {
+
+            }
+        });
     }
 }
 

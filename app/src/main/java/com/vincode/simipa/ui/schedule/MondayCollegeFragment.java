@@ -18,6 +18,8 @@ import com.vincode.simipa.adapter.CollegeScheduleAdapter;
 import com.vincode.simipa.model.CollegeScheduleResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
+import com.vincode.simipa.util.SharedPrefManager;
+import com.vincode.simipa.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +56,12 @@ public class MondayCollegeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         collegeScheduleAdapter = new CollegeScheduleAdapter(getActivity());
 
+        TimeUtil timeUtil = new TimeUtil();
+        String semester = timeUtil.getSemester();
+        String tahun = timeUtil.getWaktu();
+
         setLayout();
-        getCollegeData();
+        getCollegeData(semester, tahun);
 
     }
 
@@ -65,9 +71,9 @@ public class MondayCollegeFragment extends Fragment {
         recyclerView.setAdapter(collegeScheduleAdapter);
     }
 
-    private void getCollegeData(){
+    private void getCollegeData(String semester, String tahun){
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("senin" , "1617051103","2019/2020","Ganjil", "Teori" );
+        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("senin" , "1617051103", tahun, semester, "Teori" );
 
         call.enqueue(new Callback<CollegeScheduleResponse>() {
             @Override

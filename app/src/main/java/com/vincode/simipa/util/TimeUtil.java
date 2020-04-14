@@ -12,8 +12,7 @@ public class TimeUtil {
 
     public String getWaktuNow(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-M", Locale.getDefault());
-        String date = dateFormat.format(new Date());
-        return date;
+        return dateFormat.format(new Date());
     }
 
     public String getWaktu(){
@@ -36,6 +35,22 @@ public class TimeUtil {
         }
 
         return resultYear;
+    }
+
+    public String getSemester() {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat now = new SimpleDateFormat("dd-M-yyyy");
+        String tanggal = now.format(new Date());
+        String[] mtanggal = tanggal.split("-");
+        int bulan = Integer.parseInt(mtanggal[1]);
+        String semester;
+
+        if (bulan >= 2 && bulan <= 7) {
+            semester = "Genap";
+        } else {
+            semester = "Ganjil";
+        }
+        return semester;
+
     }
 
     public String converDate(String date){

@@ -8,16 +8,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.model.Agenda;
+import com.vincode.simipa.model.CollegeScheduleResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.AgendaViewHolder> {
 
-    private ArrayList<Agenda> dataList;
+    private List<CollegeScheduleResult> agendaList = new ArrayList<>();
 
-    public AgendaAdapter(ArrayList<Agenda> dataList) {
-        this.dataList = dataList;
+    public void setAgendaList(List<CollegeScheduleResult> agendaList) {
+        if (agendaList == null) return;
+        this.agendaList.clear();
+        this.agendaList.addAll(agendaList);
     }
 
     @Override
@@ -29,19 +33,22 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.AgendaView
 
     @Override
     public void onBindViewHolder(AgendaViewHolder holder, int position) {
-        holder.jam1.setText(dataList.get(position).getJam1());
-        holder.jam2.setText(dataList.get(position).getJam2());
-        holder.judul.setText(dataList.get(position).getJudul());
-        holder.nama.setText(dataList.get(position).getNama());
-        holder.ruang.setText(dataList.get(position).getRuang());
-        holder.jenis.setText(dataList.get(position).getJenis());
-    }
-    @Override
-    public int getItemCount() {
-        return (dataList != null) ? dataList.size() : 0;
+        final CollegeScheduleResult dataCollege = agendaList.get(position);
+
+        holder.jam1.setText(dataCollege.getMulai());
+        holder.jam2.setText(dataCollege.getSelesai());
+        holder.judul.setText(dataCollege.getMataKuliah());
+        holder.nama.setText(dataCollege.getKodeMK());
+        holder.ruang.setText(dataCollege.getRuang());
+        holder.jenis.setText(dataCollege.getJenis());
     }
 
-    public class AgendaViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public int getItemCount() {
+        return agendaList.size();
+    }
+
+    public static class AgendaViewHolder extends RecyclerView.ViewHolder {
         TextView jam1, jam2, judul, nama, ruang, jenis;
         public AgendaViewHolder(View itemView) {
             super(itemView);
