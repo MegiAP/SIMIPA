@@ -1,13 +1,15 @@
 package com.vincode.simipa.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.model.Agenda;
 import com.vincode.simipa.model.CollegeScheduleResult;
 
 import java.util.ArrayList;
@@ -15,15 +17,17 @@ import java.util.List;
 
 
 public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.AgendaViewHolder> {
-
+    private Context context;
     private List<CollegeScheduleResult> agendaList = new ArrayList<>();
 
-    public void setAgendaList(List<CollegeScheduleResult> agendaList) {
+    public AgendaAdapter(Context context, List<CollegeScheduleResult> agendaList) {
+        this.context = context;
         if (agendaList == null) return;
         this.agendaList.clear();
         this.agendaList.addAll(agendaList);
     }
 
+    @NonNull
     @Override
     public AgendaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -48,7 +52,7 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.AgendaView
         return agendaList.size();
     }
 
-    public static class AgendaViewHolder extends RecyclerView.ViewHolder {
+    static class AgendaViewHolder extends RecyclerView.ViewHolder {
         TextView jam1, jam2, judul, nama, ruang, jenis;
         public AgendaViewHolder(View itemView) {
             super(itemView);

@@ -57,11 +57,10 @@ public class MondayCollegeFragment extends Fragment {
         collegeScheduleAdapter = new CollegeScheduleAdapter(getActivity());
 
         TimeUtil timeUtil = new TimeUtil();
-        String semester = timeUtil.getSemester();
         String tahun = timeUtil.getWaktu();
 
         setLayout();
-        getCollegeData(semester, tahun);
+        getCollegeData(tahun);
 
     }
 
@@ -71,9 +70,9 @@ public class MondayCollegeFragment extends Fragment {
         recyclerView.setAdapter(collegeScheduleAdapter);
     }
 
-    private void getCollegeData(String semester, String tahun){
+    private void getCollegeData(String tahun){
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("senin" , "1617051103", tahun, semester, "Teori" );
+        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("senin" , "1617051103", tahun, "Ganjil", "Teori" );
 
         call.enqueue(new Callback<CollegeScheduleResponse>() {
             @Override

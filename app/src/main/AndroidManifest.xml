@@ -27,7 +27,7 @@
         <activity
             android:name=".ui.agenda.AgendaActivity"
             android:label="Agenda"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".ui.main.MainActivity"/>
         <activity
             android:name=".ui.schedule.PracticeScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
