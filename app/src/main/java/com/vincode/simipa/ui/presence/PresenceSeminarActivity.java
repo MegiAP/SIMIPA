@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.PresenceSeminarAdapter;
@@ -30,6 +31,7 @@ public class PresenceSeminarActivity extends AppCompatActivity {
     private PresenceSeminarAdapter adapter;
     private RecyclerView rvSeminar;
     private ProgressBar progressBar;
+    private TextView tvNotFound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class PresenceSeminarActivity extends AppCompatActivity {
 
         rvSeminar = findViewById(R.id.rv_seminar);
         progressBar = findViewById(R.id.progress_bar);
+        tvNotFound = findViewById(R.id.tv_not_found);
         progressBar.setVisibility(View.VISIBLE);
         adapter = new PresenceSeminarAdapter(this);
 
@@ -66,8 +69,14 @@ public class PresenceSeminarActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<PresenceSeminarResponse> call, @NonNull Response<PresenceSeminarResponse> response) {
                 progressBar.setVisibility(View.GONE);
                 if (response.body() != null) {
-                    adapter.setListSeminar(response.body().getRecords());
-                    adapter.notifyDataSetChanged();
+                    if (response.body().getRecords() != null){
+                        adapter.setListSeminar(response.body().getRecords());
+                        adapter.notifyDataSetChanged();
+                    }else{
+                        rvSeminar.setVisibility(View.GONE);
+                        tvNotFound.setVisibility(View.VISIBLE);
+                    }
+
                 }
             }
 

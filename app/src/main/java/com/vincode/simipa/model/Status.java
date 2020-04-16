@@ -9,6 +9,22 @@ public class Status {
     @Expose
     private String message;
 
+    @SerializedName("error")
+    @Expose
+    private String error;
+
+    @SerializedName("peserta")
+    @Expose
+    private String peserta;
+
+    public String getError() {
+        return error;
+    }
+
+    public String getPeserta() {
+        return peserta;
+    }
+
     public String getMessage() {
         return message;
     }

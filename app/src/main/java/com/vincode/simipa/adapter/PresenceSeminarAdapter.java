@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,11 +72,11 @@ public class PresenceSeminarAdapter extends RecyclerView.Adapter<PresenceSeminar
         holder.tvJam.setText(data.getWaktu());
         holder.tvTgl.setText(timeUtil.converDate(data.getTanggal()));
         holder.tvJenis.setText(data.getJenis());
-        Double kuota = (Double.parseDouble(data.getPeserta())/30) * 100;
-//        Toast.makeText(activity, kuota,Toast.LENGTH_SHORT).show();
-        Log.d("kuota", String.valueOf(kuota));//
-        holder.progressKuota.setProgress(kuota.intValue());
-        holder.tvKuota.setText(String.format("%s/30", data.getPeserta()));
+
+//        Double kuota = (Double.parseDouble(data.getPeserta())/30) * 100;
+//        Log.d("kuota", String.valueOf(kuota));//
+//        holder.progressKuota.setProgress(kuota.intValue());
+//        holder.tvKuota.setText(String.format("%s/30", data.getPeserta()));
 
         //fungsi untuk menentukan status button hadir
         String tglNow = timeUtil.getWaktuNow();
@@ -193,6 +192,10 @@ public class PresenceSeminarAdapter extends RecyclerView.Adapter<PresenceSeminar
             public void onResponse(@NotNull Call<Status> call, @NotNull Response<Status> response) {
                 assert response.body() != null;
                 String message = response.body().getMessage();
+                double kuota = (Double.parseDouble(response.body().getPeserta())/30) * 100;
+//                Log.d("kuota", String.valueOf(kuota));//
+                holder.progressKuota.setProgress((int) kuota);
+                holder.tvKuota.setText(String.format("%s/30", response.body().getPeserta()));
                 if (message.equals("True")){
                     if (selisihTgl == 0 || selisihTgl == -1 ){//seminar komprehensif
                         holder.btnCancel.setVisibility(View.GONE);
@@ -242,6 +245,7 @@ public class PresenceSeminarAdapter extends RecyclerView.Adapter<PresenceSeminar
                 if (value.equals("1")){
                     Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
                     activity.startActivity(new Intent(activity, PresenceSeminarActivity.class));
+                    activity.finish();
                 }else {
                     Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
                 }
@@ -283,6 +287,8 @@ public class PresenceSeminarAdapter extends RecyclerView.Adapter<PresenceSeminar
                 if (value.equals("1")){
                     Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
                     activity.startActivity(new Intent(activity, PresenceSeminarActivity.class));
+                    activity.finish();
+
                 }else {
                     Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
                 }
