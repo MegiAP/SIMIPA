@@ -12,6 +12,7 @@ import retrofit2.Response;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.AgendaAdapter;
@@ -27,9 +28,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class AgendaActivity extends AppCompatActivity {
-    private ProgressBar pgBar;
+    private ProgressBar pgBar,pgBar1,pgBar2;
     private AgendaAdapter adapter;
-    private RecyclerView rvCategory, rvCategory1;
+    private RecyclerView rvCategory, rvCategory1, rvCategory2;
+    private TextView agendaKosong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +44,29 @@ public class AgendaActivity extends AppCompatActivity {
 
         getDataCollege(tahun);
         getDataPractice(tahun);
+        //getDataSeminar(tahun);
+
+        agendaKosong = findViewById(R.id.agendakosong);
+        agendaKosong.setVisibility(View.GONE);
 
         pgBar = findViewById(R.id.pg_bar);
         pgBar.setVisibility(View.VISIBLE);
-        rvCategory = findViewById(R.id.rv_Agenda);
-        rvCategory1 = findViewById(R.id.rv_Practice_Agenda);
+        pgBar1 = findViewById(R.id.pg_bar1);
+        pgBar1.setVisibility(View.VISIBLE);
+        /*pgBar2 = findViewById(R.id.pg_bar2);
+        pgBar2.setVisibility(View.VISIBLE);*/
+
+        rvCategory = findViewById(R.id.rv_college_agenda);
+        rvCategory1 = findViewById(R.id.rv_practice_agenda);
+        //rvCategory2 = findViewById(R.id.rv_seminar_agenda);
 
         //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(AgendaActivity.this);
         rvCategory.setLayoutManager(new LinearLayoutManager(AgendaActivity.this));
         rvCategory1.setLayoutManager(new LinearLayoutManager(AgendaActivity.this));
+        //rvCategory2.setLayoutManager(new LinearLayoutManager(AgendaActivity.this));
     }
 
+    //Read data jadwal kuliah
     private void getDataCollege(String tahun) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("Selasa", SharedPrefManager.getInstance(this).getUser().getUserLogin(), tahun, "Ganjil", "Teori");
@@ -62,37 +76,62 @@ public class AgendaActivity extends AppCompatActivity {
                 if (response.body() != null) {
                     adapter = new AgendaAdapter(AgendaActivity.this, response.body().getRecords());
                     adapter.notifyDataSetChanged();
-                    //pgBar.setVisibility(View.GONE);
+                    pgBar.setVisibility(View.GONE);
                     rvCategory.setAdapter(adapter);
                 }
             }
 
             @Override
             public void onFailure(Call<CollegeScheduleResponse> call, Throwable t) {
-
+                    rvCategory.setVisibility(View.GONE);
             }
         });
     }
 
+    //Read data jadwal praktikum
     private void getDataPractice(String tahun) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("selasa", SharedPrefManager.getInstance(this).getUser().getUserLogin(), tahun, "Ganjil", "Praktikum");
+        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("Selasa", SharedPrefManager.getInstance(this).getUser().getUserLogin(), tahun, "Ganjil", "Praktikum");
         call.enqueue(new Callback<CollegeScheduleResponse>() {
             @Override
             public void onResponse(@NonNull Call<CollegeScheduleResponse> call, @NonNull Response<CollegeScheduleResponse> response) {
                 if (response.body() != null) {
                     adapter = new AgendaAdapter(AgendaActivity.this, response.body().getRecords());
                     adapter.notifyDataSetChanged();
-                    pgBar.setVisibility(View.GONE);
+                    pgBar1.setVisibility(View.GONE);
                     rvCategory1.setAdapter(adapter);
                 }
             }
 
             @Override
             public void onFailure(Call<CollegeScheduleResponse> call, Throwable t) {
-
+                rvCategory1.setVisibility(View.GONE);
             }
         });
     }
+
+    //Read data jadwal seminar
+/*    private void getDataSeminar(String tahun) {
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("Selasa", SharedPrefManager.getInstance(this).getUser().getUserLogin(), tahun, "Ganjil", "Praktikum");
+        call.enqueue(new Callback<CollegeScheduleResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CollegeScheduleResponse> call, @NonNull Response<CollegeScheduleResponse> response) {
+                if (response.body() != null) {
+                    adapter = new AgendaAdapter(AgendaActivity.this, response.body().getRecords());
+                    adapter.notifyDataSetChanged();
+                    pgBar2.setVisibility(View.GONE);
+                    rvCategory2.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CollegeScheduleResponse> call, Throwable t) {
+                pgBar2.setVisibility(View.GONE);
+                rvCategory2.setVisibility(View.GONE);
+                agendaKosong.setVisibility(View.VISIBLE);
+            }
+        });
+    }*/
 }
 
