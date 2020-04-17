@@ -52,7 +52,6 @@ public class KpFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        seminarScheduleAdapter = new SeminarScheduleAdapter(getActivity());
 
         setLayout();
         getData();
@@ -74,7 +73,9 @@ public class KpFragment extends Fragment {
             @Override
             public void onResponse(Call<SeminarScheduleResponse> call, Response<SeminarScheduleResponse> response) {
                 if (response.body() != null) {
-                    seminarScheduleAdapter.setListSeminarSchedule(response.body().getRecords());
+
+                    seminarScheduleAdapter = new SeminarScheduleAdapter(getActivity(), response.body().getRecords());
+//                    seminarScheduleAdapter.SeminarSchedule(response.body().getRecords());
                     seminarScheduleAdapter.notifyDataSetChanged();
                 }
             }

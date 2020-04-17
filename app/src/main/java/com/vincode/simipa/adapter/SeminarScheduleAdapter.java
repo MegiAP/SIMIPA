@@ -11,9 +11,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Callback;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.model.SeminarSchedule;
+import com.vincode.simipa.model.SeminarScheduleResponse;
 import com.vincode.simipa.model.SeminarScheduleResult;
 
 import java.util.ArrayList;
@@ -22,18 +24,13 @@ import java.util.List;
 public class SeminarScheduleAdapter extends RecyclerView.Adapter<SeminarScheduleAdapter.ViewHolder> {
 
     private List<SeminarScheduleResult> listSeminarSchedule = new ArrayList<>();
-    private final Activity activity;
+    private final Context activity;
 
-    public SeminarScheduleAdapter(Activity activity) {
+    public SeminarScheduleAdapter(Context activity, List<SeminarScheduleResult> seminarScheduleList) {
         this.activity = activity;
-    }
-
-    public void setListSeminarSchedule(List<SeminarScheduleResult> seminarScheduleList){
-
         if (seminarScheduleList == null)return;
         this.listSeminarSchedule.clear();
         this.listSeminarSchedule.addAll(seminarScheduleList);
-
     }
 
     @NonNull
