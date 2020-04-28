@@ -6,30 +6,96 @@
     android:orientation="vertical"
     tools:context=".ui.agenda.AgendaActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_Agenda"
+            android:id="@+id/rv_college_agenda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_agenda"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/jadwal_praktikum"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_Practice_Agenda"
+            android:id="@+id/rv_practice_agenda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_agenda"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="seminar kp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_seminarkp_agenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_seminar_schedule"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="seminar usul"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_seminarusul_agenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_seminar_schedule"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="seminar hasil"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_seminarhasil_agenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_seminar_schedule"/>
+
     </LinearLayout>
+
+    </ScrollView>
 
     <ProgressBar
         android:layout_gravity="center"
         android:id="@+id/pg_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <ProgressBar
+        android:layout_gravity="center"
+        android:id="@+id/pg_bar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <ProgressBar
+        android:layout_gravity="center"
+        android:id="@+id/pg_bar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/agendakosong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tidak ada Agenda"
+        android:textSize="20sp"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>
