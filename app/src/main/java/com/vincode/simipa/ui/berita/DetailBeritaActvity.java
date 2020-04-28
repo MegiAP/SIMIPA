@@ -2,6 +2,7 @@ package com.vincode.simipa.ui.berita;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,7 +20,7 @@ public class DetailBeritaActvity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_berita);
 
-        BeritaResult data = getIntent().getParcelableExtra("berita");
+        final BeritaResult data = getIntent().getParcelableExtra("berita");
 
         ImageView imgBerita = findViewById(R.id.img_detail_berita);
         ImageView imgShare = findViewById(R.id.img_share_berita);
@@ -37,6 +38,12 @@ public class DetailBeritaActvity extends AppCompatActivity {
         imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent beritaIntent = new Intent(Intent.ACTION_SEND);
+                beritaIntent.setType("text/plain");
+                String text = data.getTitle() + "\n\n" +data.getOverview();
+                beritaIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+                beritaIntent.putExtra(Intent.EXTRA_TEXT, text);
+                startActivity(Intent.createChooser(beritaIntent, "Share With"));
                 Toast.makeText(DetailBeritaActvity.this, "Share Berita", Toast.LENGTH_SHORT).show();
             }
         });
