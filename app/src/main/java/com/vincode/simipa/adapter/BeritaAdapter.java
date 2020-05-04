@@ -3,6 +3,7 @@ package com.vincode.simipa.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,9 +62,12 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
         holder.cvBerita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, DetailBeritaActvity.class);
-                intent.putExtra("berita", data);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://fmipa.unila.ac.id/beasiswa-program-smart-scholarship-ybm-bri-kantor-wilayah-bandar-lampung/"));
                 activity.startActivity(intent);
+//                Intent intent = new Intent(activity, DetailBeritaActvity.class);
+//                intent.putExtra("berita", data);
+//                activity.startActivity(intent);
 //                Toast.makeText(activity, "tes", Toast.LENGTH_SHORT).show();
             }
         });
