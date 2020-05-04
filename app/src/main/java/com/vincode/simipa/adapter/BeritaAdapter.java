@@ -69,7 +69,7 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
         });
 //        Log.d("title", data.getTitle());
         Glide.with(activity)
-                .load("https://image.tmdb.org/t/p/w500/"+data.getBackdropPath())
+                .load("https://fmipa.unila.ac.id/"+data.getPhoto())
                 .into(new SimpleTarget<Drawable>() {
                     @Override
                     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {

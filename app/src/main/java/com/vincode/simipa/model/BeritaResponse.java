@@ -6,10 +6,10 @@ import java.util.List;
 
 public class BeritaResponse {
 
-    @SerializedName("results")
-    private List<BeritaResult> movies;
+    @SerializedName("records")
+    private List<BeritaResult> news;
 
-    public List<BeritaResult> getMovies() {
-        return movies;
+    public List<BeritaResult> getNews() {
+        return news;
     }
 }

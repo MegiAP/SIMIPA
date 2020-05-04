@@ -9,7 +9,7 @@ public class CalendarResult {
     @Expose
     private String id;
 
-    @SerializedName("Tahun Akademik")
+    @SerializedName("Tahun_Akademik")
     @Expose
     private String tahunAkademik;
 
@@ -25,7 +25,7 @@ public class CalendarResult {
     @Expose
     private String date;
 
-    @SerializedName("Due Date")
+    @SerializedName("Due_Date")
     @Expose
     private String dueDate;
 

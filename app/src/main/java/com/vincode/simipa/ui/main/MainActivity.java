@@ -89,14 +89,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getData(){
-        ApiInterface apiInterface = ApiClient.getClientMovie().create(ApiInterface.class);
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<BeritaResponse> call = apiInterface.getListMovie("e96328e96ce61fcd26a32771b816d85c", "en-US");
+        Call<BeritaResponse> call = apiInterface.getListNews();
         call.enqueue(new Callback<BeritaResponse>() {
             @Override
             public void onResponse(@NonNull Call<BeritaResponse> call, @NonNull Response<BeritaResponse> response) {
                 if (response.body() != null) {
-                    adapter.setListBerita(response.body().getMovies());
+                    adapter.setListBerita(response.body().getNews());
                     adapter.notifyDataSetChanged();
                 }
             }

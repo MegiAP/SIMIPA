@@ -9,7 +9,7 @@ public class UserProfile {
     @Expose
     private String npm;
 
-    @SerializedName("Display Name")
+    @SerializedName("Display_Name")
     @Expose
     private String displayName;
 
@@ -21,7 +21,7 @@ public class UserProfile {
     @Expose
     private String jenisKelamin;
 
-    @SerializedName("No Ponsel")
+    @SerializedName("No_Ponsel")
     @Expose
     private String noPonsel;
 
@@ -29,11 +29,11 @@ public class UserProfile {
     @Expose
     private String agama;
 
-    @SerializedName("Tempat Lahir")
+    @SerializedName("Tempat_Lahir")
     @Expose
     private String tempatLahir;
 
-    @SerializedName("Tanggal Lahir")
+    @SerializedName("Tanggal_Lahir")
     @Expose
     private String tanggalLahir;
 
@@ -65,63 +65,32 @@ public class UserProfile {
         return displayName;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getJenisKelamin() {
         return jenisKelamin;
     }
 
-    public void setJenisKelamin(String jenisKelamin) {
-        this.jenisKelamin = jenisKelamin;
-    }
-
     public String getNoPonsel() {
         return noPonsel;
-    }
-
-    public void setNoPonsel(String noPonsel) {
-        this.noPonsel = noPonsel;
     }
 
     public String getAgama() {
         return agama;
     }
 
-    public void setAgama(String agama) {
-        this.agama = agama;
-    }
-
     public String getTempatLahir() {
         return tempatLahir;
-    }
-
-    public void setTempatLahir(String tempatLahir) {
-        this.tempatLahir = tempatLahir;
     }
 
     public String getTanggalLahir() {
         return tanggalLahir;
     }
 
-    public void setTanggalLahir(String tanggalLahir) {
-        this.tanggalLahir = tanggalLahir;
-    }
-
     public String getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
 }

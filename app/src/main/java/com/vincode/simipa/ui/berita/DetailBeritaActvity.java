@@ -30,17 +30,17 @@ public class DetailBeritaActvity extends AppCompatActivity {
 
         assert data != null;
         Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w500/"+data.getBackdropPath())
+                .load("https://fmipa.unila.ac.id/"+data.getPhoto())
                 .into(imgBerita);
         tvTitle.setText(data.getTitle());
         tvTime.setText(data.getReleaseDate());
-        tvDetail.setText(data.getOverview());
+        tvDetail.setText(data.getContent());
         imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent beritaIntent = new Intent(Intent.ACTION_SEND);
                 beritaIntent.setType("text/plain");
-                String text = data.getTitle() + "\n\n" +data.getOverview();
+                String text = data.getTitle() + "\n\n" +data.getContent();
                 beritaIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
                 beritaIntent.putExtra(Intent.EXTRA_TEXT, text);
                 startActivity(Intent.createChooser(beritaIntent, "Share With"));

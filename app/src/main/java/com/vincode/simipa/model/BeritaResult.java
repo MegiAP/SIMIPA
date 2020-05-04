@@ -7,17 +7,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class BeritaResult implements Parcelable {
 
-    @SerializedName("original_title")
+    @SerializedName("Title")
     private String title;
 
-    @SerializedName("release_date")
+    @SerializedName("Date")
     private String releaseDate;
 
-    @SerializedName("overview")
-    private String overview;
+    @SerializedName("Content")
+    private String content;
 
-    @SerializedName("backdrop_path")
-    private String backdropPath;
+    @SerializedName("Foto")
+    private String photo;
 
     public String getTitle() {
         return title;
@@ -27,13 +27,14 @@ public class BeritaResult implements Parcelable {
         return releaseDate;
     }
 
-    public String getOverview() {
-        return overview;
+    public String getContent() {
+        return content;
     }
 
-    public String getBackdropPath() {
-        return backdropPath;
+    public String getPhoto() {
+        return photo;
     }
+
 
     @Override
     public int describeContents() {
@@ -44,8 +45,8 @@ public class BeritaResult implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.title);
         dest.writeString(this.releaseDate);
-        dest.writeString(this.overview);
-        dest.writeString(this.backdropPath);
+        dest.writeString(this.content);
+        dest.writeString(this.photo);
     }
 
     public BeritaResult() {
@@ -54,11 +55,11 @@ public class BeritaResult implements Parcelable {
     protected BeritaResult(Parcel in) {
         this.title = in.readString();
         this.releaseDate = in.readString();
-        this.overview = in.readString();
-        this.backdropPath = in.readString();
+        this.content = in.readString();
+        this.photo = in.readString();
     }
 
-    public static final Parcelable.Creator<BeritaResult> CREATOR = new Parcelable.Creator<BeritaResult>() {
+    public static final Creator<BeritaResult> CREATOR = new Creator<BeritaResult>() {
         @Override
         public BeritaResult createFromParcel(Parcel source) {
             return new BeritaResult(source);

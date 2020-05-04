@@ -17,11 +17,11 @@ public class ServiceResult {
     @Expose
     private String idForm;
 
-    @SerializedName("Nama Layanan")
+    @SerializedName("Nama_Layanan")
     @Expose
     private String namaLayanan;
 
-    @SerializedName("Jenis Layanan")
+    @SerializedName("Jenis_Layanan")
     @Expose
     private String jenisLayanan;
 

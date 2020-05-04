@@ -36,12 +36,6 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @GET("discover/movie")
-    Call<BeritaResponse> getListMovie(
-            @Query("api_key") String apikey,
-            @Query("language") String language
-    );
-
     @FormUrlEncoded
     @POST("login.php")
     Call<LoginResponse> userLogin(
@@ -197,5 +191,9 @@ public interface ApiInterface {
     @POST("delete-peserta-seminar.php")
     Call<Value> deletePesertaSeminar(
             @Body String result
+    );
+
+    @GET("read-berita.php")
+    Call<BeritaResponse> getListNews(
     );
 }
