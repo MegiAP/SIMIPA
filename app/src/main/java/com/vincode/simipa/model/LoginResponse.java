@@ -2,6 +2,8 @@ package com.vincode.simipa.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class LoginResponse {
 
     @SerializedName("error")
@@ -10,8 +12,8 @@ public class LoginResponse {
     @SerializedName("message")
     private String message;
 
-    @SerializedName("User Data")
-    private UserData user;
+    @SerializedName("records")
+    private List<UserData> user;
 
     public boolean isError() {
         return error;
@@ -21,14 +23,13 @@ public class LoginResponse {
         return message;
     }
 
-    public UserData getUser() {
+    public List<UserData> getUser() {
         return user;
     }
 
-    public LoginResponse(boolean error, String message, UserData user) {
+    public LoginResponse(boolean error, String message, List<UserData> user) {
         this.error = error;
         this.message = message;
         this.user = user;
-
     }
 }

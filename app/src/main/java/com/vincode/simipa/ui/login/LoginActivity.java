@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (response.body() != null) {
                     if (!response.body().isError()){
                         finish();
-                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(response.body().getUser());
+                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(response.body().getUser().get(0));
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     } else {
                         Toast.makeText(getApplicationContext(), "NPM atau Password anda salah", Toast.LENGTH_LONG).show();

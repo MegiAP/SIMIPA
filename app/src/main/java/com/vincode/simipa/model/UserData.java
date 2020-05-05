@@ -7,10 +7,10 @@ public class UserData {
     @SerializedName("Id")
     private long id;
 
-    @SerializedName("User Login")
+    @SerializedName("User_Login")
     private String userLogin;
 
-    @SerializedName("Display Name")
+    @SerializedName("Display_Name")
     private String displayName;
 
     public UserData(long id, String userLogin, String displayName) {

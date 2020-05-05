@@ -20,7 +20,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.vincode.simipa.R;
 import com.vincode.simipa.model.BeritaResult;
-import com.vincode.simipa.ui.berita.DetailBeritaActvity;
+//import com.vincode.simipa.ui.berita.DetailBeritaActvity;
 
 import java.util.ArrayList;
 import java.util.List;
