@@ -8,13 +8,13 @@ public class AchievementResult {
     @SerializedName("id")
     @Expose
     private String id;
-    @SerializedName("Kode Program Studi")
+    @SerializedName("Kode_Program_Studi")
     @Expose
     private String kodeProgramStudi;
     @SerializedName("npm")
     @Expose
     private String npm;
-    @SerializedName("Nama Kegiatan")
+    @SerializedName("Nama_Kegiatan")
     @Expose
     private String namaKegiatan;
     @SerializedName("Kategori")
@@ -26,7 +26,7 @@ public class AchievementResult {
     @SerializedName("Prestasi")
     @Expose
     private String prestasi;
-    @SerializedName("Tahun Prestasi")
+    @SerializedName("Tahun_Prestasi")
     @Expose
     private String tahunPrestasi;
     @SerializedName("Status")

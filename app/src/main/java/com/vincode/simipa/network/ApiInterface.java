@@ -165,11 +165,6 @@ public interface ApiInterface {
             @Query("npm") String npm
     );
 
-    @GET("read-jumlah-seminar.php")
-    Call<CountSeminarResponse> getCountSeminar(
-            @Query("npm") String npm
-    );
-
     @GET("read-list-seminar.php")
     Call<PresenceSeminarResponse> getPresenceSeminar(
             @Query("tgl") String tgl

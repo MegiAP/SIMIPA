@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class CountSeminarResult {
 
-    @SerializedName("Jumlah Seminar KP")
+    @SerializedName("Jumlah_Seminar_KP")
     @Expose
     private String jumlahSemKP;
-    @SerializedName("Jumlah Seminar Usul")
+    @SerializedName("Jumlah_Seminar_Usul")
     @Expose
     private String jumlahSemUsul;
-    @SerializedName("Jumlah Seminar Hasil")
+    @SerializedName("Jumlah_Seminar_Hasil")
     @Expose
     private String jumlahSemHas;
 

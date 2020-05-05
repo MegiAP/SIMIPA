@@ -38,7 +38,6 @@ public class SeminarScheduleAdapter extends RecyclerView.Adapter<SeminarSchedule
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(R.layout.item_seminar_schedule, parent, false);
         return new ViewHolder(view);
-
     }
 
     @Override
@@ -60,7 +59,6 @@ public class SeminarScheduleAdapter extends RecyclerView.Adapter<SeminarSchedule
         return listSeminarSchedule.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private Button btnJoin1;
         TextView smNpm,smJudul,smRuang, smNip, smWaktu, smTgl;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

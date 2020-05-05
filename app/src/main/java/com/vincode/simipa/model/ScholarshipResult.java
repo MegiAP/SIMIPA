@@ -14,19 +14,19 @@ public class ScholarshipResult {
     @SerializedName("semester")
     @Expose
     private String semester;
-    @SerializedName("Tahun Beasiswa")
+    @SerializedName("Tahun_Beasiswa")
     @Expose
     private String tahunBeasiswa;
-    @SerializedName("jenis beasiswa")
+    @SerializedName("jenis_beasiswa")
     @Expose
     private String jenisBeasiswa;
-    @SerializedName("nama beasiswa")
+    @SerializedName("nama_beasiswa")
     @Expose
     private String namaBeasiswa;
-    @SerializedName("no usulan")
+    @SerializedName("no_usulan")
     @Expose
     private String noUsulan;
-    @SerializedName("status ajukan")
+    @SerializedName("status_ajukan")
     @Expose
     private String statusAjukan;
     @SerializedName("keterangan")

@@ -7,7 +7,7 @@ public class LectureResult {
     @SerializedName("NIP")
     @Expose
     private String nip;
-    @SerializedName("Display Name")
+    @SerializedName("Display_Name")
     @Expose
     private String lectureName;
     @SerializedName("Email")

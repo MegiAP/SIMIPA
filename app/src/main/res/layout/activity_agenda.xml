@@ -15,6 +15,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_blue_skies"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:text="Teori"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_college_agenda"
             android:layout_width="match_parent"
@@ -24,6 +34,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_blue_skies"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="18sp"
             android:text="@string/jadwal_praktikum"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -35,7 +50,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="seminar kp"/>
+            android:background="@drawable/bg_blue_skies"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:text="Seminar KP"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_seminarkp_agenda"
@@ -46,23 +66,33 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="seminar usul"/>
+            android:background="@drawable/bg_blue_skies"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:text="Seminar Usul"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_seminarusul_agenda"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:listitem="@layout/item_seminar_schedule"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="seminar hasil"/>
+            android:background="@drawable/bg_blue_skies"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:text="Seminar Hasil"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_seminarhasil_agenda"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:listitem="@layout/item_seminar_schedule"/>
 
     </LinearLayout>
@@ -95,6 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tidak ada Agenda"
+        android:textStyle="bold"
         android:textSize="20sp"
         android:layout_centerInParent="true"/>
 

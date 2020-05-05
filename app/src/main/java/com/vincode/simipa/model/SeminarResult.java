@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class SeminarResult {
 
-    @SerializedName("Pembimbing 1")
+    @SerializedName("Pembimbing_1")
     @Expose
     private String pem1;
     @SerializedName("Nama")

@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.AgendaAdapter;
+import com.vincode.simipa.adapter.AgendaSeminarAdapter;
 import com.vincode.simipa.adapter.CollegeScheduleAdapter;
 import com.vincode.simipa.adapter.SeminarScheduleAdapter;
 import com.vincode.simipa.model.Agenda;
@@ -37,7 +38,7 @@ public class AgendaActivity extends AppCompatActivity {
     private AgendaAdapter adapter;
     private RecyclerView rvCategory, rvCategory1, rvCategory2, rvCategory3, rvCategory4;
     private TextView agendaKosong;
-    private SeminarScheduleAdapter seminarScheduleAdapter;
+    private AgendaSeminarAdapter seminarScheduleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +138,7 @@ public class AgendaActivity extends AppCompatActivity {
             public void onResponse(Call<SeminarScheduleResponse> call, Response<SeminarScheduleResponse> response) {
                 if (response.body() != null) {
 
-                    seminarScheduleAdapter = new SeminarScheduleAdapter(getBaseContext(), response.body().getRecords());
+                    seminarScheduleAdapter = new AgendaSeminarAdapter(getBaseContext(), response.body().getRecords());
                     seminarScheduleAdapter.notifyDataSetChanged();
                     rvCategory2.setAdapter(seminarScheduleAdapter);
 
@@ -162,7 +163,7 @@ public class AgendaActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<SeminarScheduleResponse> call, Response<SeminarScheduleResponse> response) {
                 if (response.body() != null) {
-                    seminarScheduleAdapter = new SeminarScheduleAdapter(getBaseContext(), response.body().getRecords());
+                    seminarScheduleAdapter = new AgendaSeminarAdapter(getBaseContext(), response.body().getRecords());
                     seminarScheduleAdapter.notifyDataSetChanged();
                     rvCategory3.setAdapter(seminarScheduleAdapter);
                 }
@@ -183,9 +184,10 @@ public class AgendaActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<SeminarScheduleResponse> call, Response<SeminarScheduleResponse> response) {
                 if (response.body() != null) {
-                    seminarScheduleAdapter = new SeminarScheduleAdapter(getBaseContext(), response.body().getRecords());
+                    seminarScheduleAdapter = new AgendaSeminarAdapter(getBaseContext(), response.body().getRecords());
                     seminarScheduleAdapter.notifyDataSetChanged();
                     rvCategory4.setAdapter(seminarScheduleAdapter);
+                    pgBar2.setVisibility(View.GONE);
                 }
             }
 

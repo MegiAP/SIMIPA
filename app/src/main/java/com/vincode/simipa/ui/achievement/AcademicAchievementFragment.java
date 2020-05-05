@@ -25,6 +25,8 @@ import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.SharedPrefManager;
 
+import java.util.Objects;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -78,11 +80,15 @@ public class AcademicAchievementFragment extends Fragment {
                     pgBar.setVisibility(View.GONE);
                     achievementAdapter.notifyDataSetChanged();
                 }
+                else {
+                    pgBar.setVisibility(View.GONE);
+                }
             }
 
             @Override
             public void onFailure(@NonNull Call<AchievementResponse> call, @NonNull Throwable t) {
-                Log.d("Failure", " ");
+                Log.d("c", Objects.requireNonNull(t.getMessage()));
+                pgBar.setVisibility(View.GONE);
             }
         });
     }
