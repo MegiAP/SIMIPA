@@ -11,8 +11,12 @@ import retrofit2.Response;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.vincode.simipa.R;
@@ -106,5 +110,42 @@ public class SeminarRecapActivity extends AppCompatActivity {
             }
         });
     }
-    
+
+    // button filter
+/*    public void klikKP(View view) {
+        seminarRecapAdapter.getFilter().filter("seminar kp");
+    }
+
+    public void klikUsul(View view) {
+        seminarRecapAdapter.getFilter().filter("seminar usul");
+    }
+
+    public void klikHasil(View view) {
+        seminarRecapAdapter.getFilter().filter("seminar_hasil");
+    }*/
+
+    // search
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.example_search, menu);
+
+        MenuItem search = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) search.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                seminarRecapAdapter.getFilter().filter(s);
+                return false;
+            }
+        });
+        return true;
+    }
+
 }

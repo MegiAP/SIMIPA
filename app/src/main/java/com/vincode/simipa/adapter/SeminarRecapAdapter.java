@@ -4,6 +4,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,13 +24,15 @@ import com.vincode.simipa.network.ApiInterface;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapter.CardViewViewHolder> {
+public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapter.CardViewViewHolder> implements Filterable {
     private List<SeminarResult> listSeminar = new ArrayList<>();
+    private List<SeminarResult> listSeminarFull;
 
     public void setListSeminar(List<SeminarResult> listSeminar) {
         if (listSeminar == null) return;
         this.listSeminar.clear();
         this.listSeminar = listSeminar;
+        listSeminarFull = new ArrayList<>(listSeminar);
     }
 
     @NonNull
@@ -47,7 +51,6 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         holder.tvSjudul.setText(p.getJudul());
         holder.tvSdosen.setText(p.getPem1());
         holder.tvSjenis.setText(p.getTanggal());
-
         holder.ivImage.setText(p.getJenis());
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -65,20 +68,6 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
                 Log.d(holder.tvSdosen.getText().toString(), " ");
             }
         });
-
-        /*switch (p.getJenis()) {
-            case "Seminar Kerja Praktek" :
-                holder.ivImage.setBackgroundResource(R.drawable.bg_blue_skies);
-                break;
-            case "Seminar Usul" :
-                holder.ivImage.setBackgroundResource(R.drawable.bg_blue_dark);
-                break;
-            case "Seminar Hasil" :
-                holder.ivImage.setBackgroundResource(R.drawable.bg_green);
-                break;
-            case "Seminar Komprehensif" :
-                holder.ivImage.setBackgroundResource(R.drawable.bg_red);
-        }*/
     }
 
     @Override
@@ -99,4 +88,41 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
             ivImage = itemView.findViewById(R.id.iv_image);
         }
     }
+
+    //Filter data
+    @Override
+    public Filter getFilter() {
+        return dataFilter;
+    }
+
+    private Filter dataFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<SeminarResult> seminarResult = new ArrayList<>();
+
+            if (charSequence == null || charSequence.length() == 0) {
+                seminarResult.addAll(listSeminarFull);
+            } else {
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+                for (SeminarResult item : listSeminarFull) {
+                        if (item.getJenis().toLowerCase().contains(filterPattern)) {
+                            seminarResult.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = seminarResult;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            listSeminar.clear();
+            listSeminar.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
+
 }

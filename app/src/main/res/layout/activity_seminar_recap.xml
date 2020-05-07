@@ -30,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_green_beach">
+                <!--android:onClick="klikKP"-->
 
                 <TextView
                     android:id="@+id/jumlah_kp"
@@ -76,6 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_blue_skies">
+                <!--android:onClick="klikUsul"-->
 
                 <TextView
                     android:id="@+id/jumlah_usul"
@@ -122,6 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_red_gradient">
+                <!--android:onClick="klikHasil"-->
 
                 <TextView
                     android:id="@+id/jumlah_hasil"
@@ -164,7 +167,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
-
-
 
 </RelativeLayout>
