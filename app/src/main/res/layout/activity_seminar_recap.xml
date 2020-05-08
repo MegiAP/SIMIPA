@@ -27,10 +27,12 @@
             tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
+                android:id="@+id/klikKP"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_green_beach">
                 <!--android:onClick="klikKP"-->
+
 
                 <TextView
                     android:id="@+id/jumlah_kp"
@@ -55,7 +57,7 @@
                     android:layout_marginBottom="5dp"
                     android:textStyle="bold"
                     android:maxLines="1"
-                    android:text="Seminar KP"
+                    android:text="@string/seminar_kp"
                     android:textColor="#fff" />
 
             </RelativeLayout>
@@ -74,6 +76,7 @@
             tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
+                android:id="@+id/klikUsul"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_blue_skies">
@@ -102,7 +105,7 @@
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
                     android:textStyle="bold"
-                    android:text="Seminar Proposal"
+                    android:text="@string/seminar_usul"
                     android:textColor="#fff"/>
 
             </RelativeLayout>
@@ -121,6 +124,7 @@
             tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
+                android:id="@+id/klikHasil"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_red_gradient">
@@ -149,7 +153,7 @@
                     android:layout_marginBottom="5dp"
                     android:maxLines="1"
                     android:textStyle="bold"
-                    android:text="Seminar Hasil"
+                    android:text="@string/seminar_hasil"
                     android:textColor="#fff" />
 
             </RelativeLayout>

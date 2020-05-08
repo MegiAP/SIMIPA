@@ -11,16 +11,15 @@ import retrofit2.Response;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.SeminarRecapAdapter;
+import com.vincode.simipa.adapter.SeminarRecapHasilAdapter;
+import com.vincode.simipa.adapter.SeminarRecapUsulAdapter;
 import com.vincode.simipa.model.SeminarResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
@@ -32,6 +31,9 @@ public class SeminarRecapActivity extends AppCompatActivity {
     private RecyclerView rvCategory;
 
     SeminarRecapAdapter seminarRecapAdapter;
+    SeminarRecapUsulAdapter seminarRecapUsulAdapter;
+    SeminarRecapHasilAdapter seminarRecapHasilAdapter;
+    RelativeLayout relativeLayout, relativeLayout1, relativeLayout2;
     private ProgressBar pgBar;
     private TextView jmlKP, jmlUsul, jmlHasil;
 
@@ -44,18 +46,48 @@ public class SeminarRecapActivity extends AppCompatActivity {
         jmlUsul = findViewById(R.id.jumlah_usul);
         jmlHasil = findViewById(R.id.jumlah_hasil);
 
+        relativeLayout = findViewById(R.id.klikKP);
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rvCategory.setAdapter(seminarRecapAdapter);
+                seminarRecapAdapter.getFilter().filter("seminar kerja");
+            }
+        });
+        relativeLayout1 = findViewById(R.id.klikUsul);
+        relativeLayout1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rvCategory.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                rvCategory.setHasFixedSize(true);
+                rvCategory.setAdapter(seminarRecapUsulAdapter);
+                seminarRecapUsulAdapter.getFilter().filter("seminar usul");
+            }
+        });
+        relativeLayout2 = findViewById(R.id.klikHasil);
+        relativeLayout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rvCategory.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                rvCategory.setHasFixedSize(true);
+                rvCategory.setAdapter(seminarRecapHasilAdapter);
+                seminarRecapHasilAdapter.getFilter().filter("seminar hasil");
+            }
+        });
+
         pgBar = findViewById(R.id.pg_bar);
         pgBar.setVisibility(View.VISIBLE);
-        seminarRecapAdapter = new SeminarRecapAdapter();
-
         rvCategory = findViewById(R.id.rv_seminar_recap);
+
+        seminarRecapAdapter = new SeminarRecapAdapter();
+        seminarRecapUsulAdapter = new SeminarRecapUsulAdapter();
+        seminarRecapHasilAdapter = new SeminarRecapHasilAdapter();
 
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle(R.string.seminar);
 
         showRecyclerCardView();
-//        getCountSeminar();
         getData();
     }
 
@@ -64,26 +96,6 @@ public class SeminarRecapActivity extends AppCompatActivity {
         rvCategory.setHasFixedSize(true);
         rvCategory.setAdapter(seminarRecapAdapter);
     }
-
-//    private void getCountSeminar() {
-//        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-//        Call<CountSeminarResponse> call = apiInterface.getCountSeminar(SharedPrefManager.getInstance(this).getUser().getUserLogin());
-//        call.enqueue(new Callback<CountSeminarResponse>() {
-//            @Override
-//            public void onResponse(@NonNull Call<CountSeminarResponse> call, @NonNull Response<CountSeminarResponse> response) {
-//                assert response.body() != null;
-//                List<CountSeminarResult> countSeminar = response.body().getResult();
-//                jmlKP.setText(countSeminar.get(0).getJumlahSemKP());
-//                jmlUsul.setText(countSeminar.get(0).getJumlahSemUsul());
-//                jmlHasil.setText(countSeminar.get(0).getJumlahSemHas());
-//            }
-//
-//            @Override
-//            public void onFailure(@NonNull Call<CountSeminarResponse> call, @NonNull Throwable t) {
-//                Log.d("c", Objects.requireNonNull(t.getMessage()));
-//            }
-//        });
-//    }
 
     private void getData() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -94,6 +106,8 @@ public class SeminarRecapActivity extends AppCompatActivity {
 
                 if (response.body() != null) {
                     seminarRecapAdapter.setListSeminar(response.body().getResult());
+                    seminarRecapUsulAdapter.setListSeminar(response.body().getResult());
+                    seminarRecapHasilAdapter.SeminarRecapHasilAdapter(response.body().getResult());
                     jmlHasil.setText(response.body().getJumlahSemHas());
                     jmlUsul.setText(response.body().getJumlahSemUsul());
                     jmlKP.setText(response.body().getJumlahSemKP());
@@ -113,39 +127,15 @@ public class SeminarRecapActivity extends AppCompatActivity {
 
     // button filter
 /*    public void klikKP(View view) {
-        seminarRecapAdapter.getFilter().filter("seminar kp");
+
     }
 
     public void klikUsul(View view) {
-        seminarRecapAdapter.getFilter().filter("seminar usul");
+
     }
 
     public void klikHasil(View view) {
-        seminarRecapAdapter.getFilter().filter("seminar_hasil");
+
     }*/
-
-    // search
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.example_search, menu);
-
-        MenuItem search = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) search.getActionView();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                seminarRecapAdapter.getFilter().filter(s);
-                return false;
-            }
-        });
-        return true;
-    }
 
 }

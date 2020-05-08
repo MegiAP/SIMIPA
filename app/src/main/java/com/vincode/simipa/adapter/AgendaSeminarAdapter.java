@@ -17,11 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class AgendaSeminarAdapter extends RecyclerView.Adapter<AgendaSeminarAdapter.ViewHolder> {
 
+    private Context context;
     private List<SeminarScheduleResult> listSeminarSchedule = new ArrayList<>();
-    private final Context activity;
 
-    public AgendaSeminarAdapter(Context activity, List<SeminarScheduleResult> seminarScheduleList) {
-        this.activity = activity;
+    public AgendaSeminarAdapter(Context context, List<SeminarScheduleResult> seminarScheduleList) {
+        this.context = context;
         if (seminarScheduleList == null)return;
         this.listSeminarSchedule.clear();
         this.listSeminarSchedule.addAll(seminarScheduleList);
@@ -30,7 +30,7 @@ public class AgendaSeminarAdapter extends RecyclerView.Adapter<AgendaSeminarAdap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.item_seminar_schedule, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_seminar_schedule, parent, false);
         return new ViewHolder(view);
     }
 
