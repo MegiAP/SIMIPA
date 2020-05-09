@@ -9,8 +9,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -27,7 +31,7 @@ import com.vincode.simipa.util.SharedPrefManager;
 
 import java.util.Objects;
 
-public class SeminarRecapActivity extends AppCompatActivity {
+public class SeminarRecapActivity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView rvCategory;
 
     SeminarRecapAdapter seminarRecapAdapter;
@@ -47,33 +51,11 @@ public class SeminarRecapActivity extends AppCompatActivity {
         jmlHasil = findViewById(R.id.jumlah_hasil);
 
         relativeLayout = findViewById(R.id.klikKP);
-        relativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rvCategory.setAdapter(seminarRecapAdapter);
-                seminarRecapAdapter.getFilter().filter("seminar kerja");
-            }
-        });
+        relativeLayout.setOnClickListener(this);
         relativeLayout1 = findViewById(R.id.klikUsul);
-        relativeLayout1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rvCategory.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-                rvCategory.setHasFixedSize(true);
-                rvCategory.setAdapter(seminarRecapUsulAdapter);
-                seminarRecapUsulAdapter.getFilter().filter("seminar usul");
-            }
-        });
+        relativeLayout1.setOnClickListener(this);
         relativeLayout2 = findViewById(R.id.klikHasil);
-        relativeLayout2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rvCategory.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-                rvCategory.setHasFixedSize(true);
-                rvCategory.setAdapter(seminarRecapHasilAdapter);
-                seminarRecapHasilAdapter.getFilter().filter("seminar hasil");
-            }
-        });
+        relativeLayout2.setOnClickListener(this);
 
         pgBar = findViewById(R.id.pg_bar);
         pgBar.setVisibility(View.VISIBLE);
@@ -125,17 +107,44 @@ public class SeminarRecapActivity extends AppCompatActivity {
         });
     }
 
-    // button filter
-/*    public void klikKP(View view) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.refresh, menu);
 
+        MenuItem refresh = menu.findItem(R.id.action_refresh);
+        refresh.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                Intent refresh = new Intent(SeminarRecapActivity.this, SeminarRecapActivity.class);
+                startActivity(refresh);
+                finish();
+                return true;
+            }
+        });
+
+        return true;
     }
 
-    public void klikUsul(View view) {
-
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.klikKP :
+                rvCategory.setAdapter(seminarRecapAdapter);
+                seminarRecapAdapter.getFilter().filter("seminar kerja");
+                break;
+            case R.id.klikUsul :
+                rvCategory.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                rvCategory.setHasFixedSize(true);
+                rvCategory.setAdapter(seminarRecapUsulAdapter);
+                seminarRecapUsulAdapter.getFilter().filter("seminar usul");
+                break;
+            case R.id.klikHasil :
+                rvCategory.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                rvCategory.setHasFixedSize(true);
+                rvCategory.setAdapter(seminarRecapHasilAdapter);
+                seminarRecapHasilAdapter.getFilter().filter("seminar hasil");
+                break;
+        }
     }
-
-    public void klikHasil(View view) {
-
-    }*/
-
 }

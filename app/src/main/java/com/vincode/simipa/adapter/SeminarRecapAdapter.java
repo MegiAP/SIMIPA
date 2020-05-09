@@ -49,12 +49,11 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         holder.tvName.setText(p.getNama());
         holder.tvNpm.setText(p.getNpm());
         holder.tvSjudul.setText(p.getJudul());
-        holder.tvSdosen.setText(p.getPem1());
         holder.tvSjenis.setText(p.getTanggal());
         holder.ivImage.setText(p.getJenis());
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<LectureResponse> call = apiInterface.getLecture(holder.tvSdosen.getText().toString());
+        Call<LectureResponse> call = apiInterface.getLecture(p.getPem1());
         call.enqueue(new Callback<LectureResponse>() {
             @Override
             public void onResponse(@NonNull Call<LectureResponse> call, Response<LectureResponse> response) {
