@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vincode.simipa.R;
@@ -53,6 +54,10 @@ public class SeminarRecapHasilAdapter extends RecyclerView.Adapter<SeminarRecapH
         holder.tvSjenis.setText(p.getTanggal());
         holder.ivImage.setText(p.getJenis());
 
+        if (p.getJenis().equals("Seminar Hasil")) {
+            holder.coJenis.setBackgroundResource(R.drawable.bg_red_gradient);
+        }
+
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<LectureResponse> call = apiInterface.getLecture(p.getPem1());
         call.enqueue(new Callback<LectureResponse>() {
@@ -78,6 +83,7 @@ public class SeminarRecapHasilAdapter extends RecyclerView.Adapter<SeminarRecapH
     public class CardViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvNpm, tvSjudul, tvSdosen, tvSjenis;
         TextView ivImage;
+        ImageView coJenis;
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -87,6 +93,7 @@ public class SeminarRecapHasilAdapter extends RecyclerView.Adapter<SeminarRecapH
             tvSdosen = itemView.findViewById(R.id.tv_rec_dosenSem);
             tvSjenis = itemView.findViewById(R.id.tv_recJenisSem);
             ivImage = itemView.findViewById(R.id.iv_image);
+            coJenis = itemView.findViewById(R.id.co_jenis_seminar);
         }
     }
 

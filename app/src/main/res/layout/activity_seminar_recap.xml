@@ -12,18 +12,19 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="horizontal"
+        android:layout_marginVertical="5dp"
+        android:gravity="center"
         android:weightSum="1"
         tools:ignore="UselessParent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_rec_kp"
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:layout_marginStart="5dp"
+            android:layout_height="85dp"
             android:layout_weight="0.33"
+            android:layout_marginStart="5dp"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
+            app:cardElevation="3dp"
             tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
@@ -31,8 +32,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_green_beach">
-                <!--android:onClick="klikKP"-->
 
+                <ImageView
+                    android:id="@+id/ic_presentation_kp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="2dp"
+                    android:src="@drawable/presentation"/>
 
                 <TextView
                     android:id="@+id/jumlah_kp"
@@ -41,7 +48,7 @@
                     android:layout_above="@+id/tv_rec_kp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginVertical="5dp"
-                    android:paddingTop="4dp"
+                    android:paddingTop="8dp"
                     android:textSize="28sp"
                     android:textColor="#fff"
                     android:text="0"
@@ -67,12 +74,11 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_rec_usul"
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:layout_marginStart="5dp"
+            android:layout_height="85dp"
+            android:layout_marginHorizontal="6dp"
             android:layout_weight="0.33"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
+            app:cardElevation="3dp"
             tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
@@ -80,7 +86,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_blue_skies">
-                <!--android:onClick="klikUsul"-->
+
+                <ImageView
+                    android:id="@+id/ic_presentation_usul"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="2dp"
+                    android:src="@drawable/presentation"/>
 
                 <TextView
                     android:id="@+id/jumlah_usul"
@@ -89,7 +102,7 @@
                     android:layout_above="@+id/tv_rec_usul"
                     android:layout_centerHorizontal="true"
                     android:layout_marginVertical="5dp"
-                    android:paddingTop="4dp"
+                    android:paddingTop="8dp"
                     android:textSize="28sp"
                     android:textColor="#fff"
                     android:text="0"
@@ -115,12 +128,11 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_rec_hasil"
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:layout_marginStart="5dp"
+            android:layout_height="85dp"
             android:layout_weight="0.33"
+            android:layout_marginEnd="5dp"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
+            app:cardElevation="3dp"
             tools:ignore="KeyboardInaccessibleWidget">
 
             <RelativeLayout
@@ -128,7 +140,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_red_gradient">
-                <!--android:onClick="klikHasil"-->
+
+                <ImageView
+                    android:id="@+id/ic_presentation_hasil"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="2dp"
+                    android:src="@drawable/presentation"/>
 
                 <TextView
                     android:id="@+id/jumlah_hasil"
@@ -137,7 +156,7 @@
                     android:layout_above="@+id/tv_rec_hasil"
                     android:layout_centerHorizontal="true"
                     android:layout_marginVertical="5dp"
-                    android:paddingTop="4dp"
+                    android:paddingTop="8dp"
                     android:gravity="center"
                     android:textColor="#fff"
                     android:textSize="28sp"

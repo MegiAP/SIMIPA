@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,6 +53,18 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         holder.tvSjenis.setText(p.getTanggal());
         holder.ivImage.setText(p.getJenis());
 
+        switch (p.getJenis()) {
+            case "Seminar Kerja Praktek" :
+                holder.coJenis.setBackgroundResource(R.drawable.bg_green_beach);
+                break;
+            case "Seminar Usul" :
+                holder.coJenis.setBackgroundResource(R.drawable.bg_blue_skies);
+                break;
+            case "Seminar Hasil" :
+                holder.coJenis.setBackgroundResource(R.drawable.bg_red_gradient);
+                break;
+        }
+
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<LectureResponse> call = apiInterface.getLecture(p.getPem1());
         call.enqueue(new Callback<LectureResponse>() {
@@ -77,6 +90,7 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
     static class CardViewViewHolder extends RecyclerView.ViewHolder{
         TextView tvName, tvNpm, tvSjudul, tvSdosen, tvSjenis;
         TextView ivImage;
+        ImageView coJenis;
         CardViewViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_recMhsSem);
@@ -85,6 +99,7 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
             tvSdosen = itemView.findViewById(R.id.tv_rec_dosenSem);
             tvSjenis = itemView.findViewById(R.id.tv_recJenisSem);
             ivImage = itemView.findViewById(R.id.iv_image);
+            coJenis = itemView.findViewById(R.id.co_jenis_seminar);
         }
     }
 

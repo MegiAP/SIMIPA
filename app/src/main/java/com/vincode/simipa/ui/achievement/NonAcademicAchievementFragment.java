@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.AchievementAdapter;
@@ -34,6 +35,7 @@ public class NonAcademicAchievementFragment extends Fragment {
     private AchievementAdapter achievementAdapter;
     private RecyclerView rvCategory;
     private ProgressBar pgBar;
+    private TextView tvNoAchieve;
 
     public NonAcademicAchievementFragment() {
         // Required empty public constructor
@@ -47,6 +49,8 @@ public class NonAcademicAchievementFragment extends Fragment {
 
         rvCategory = view.findViewById(R.id.rv_category);
         pgBar = view.findViewById(R.id.pg_bar);
+        tvNoAchieve = view.findViewById(R.id.tv_no_achieve);
+        tvNoAchieve.setVisibility(View.GONE);
 
         return view;
     }
@@ -80,6 +84,7 @@ public class NonAcademicAchievementFragment extends Fragment {
                     achievementAdapter.notifyDataSetChanged();
                 }
                 else {
+                    tvNoAchieve.setVisibility(View.VISIBLE);
                     pgBar.setVisibility(View.GONE);
                 }
             }

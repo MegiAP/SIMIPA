@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,6 +41,7 @@ public class SeminarRecapActivity extends AppCompatActivity implements View.OnCl
     RelativeLayout relativeLayout, relativeLayout1, relativeLayout2;
     private ProgressBar pgBar;
     private TextView jmlKP, jmlUsul, jmlHasil;
+    private ImageView icPresentation, icPresentation1, icPresentation2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,9 @@ public class SeminarRecapActivity extends AppCompatActivity implements View.OnCl
 
         pgBar = findViewById(R.id.pg_bar);
         pgBar.setVisibility(View.VISIBLE);
+        icPresentation = findViewById(R.id.ic_presentation_kp);
+        icPresentation1 = findViewById(R.id.ic_presentation_usul);
+        icPresentation2 = findViewById(R.id.ic_presentation_hasil);
         rvCategory = findViewById(R.id.rv_seminar_recap);
 
         seminarRecapAdapter = new SeminarRecapAdapter();
@@ -130,16 +135,28 @@ public class SeminarRecapActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.klikKP :
+                icPresentation.setImageResource(R.drawable.presentation_active);
+                icPresentation1.setImageResource(R.drawable.presentation);
+                icPresentation2.setImageResource(R.drawable.presentation);
+
                 rvCategory.setAdapter(seminarRecapAdapter);
                 seminarRecapAdapter.getFilter().filter("seminar kerja");
                 break;
             case R.id.klikUsul :
+                icPresentation1.setImageResource(R.drawable.presentation_active);
+                icPresentation2.setImageResource(R.drawable.presentation);
+                icPresentation.setImageResource(R.drawable.presentation);
+
                 rvCategory.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                 rvCategory.setHasFixedSize(true);
                 rvCategory.setAdapter(seminarRecapUsulAdapter);
                 seminarRecapUsulAdapter.getFilter().filter("seminar usul");
                 break;
             case R.id.klikHasil :
+                icPresentation2.setImageResource(R.drawable.presentation_active);
+                icPresentation1.setImageResource(R.drawable.presentation);
+                icPresentation.setImageResource(R.drawable.presentation);
+
                 rvCategory.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                 rvCategory.setHasFixedSize(true);
                 rvCategory.setAdapter(seminarRecapHasilAdapter);

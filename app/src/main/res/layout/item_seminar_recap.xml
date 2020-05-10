@@ -22,6 +22,13 @@
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         card_view:cardCornerRadius="16dp">
 
+        <ImageView
+            android:id="@+id/co_jenis_seminar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="4dp"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
