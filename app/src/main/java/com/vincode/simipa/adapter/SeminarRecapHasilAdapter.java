@@ -8,6 +8,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.model.LectureResponse;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,14 +47,21 @@ public class SeminarRecapHasilAdapter extends RecyclerView.Adapter<SeminarRecapH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final CardViewHolder holder, int position) {
-        SeminarResult p = listSeminar.get(position);
+    public void onBindViewHolder(@NonNull final CardViewHolder holder, final int position) {
+        final SeminarResult p = listSeminar.get(position);
 
         holder.tvName.setText(p.getNama());
         holder.tvNpm.setText(p.getNpm());
         holder.tvSjudul.setText(p.getJudul());
         holder.tvSjenis.setText(p.getTanggal());
         holder.ivImage.setText(p.getJenis());
+
+        holder.cvRekap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "Seminar dengan judul \"" + p.getJudul() + "\"", Toast.LENGTH_LONG).show();
+            }
+        });
 
         if (p.getJenis().equals("Seminar Hasil")) {
             holder.coJenis.setBackgroundResource(R.drawable.bg_red_gradient);
@@ -84,6 +93,7 @@ public class SeminarRecapHasilAdapter extends RecyclerView.Adapter<SeminarRecapH
         TextView tvName, tvNpm, tvSjudul, tvSdosen, tvSjenis;
         TextView ivImage;
         ImageView coJenis;
+        CardView cvRekap;
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -94,6 +104,7 @@ public class SeminarRecapHasilAdapter extends RecyclerView.Adapter<SeminarRecapH
             tvSjenis = itemView.findViewById(R.id.tv_recJenisSem);
             ivImage = itemView.findViewById(R.id.iv_image);
             coJenis = itemView.findViewById(R.id.co_jenis_seminar);
+            cvRekap = itemView.findViewById(R.id.card_view);
         }
     }
 

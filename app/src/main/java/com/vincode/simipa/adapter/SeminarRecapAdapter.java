@@ -8,8 +8,10 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,13 +47,20 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final SeminarRecapAdapter.CardViewViewHolder holder, int position) {
-        SeminarResult p = listSeminar.get(position);
+        final SeminarResult p = listSeminar.get(position);
 
         holder.tvName.setText(p.getNama());
         holder.tvNpm.setText(p.getNpm());
         holder.tvSjudul.setText(p.getJudul());
         holder.tvSjenis.setText(p.getTanggal());
         holder.ivImage.setText(p.getJenis());
+
+        holder.cvRekap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "Seminar dengan judul \"" + p.getJudul() + "\"", Toast.LENGTH_LONG).show();
+            }
+        });
 
         switch (p.getJenis()) {
             case "Seminar Kerja Praktek" :
@@ -91,6 +100,7 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         TextView tvName, tvNpm, tvSjudul, tvSdosen, tvSjenis;
         TextView ivImage;
         ImageView coJenis;
+        CardView cvRekap;
         CardViewViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_recMhsSem);
@@ -100,10 +110,11 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
             tvSjenis = itemView.findViewById(R.id.tv_recJenisSem);
             ivImage = itemView.findViewById(R.id.iv_image);
             coJenis = itemView.findViewById(R.id.co_jenis_seminar);
+            cvRekap = itemView.findViewById(R.id.card_view);
         }
     }
 
-    //Filter data kp
+
     @Override
     public Filter getFilter() {
         return dataFilter;
