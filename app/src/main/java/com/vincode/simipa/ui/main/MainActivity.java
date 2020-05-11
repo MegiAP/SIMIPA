@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tvName;
     private BeritaAdapter adapter;
     private RecyclerView rvBerita;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         imageUser = findViewById(R.id.img_user);
         tvName = findViewById(R.id.tv_home_name);
-
+        progressBar = findViewById(R.id.progress_bar);
         rvBerita = findViewById(R.id.rv_berita);
         adapter = new BeritaAdapter(this);
 
@@ -80,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setCardClick();
         getDataProfil();
 
+        progressBar.setVisibility(View.VISIBLE);
+        rvBerita.setVisibility(View.GONE);
     }
 
     private void setLayout(){
@@ -96,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onResponse(@NonNull Call<BeritaResponse> call, @NonNull Response<BeritaResponse> response) {
                 if (response.body() != null) {
+                    rvBerita.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
                     adapter.setListBerita(response.body().getNews());
                     adapter.notifyDataSetChanged();
                 }

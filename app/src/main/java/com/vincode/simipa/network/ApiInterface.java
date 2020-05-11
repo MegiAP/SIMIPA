@@ -11,6 +11,7 @@ import com.vincode.simipa.model.KRSResponse;
 import com.vincode.simipa.model.LectureResponse;
 import com.vincode.simipa.model.LectureResult;
 import com.vincode.simipa.model.LoginResponse;
+import com.vincode.simipa.model.PhotoNewsResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.PresenceSeminarResponse;
 import com.vincode.simipa.model.ProfileResponse;
@@ -195,5 +196,10 @@ public interface ApiInterface {
 
     @GET("read-berita.php")
     Call<BeritaResponse> getListNews(
+    );
+
+    @GET("read-berita-foto.php")
+    Call<PhotoNewsResponse> getPhotoNews(
+        @Query("id") String idNews
     );
 }

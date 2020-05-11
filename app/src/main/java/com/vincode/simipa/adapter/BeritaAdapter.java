@@ -19,11 +19,18 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.vincode.simipa.R;
+import com.vincode.simipa.model.BeritaResponse;
 import com.vincode.simipa.model.BeritaResult;
-//import com.vincode.simipa.ui.berita.DetailBeritaActvity;
+import com.vincode.simipa.model.PhotoNewsResponse;
+import com.vincode.simipa.network.ApiClient;
+import com.vincode.simipa.network.ApiInterface;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaViewHolder> {
 
@@ -54,7 +61,7 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
 
         final BeritaResult data = listBerita.get(position);
         holder.tvTitle.setText(data.getTitle());
-        holder.tvTime.setText(data.getReleaseDate());
+        holder.tvTime.setText(data.getDate());
 //        Glide.with(activity)
 //                .load("https://image.tmdb.org/t/p/w500/"+data.getBackdropPath())
 //                .transform(new CenterInside(), new RoundedCorners(10))
@@ -63,7 +70,7 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://fmipa.unila.ac.id/beasiswa-program-smart-scholarship-ybm-bri-kantor-wilayah-bandar-lampung/"));
+                intent.setData(Uri.parse(data.getLink()));
                 activity.startActivity(intent);
 //                Intent intent = new Intent(activity, DetailBeritaActvity.class);
 //                intent.putExtra("berita", data);
@@ -72,20 +79,47 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
             }
         });
 //        Log.d("title", data.getTitle());
-        Glide.with(activity)
-                .load("https://fmipa.unila.ac.id/"+data.getPhoto())
+//        Glide.with(activity)
+//                .load("https://fmipa.unila.ac.id/"+data.getPhoto())
+//                .into(new SimpleTarget<Drawable>() {
+//                    @Override
+//                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+//                        holder.imgBerita.setBackground(resource);
+//                    }
+//                });
+
+        getPhotoFromId(data.getId(), holder.imgBerita);
+    }
+
+    private void getPhotoFromId(String id, final ImageView imgBerita) {
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<PhotoNewsResponse> call = apiInterface.getPhotoNews(id);
+
+        call.enqueue(new Callback<PhotoNewsResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<PhotoNewsResponse> call, @NonNull Response<PhotoNewsResponse> response) {
+
+                assert response.body() != null;
+                Glide.with(activity)
+                .load(response.body().getPhotoResponse().get(0).getFoto())
                 .into(new SimpleTarget<Drawable>() {
                     @Override
                     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                        holder.imgBerita.setBackground(resource);
+                        imgBerita.setBackground(resource);
                     }
                 });
+            }
 
+            @Override
+            public void onFailure(@NonNull Call<PhotoNewsResponse> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return listBerita.size();
+        return 3;
     }
 
     static class BeritaViewHolder extends RecyclerView.ViewHolder {

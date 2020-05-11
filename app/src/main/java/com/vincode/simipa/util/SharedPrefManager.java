@@ -30,7 +30,7 @@ public class SharedPrefManager {
     public boolean userLogin (UserData userData){
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME_LOGIN, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor  = sharedPreferences.edit();
-//        editor.putLong(KEY_ID, userData.getId());
+        editor.putLong(KEY_ID, userData.getId());
         editor.putString(KEY_NAME, userData.getDisplayName());
         editor.putString(KEY_NPM, userData.getUserLogin());
         editor.apply();
