@@ -46,7 +46,7 @@ public class AchievementActivity extends AppCompatActivity {
         actionBar.setTitle(R.string.achievment);
 
         AcademicAchievementFragment academicAchievementFragment = new AcademicAchievementFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.scroll_layout, academicAchievementFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, academicAchievementFragment).commit();
 
         getData();
 
@@ -54,14 +54,14 @@ public class AchievementActivity extends AppCompatActivity {
 
     public void cacademic (View view) {
         AcademicAchievementFragment academicAchievementFragment = new AcademicAchievementFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.scroll_layout, academicAchievementFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, academicAchievementFragment).commit();
         tvAcademic.setEnabled(false);
         tvNonAcademic.setEnabled(true);
     }
 
     public void cnonacademic (View view) {
         NonAcademicAchievementFragment nonAcademicAchievementFragment = new NonAcademicAchievementFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.scroll_layout, nonAcademicAchievementFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, nonAcademicAchievementFragment).commit();
         tvAcademic.setEnabled(true);
         tvNonAcademic.setEnabled(false);
     }

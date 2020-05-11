@@ -10,7 +10,7 @@ public class CollegeScheduleResult {
     @SerializedName("kodeMK")
     @Expose
     private String kodeMK;
-    @SerializedName("Mata Kuliah")
+    @SerializedName("Mata_Kuliah")
     @Expose
     private String mataKuliah;
     @SerializedName("Prodi")
@@ -22,19 +22,19 @@ public class CollegeScheduleResult {
     @SerializedName("Nip1")
     @Expose
     private String nip1;
-    @SerializedName("Dosen PJ")
+    @SerializedName("Dosen_PJ")
     @Expose
     private String dosenPJ;
     @SerializedName("Nip2")
     @Expose
     private Object nip2;
-    @SerializedName("Dosen Anggota")
+    @SerializedName("Dosen_Anggota")
     @Expose
     private Object dosenAnggota;
     @SerializedName("Hari")
     @Expose
     private String hari;
-    @SerializedName("Tahun Akademik")
+    @SerializedName("Tahun_Akademik")
     @Expose
     private String tahunAkademik;
     @SerializedName("Jenis")

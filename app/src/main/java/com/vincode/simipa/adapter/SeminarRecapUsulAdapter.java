@@ -9,12 +9,6 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import com.vincode.simipa.R;
 import com.vincode.simipa.model.LectureResponse;
 import com.vincode.simipa.model.LectureResult;
@@ -25,7 +19,14 @@ import com.vincode.simipa.network.ApiInterface;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapter.CardViewViewHolder> implements Filterable {
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class SeminarRecapUsulAdapter extends RecyclerView.Adapter<SeminarRecapUsulAdapter.CardViewHolder> implements Filterable {
+
     private List<SeminarResult> listSeminar = new ArrayList<>();
     private List<SeminarResult> listSeminarFull;
 
@@ -38,13 +39,13 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
 
     @NonNull
     @Override
-    public SeminarRecapAdapter.CardViewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_seminar_recap, parent, false);
-        return new CardViewViewHolder(view);
+        return new CardViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final SeminarRecapAdapter.CardViewViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final CardViewHolder holder, int position) {
         SeminarResult p = listSeminar.get(position);
 
         holder.tvName.setText(p.getNama());
@@ -53,16 +54,8 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         holder.tvSjenis.setText(p.getTanggal());
         holder.ivImage.setText(p.getJenis());
 
-        switch (p.getJenis()) {
-            case "Seminar Kerja Praktek" :
-                holder.coJenis.setBackgroundResource(R.drawable.bg_green_beach);
-                break;
-            case "Seminar Usul" :
-                holder.coJenis.setBackgroundResource(R.drawable.bg_blue_skies);
-                break;
-            case "Seminar Hasil" :
-                holder.coJenis.setBackgroundResource(R.drawable.bg_red_gradient);
-                break;
+        if (p.getJenis().equals("Seminar Usul")) {
+            holder.coJenis.setBackgroundResource(R.drawable.bg_blue_skies);
         }
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -87,12 +80,13 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         return listSeminar.size();
     }
 
-    static class CardViewViewHolder extends RecyclerView.ViewHolder{
+    public class CardViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvNpm, tvSjudul, tvSdosen, tvSjenis;
         TextView ivImage;
         ImageView coJenis;
-        CardViewViewHolder(View itemView) {
+        public CardViewHolder(@NonNull View itemView) {
             super(itemView);
+
             tvName = itemView.findViewById(R.id.tv_recMhsSem);
             tvNpm = itemView.findViewById(R.id.tv_recNpm);
             tvSjudul = itemView.findViewById(R.id.tv_rec_judulSem);
@@ -103,19 +97,19 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         }
     }
 
-    //Filter data kp
+    //filter data usul
     @Override
     public Filter getFilter() {
-        return dataFilter;
+        return dataFilterUsul;
     }
 
-    private Filter dataFilter = new Filter() {
+    private Filter dataFilterUsul = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
             List<SeminarResult> seminarResult = new ArrayList<>();
 
             for (SeminarResult item : listSeminarFull) {
-                if (item.getJenis().toLowerCase().contains("seminar kerja")) {
+                if (item.getJenis().toLowerCase().contains("seminar usul")) {
                     seminarResult.add(item);
                 }
             }
@@ -133,5 +127,4 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
             notifyDataSetChanged();
         }
     };
-
 }

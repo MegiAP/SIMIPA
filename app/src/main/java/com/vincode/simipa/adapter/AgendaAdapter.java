@@ -15,7 +15,6 @@ import com.vincode.simipa.model.CollegeScheduleResult;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.AgendaViewHolder> {
     private Context context;
     private List<CollegeScheduleResult> agendaList = new ArrayList<>();
@@ -30,7 +29,7 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.AgendaView
     @NonNull
     @Override
     public AgendaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.item_agenda, parent, false);
         return new AgendaViewHolder(view);
     }

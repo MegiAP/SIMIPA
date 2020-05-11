@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.AchievementAdapter;
@@ -23,6 +24,8 @@ import com.vincode.simipa.model.AchievementResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.SharedPrefManager;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +35,7 @@ public class NonAcademicAchievementFragment extends Fragment {
     private AchievementAdapter achievementAdapter;
     private RecyclerView rvCategory;
     private ProgressBar pgBar;
+    private TextView tvNoAchieve;
 
     public NonAcademicAchievementFragment() {
         // Required empty public constructor
@@ -45,6 +49,8 @@ public class NonAcademicAchievementFragment extends Fragment {
 
         rvCategory = view.findViewById(R.id.rv_category);
         pgBar = view.findViewById(R.id.pg_bar);
+        tvNoAchieve = view.findViewById(R.id.tv_no_achieve);
+        tvNoAchieve.setVisibility(View.GONE);
 
         return view;
     }
@@ -77,11 +83,16 @@ public class NonAcademicAchievementFragment extends Fragment {
                     pgBar.setVisibility(View.GONE);
                     achievementAdapter.notifyDataSetChanged();
                 }
+                else {
+                    tvNoAchieve.setVisibility(View.VISIBLE);
+                    pgBar.setVisibility(View.GONE);
+                }
             }
 
             @Override
             public void onFailure(@NonNull Call<AchievementResponse> call, @NonNull Throwable t) {
-                Log.d("Failure", " ");
+                Log.d("c", Objects.requireNonNull(t.getMessage()));
+                pgBar.setVisibility(View.GONE);
             }
         });
     }

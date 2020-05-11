@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.AgendaAdapter;
+import com.vincode.simipa.adapter.AgendaSeminarAdapter;
 import com.vincode.simipa.adapter.CollegeScheduleAdapter;
 import com.vincode.simipa.adapter.SeminarScheduleAdapter;
 import com.vincode.simipa.model.Agenda;
@@ -37,7 +38,8 @@ public class AgendaActivity extends AppCompatActivity {
     private AgendaAdapter adapter;
     private RecyclerView rvCategory, rvCategory1, rvCategory2, rvCategory3, rvCategory4;
     private TextView agendaKosong;
-    private SeminarScheduleAdapter seminarScheduleAdapter;
+    private AgendaSeminarAdapter seminarScheduleAdapter;
+    private Integer sum = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,11 @@ public class AgendaActivity extends AppCompatActivity {
 
         agendaKosong = findViewById(R.id.agendakosong);
         agendaKosong.setVisibility(View.GONE);
+        if (sum == 5) {
+            agendaKosong.setVisibility(View.VISIBLE);
+        } else {
+            agendaKosong.setVisibility(View.GONE);
+        }
 
         pgBar = findViewById(R.id.pg_bar);
         pgBar.setVisibility(View.VISIBLE);
@@ -98,6 +105,9 @@ public class AgendaActivity extends AppCompatActivity {
                 pgBar.setVisibility(View.GONE);
                 rvCategory.setVisibility(View.GONE);
                 agendaKosong.setVisibility(View.VISIBLE);
+                sum += 1;
+
+                Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
         });
     }
@@ -122,6 +132,9 @@ public class AgendaActivity extends AppCompatActivity {
                 pgBar1.setVisibility(View.GONE);
                 rvCategory1.setVisibility(View.GONE);
                 agendaKosong.setVisibility(View.VISIBLE);
+                sum += 1;
+
+                Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
         });
     }
@@ -137,17 +150,17 @@ public class AgendaActivity extends AppCompatActivity {
             public void onResponse(Call<SeminarScheduleResponse> call, Response<SeminarScheduleResponse> response) {
                 if (response.body() != null) {
 
-                    seminarScheduleAdapter = new SeminarScheduleAdapter(getBaseContext(), response.body().getRecords());
+                    seminarScheduleAdapter = new AgendaSeminarAdapter(AgendaActivity.this, response.body().getRecords());
                     seminarScheduleAdapter.notifyDataSetChanged();
                     rvCategory2.setAdapter(seminarScheduleAdapter);
-
-                   /* seminarScheduleAdapter.setListSeminarSchedule(response.body().getRecords());
-                    seminarScheduleAdapter.notifyDataSetChanged();*/
                 }
             }
 
             @Override
             public void onFailure(Call<SeminarScheduleResponse> call, Throwable t) {
+                rvCategory2.setVisibility(View.GONE);
+                sum += 1;
+
                 Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
         });
@@ -162,7 +175,7 @@ public class AgendaActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<SeminarScheduleResponse> call, Response<SeminarScheduleResponse> response) {
                 if (response.body() != null) {
-                    seminarScheduleAdapter = new SeminarScheduleAdapter(getBaseContext(), response.body().getRecords());
+                    seminarScheduleAdapter = new AgendaSeminarAdapter(AgendaActivity.this, response.body().getRecords());
                     seminarScheduleAdapter.notifyDataSetChanged();
                     rvCategory3.setAdapter(seminarScheduleAdapter);
                 }
@@ -170,6 +183,9 @@ public class AgendaActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SeminarScheduleResponse> call, Throwable t) {
+                rvCategory3.setVisibility(View.GONE);
+                sum += 1;
+
                 Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
         });
@@ -183,14 +199,19 @@ public class AgendaActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<SeminarScheduleResponse> call, Response<SeminarScheduleResponse> response) {
                 if (response.body() != null) {
-                    seminarScheduleAdapter = new SeminarScheduleAdapter(getBaseContext(), response.body().getRecords());
+                    seminarScheduleAdapter = new AgendaSeminarAdapter(AgendaActivity.this, response.body().getRecords());
                     seminarScheduleAdapter.notifyDataSetChanged();
                     rvCategory4.setAdapter(seminarScheduleAdapter);
+                    pgBar2.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onFailure(Call<SeminarScheduleResponse> call, Throwable t) {
+                rvCategory4.setVisibility(View.GONE);
+                pgBar2.setVisibility(View.GONE);
+                sum += 1;
+
                 Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
         });

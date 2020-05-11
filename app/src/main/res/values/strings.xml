@@ -70,6 +70,9 @@
     <string name="presence_kehadiran">Kehadiran</string>
     <string name="dosen_pembimbing">Dosen Pembimbing</string>
     <string name="seminar">Seminar</string>
+    <string name="seminar_kp">Seminar KP</string>
+    <string name="seminar_usul">Seminar Usul</string>
+    <string name="seminar_hasil">Seminar Hasil</string>
 
     <!-- Preference Titles -->
 

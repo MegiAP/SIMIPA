@@ -17,7 +17,7 @@ public class UserProfile {
     @Expose
     private String email;
 
-    @SerializedName("Jenis Kelamin")
+    @SerializedName("Jenis_Kelamin")
     @Expose
     private String jenisKelamin;
 
