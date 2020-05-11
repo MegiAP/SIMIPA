@@ -24,6 +24,7 @@ import com.vincode.simipa.model.PhotoNewsResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.ui.berita.DetailBeritaActvity;
+import com.vincode.simipa.ui.berita.DetailNewsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,8 +70,9 @@ public class BeritaAdapterAll extends RecyclerView.Adapter<BeritaAdapterAll.Beri
         holder.cvBerita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, DetailBeritaActvity.class);
+                Intent intent = new Intent(activity, DetailNewsActivity.class);
 //                intent.putExtra("berita", data);
+                intent.putExtra("link", data.getLink());
                 activity.startActivity(intent);
 //                Toast.makeText(activity, "tes", Toast.LENGTH_SHORT).show();
             }

@@ -6,6 +6,10 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class ProfileResponse {
+    @SerializedName("error")
+    @Expose
+    private String error;
+
     @SerializedName("records")
     @Expose
     private List<UserProfile> userProfiles = null;
@@ -14,7 +18,7 @@ public class ProfileResponse {
         return userProfiles;
     }
 
-    public void setUserProfiles(List<UserProfile> userProfiles) {
-        this.userProfiles = userProfiles;
+    public String getError() {
+        return error;
     }
 }

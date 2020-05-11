@@ -11,8 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.berita.DetailBeritaActvity"
+        <activity android:name=".ui.berita.DetailNewsActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.berita.DetailBeritaActvity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.berita.BeritaActivity"
             android:parentActivityName=".ui.main.MainActivity" />
@@ -27,7 +30,7 @@
         <activity
             android:name=".ui.agenda.AgendaActivity"
             android:label="Agenda"
-            android:parentActivityName=".ui.main.MainActivity"/>
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.schedule.PracticeScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -118,13 +121,13 @@
             android:name=".ui.recapitulation.SeminarRecapActivity"
             android:parentActivityName=".ui.main.MainActivity" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>
