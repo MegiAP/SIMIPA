@@ -2,15 +2,12 @@ package com.vincode.simipa.ui.agenda;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,9 +17,6 @@ import android.widget.TextView;
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.AgendaAdapter;
 import com.vincode.simipa.adapter.AgendaSeminarAdapter;
-import com.vincode.simipa.adapter.CollegeScheduleAdapter;
-import com.vincode.simipa.adapter.SeminarScheduleAdapter;
-import com.vincode.simipa.model.Agenda;
 import com.vincode.simipa.model.CollegeScheduleResponse;
 import com.vincode.simipa.model.SeminarScheduleResponse;
 import com.vincode.simipa.network.ApiClient;
@@ -30,7 +24,6 @@ import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.SharedPrefManager;
 import com.vincode.simipa.util.TimeUtil;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class AgendaActivity extends AppCompatActivity {
