@@ -1,7 +1,6 @@
 package com.vincode.simipa.adapter;
 
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,8 +53,8 @@ public class SeminarRecapUsulAdapter extends RecyclerView.Adapter<SeminarRecapUs
         holder.tvName.setText(p.getNama());
         holder.tvNpm.setText(p.getNpm());
         holder.tvSjudul.setText(p.getJudul());
-        holder.tvSjenis.setText(p.getTanggal());
-        holder.ivImage.setText(p.getJenis());
+        holder.tvStanggal.setText(p.getTanggal());
+        holder.tvSjenis.setText(p.getJenis());
 
         holder.cvRekap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,8 +90,7 @@ public class SeminarRecapUsulAdapter extends RecyclerView.Adapter<SeminarRecapUs
     }
 
     public class CardViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvNpm, tvSjudul, tvSdosen, tvSjenis;
-        TextView ivImage;
+        TextView tvName, tvNpm, tvSjudul, tvSdosen, tvSjenis, tvStanggal;
         ImageView coJenis;
         CardView cvRekap;
         public CardViewHolder(@NonNull View itemView) {
@@ -102,8 +100,8 @@ public class SeminarRecapUsulAdapter extends RecyclerView.Adapter<SeminarRecapUs
             tvNpm = itemView.findViewById(R.id.tv_recNpm);
             tvSjudul = itemView.findViewById(R.id.tv_rec_judulSem);
             tvSdosen = itemView.findViewById(R.id.tv_rec_dosenSem);
+            tvStanggal = itemView.findViewById(R.id.tv_recTanggalSem);
             tvSjenis = itemView.findViewById(R.id.tv_recJenisSem);
-            ivImage = itemView.findViewById(R.id.iv_image);
             coJenis = itemView.findViewById(R.id.co_jenis_seminar);
             cvRekap = itemView.findViewById(R.id.card_view);
         }

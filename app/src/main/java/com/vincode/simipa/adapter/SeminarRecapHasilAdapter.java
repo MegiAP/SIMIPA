@@ -53,8 +53,8 @@ public class SeminarRecapHasilAdapter extends RecyclerView.Adapter<SeminarRecapH
         holder.tvName.setText(p.getNama());
         holder.tvNpm.setText(p.getNpm());
         holder.tvSjudul.setText(p.getJudul());
-        holder.tvSjenis.setText(p.getTanggal());
-        holder.ivImage.setText(p.getJenis());
+        holder.tvSTanggal.setText(p.getTanggal());
+        holder.tvSjenis.setText(p.getJenis());
 
         holder.cvRekap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,8 +90,7 @@ public class SeminarRecapHasilAdapter extends RecyclerView.Adapter<SeminarRecapH
     }
 
     public class CardViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvNpm, tvSjudul, tvSdosen, tvSjenis;
-        TextView ivImage;
+        TextView tvName, tvNpm, tvSjudul, tvSdosen, tvSjenis, tvSTanggal;
         ImageView coJenis;
         CardView cvRekap;
         public CardViewHolder(@NonNull View itemView) {
@@ -101,8 +100,8 @@ public class SeminarRecapHasilAdapter extends RecyclerView.Adapter<SeminarRecapH
             tvNpm = itemView.findViewById(R.id.tv_recNpm);
             tvSjudul = itemView.findViewById(R.id.tv_rec_judulSem);
             tvSdosen = itemView.findViewById(R.id.tv_rec_dosenSem);
+            tvSTanggal = itemView.findViewById(R.id.tv_recTanggalSem);
             tvSjenis = itemView.findViewById(R.id.tv_recJenisSem);
-            ivImage = itemView.findViewById(R.id.iv_image);
             coJenis = itemView.findViewById(R.id.co_jenis_seminar);
             cvRekap = itemView.findViewById(R.id.card_view);
         }

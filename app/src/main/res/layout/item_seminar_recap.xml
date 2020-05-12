@@ -27,7 +27,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"/>
+            android:layout_marginLeft="4dp"
+            android:contentDescription="@string/jenis_seminar" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,13 +44,14 @@
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:paddingTop="8dp"
                 android:foregroundGravity="center"
-                android:src="@drawable/ic_beasiswa"/>
+                android:src="@drawable/ic_beasiswa"
+                android:contentDescription="@string/scholarship" />
 
             <TextView
-                android:id="@+id/iv_image"
+                android:id="@+id/tv_recJenisSem"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Seminar Proposal"
+                android:text="@string/seminar_usul"
                 android:textStyle="bold"
                 android:textSize="12sp"
                 android:textColor="#000"
@@ -63,8 +65,9 @@
                 android:layout_height="25dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginLeft="4dp"
-                android:layout_toRightOf="@id/iv_image"
-                android:src="@drawable/ic_person_black_24dp"/>
+                android:layout_toRightOf="@id/tv_recJenisSem"
+                android:src="@drawable/ic_person_black_24dp"
+                android:contentDescription="@string/nama_mahasiswa"/>
 
             <TextView
                 android:id="@+id/tv_recMhsSem"
@@ -91,8 +94,9 @@
                 android:layout_height="25dp"
                 android:layout_marginTop="46dp"
                 android:layout_marginLeft="4dp"
-                android:layout_toRightOf="@id/iv_image"
-                android:src="@drawable/ic_person_black_24dp"/>
+                android:layout_toRightOf="@id/tv_recJenisSem"
+                android:src="@drawable/ic_person_black_24dp"
+                android:contentDescription="@string/dosen_pembimbing"/>
 
             <TextView
                 android:id="@+id/tv_rec_dosenSem"
@@ -110,9 +114,10 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="70dp"
-                android:layout_toRightOf="@id/iv_image"
+                android:layout_toRightOf="@id/tv_recJenisSem"
                 android:layout_marginLeft="4dp"
-                android:src="@drawable/ic_book_black_24dp"/>
+                android:src="@drawable/ic_book_black_24dp"
+                android:contentDescription="@string/judul_seminar"/>
 
             <TextView
                 android:id="@+id/tv_rec_judulSem"
@@ -130,18 +135,19 @@
                 android:layout_width="30dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="100dp"
-                android:layout_toRightOf="@id/iv_image"
+                android:layout_toRightOf="@id/tv_recJenisSem"
                 android:layout_marginLeft="4dp"
-                android:src="@drawable/ic_jadwal_24dp"/>
+                android:src="@drawable/ic_jadwal_24dp"
+                android:contentDescription="@string/tanggal"/>
 
             <TextView
-                android:id="@+id/tv_recJenisSem"
+                android:id="@+id/tv_recTanggalSem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/ic_tanggal"
                 android:layout_below="@id/tv_rec_judulSem"
                 android:layout_marginTop="6dp"
-                android:text="1 Maret 2020"
+                android:text="@string/tanggal"
                 android:textSize="15sp" />
 
         </RelativeLayout>

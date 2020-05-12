@@ -1,5 +1,6 @@
 package com.vincode.simipa.adapter;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,9 +26,17 @@ import com.vincode.simipa.model.LectureResult;
 import com.vincode.simipa.model.SeminarResult;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
+import com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EXTRA_DOSEN;
+import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EXTRA_JENIS;
+import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EXTRA_JUDUL;
+import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EXTRA_NAME;
+import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EXTRA_NPM;
+import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EXTRA_RUANG;
 
 public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapter.CardViewViewHolder> implements Filterable {
     private List<SeminarResult> listSeminar = new ArrayList<>();
@@ -52,15 +63,8 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         holder.tvName.setText(p.getNama());
         holder.tvNpm.setText(p.getNpm());
         holder.tvSjudul.setText(p.getJudul());
-        holder.tvSjenis.setText(p.getTanggal());
-        holder.ivImage.setText(p.getJenis());
-
-        holder.cvRekap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Seminar dengan judul \"" + p.getJudul() + "\"", Toast.LENGTH_LONG).show();
-            }
-        });
+        holder.tvStanggal.setText(p.getTanggal());
+        holder.tvSJenis.setText(p.getJenis());
 
         switch (p.getJenis()) {
             case "Seminar Kerja Praktek" :
@@ -81,12 +85,31 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
             public void onResponse(@NonNull Call<LectureResponse> call, Response<LectureResponse> response) {
                 assert response.body() != null;
                 List<LectureResult> lectureResults = response.body().getRecords();
-                holder.tvSdosen.setText(lectureResults.get(0).getLectureName());
+                String dosen = lectureResults.get(0).getLectureName();
+                holder.tvSdosen.setText(dosen);
             }
 
             @Override
             public void onFailure(@NonNull Call<LectureResponse> call, Throwable t) {
                 Log.d(holder.tvSdosen.getText().toString(), " ");
+            }
+        });
+
+        holder.cvRekap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DetailSeminarRecapFragment mDetailSeminarRecapFragment = new DetailSeminarRecapFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(EXTRA_NAME, p.getNama());
+                bundle.putString(EXTRA_NPM, p.getNpm());
+                bundle.putString(EXTRA_JENIS, p.getJenis());
+                bundle.putString(EXTRA_DOSEN, holder.tvSdosen.getText().toString());
+                bundle.putString(EXTRA_JUDUL, p.getJudul());
+                bundle.putString(EXTRA_RUANG, p.getRuang());
+                mDetailSeminarRecapFragment.setArguments(bundle);
+                FragmentManager fragmentManager = ((AppCompatActivity)view.getContext()).getSupportFragmentManager();
+                mDetailSeminarRecapFragment.show(fragmentManager, DetailSeminarRecapFragment.class.getSimpleName());
+                Toast.makeText(view.getContext(), "Seminar dengan judul \"" + p.getJudul() + "\"", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -97,8 +120,7 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
     }
 
     static class CardViewViewHolder extends RecyclerView.ViewHolder{
-        TextView tvName, tvNpm, tvSjudul, tvSdosen, tvSjenis;
-        TextView ivImage;
+        TextView tvName, tvNpm, tvSjudul, tvSdosen, tvStanggal, tvSJenis;
         ImageView coJenis;
         CardView cvRekap;
         CardViewViewHolder(View itemView) {
@@ -107,8 +129,8 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
             tvNpm = itemView.findViewById(R.id.tv_recNpm);
             tvSjudul = itemView.findViewById(R.id.tv_rec_judulSem);
             tvSdosen = itemView.findViewById(R.id.tv_rec_dosenSem);
-            tvSjenis = itemView.findViewById(R.id.tv_recJenisSem);
-            ivImage = itemView.findViewById(R.id.iv_image);
+            tvStanggal = itemView.findViewById(R.id.tv_recTanggalSem);
+            tvSJenis = itemView.findViewById(R.id.tv_recJenisSem);
             coJenis = itemView.findViewById(R.id.co_jenis_seminar);
             cvRekap = itemView.findViewById(R.id.card_view);
         }

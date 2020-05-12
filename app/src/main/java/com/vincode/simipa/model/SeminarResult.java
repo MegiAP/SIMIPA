@@ -26,6 +26,9 @@ public class SeminarResult {
     @SerializedName("Tanggal")
     @Expose
     private String tanggal;
+    @SerializedName("Ruang")
+    @Expose
+    private String ruang;
 
     public String getPem1() {
         return pem1;
@@ -81,6 +84,14 @@ public class SeminarResult {
 
     public void setTanggal(String tanggal) {
         this.tanggal = tanggal;
+    }
+
+    public String getRuang() {
+        return ruang;
+    }
+
+    public void setRuang(String ruang) {
+        this.ruang = ruang;
     }
 
 }
