@@ -3,7 +3,6 @@ package com.vincode.simipa.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +18,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.vincode.simipa.R;
-import com.vincode.simipa.model.BeritaResponse;
 import com.vincode.simipa.model.BeritaResult;
 import com.vincode.simipa.model.PhotoNewsResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
+import com.vincode.simipa.ui.berita.DetailNewsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,8 +68,9 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
         holder.cvBerita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(data.getLink()));
+                Intent intent = new Intent(activity, DetailNewsActivity.class);
+                intent.putExtra("link", data.getLink());
+//                intent.setData(Uri.parse(data.getLink()));
                 activity.startActivity(intent);
 //                Intent intent = new Intent(activity, DetailBeritaActvity.class);
 //                intent.putExtra("berita", data);
@@ -87,6 +87,19 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
 //                        holder.imgBerita.setBackground(resource);
 //                    }
 //                });
+
+        holder.imgShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent beritaIntent = new Intent(Intent.ACTION_SEND);
+                beritaIntent.setType("text/plain");
+                String text = data.getTitle() + "\n\n" +data.getLink();
+                beritaIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+                beritaIntent.putExtra(Intent.EXTRA_TEXT, text);
+                activity.startActivity(Intent.createChooser(beritaIntent, "Share With"));
+                //Toast.makeText(DetailBeritaActvity.this, "Share Berita", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         getPhotoFromId(data.getId(), holder.imgBerita);
     }
@@ -119,13 +132,13 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
 
     @Override
     public int getItemCount() {
-        return 3;
+        return Math.min(listBerita.size(), 3);
     }
 
     static class BeritaViewHolder extends RecyclerView.ViewHolder {
 
         CardView cvBerita;
-        ImageView imgBerita;
+        ImageView imgBerita, imgShare;
         TextView tvTitle, tvTime;
 
         BeritaViewHolder(@NonNull View itemView) {
@@ -135,6 +148,7 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
             tvTitle = itemView.findViewById(R.id.tv_title_berita);
             tvTime = itemView.findViewById(R.id.tv_time_berita);
             imgBerita = itemView.findViewById(R.id.img_berita);
+            imgShare = itemView.findViewById(R.id.img_share);
         }
     }
 }
