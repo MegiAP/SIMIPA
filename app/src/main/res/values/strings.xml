@@ -105,5 +105,7 @@
     <string name="klik_notif">klik notif</string>
     <string name="jadwal_kosong">Tidak ada jadwal</string>
     <string name="jenis">Jenis</string>
+    <string name="jam1">jam1</string>
+    <string name="jam2">jam2</string>
 
 </resources>

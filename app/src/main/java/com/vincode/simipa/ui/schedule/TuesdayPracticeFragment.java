@@ -14,8 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.adapter.CollegeScheduleAdapter;
-import com.vincode.simipa.model.CollegeScheduleResponse;
+import com.vincode.simipa.adapter.PracticeScheduleAdapter;
+import com.vincode.simipa.model.PracticeScheduleResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 
@@ -27,7 +27,7 @@ import retrofit2.Response;
 
 
 public class TuesdayPracticeFragment extends Fragment {
-    private CollegeScheduleAdapter collegeScheduleAdapter;
+    private PracticeScheduleAdapter practiceScheduleAdapter;
     private RecyclerView recyclerView;
 
     public TuesdayPracticeFragment() {
@@ -51,34 +51,34 @@ public class TuesdayPracticeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        collegeScheduleAdapter = new CollegeScheduleAdapter(getActivity());
+        practiceScheduleAdapter = new PracticeScheduleAdapter(getActivity());
 
         setLayout();
-        getCollegeData();
+        getPracticeData();
 
     }
 
     private void setLayout(){
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(collegeScheduleAdapter);
+        recyclerView.setAdapter(practiceScheduleAdapter);
     }
 
-    private void getCollegeData(){
+    private void getPracticeData(){
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("selasa" , "1617051103","2019/2020","Ganjil", "Praktikum" );
+        Call<PracticeScheduleResponse> call = apiInterface.getPracticeData("selasa" , "1617051103","2019/2020","Ganjil", "Praktikum" );
 
-        call.enqueue(new Callback<CollegeScheduleResponse>() {
+        call.enqueue(new Callback<PracticeScheduleResponse>() {
             @Override
-            public void onResponse(Call<CollegeScheduleResponse> call, Response<CollegeScheduleResponse> response) {
+            public void onResponse(Call<PracticeScheduleResponse> call, Response<PracticeScheduleResponse> response) {
                 if (response.body() != null) {
-                    collegeScheduleAdapter.setListCollegeSchedule(response.body().getRecords());
-                    collegeScheduleAdapter.notifyDataSetChanged();
+                    practiceScheduleAdapter.setListPracticeSchedule(response.body().getRecords());
+                    practiceScheduleAdapter.notifyDataSetChanged();
                 }
             }
 
             @Override
-            public void onFailure(Call<CollegeScheduleResponse> call, Throwable t) {
+            public void onFailure(Call<PracticeScheduleResponse> call, Throwable t) {
                 Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
         });

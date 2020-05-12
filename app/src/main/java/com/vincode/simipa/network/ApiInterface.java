@@ -12,6 +12,7 @@ import com.vincode.simipa.model.LectureResponse;
 import com.vincode.simipa.model.LectureResult;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PhotoNewsResponse;
+import com.vincode.simipa.model.PracticeScheduleResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.PresenceSeminarResponse;
 import com.vincode.simipa.model.ProfileResponse;
@@ -81,6 +82,14 @@ public interface ApiInterface {
     );
     @GET("read-jadwal-mhs.php")
     Call<CollegeScheduleResponse> getCollegeData(
+            @Query("hari") String hari,
+            @Query("npm") String npm,
+            @Query("tahun_akademik") String tahun_akademik,
+            @Query("semester") String semester,
+            @Query("type") String type
+    );
+    @GET("read-jadwal-mhs.php")
+    Call<PracticeScheduleResponse> getPracticeData(
             @Query("hari") String hari,
             @Query("npm") String npm,
             @Query("tahun_akademik") String tahun_akademik,

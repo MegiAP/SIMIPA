@@ -46,7 +46,6 @@ public class CollegeScheduleAdapter extends RecyclerView.Adapter<CollegeSchedule
         holder.colmatkul.setText(dataResult.getMataKuliah());
         holder.colmkkode.setText(dataResult.getKodeMK());
         holder.coldosen.setText(dataResult.getDosenPJ());
-        holder.colnip.setText(dataResult.getNip1());
         holder.colruang.setText(dataResult.getRuang());
         holder.coljammulai.setText(dataResult.getMulai());
         holder.coljamselesai.setText(dataResult.getSelesai());
@@ -59,14 +58,13 @@ public class CollegeScheduleAdapter extends RecyclerView.Adapter<CollegeSchedule
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView colmatkul,colmkkode,coldosen, colnip, colruang, coljammulai, coljamselesai, colprodi;
+        TextView colmatkul,colmkkode,coldosen, colruang, coljammulai, coljamselesai, colprodi;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             colmatkul = itemView.findViewById(R.id.col_matkul);
             colmkkode = itemView.findViewById(R.id.col_matkode);
-            coldosen= itemView.findViewById(R.id.col_dosen);
-            colnip = itemView.findViewById(R.id.col_nip);
+            coldosen = itemView.findViewById(R.id.col_dosen);
             colruang = itemView.findViewById(R.id.col_ruang);
             colprodi = itemView.findViewById(R.id.col_prodi);
             coljammulai = itemView.findViewById(R.id.col_jammulai);
