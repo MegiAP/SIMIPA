@@ -3,10 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="12dp"
-    android:paddingLeft="4dp"
+    android:background="@drawable/bg_dialog"
     tools:context=".ui.recapitulation.DetailSeminarRecapFragment">
+
+    <TextView
+        android:id="@+id/df_jenis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:padding="6dp"
+        android:textSize="16sp"
+        android:textColor="#fff"
+        android:background="@color/colorAccent"
+        android:textStyle="bold"
+        android:text="@string/jenis_seminar"
+        android:gravity="center"/>
 
     <ImageView
         android:id="@+id/iv_ic_seminar"
@@ -15,24 +26,31 @@
         android:foregroundGravity="right|top"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="@dimen/margin_item"
+        android:layout_marginTop="4dp"
         android:src="@drawable/ic_beasiswa"
         android:contentDescription="@string/scholarship" />
 
-    <TextView
-        android:id="@+id/df_jenis"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:textSize="20sp"
-        android:text="@string/jenis_seminar"
-        android:gravity="center"/>
+        android:padding="@dimen/margin_item"
+        android:layout_below="@id/df_jenis">
+
+    <TextView
+        android:id="@+id/df_nama_npm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#000"
+        android:text="Nama/NPM" />
 
     <TextView
         android:id="@+id/df_nama"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:layout_below="@id/df_jenis"
+        android:textSize="14sp"
+        android:layout_below="@id/df_nama_npm"
         android:text="@string/nama_mahasiswa" />
 
     <TextView
@@ -41,35 +59,81 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:textSize="14sp"
-        android:layout_below="@id/df_nama"
+        android:layout_below="@id/df_nama_npm"
+        android:layout_toRightOf="@id/df_nama"
         android:text="@string/npm" />
+
+    <TextView
+        android:id="@+id/df_judul_ket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#000"
+        android:layout_below="@id/df_npm"
+        android:text="@string/judul_seminar" />
 
     <TextView
         android:id="@+id/df_judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:textSize="16sp"
-        android:layout_below="@id/df_npm"
+        android:textSize="14sp"
+        android:layout_below="@id/df_judul_ket"
         android:text="@string/judul_seminar" />
+
+    <TextView
+        android:id="@+id/df_dosen_ket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#000"
+        android:layout_below="@id/df_judul"
+        android:text="@string/dosen_pembimbing" />
 
     <TextView
         android:id="@+id/df_dosen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:textSize="16sp"
-        android:layout_below="@id/df_judul"
+        android:textSize="14sp"
+        android:layout_below="@id/df_dosen_ket"
         android:text="@string/dosen_pembimbing" />
+
+    <TextView
+        android:id="@+id/df_ruang_ket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#000"
+        android:layout_below="@id/df_dosen"
+        android:text="@string/ruang_seminar" />
 
     <TextView
         android:id="@+id/df_ruang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:textSize="16sp"
-        android:layout_below="@id/df_dosen"
+        android:textSize="14sp"
+        android:layout_below="@id/df_ruang_ket"
         android:text="@string/ruang_seminar" />
+
+        <TextView
+            android:id="@+id/df_tanggal_ket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#000"
+            android:layout_below="@id/df_ruang"
+            android:text="Tanggal/Jam" />
+
+        <TextView
+            android:id="@+id/df_tanggal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="14sp"
+            android:layout_below="@id/df_tanggal_ket"
+            android:text="@string/tanggal" />
 
     <Button
         android:id="@+id/btn_close"
@@ -77,7 +141,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
-        android:layout_below="@id/df_ruang"
+        android:layout_below="@id/df_tanggal"
         android:text="tutup" />
 
 </RelativeLayout>
+
+    </RelativeLayout>

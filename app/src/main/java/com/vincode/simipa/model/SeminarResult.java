@@ -20,7 +20,7 @@ public class SeminarResult {
     @SerializedName("Jenis")
     @Expose
     private String jenis;
-    @SerializedName("Jam")
+    @SerializedName("Waktu")
     @Expose
     private String jam;
     @SerializedName("Tanggal")

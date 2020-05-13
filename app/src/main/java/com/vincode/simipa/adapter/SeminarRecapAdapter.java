@@ -37,6 +37,7 @@ import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EX
 import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EXTRA_NAME;
 import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EXTRA_NPM;
 import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EXTRA_RUANG;
+import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EXTRA_TANGGAL;
 
 public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapter.CardViewViewHolder> implements Filterable {
     private List<SeminarResult> listSeminar = new ArrayList<>();
@@ -65,6 +66,8 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         holder.tvSjudul.setText(p.getJudul());
         holder.tvStanggal.setText(p.getTanggal());
         holder.tvSJenis.setText(p.getJenis());
+        String jam = p.getJam();
+        final String jam4 = jam.substring(0,5);
 
         switch (p.getJenis()) {
             case "Seminar Kerja Praktek" :
@@ -106,10 +109,11 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
                 bundle.putString(EXTRA_DOSEN, holder.tvSdosen.getText().toString());
                 bundle.putString(EXTRA_JUDUL, p.getJudul());
                 bundle.putString(EXTRA_RUANG, p.getRuang());
+                bundle.putString(EXTRA_TANGGAL, p.getTanggal() + " / " + jam4);
                 mDetailSeminarRecapFragment.setArguments(bundle);
                 FragmentManager fragmentManager = ((AppCompatActivity)view.getContext()).getSupportFragmentManager();
                 mDetailSeminarRecapFragment.show(fragmentManager, DetailSeminarRecapFragment.class.getSimpleName());
-                Toast.makeText(view.getContext(), "Seminar dengan judul \"" + p.getJudul() + "\"", Toast.LENGTH_LONG).show();
+//                Toast.makeText(view.getContext(), "Seminar dengan judul \"" + p.getJudul() + "\"", Toast.LENGTH_LONG).show();
             }
         });
     }
