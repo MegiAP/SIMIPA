@@ -6,9 +6,184 @@
     android:orientation="vertical"
     tools:context=".ui.agenda.AgendaActivity">
 
-    <ScrollView
+    <HorizontalScrollView
+        android:id="@+id/horizontalScroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <RelativeLayout
+                android:id="@+id/agenda_kuliah"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_blue"
+                android:layout_marginVertical="6dp"
+                android:layout_marginHorizontal="3dp"
+                android:paddingVertical="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/jadwal_kuliah"
+                    android:textSize="16dp"
+                    android:textColor="#fff" />
+
+                <ImageView
+                    android:id="@+id/close_agenda_kuliah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_white"
+                    android:layout_alignParentRight="true"
+                    android:rotation="45"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/agenda_praktikum"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_yellow"
+                android:layout_marginVertical="6dp"
+                android:layout_marginHorizontal="3dp"
+                android:paddingVertical="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/jadwal_praktikum"
+                    android:textSize="16dp"
+                    android:textColor="#fff" />
+
+                <ImageView
+                    android:id="@+id/close_agenda_praktikum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_white"
+                    android:layout_alignParentRight="true"
+                    android:rotation="45"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/agenda_seminar_kp"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_green_beach"
+                android:layout_marginVertical="6dp"
+                android:layout_marginHorizontal="3dp"
+                android:paddingVertical="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/seminar_kp"
+                    android:textColor="#fff"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:id="@+id/close_agenda_kp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_white"
+                    android:layout_alignParentRight="true"
+                    android:rotation="45"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/agenda_seminar_usul"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_blue_skies"
+                android:layout_marginVertical="6dp"
+                android:layout_marginHorizontal="3dp"
+                android:paddingVertical="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/seminar_usul"
+                    android:textSize="16dp"
+                    android:textColor="#fff" />
+
+                <ImageView
+                    android:id="@+id/close_usul"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_white"
+                    android:layout_alignParentRight="true"
+                    android:rotation="45"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/agenda_seminar_hasil"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_red_gradient"
+                android:layout_marginVertical="6dp"
+                android:layout_marginHorizontal="3dp"
+                android:paddingVertical="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/seminar_hasil"
+                    android:textSize="16dp"
+                    android:textColor="#fff" />
+
+                <ImageView
+                    android:id="@+id/close_hasil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_white"
+                    android:layout_alignParentRight="true"
+                    android:rotation="45"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/showAll"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_round_grey"
+                android:layout_marginVertical="6dp"
+                android:layout_marginHorizontal="3dp"
+                android:paddingVertical="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Show All"
+                    android:textSize="16dp"
+                    android:textColor="#fff" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_white"
+                    android:layout_alignParentRight="true"
+                    android:rotation="45"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/horizontalScroll">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,9 +191,10 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_agenda_kuliah"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_blue_skies"
+            android:background="@drawable/bg_btn_blue"
             android:layout_marginTop="2dp"
             android:gravity="center"
             android:textColor="#fff"
@@ -29,13 +205,14 @@
             android:id="@+id/rv_college_agenda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_agenda"/>
+            tools:listitem="@layout/item_agenda" />
 
         <TextView
+            android:id="@+id/tv_agenda_praktikum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_blue_skies"
-            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_yellow"
+            android:layout_marginTop="6dp"
             android:gravity="center"
             android:textColor="#fff"
             android:textSize="18sp"
@@ -48,10 +225,11 @@
             tools:listitem="@layout/item_agenda"/>
 
         <TextView
+            android:id="@+id/tv_agenda_kp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_blue_skies"
-            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_green_beach"
+            android:layout_marginTop="6dp"
             android:gravity="center"
             android:textColor="#fff"
             android:textSize="18sp"
@@ -64,10 +242,11 @@
             tools:listitem="@layout/item_seminar_schedule"/>
 
         <TextView
+            android:id="@+id/tv_agenda_usul"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_blue_skies"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
             android:gravity="center"
             android:textColor="#fff"
             android:textSize="18sp"
@@ -76,14 +255,15 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_seminarusul_agenda"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:listitem="@layout/item_seminar_schedule"/>
 
         <TextView
+            android:id="@+id/tv_agenda_hasil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_blue_skies"
-            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_red_gradient"
+            android:layout_marginTop="6dp"
             android:gravity="center"
             android:textColor="#fff"
             android:textSize="18sp"
@@ -92,12 +272,12 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_seminarhasil_agenda"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:listitem="@layout/item_seminar_schedule"/>
 
     </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <ProgressBar
         android:layout_gravity="center"
