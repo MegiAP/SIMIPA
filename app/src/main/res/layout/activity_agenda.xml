@@ -190,90 +190,130 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_agenda_kuliah"
+        <RelativeLayout
+            android:id="@+id/rv_kuliah"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_btn_blue"
-            android:layout_marginTop="2dp"
-            android:gravity="center"
-            android:textColor="#fff"
-            android:textSize="18sp"
-            android:text="@string/jadwal_kuliah"/>
+            android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_college_agenda"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_agenda" />
+            <TextView
+                android:id="@+id/tv_agenda_kuliah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_blue"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:text="@string/jadwal_kuliah"/>
 
-        <TextView
-            android:id="@+id/tv_agenda_praktikum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_yellow"
-            android:layout_marginTop="6dp"
-            android:gravity="center"
-            android:textColor="#fff"
-            android:textSize="18sp"
-            android:text="@string/jadwal_praktikum"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_college_agenda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_agenda_kuliah"
+                tools:listitem="@layout/item_agenda" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_practice_agenda"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_agenda"/>
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_agenda_kp"
+        <RelativeLayout
+            android:id="@+id/rv_praktikum"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_green_beach"
-            android:layout_marginTop="6dp"
-            android:gravity="center"
-            android:textColor="#fff"
-            android:textSize="18sp"
-            android:text="@string/seminar_kp"/>
+            android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_seminarkp_agenda"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_seminar_schedule"/>
+            <TextView
+                android:id="@+id/tv_agenda_praktikum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_yellow"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:text="@string/jadwal_praktikum"/>
 
-        <TextView
-            android:id="@+id/tv_agenda_usul"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_blue_skies"
-            android:layout_marginTop="6dp"
-            android:gravity="center"
-            android:textColor="#fff"
-            android:textSize="18sp"
-            android:text="@string/seminar_usul"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_practice_agenda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_agenda_praktikum"
+                tools:listitem="@layout/item_agenda"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_seminarusul_agenda"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_seminar_schedule"/>
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_agenda_hasil"
+        <RelativeLayout
+            android:id="@+id/rv_kp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_red_gradient"
-            android:layout_marginTop="6dp"
-            android:gravity="center"
-            android:textColor="#fff"
-            android:textSize="18sp"
-            android:text="@string/seminar_hasil"/>
+            android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_seminarhasil_agenda"
+            <TextView
+                android:id="@+id/tv_agenda_kp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_green_beach"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:text="@string/seminar_kp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_seminarkp_agenda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_agenda_kp"
+                tools:listitem="@layout/item_seminar_schedule"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rv_usul"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_seminar_schedule"/>
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_agenda_usul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_blue_skies"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:text="@string/seminar_usul"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_seminarusul_agenda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_agenda_usul"
+                tools:listitem="@layout/item_seminar_schedule"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rv_hasil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_agenda_hasil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_red_gradient"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:text="@string/seminar_hasil"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_seminarhasil_agenda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_agenda_hasil"
+                tools:listitem="@layout/item_seminar_schedule"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -296,6 +336,20 @@
     <ProgressBar
         android:layout_gravity="center"
         android:id="@+id/pg_bar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <ProgressBar
+        android:layout_gravity="center"
+        android:id="@+id/pg_bar3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <ProgressBar
+        android:layout_gravity="center"
+        android:id="@+id/pg_bar4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>

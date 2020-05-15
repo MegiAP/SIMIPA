@@ -31,13 +31,13 @@ import com.vincode.simipa.util.TimeUtil;
 import java.util.Objects;
 
 public class AgendaActivity extends AppCompatActivity implements View.OnClickListener {
-    private ProgressBar pgBar,pgBar1,pgBar2;
+    private ProgressBar pgBar,pgBar1,pgBar2,pgBar3,pgBar4;
     private AgendaAdapter adapter;
     private RecyclerView rvCategory, rvCategory1, rvCategory2, rvCategory3, rvCategory4;
-    private TextView agendaKosong,tvKuliah,tvPraktikum,tvKP,tvUsul,tvHasil;
+    private TextView agendaKosong;
     private AgendaSeminarAdapter seminarScheduleAdapter;
     private HorizontalScrollView horizontalScrollView;
-    private RelativeLayout rlKuliah,rlPraktikum,rlKP,rlUsul,rlHasil,showAll;
+    private RelativeLayout rlKuliah,rlPraktikum,rlKP,rlUsul,rlHasil,showAll,rvKuliah,rvPraktikum,rvKP,rvUsul,rvHasil;
     private ImageView clsKuliah,clsPraktikum,clsKP,clsUsul,clsHasil;
     private Integer sum = 0;
 
@@ -77,11 +77,11 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
         showAll = findViewById(R.id.showAll);
         showAll.setOnClickListener(this);
 
-        tvKuliah = findViewById(R.id.tv_agenda_kuliah);
-        tvPraktikum = findViewById(R.id.tv_agenda_praktikum);
-        tvKP = findViewById(R.id.tv_agenda_kp);
-        tvUsul = findViewById(R.id.tv_agenda_usul);
-        tvHasil = findViewById(R.id.tv_agenda_hasil);
+        rvKuliah = findViewById(R.id.rv_kuliah);
+        rvPraktikum = findViewById(R.id.rv_praktikum);
+        rvKP = findViewById(R.id.rv_kp);
+        rvUsul = findViewById(R.id.rv_usul);
+        rvHasil = findViewById(R.id.rv_hasil);
 
         agendaKosong = findViewById(R.id.agendakosong);
         agendaKosong.setVisibility(View.GONE);
@@ -97,6 +97,10 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
         pgBar1.setVisibility(View.VISIBLE);
         pgBar2 = findViewById(R.id.pg_bar2);
         pgBar2.setVisibility(View.VISIBLE);
+        pgBar3 = findViewById(R.id.pg_bar3);
+        pgBar3.setVisibility(View.VISIBLE);
+        pgBar4 = findViewById(R.id.pg_bar4);
+        pgBar4.setVisibility(View.VISIBLE);
 
         rvCategory = findViewById(R.id.rv_college_agenda);
         rvCategory1 = findViewById(R.id.rv_practice_agenda);
@@ -120,19 +124,24 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResponse(@NonNull Call<CollegeScheduleResponse> call, @NonNull Response<CollegeScheduleResponse> response) {
                 if (response.body() != null) {
-                    adapter = new AgendaAdapter(AgendaActivity.this, response.body().getRecords());
-                    adapter.notifyDataSetChanged();
-                    pgBar.setVisibility(View.GONE);
-                    rvCategory.setAdapter(adapter);
+                    if (response.body().getResponsCode() == 200) {
+                        adapter = new AgendaAdapter(AgendaActivity.this, response.body().getRecords());
+                        adapter.notifyDataSetChanged();
+                        pgBar.setVisibility(View.GONE);
+                        rvCategory.setAdapter(adapter);
+                    } else if (response.body().getResponsCode() == 404) {
+                        rvKuliah.setVisibility(View.GONE);
+                        pgBar.setVisibility(View.GONE);
+                        rlKuliah.setVisibility(View.GONE);
+
+                        sum += 1;
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<CollegeScheduleResponse> call, Throwable t) {
                 pgBar.setVisibility(View.GONE);
-                rvCategory.setVisibility(View.GONE);
-                agendaKosong.setVisibility(View.VISIBLE);
-                sum += 1;
 
                 Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
@@ -147,19 +156,24 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResponse(@NonNull Call<CollegeScheduleResponse> call, @NonNull Response<CollegeScheduleResponse> response) {
                 if (response.body() != null) {
-                    adapter = new AgendaAdapter(AgendaActivity.this, response.body().getRecords());
-                    adapter.notifyDataSetChanged();
-                    pgBar1.setVisibility(View.GONE);
-                    rvCategory1.setAdapter(adapter);
+                    if (response.body().getResponsCode() == 200) {
+                        adapter = new AgendaAdapter(AgendaActivity.this, response.body().getRecords());
+                        adapter.notifyDataSetChanged();
+                        pgBar1.setVisibility(View.GONE);
+                        rvCategory1.setAdapter(adapter);
+                    } else if (response.body().getResponsCode() == 404) {
+                        rvPraktikum.setVisibility(View.GONE);
+                        pgBar1.setVisibility(View.GONE);
+                        rlPraktikum.setVisibility(View.GONE);
+
+                        sum += 1;
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<CollegeScheduleResponse> call, Throwable t) {
                 pgBar1.setVisibility(View.GONE);
-                rvCategory1.setVisibility(View.GONE);
-                agendaKosong.setVisibility(View.VISIBLE);
-                sum += 1;
 
                 Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
@@ -176,17 +190,24 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResponse(Call<SeminarScheduleResponse> call, Response<SeminarScheduleResponse> response) {
                 if (response.body() != null) {
+                    if (response.body().getResponsCode() == 200) {
+                        seminarScheduleAdapter = new AgendaSeminarAdapter(AgendaActivity.this, response.body().getRecords());
+                        seminarScheduleAdapter.notifyDataSetChanged();
+                        pgBar2.setVisibility(View.GONE);
+                        rvCategory2.setAdapter(seminarScheduleAdapter);
+                    } else if (response.body().getResponsCode() == 404) {
+                        rvKP.setVisibility(View.GONE);
+                        pgBar2.setVisibility(View.GONE);
+                        rlKP.setVisibility(View.GONE);
 
-                    seminarScheduleAdapter = new AgendaSeminarAdapter(AgendaActivity.this, response.body().getRecords());
-                    seminarScheduleAdapter.notifyDataSetChanged();
-                    rvCategory2.setAdapter(seminarScheduleAdapter);
+                        sum += 1;
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<SeminarScheduleResponse> call, Throwable t) {
-                rvCategory2.setVisibility(View.GONE);
-                sum += 1;
+                pgBar2.setVisibility(View.GONE);
 
                 Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
@@ -202,16 +223,24 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResponse(Call<SeminarScheduleResponse> call, Response<SeminarScheduleResponse> response) {
                 if (response.body() != null) {
-                    seminarScheduleAdapter = new AgendaSeminarAdapter(AgendaActivity.this, response.body().getRecords());
-                    seminarScheduleAdapter.notifyDataSetChanged();
-                    rvCategory3.setAdapter(seminarScheduleAdapter);
+                    if (response.body().getResponsCode() == 200) {
+                        seminarScheduleAdapter = new AgendaSeminarAdapter(AgendaActivity.this, response.body().getRecords());
+                        seminarScheduleAdapter.notifyDataSetChanged();
+                        pgBar3.setVisibility(View.GONE);
+                        rvCategory3.setAdapter(seminarScheduleAdapter);
+                    } else if (response.body().getResponsCode() == 404) {
+                        rvUsul.setVisibility(View.GONE);
+                        pgBar3.setVisibility(View.GONE);
+                        rlUsul.setVisibility(View.GONE);
+
+                        sum += 1;
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<SeminarScheduleResponse> call, Throwable t) {
-                rvCategory3.setVisibility(View.GONE);
-                sum += 1;
+                pgBar3.setVisibility(View.GONE);
 
                 Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
@@ -226,18 +255,24 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResponse(Call<SeminarScheduleResponse> call, Response<SeminarScheduleResponse> response) {
                 if (response.body() != null) {
-                    seminarScheduleAdapter = new AgendaSeminarAdapter(AgendaActivity.this, response.body().getRecords());
-                    seminarScheduleAdapter.notifyDataSetChanged();
-                    rvCategory4.setAdapter(seminarScheduleAdapter);
-                    pgBar2.setVisibility(View.GONE);
+                    if (response.body().getResponsCode() == 200) {
+                        seminarScheduleAdapter = new AgendaSeminarAdapter(AgendaActivity.this, response.body().getRecords());
+                        seminarScheduleAdapter.notifyDataSetChanged();
+                        rvCategory4.setAdapter(seminarScheduleAdapter);
+                        pgBar4.setVisibility(View.GONE);
+                    } else if (response.body().getResponsCode() == 404) {
+                        rvHasil.setVisibility(View.GONE);
+                        pgBar4.setVisibility(View.GONE);
+                        rlHasil.setVisibility(View.GONE);
+
+                        sum += 1;
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<SeminarScheduleResponse> call, Throwable t) {
-                rvCategory4.setVisibility(View.GONE);
-                pgBar2.setVisibility(View.GONE);
-                sum += 1;
+                pgBar4.setVisibility(View.GONE);
 
                 Log.d("c", Objects.requireNonNull(t.getMessage()));
             }
@@ -248,72 +283,57 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.agenda_kuliah:
-                if (rvCategory.getVisibility() == View.VISIBLE) {
-                    rvCategory.setVisibility(View.GONE);
-                    tvKuliah.setVisibility(View.GONE);
+                if (rvKuliah.getVisibility() == View.VISIBLE) {
+                    rvKuliah.setVisibility(View.GONE);
                     clsKuliah.setImageResource(R.drawable.ic_autorenew);
                 } else {
-                    rvCategory.setVisibility(View.VISIBLE);
-                    tvKuliah.setVisibility(View.VISIBLE);
+                    rvKuliah.setVisibility(View.VISIBLE);
                     clsKuliah.setImageResource(R.drawable.ic_add_white);
                 }
                 break;
             case R.id.agenda_praktikum:
-                if (rvCategory1.getVisibility() == View.VISIBLE) {
-                    rvCategory1.setVisibility(View.GONE);
-                    tvPraktikum.setVisibility(View.GONE);
+                if (rvPraktikum.getVisibility() == View.VISIBLE) {
+                    rvPraktikum.setVisibility(View.GONE);
                     clsPraktikum.setImageResource(R.drawable.ic_autorenew);
                 } else {
-                    rvCategory1.setVisibility(View.VISIBLE);
-                    tvPraktikum.setVisibility(View.VISIBLE);
+                    rvPraktikum.setVisibility(View.VISIBLE);
                     clsPraktikum.setImageResource(R.drawable.ic_add_white);
                 }
                 break;
             case R.id.agenda_seminar_kp:
-                if (rvCategory2.getVisibility() == View.VISIBLE) {
-                    rvCategory2.setVisibility(View.GONE);
-                    tvKP.setVisibility(View.GONE);
+                if (rvKP.getVisibility() == View.VISIBLE) {
+                    rvKP.setVisibility(View.GONE);
                     clsKP.setImageResource(R.drawable.ic_autorenew);
                 } else {
-                    rvCategory2.setVisibility(View.VISIBLE);
-                    tvKP.setVisibility(View.VISIBLE);
+                    rvKP.setVisibility(View.VISIBLE);
                     clsKP.setImageResource(R.drawable.ic_add_white);
                 }
                 break;
             case R.id.agenda_seminar_usul:
-                if (rvCategory3.getVisibility() == View.VISIBLE) {
-                    rvCategory3.setVisibility(View.GONE);
-                    tvUsul.setVisibility(View.GONE);
+                if (rvUsul.getVisibility() == View.VISIBLE) {
+                    rvUsul.setVisibility(View.GONE);
                     clsUsul.setImageResource(R.drawable.ic_autorenew);
                 } else {
-                    rvCategory3.setVisibility(View.VISIBLE);
-                    tvUsul.setVisibility(View.VISIBLE);
+                    rvUsul.setVisibility(View.VISIBLE);
                     clsUsul.setImageResource(R.drawable.ic_add_white);
                 }
                 break;
             case R.id.agenda_seminar_hasil:
-                if (rvCategory4.getVisibility() == View.VISIBLE) {
-                    rvCategory4.setVisibility(View.GONE);
-                    tvHasil.setVisibility(View.GONE);
+                if (rvHasil.getVisibility() == View.VISIBLE) {
+                    rvHasil.setVisibility(View.GONE);
                     clsHasil.setImageResource(R.drawable.ic_autorenew);
                 } else {
-                    rvCategory4.setVisibility(View.VISIBLE);
-                    tvHasil.setVisibility(View.VISIBLE);
+                    rvHasil.setVisibility(View.VISIBLE);
                     clsHasil.setImageResource(R.drawable.ic_add_white);
                 }
                 break;
             case R.id.showAll:
-                if (tvKuliah.getVisibility() == View.GONE || tvPraktikum.getVisibility() == View.GONE || tvKP.getVisibility() == View.GONE || tvUsul.getVisibility() == View.GONE || tvHasil.getVisibility() == View.GONE){
-                    tvKuliah.setVisibility(View.VISIBLE);
-                    tvPraktikum.setVisibility(View.VISIBLE);
-                    tvKP.setVisibility(View.VISIBLE);
-                    tvUsul.setVisibility(View.VISIBLE);
-                    tvHasil.setVisibility(View.VISIBLE);
-                    rvCategory.setVisibility(View.VISIBLE);
-                    rvCategory1.setVisibility(View.VISIBLE);
-                    rvCategory2.setVisibility(View.VISIBLE);
-                    rvCategory3.setVisibility(View.VISIBLE);
-                    rvCategory4.setVisibility(View.VISIBLE);
+                if (rvKuliah.getVisibility() == View.GONE || rvPraktikum.getVisibility() == View.GONE || rvKP.getVisibility() == View.GONE || rvUsul.getVisibility() == View.GONE || rvHasil.getVisibility() == View.GONE){
+                    rvKuliah.setVisibility(View.VISIBLE);
+                    rvPraktikum.setVisibility(View.VISIBLE);
+                    rvKP.setVisibility(View.VISIBLE);
+                    rvUsul.setVisibility(View.VISIBLE);
+                    rvHasil.setVisibility(View.VISIBLE);
                     clsKuliah.setImageResource(R.drawable.ic_add_white);
                     clsPraktikum.setImageResource(R.drawable.ic_add_white);
                     clsKP.setImageResource(R.drawable.ic_add_white);
