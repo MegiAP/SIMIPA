@@ -85,11 +85,6 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
 
         agendaKosong = findViewById(R.id.agendakosong);
         agendaKosong.setVisibility(View.GONE);
-        if (sum == 5) {
-            agendaKosong.setVisibility(View.VISIBLE);
-        } else {
-            agendaKosong.setVisibility(View.GONE);
-        }
 
         pgBar = findViewById(R.id.pg_bar);
         pgBar.setVisibility(View.VISIBLE);
@@ -130,11 +125,10 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
                         pgBar.setVisibility(View.GONE);
                         rvCategory.setAdapter(adapter);
                     } else if (response.body().getResponsCode() == 404) {
+                        agendaKosong();
                         rvKuliah.setVisibility(View.GONE);
                         pgBar.setVisibility(View.GONE);
                         rlKuliah.setVisibility(View.GONE);
-
-                        sum += 1;
                     }
                 }
             }
@@ -162,11 +156,10 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
                         pgBar1.setVisibility(View.GONE);
                         rvCategory1.setAdapter(adapter);
                     } else if (response.body().getResponsCode() == 404) {
+                        agendaKosong();
                         rvPraktikum.setVisibility(View.GONE);
                         pgBar1.setVisibility(View.GONE);
                         rlPraktikum.setVisibility(View.GONE);
-
-                        sum += 1;
                     }
                 }
             }
@@ -196,11 +189,10 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
                         pgBar2.setVisibility(View.GONE);
                         rvCategory2.setAdapter(seminarScheduleAdapter);
                     } else if (response.body().getResponsCode() == 404) {
+                        agendaKosong();
                         rvKP.setVisibility(View.GONE);
                         pgBar2.setVisibility(View.GONE);
                         rlKP.setVisibility(View.GONE);
-
-                        sum += 1;
                     }
                 }
             }
@@ -229,11 +221,10 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
                         pgBar3.setVisibility(View.GONE);
                         rvCategory3.setAdapter(seminarScheduleAdapter);
                     } else if (response.body().getResponsCode() == 404) {
+                        agendaKosong();
                         rvUsul.setVisibility(View.GONE);
                         pgBar3.setVisibility(View.GONE);
                         rlUsul.setVisibility(View.GONE);
-
-                        sum += 1;
                     }
                 }
             }
@@ -246,6 +237,7 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
     }
+
     public void getDataSeminarHasil() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
@@ -261,11 +253,10 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
                         rvCategory4.setAdapter(seminarScheduleAdapter);
                         pgBar4.setVisibility(View.GONE);
                     } else if (response.body().getResponsCode() == 404) {
+                        agendaKosong();
                         rvHasil.setVisibility(View.GONE);
                         pgBar4.setVisibility(View.GONE);
                         rlHasil.setVisibility(View.GONE);
-
-                        sum += 1;
                     }
                 }
             }
@@ -279,6 +270,19 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
+    //untuk nampilin agenda kosong
+    private void agendaKosong() {
+        sum += 1;
+
+        if (sum == 5) {
+            agendaKosong.setVisibility(View.VISIBLE);
+            showAll.setVisibility(View.GONE);
+        } else {
+            agendaKosong.setVisibility(View.GONE);
+        }
+    }
+
+    //filter tampilan agenda
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
