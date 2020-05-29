@@ -26,11 +26,13 @@
         <activity android:name=".ui.presence.ScanPresenceActivity" />
         <activity
             android:name=".ui.achievement.AchievementActivity"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity"
+            android:configChanges="orientation|screenSize" />
         <activity
             android:name=".ui.agenda.AgendaActivity"
             android:label="Agenda"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".ui.schedule.PracticeScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -68,7 +70,8 @@
             android:parentActivityName=".ui.recapitulation.RecapMenuActivity" />
         <activity
             android:name=".ui.beasiswa.BeasiswaActivity"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize" />
         <activity
             android:name=".ui.krs.KRSActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -119,7 +122,8 @@
             android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.recapitulation.SeminarRecapActivity"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity"
+            android:configChanges="orientation|screenSize"/>
     </application>
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />

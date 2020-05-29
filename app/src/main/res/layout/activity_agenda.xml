@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#E8D3D3D3"
     tools:context=".ui.agenda.AgendaActivity">
 
     <HorizontalScrollView
@@ -193,7 +194,9 @@
         <RelativeLayout
             android:id="@+id/rv_kuliah"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="6dp">
 
             <TextView
                 android:id="@+id/tv_agenda_kuliah"
@@ -218,14 +221,15 @@
         <RelativeLayout
             android:id="@+id/rv_praktikum"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="8dp">
 
             <TextView
                 android:id="@+id/tv_agenda_praktikum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_yellow"
-                android:layout_marginTop="6dp"
                 android:gravity="center"
                 android:textColor="#fff"
                 android:textSize="18sp"
@@ -243,14 +247,15 @@
         <RelativeLayout
             android:id="@+id/rv_kp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="8dp">
 
             <TextView
                 android:id="@+id/tv_agenda_kp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_green_beach"
-                android:layout_marginTop="6dp"
                 android:gravity="center"
                 android:textColor="#fff"
                 android:textSize="18sp"
@@ -268,14 +273,15 @@
         <RelativeLayout
             android:id="@+id/rv_usul"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="8dp">
 
             <TextView
                 android:id="@+id/tv_agenda_usul"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_blue_skies"
-                android:layout_marginTop="6dp"
                 android:gravity="center"
                 android:textColor="#fff"
                 android:textSize="18sp"
@@ -293,14 +299,15 @@
         <RelativeLayout
             android:id="@+id/rv_hasil"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="8dp">
 
             <TextView
                 android:id="@+id/tv_agenda_hasil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_red_gradient"
-                android:layout_marginTop="6dp"
                 android:gravity="center"
                 android:textColor="#fff"
                 android:textSize="18sp"

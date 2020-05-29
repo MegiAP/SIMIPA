@@ -27,8 +27,12 @@ import com.vincode.simipa.model.SeminarResult;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment;
+import com.vincode.simipa.util.TimeUtil;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EXTRA_DOSEN;
@@ -109,7 +113,20 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
                 bundle.putString(EXTRA_DOSEN, holder.tvSdosen.getText().toString());
                 bundle.putString(EXTRA_JUDUL, p.getJudul());
                 bundle.putString(EXTRA_RUANG, p.getRuang());
-                bundle.putString(EXTRA_TANGGAL, p.getTanggal() + " / " + jam4);
+                final String OLD_FORMAT = "yyyy-MM-dd";
+                final String NEW_FORMAT = "dd-MMM-yyyy";
+                String oldDateString = p.getTanggal();
+                String newDateString;
+                SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
+                Date d = null;
+                try {
+                    d = sdf.parse(oldDateString);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                sdf.applyPattern(NEW_FORMAT);
+                newDateString = sdf.format(d);
+                bundle.putString(EXTRA_TANGGAL, newDateString + " / " + jam4);
                 mDetailSeminarRecapFragment.setArguments(bundle);
                 FragmentManager fragmentManager = ((AppCompatActivity)view.getContext()).getSupportFragmentManager();
                 mDetailSeminarRecapFragment.show(fragmentManager, DetailSeminarRecapFragment.class.getSimpleName());

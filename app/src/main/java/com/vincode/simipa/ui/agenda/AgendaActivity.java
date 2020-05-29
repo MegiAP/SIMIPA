@@ -28,6 +28,9 @@ import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.SharedPrefManager;
 import com.vincode.simipa.util.TimeUtil;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 public class AgendaActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,6 +43,7 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
     private RelativeLayout rlKuliah,rlPraktikum,rlKP,rlUsul,rlHasil,showAll,rvKuliah,rvPraktikum,rvKP,rvUsul,rvHasil;
     private ImageView clsKuliah,clsPraktikum,clsKP,clsUsul,clsHasil;
     private Integer sum = 0;
+    String jurusan = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +51,38 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_agenda);
 
         TimeUtil timeUtil = new TimeUtil();
-        //String semester = timeUtil.getSemester();
+        String semester = timeUtil.getSemester();
         String tahun = timeUtil.getWaktu();
+        String hari =  timeUtil.getHari();
+        String tanggal = timeUtil.getTanggal();
+        String kdJurusan = SharedPrefManager.getInstance(this).getUser().getUserLogin().substring(4,6);
 
-        getDataCollege(tahun);
-        getDataPractice(tahun);
-        getDataSeminarKP();
+        switch (kdJurusan) {
+            case "01":
+                jurusan="Fisika";
+                break;
+            case "02":
+                jurusan="Biologi";
+                break;
+            case "03":
+                jurusan="Matematika";
+                break;
+            case "04":
+                jurusan="Kimia";
+                break;
+            case "05":
+                jurusan="Ilmu Komputer";
+                break;
+            default:
+                jurusan = null;
+                Log.d(kdJurusan, " Masih belum terdaftar");
+        }
+
+        Log.d(hari + tanggal + semester + kdJurusan, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
+        getDataCollege(hari, tahun);
+        getDataPractice(hari, tahun);
+        getDataSeminarKP(jurusan,tahun);
         getDataSeminarUsul();
         getDataSeminarHasil();
 
@@ -112,7 +142,7 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     //Read data jadwal kuliah
-    private void getDataCollege(String tahun) {
+    private void getDataCollege(String hari, String tahun) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("Selasa", SharedPrefManager.getInstance(this).getUser().getUserLogin(), tahun, "Ganjil", "Teori");
         call.enqueue(new Callback<CollegeScheduleResponse>() {
@@ -143,7 +173,7 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     //Read data jadwal praktikum
-    private void getDataPractice(String tahun) {
+    private void getDataPractice(String hari, String tahun) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<CollegeScheduleResponse> call = apiInterface.getCollegeData("Selasa", SharedPrefManager.getInstance(this).getUser().getUserLogin(), tahun, "Ganjil", "Praktikum");
         call.enqueue(new Callback<CollegeScheduleResponse>() {
@@ -174,15 +204,15 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     //Read data jadwal seminar
-    private void getDataSeminarKP() {
+    private void getDataSeminarKP(final String jrsn, String tanggal) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<SeminarScheduleResponse> call = apiInterface.getSeminarData("Seminar Kerja Praktek", "Fisika", "2019-11-05");
+        Call<SeminarScheduleResponse> call = apiInterface.getSeminarData("Seminar Kerja Praktek", "Fisika", "2019-05-10");
 
         call.enqueue(new Callback<SeminarScheduleResponse>() {
             @Override
             public void onResponse(Call<SeminarScheduleResponse> call, Response<SeminarScheduleResponse> response) {
-                if (response.body() != null) {
+                if (response.body() != null && jurusan != null) {
                     if (response.body().getResponsCode() == 200) {
                         seminarScheduleAdapter = new AgendaSeminarAdapter(AgendaActivity.this, response.body().getRecords());
                         seminarScheduleAdapter.notifyDataSetChanged();

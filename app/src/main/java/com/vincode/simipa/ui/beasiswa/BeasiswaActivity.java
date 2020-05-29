@@ -3,8 +3,11 @@ package com.vincode.simipa.ui.beasiswa;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -14,64 +17,48 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.google.android.material.tabs.TabLayout;
 import com.vincode.simipa.R;
+import com.vincode.simipa.adapter.KRSPagerAdapter;
 import com.vincode.simipa.adapter.ScholarshipAdapter;
+import com.vincode.simipa.adapter.ScholarshipPagerAdapter;
 import com.vincode.simipa.model.ScholarshipResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
+import com.vincode.simipa.ui.krs.FormKRSFragment;
+import com.vincode.simipa.ui.krs.MyKRSFragment;
 import com.vincode.simipa.util.SharedPrefManager;
 
 public class BeasiswaActivity extends AppCompatActivity {
-
-    private RecyclerView rvCategory;
-    private ScholarshipAdapter scholarshipAdapter;
-    private ProgressBar pgBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beasiswa);
 
-        rvCategory = findViewById(R.id.rv_category);
-        scholarshipAdapter = new ScholarshipAdapter();
+        TabLayout tabLayout = findViewById(R.id.tl_beasiswa);
+        ViewPager viewPager = findViewById(R.id.vp_beasiswa);
+        Toolbar toolbar = findViewById(R.id.tb_beasiswa);
 
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setTitle(R.string.scholarship);
-        pgBar = findViewById(R.id.pg_bar);
-        pgBar.setVisibility(View.VISIBLE);
+        ScholarshipPagerAdapter fragmentPagerAdapter = new ScholarshipPagerAdapter(getSupportFragmentManager());
+        fragmentPagerAdapter.addFragment(new BeasiswaFragment(), getResources().getString(R.string.history));
+        fragmentPagerAdapter.addFragment(new FormBeasiswaFragment(), getResources().getString(R.string.form_beasiswa));
 
-        showRecyclerCardView();
-        getData();
-    }
+        viewPager.setAdapter(fragmentPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
 
-    private void showRecyclerCardView(){
-        rvCategory.setLayoutManager(new LinearLayoutManager(this));
-        rvCategory.setHasFixedSize(true);
-        rvCategory.setAdapter(scholarshipAdapter);
-    }
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setTitle(R.string.scholarship);
+        }
 
-    private void getData() {
-        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-
-        Call<ScholarshipResponse> call = apiInterface.getScholarshipData(SharedPrefManager.getInstance(this).getUser().getUserLogin());
-        call.enqueue(new Callback<ScholarshipResponse>() {
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(@NonNull Call<ScholarshipResponse> call, @NonNull Response<ScholarshipResponse> response) {
-                if (response.body() != null) {
-                    pgBar.setVisibility(View.GONE);
-                    scholarshipAdapter.setListScholarship(response.body().getRecords());
-                    scholarshipAdapter.notifyDataSetChanged();
-                }
-                else {
-                    Log.d("Success", " ");
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<ScholarshipResponse> call, @NonNull Throwable t) {
-                Log.d("Failure", " ");
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
+
     }
 }

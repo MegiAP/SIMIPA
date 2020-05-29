@@ -15,6 +15,24 @@ public class TimeUtil {
         return dateFormat.format(new Date());
     }
 
+    public  String getHari() {
+        SimpleDateFormat hari = new SimpleDateFormat("EEEE", new Locale("in", "ID"));
+
+        return hari.format(new Date());
+    }
+
+    public String getTanggal() {
+        SimpleDateFormat tanggal = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
+        return tanggal.format(new Date());
+    }
+
+    public String getTanggalFormatInd() {
+        SimpleDateFormat tanggal = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+
+        return tanggal.format(new Date());
+    }
+
     public String getWaktu(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-M-yyyy", Locale.getDefault());
         String date = dateFormat.format(new Date());
