@@ -27,6 +27,12 @@ public class DetailNewsActivity extends AppCompatActivity {
         WebView wvNews = findViewById(R.id.wv_news);
         final ProgressBar progressBar = findViewById(R.id.progress_bar);
         String linkNews = getIntent().getStringExtra("link");
+        String titleNews = getIntent().getStringExtra("title");
+
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setTitle(titleNews);
+            getSupportActionBar().setElevation(0f);
+        }
 
         wvNews.getSettings().setJavaScriptEnabled(true);
         wvNews.setWebChromeClient(new WebChromeClient());
@@ -54,5 +60,10 @@ public class DetailNewsActivity extends AppCompatActivity {
 
 
         wvNews.loadUrl(linkNews);
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
     }
 }

@@ -71,6 +71,7 @@ public class BeritaAdapterAll extends RecyclerView.Adapter<BeritaAdapterAll.Beri
                 Intent intent = new Intent(activity, DetailNewsActivity.class);
 //                intent.putExtra("berita", data);
                 intent.putExtra("link", data.getLink());
+                intent.putExtra("title", data.getTitle());
                 activity.startActivity(intent);
 //                Toast.makeText(activity, "tes", Toast.LENGTH_SHORT).show();
             }

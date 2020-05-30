@@ -70,6 +70,7 @@ public class BeritaAdapter extends RecyclerView.Adapter<BeritaAdapter.BeritaView
             public void onClick(View view) {
                 Intent intent = new Intent(activity, DetailNewsActivity.class);
                 intent.putExtra("link", data.getLink());
+                intent.putExtra("title", data.getTitle());
 //                intent.setData(Uri.parse(data.getLink()));
                 activity.startActivity(intent);
 //                Intent intent = new Intent(activity, DetailBeritaActvity.class);
