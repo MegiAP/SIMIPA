@@ -117,5 +117,19 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="save">simpan</string>
+    <string name="category">Kategori</string>
+    <string name="nama">Nama</string>
+    <string name="level">Tingkat Prestasi</string>
+    <string name="type">Jenis Prestasi</string>
+    <string name="chemistry">Kimia</string>
+    <string name="biology">Biologi</string>
+    <string name="math">Matematika</string>
+    <string name="physics">Fisika</string>
+    <string name="cs">Ilmu Komputer</string>
+    <string name="cs1">S1 Ilmu Komputer</string>
+    <string name="cs2">D3 Manajemen Informatika</string>
+    <string name="upload">Upload</string>
+    <string name="achieve">Capaian Prestasi</string>
 
 </resources>

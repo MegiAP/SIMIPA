@@ -107,23 +107,23 @@ public class PresenceSeminarAdapter extends RecyclerView.Adapter<PresenceSeminar
         switch (jurusan){
             case "01":
                 holder.tvJenis.setBackgroundResource(R.drawable.bg_btn_blue);
-                holder.tvJurusan.setText("Kimia");
+                holder.tvJurusan.setText(R.string.chemistry);
                 break;
             case "02":
                 holder.tvJenis.setBackgroundResource(R.drawable.bg_green);
-                holder.tvJurusan.setText("Biologi");
+                holder.tvJurusan.setText(R.string.biology);
                 break;
             case "03":
                 holder.tvJenis.setBackgroundResource(R.drawable.bg_red);
-                holder.tvJurusan.setText("Matematika");
+                holder.tvJurusan.setText(R.string.math);
                 break;
             case "04":
                 holder.tvJenis.setBackgroundResource(R.drawable.bg_blue_dark);
-                holder.tvJurusan.setText("Fisika");
+                holder.tvJurusan.setText(R.string.physics);
                 break;
             case "05":
                 holder.tvJenis.setBackgroundResource(R.drawable.bg_yellow);
-                holder.tvJurusan.setText("Ilmu Komputer");
+                holder.tvJurusan.setText(R.string.cs);
                 break;
         }
 

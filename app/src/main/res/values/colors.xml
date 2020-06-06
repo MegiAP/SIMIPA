@@ -9,6 +9,7 @@
     <color name="colorSecondaryText">#757575</color>
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorBgPrimary">#fcfbf4</color>
+    <color name="text_hint">#FFB3B3B3</color>
 
     <array name="array_dot_active">
         <item>#A9A9A9</item>

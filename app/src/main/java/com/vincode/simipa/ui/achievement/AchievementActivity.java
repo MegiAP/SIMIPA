@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vincode.simipa.R;
 import com.vincode.simipa.model.ProfileResponse;
 import com.vincode.simipa.model.UserProfile;
@@ -33,8 +35,18 @@ public class AchievementActivity extends AppCompatActivity {
 
         TextView tvName = findViewById(R.id.tv_achiev_name);
         TextView tvNpm = findViewById(R.id.tv_achiev_npm);
+        FloatingActionButton fabAddAchieve = findViewById(R.id.fab_add_achieve);
+
         tvName.setText(SharedPrefManager.getInstance(this).getUser().getDisplayName());
         tvNpm.setText(SharedPrefManager.getInstance(this).getUser().getUserLogin());
+
+        fabAddAchieve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AchievementActivity.this, AddAchievmentActivity.class));
+            }
+        });
+
 
         tvAcademic = findViewById(R.id.academic);
         tvNonAcademic = findViewById(R.id.non_academic);
