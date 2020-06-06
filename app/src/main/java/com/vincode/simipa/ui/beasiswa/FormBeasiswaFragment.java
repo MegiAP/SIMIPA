@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,7 @@ import java.util.Calendar;
  * A simple {@link Fragment} subclass.
  */
 public class FormBeasiswaFragment extends Fragment {
-    private Spinner spinYear;
+    private Spinner spinYear,semester;
     private Button tambah;
 
     public FormBeasiswaFragment() {
@@ -45,11 +44,13 @@ public class FormBeasiswaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ArrayList<String> years = new ArrayList<String>();
+        ArrayList<String> sems = new ArrayList<String>();
         String npm = SharedPrefManager.getInstance(getContext()).getUser().getUserLogin();
         int angkatan = Integer.parseInt(npm.substring(0,2));
 
-        //get tahun sekarang
+        //get tahun/bulan sekarang
         int tahunIni = Calendar.getInstance().get(Calendar.YEAR);
+        int bulanIni = Calendar.getInstance().get(Calendar.MONTH);
 
         String d = String.valueOf(tahunIni).substring(2,4);
         int f = Integer.parseInt(d);
@@ -57,13 +58,38 @@ public class FormBeasiswaFragment extends Fragment {
         //selisih
         int g = f-angkatan;
         int tahunMasuk = tahunIni-g;
+        years.add("Tahun");
         for (int i = tahunIni; i >= tahunMasuk; i--) {
             years.add(Integer.toString(i));
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, years);
+        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, years);
+
+        // data spinner semester
+        int hitungSem;
+        sems.add("Semester");
+        if (tahunIni == tahunMasuk) {
+            sems.add(Integer.toString(1));
+        } else {
+            if (bulanIni <= 7) {
+                hitungSem = (tahunIni - tahunMasuk) * 2;
+                for (int i = 1; i <= hitungSem; i++) {
+                    sems.add(Integer.toString(i));
+                }
+            } else {
+                hitungSem = (tahunIni - tahunMasuk) * 2 + 1;
+                for (int i = 1; i <= hitungSem; i++) {
+                    sems.add(Integer.toString(i));
+                }
+            }
+        }
+
+        ArrayAdapter<String> adapterSems = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, sems);
 
         spinYear = view.findViewById(R.id.yearspin);
-        spinYear.setAdapter(adapter);
+        spinYear.setAdapter(adapterYear);
+
+        semester = view.findViewById(R.id.semesterspin);
+        semester.setAdapter(adapterSems);
 
         tambah = view.findViewById(R.id.tambah_beasiswa);
 
@@ -76,8 +102,9 @@ public class FormBeasiswaFragment extends Fragment {
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String smstr = semester.getSelectedItem().toString();
                 String text = spinYear.getSelectedItem().toString();
-                Toast.makeText(getActivity(), text, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), text + smstr, Toast.LENGTH_LONG).show();
             }
         });
     }
