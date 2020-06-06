@@ -19,14 +19,10 @@ import android.widget.ProgressBar;
 
 import com.google.android.material.tabs.TabLayout;
 import com.vincode.simipa.R;
-import com.vincode.simipa.adapter.KRSPagerAdapter;
-import com.vincode.simipa.adapter.ScholarshipAdapter;
 import com.vincode.simipa.adapter.ScholarshipPagerAdapter;
 import com.vincode.simipa.model.ScholarshipResponse;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
-import com.vincode.simipa.ui.krs.FormKRSFragment;
-import com.vincode.simipa.ui.krs.MyKRSFragment;
 import com.vincode.simipa.util.SharedPrefManager;
 
 public class BeasiswaActivity extends AppCompatActivity {

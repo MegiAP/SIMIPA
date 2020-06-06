@@ -29,10 +29,7 @@ import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment;
 import com.vincode.simipa.util.TimeUtil;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static com.vincode.simipa.ui.recapitulation.DetailSeminarRecapFragment.EXTRA_DOSEN;
@@ -65,13 +62,16 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
     public void onBindViewHolder(@NonNull final SeminarRecapAdapter.CardViewViewHolder holder, int position) {
         final SeminarResult p = listSeminar.get(position);
 
+        TimeUtil timeUtil = new TimeUtil();
+        final String tanggal = timeUtil.getTanggalFormatInd(p.getTanggal());
+        String jam = p.getJam();
+        final String jam4 = jam.substring(0,5);
+
         holder.tvName.setText(p.getNama());
         holder.tvNpm.setText(p.getNpm());
         holder.tvSjudul.setText(p.getJudul());
-        holder.tvStanggal.setText(p.getTanggal());
+        holder.tvStanggal.setText(tanggal);
         holder.tvSJenis.setText(p.getJenis());
-        String jam = p.getJam();
-        final String jam4 = jam.substring(0,5);
 
         switch (p.getJenis()) {
             case "Seminar Kerja Praktek" :
@@ -86,7 +86,7 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
         }
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<LectureResponse> call = apiInterface.getLecture(p.getPem1());
+        final Call<LectureResponse> call = apiInterface.getLecture(p.getPem1());
         call.enqueue(new Callback<LectureResponse>() {
             @Override
             public void onResponse(@NonNull Call<LectureResponse> call, Response<LectureResponse> response) {
@@ -113,20 +113,7 @@ public class SeminarRecapAdapter extends RecyclerView.Adapter<SeminarRecapAdapte
                 bundle.putString(EXTRA_DOSEN, holder.tvSdosen.getText().toString());
                 bundle.putString(EXTRA_JUDUL, p.getJudul());
                 bundle.putString(EXTRA_RUANG, p.getRuang());
-                final String OLD_FORMAT = "yyyy-MM-dd";
-                final String NEW_FORMAT = "dd-MMM-yyyy";
-                String oldDateString = p.getTanggal();
-                String newDateString;
-                SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
-                Date d = null;
-                try {
-                    d = sdf.parse(oldDateString);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                sdf.applyPattern(NEW_FORMAT);
-                newDateString = sdf.format(d);
-                bundle.putString(EXTRA_TANGGAL, newDateString + " / " + jam4);
+                bundle.putString(EXTRA_TANGGAL, tanggal + " / " + jam4);
                 mDetailSeminarRecapFragment.setArguments(bundle);
                 FragmentManager fragmentManager = ((AppCompatActivity)view.getContext()).getSupportFragmentManager();
                 mDetailSeminarRecapFragment.show(fragmentManager, DetailSeminarRecapFragment.class.getSimpleName());

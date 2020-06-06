@@ -4,6 +4,7 @@ package com.vincode.simipa.util;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -27,10 +28,18 @@ public class TimeUtil {
         return tanggal.format(new Date());
     }
 
-    public String getTanggalFormatInd() {
-        SimpleDateFormat tanggal = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
-
-        return tanggal.format(new Date());
+    public String getTanggalFormatInd(String oldDateString) {
+        final String OLD_FORMAT = "yyyy-MM-dd";
+        final String NEW_FORMAT = "dd-MMM-yyyy";
+        SimpleDateFormat tglInd = new SimpleDateFormat(OLD_FORMAT);
+        Date d = null;
+        try {
+            d = tglInd.parse(oldDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        tglInd.applyPattern(NEW_FORMAT);
+        return tglInd.format(d);
     }
 
     public String getWaktu(){
