@@ -7,13 +7,82 @@
     android:orientation="vertical"
     tools:context=".ui.beasiswa.FormBeasiswaFragment">
 
+    <LinearLayout
+        android:id="@+id/linear_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+
+            <EditText
+                android:id="@+id/et_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nama_mahasiswa"
+                android:textColor="#000"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp">
+
+            <EditText
+                android:id="@+id/et_npm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/npm"
+                android:textColor="#000"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp">
+
+            <EditText
+                android:id="@+id/et_jurusan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Jurusan"
+                android:textColor="#000"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp">
+
+            <EditText
+                android:id="@+id/et_prodi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Prodi"
+                android:textColor="#000"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp">
 
         <EditText
+            android:id="@+id/et_beasiswa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/nama_beasiswa"
@@ -56,7 +125,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Status Beasiswa"/>
+            android:hint="Penyelenggara"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,7 +134,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tambah"
-        android:layout_margin="2dp"
+        android:layout_margin="4dp"
+        android:textColor="#fff"
+        android:background="@drawable/bg_circle_blue"
         android:gravity="center"/>
 
 </LinearLayout>

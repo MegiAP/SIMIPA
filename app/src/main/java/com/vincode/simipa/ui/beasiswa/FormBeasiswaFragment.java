@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,6 +27,8 @@ import java.util.Calendar;
  */
 public class FormBeasiswaFragment extends Fragment {
     private Spinner spinYear,semester;
+    private EditText etBeasiswa,etNama,etNpm,etJurusan,etProdi;
+    private LinearLayout linearLayout;
     private Button tambah;
 
     public FormBeasiswaFragment() {
@@ -91,7 +95,59 @@ public class FormBeasiswaFragment extends Fragment {
         semester = view.findViewById(R.id.semesterspin);
         semester.setAdapter(adapterSems);
 
+        etBeasiswa = view.findViewById(R.id.et_beasiswa);
+        etNama = view.findViewById(R.id.et_nama);
+        etNama.setText(SharedPrefManager.getInstance(getContext()).getUser().getDisplayName());
+        etNama.setEnabled(false);
+        etNpm = view.findViewById(R.id.et_npm);
+        etNpm.setText(npm);
+        etNpm.setEnabled(false);
         tambah = view.findViewById(R.id.tambah_beasiswa);
+        etJurusan = view.findViewById(R.id.et_jurusan);
+        etProdi = view.findViewById(R.id.et_prodi);
+        linearLayout = view.findViewById(R.id.linear_id);
+
+        String kdJurusan = SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin().substring(4,6);
+        String kdProdi = SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin().substring(2,3);
+
+        switch (kdJurusan) {
+            case "01":
+                etJurusan.setText("Fisika");
+                etProdi.setText("Fisika");
+                etJurusan.setEnabled(false);
+                etProdi.setEnabled(false);
+                break;
+            case "02":
+                etJurusan.setText("Biologi");
+                etProdi.setText("Biologi");
+                etJurusan.setEnabled(false);
+                etProdi.setEnabled(false);
+                break;
+            case "03":
+                etJurusan.setText("Matematika");
+                etProdi.setText("Matematika");
+                etJurusan.setEnabled(false);
+                etProdi.setEnabled(false);
+                break;
+            case "04":
+                etJurusan.setText("Kimia");
+                etProdi.setText("Kimia");
+                etJurusan.setEnabled(false);
+                etProdi.setEnabled(false);
+                break;
+            case "05":
+                etJurusan.setText("Ilmu Komputer");
+                if (kdProdi.equals("1") || kdProdi.equals("5")) {
+                    etProdi.setText("S1 Ilmu Komputer");
+                    etJurusan.setEnabled(false);
+                    etProdi.setEnabled(false);
+                } else {
+                    etProdi.setText("D3 Manajemen Informatika");
+                    etJurusan.setEnabled(false);
+                    etProdi.setEnabled(false);
+                }
+                break;
+        }
 
     }
 
@@ -102,6 +158,7 @@ public class FormBeasiswaFragment extends Fragment {
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                linearLayout.setVisibility(View.GONE);
                 String smstr = semester.getSelectedItem().toString();
                 String text = spinYear.getSelectedItem().toString();
                 Toast.makeText(getActivity(), text + smstr, Toast.LENGTH_LONG).show();
