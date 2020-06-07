@@ -97,15 +97,18 @@ public class FormBeasiswaFragment extends Fragment {
 
         etBeasiswa = view.findViewById(R.id.et_beasiswa);
         etNama = view.findViewById(R.id.et_nama);
-        etNama.setText(SharedPrefManager.getInstance(getContext()).getUser().getDisplayName());
-        etNama.setEnabled(false);
         etNpm = view.findViewById(R.id.et_npm);
+
+        etNama.setText(SharedPrefManager.getInstance(getContext()).getUser().getDisplayName());
         etNpm.setText(npm);
+        etNama.setEnabled(false);
         etNpm.setEnabled(false);
-        tambah = view.findViewById(R.id.tambah_beasiswa);
+
         etJurusan = view.findViewById(R.id.et_jurusan);
         etProdi = view.findViewById(R.id.et_prodi);
         linearLayout = view.findViewById(R.id.linear_id);
+
+        tambah = view.findViewById(R.id.tambah_beasiswa);
 
         String kdJurusan = SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin().substring(4,6);
         String kdProdi = SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin().substring(2,3);
