@@ -131,5 +131,7 @@
     <string name="cs2">D3 Manajemen Informatika</string>
     <string name="upload">Upload</string>
     <string name="achieve">Capaian Prestasi</string>
+    <string name="not_finish">Belum Selesai</string>
+    <string name="finish">Selesai</string>
 
 </resources>

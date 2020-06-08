@@ -43,16 +43,15 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
     public void onBindViewHolder(@NonNull ServiceViewHolder serviceViewHolder, int i) {
         ServiceResult dataService = listService.get(i);
         TimeUtil timeUtil = new TimeUtil();
-        String date = dataService.getCreated().substring(0,9);
+        String date = dataService.getCreated().substring(0,10);
         serviceViewHolder.tvFormService.setText(dataService.getNamaLayanan());//calendarAcademic.getData()
-        serviceViewHolder.tvDateService.setText(timeUtil.converDate(date
-        ));
+        serviceViewHolder.tvDateService.setText(timeUtil.converDate(date));
 
         if (dataService.getStatus().equals("0")){
-            serviceViewHolder.tvStateService.setText("Belum Selesai");
+            serviceViewHolder.tvStateService.setText(R.string.not_finish);
             serviceViewHolder.tvStateService.setBackgroundResource(R.drawable.bg_state_red);
         }else {
-            serviceViewHolder.tvStateService.setText("Selesai");
+            serviceViewHolder.tvStateService.setText(R.string.finish);
             serviceViewHolder.tvStateService.setBackgroundResource(R.drawable.bg_btn_blue);
         }
 

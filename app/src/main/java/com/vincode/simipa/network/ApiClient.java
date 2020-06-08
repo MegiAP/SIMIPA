@@ -10,7 +10,7 @@ public class ApiClient {
 
     private final static String BASE_URL = "https://fmipa.unila.ac.id/api/simipa/";
     private final static String BASE_URL_LOCAL = "https://apikelvin2019.000webhostapp.com/";
-    private final static String BASE_URL_MOVIE = "https://api.themoviedb.org/3/";
+    private final static String BASE_URL_MOVIE = "https://vintraweb.000webhostapp.com/";
 
     public static Retrofit getClientMovie() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

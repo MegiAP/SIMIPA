@@ -50,7 +50,7 @@ public class AcademicAchievementFragment extends Fragment {
 
         rvCategory = view.findViewById(R.id.rv_category);
         pgBar = view.findViewById(R.id.pg_bar);
-        tvNoAchieve = view.findViewById(R.id.tv_no_achieve);
+        tvNoAchieve = view.findViewById(R.id.tv_not_found);
         tvNoAchieve.setVisibility(View.GONE);
 
         return view;
@@ -80,14 +80,16 @@ public class AcademicAchievementFragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<AchievementResponse> call, @NonNull Response<AchievementResponse> response) {
                 if (response.body() != null) {
-                    achievementAdapter.setListAchievement(response.body().getRecords());
-                    pgBar.setVisibility(View.GONE);
-                    achievementAdapter.notifyDataSetChanged();
+                    if (response.body().getRecords() != null){
+                        achievementAdapter.setListAchievement(response.body().getRecords());
+                        pgBar.setVisibility(View.GONE);
+                        achievementAdapter.notifyDataSetChanged();
+                    }else {
+                        tvNoAchieve.setVisibility(View.VISIBLE);
+                        pgBar.setVisibility(View.GONE);
+                    }
                 }
-                else {
-                    tvNoAchieve.setVisibility(View.VISIBLE);
-                    pgBar.setVisibility(View.GONE);
-                }
+
             }
 
             @Override

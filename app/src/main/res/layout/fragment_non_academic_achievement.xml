@@ -17,11 +17,14 @@
         android:layout_centerInParent="true"/>
 
     <TextView
-        android:id="@+id/tv_no_achieve"
+        android:id="@+id/tv_not_found"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Anda tidak memiliki prestasi non akademik"
-        android:layout_centerInParent="true"
-        android:gravity="center"/>
+        android:text="Anda Belum Memiliki Prestasi Non-Akademik"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

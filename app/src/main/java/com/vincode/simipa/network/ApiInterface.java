@@ -1,6 +1,8 @@
 package com.vincode.simipa.network;
 
 
+import android.net.Uri;
+
 import com.vincode.simipa.model.AchievementResponse;
 import com.vincode.simipa.model.BeritaResponse;
 import com.vincode.simipa.model.CalendarResponse;
@@ -27,13 +29,16 @@ import com.vincode.simipa.model.StudyResponse;
 import com.vincode.simipa.model.Value;
 
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
@@ -205,5 +210,11 @@ public interface ApiInterface {
     @GET("read-berita-foto.php")
     Call<PhotoNewsResponse> getPhotoNews(
         @Query("id") String idNews
+    );
+
+    @Multipart
+    @POST("Api.php?apicall=upload")
+    Call<Status> uploadFile(
+            @Part("image\"; filename=\"myfile.jpg\" ") RequestBody file, @Part("desc") RequestBody desc
     );
 }

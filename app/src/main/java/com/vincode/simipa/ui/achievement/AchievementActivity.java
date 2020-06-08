@@ -1,6 +1,6 @@
 package com.vincode.simipa.ui.achievement;
 
-import androidx.appcompat.app.ActionBar;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,10 +23,12 @@ import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.SharedPrefManager;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AchievementActivity extends AppCompatActivity {
     private TextView tvAcademic, tvNonAcademic;
     private ImageView imgPhoto;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +39,15 @@ public class AchievementActivity extends AppCompatActivity {
         TextView tvNpm = findViewById(R.id.tv_achiev_npm);
         FloatingActionButton fabAddAchieve = findViewById(R.id.fab_add_achieve);
 
-        tvName.setText(SharedPrefManager.getInstance(this).getUser().getDisplayName());
+//        tvName.setText(SharedPrefManager.getInstance(this).getUser().getDisplayName());
         tvNpm.setText(SharedPrefManager.getInstance(this).getUser().getUserLogin());
 
         fabAddAchieve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AchievementActivity.this, AddAchievmentActivity.class));
+                Intent intent = new Intent(AchievementActivity.this, AddAchievmentActivity.class);
+                intent.putExtra("nama", name);
+                startActivity(intent);
             }
         });
 
@@ -53,14 +57,12 @@ public class AchievementActivity extends AppCompatActivity {
         tvAcademic.setEnabled(false);
         imgPhoto = findViewById(R.id.img_photo);
 
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setTitle(R.string.achievment);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.achievment);
 
         AcademicAchievementFragment academicAchievementFragment = new AcademicAchievementFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, academicAchievementFragment).commit();
 
-        getData();
+        getData(tvName);
 
     }
 
@@ -78,12 +80,12 @@ public class AchievementActivity extends AppCompatActivity {
         tvNonAcademic.setEnabled(false);
     }
 
-    public void getData() {
+    public void getData(final TextView tvName) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<ProfileResponse> call = apiInterface.userProfile(SharedPrefManager.getInstance(this).getUser().getUserLogin());
         call.enqueue(new Callback<ProfileResponse>() {
             @Override
-            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+            public void onResponse(@NonNull Call<ProfileResponse> call, @NonNull Response<ProfileResponse> response) {
                 assert response.body() != null;
                 List<UserProfile> userProfile = response.body().getUserProfiles();
 
@@ -92,10 +94,12 @@ public class AchievementActivity extends AppCompatActivity {
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                 .error(R.drawable.ic_error))
                         .into(imgPhoto);
+                name = userProfile.get(0).getDisplayName();
+                tvName.setText(name);
             }
 
             @Override
-            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<ProfileResponse> call, @NonNull Throwable t) {
 
             }
         });
