@@ -1,23 +1,19 @@
 package com.vincode.simipa.network;
 
-
-import android.net.Uri;
-
 import com.vincode.simipa.model.AchievementResponse;
 import com.vincode.simipa.model.BeritaResponse;
 import com.vincode.simipa.model.CalendarResponse;
 import com.vincode.simipa.model.ClassScheduleResponse;
 import com.vincode.simipa.model.CollegeScheduleResponse;
-import com.vincode.simipa.model.CountSeminarResponse;
 import com.vincode.simipa.model.KRSResponse;
 import com.vincode.simipa.model.LectureResponse;
-import com.vincode.simipa.model.LectureResult;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PhotoNewsResponse;
 import com.vincode.simipa.model.PracticeScheduleResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.PresenceSeminarResponse;
 import com.vincode.simipa.model.ProfileResponse;
+import com.vincode.simipa.model.ScholarshipPost;
 import com.vincode.simipa.model.SeminarPresenceResponse;
 import com.vincode.simipa.model.SeminarResponse;
 import com.vincode.simipa.model.SeminarScheduleResponse;
@@ -216,5 +212,11 @@ public interface ApiInterface {
     @POST("Api.php?apicall=upload")
     Call<Status> uploadFile(
             @Part("image\"; filename=\"myfile.jpg\" ") RequestBody file, @Part("desc") RequestBody desc
+    );
+
+    @Headers("Content-Type: application/json")
+    @POST("create-beasiswa.php")
+    Call<ScholarshipPost> insertBeasiswa(
+            @Body String result
     );
 }
