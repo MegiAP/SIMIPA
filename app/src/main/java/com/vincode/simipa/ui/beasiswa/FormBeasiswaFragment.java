@@ -5,7 +5,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +21,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.vincode.simipa.R;
+import com.vincode.simipa.model.ScholarshipPost;
+import com.vincode.simipa.network.ApiClient;
+import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.SharedPrefManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,7 +37,7 @@ import java.util.Calendar;
  */
 public class FormBeasiswaFragment extends Fragment {
     private Spinner spinYear,semester;
-    private EditText etBeasiswa,etNama,etNpm,etJurusan,etProdi;
+    private EditText etBeasiswa,etPenyelenggara,etNama,etNpm,etJurusan,etProdi;
     private LinearLayout linearLayout;
     private Button tambah;
 
@@ -96,6 +106,7 @@ public class FormBeasiswaFragment extends Fragment {
         semester.setAdapter(adapterSems);
 
         etBeasiswa = view.findViewById(R.id.et_beasiswa);
+        etPenyelenggara = view.findViewById(R.id.et_penyelenggara);
         etNama = view.findViewById(R.id.et_nama);
         etNpm = view.findViewById(R.id.et_npm);
 
@@ -161,12 +172,57 @@ public class FormBeasiswaFragment extends Fragment {
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                linearLayout.setVisibility(View.GONE);
-                String smstr = semester.getSelectedItem().toString();
-                String text = spinYear.getSelectedItem().toString();
-                Toast.makeText(getActivity(), text + smstr, Toast.LENGTH_LONG).show();
+                //linearLayout.setVisibility(View.GONE);
+                getData();
             }
         });
     }
 
+    public void getData() {
+        String npm = SharedPrefManager.getInstance(getContext()).getUser().getUserLogin();
+        String peny = etPenyelenggara.getText().toString().trim();
+        String namaB = etBeasiswa.getText().toString().trim();
+        String smstr = semester.getSelectedItem().toString();
+        String text = spinYear.getSelectedItem().toString();
+
+//        Toast.makeText(getActivity(), peny+namaB+npm, Toast.LENGTH_LONG).show();
+        Log.d(peny+namaB, "AAAAAAAAAAAAAAAAAAAAAAA");
+        if (peny.isEmpty() || namaB.isEmpty() || smstr.equals("Semester") || text.equals("Tahun")){
+            Toast.makeText(getActivity(), "Ops! there is an empty field", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getActivity(), peny, Toast.LENGTH_LONG).show();
+            insert(npm, smstr, text, peny, namaB);
+        }
+    }
+
+    public void insert(String npm, String semester, String tahunBeasiswa, String penyelenggara, String namaBeasiswa){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("npm", npm);
+            jsonObject.put("semester", semester);
+            jsonObject.put("tahun_beasiswa", tahunBeasiswa);
+            jsonObject.put("penyelenggara", penyelenggara);
+            jsonObject.put("nama_beasiswa", namaBeasiswa);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<ScholarshipPost> call = apiInterface.insertBeasiswa(jsonObject.toString());
+        call.enqueue(new Callback<ScholarshipPost>() {
+            @Override
+            public void onResponse(Call<ScholarshipPost> call, Response<ScholarshipPost> response) {
+                assert response.body() != null;
+                String message = response.body().getMessage();
+
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<ScholarshipPost> call, Throwable t) {
+
+            }
+        });
+    }
 }

@@ -1,14 +1,17 @@
 package com.vincode.simipa.network;
 
 
+import android.net.Uri;
 
 import com.vincode.simipa.model.AchievementResponse;
 import com.vincode.simipa.model.BeritaResponse;
 import com.vincode.simipa.model.CalendarResponse;
 import com.vincode.simipa.model.ClassScheduleResponse;
 import com.vincode.simipa.model.CollegeScheduleResponse;
+import com.vincode.simipa.model.CountSeminarResponse;
 import com.vincode.simipa.model.KRSResponse;
 import com.vincode.simipa.model.LectureResponse;
+import com.vincode.simipa.model.LectureResult;
 import com.vincode.simipa.model.LoginResponse;
 import com.vincode.simipa.model.PhotoNewsResponse;
 import com.vincode.simipa.model.PracticeScheduleResponse;
@@ -214,24 +217,4 @@ public interface ApiInterface {
     Call<Status> uploadFile(
             @Part("image\"; filename=\"myfile.jpg\" ") RequestBody file, @Part("desc") RequestBody desc
     );
-
-    @FormUrlEncoded
-    @POST("create-prestasi-mhs.php")
-    Call<Value> addAchieveStudent(
-            @Field("nama_kegiatan") String nama_kegiatan,
-            @Field("penyelenggara") String penyelenggata,
-            @Field("kategori") String kategori,
-            @Field("tingkat") String tingkat,
-            @Field("prestasi") String prestasi,
-            @Field("tahun_pelaksanaan") int tahun_pelaksanaan,
-            @Field("jenis_peserta") String jenis_peserta,
-            @Field("sertifikat") String sertifikat,
-            @Field("npm") String npm
-    );
-
-//    @Headers("Content-Type: application/json")
-//    @POST("create-prestasi-mhs.php")
-//    Call<Value> addAchieveStudent(
-//            @Body String result
-//    );
 }
