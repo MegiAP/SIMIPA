@@ -5,6 +5,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class Value {
 
+    @SerializedName("error")
+    @Expose
+    private String error;
+
     @SerializedName("message")
     @Expose
     private String message;
@@ -16,6 +20,10 @@ public class Value {
     @SerializedName("kuota")
     @Expose
     private String kuota;
+
+    public String getError() {
+        return error;
+    }
 
     public String getKuota() {
         return kuota;

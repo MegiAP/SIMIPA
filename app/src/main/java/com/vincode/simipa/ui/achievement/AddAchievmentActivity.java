@@ -1,5 +1,6 @@
 package com.vincode.simipa.ui.achievement;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +11,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,9 +23,11 @@ import android.widget.Toast;
 
 import com.vincode.simipa.R;
 import com.vincode.simipa.model.Status;
+import com.vincode.simipa.model.Value;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.SharedPrefManager;
+
 
 import java.io.File;
 import java.util.Objects;
@@ -36,8 +40,8 @@ import retrofit2.Response;
 
 public class AddAchievmentActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnAddTeam, btnDeleteTeam, btnUpload;
-    private EditText edtNpm, edtName, edtJurusan, edtProdi;
+    private Button btnAddTeam, btnDeleteTeam, btnUpload, btnSave;
+    private EditText edtNpm, edtName, edtJurusan, edtProdi, edtNamaKegiatan, edtPenyelenggara, edtTahun;
     private Spinner spCategory, spType, spAchieve, spLevel;
     private TextView tvNameFile;
     String file_path;
@@ -50,6 +54,9 @@ public class AddAchievmentActivity extends AppCompatActivity implements View.OnC
 
         Objects.requireNonNull(getSupportActionBar()).setTitle("Form Data Prestasi");
 
+        init();
+        setDataReadonly(SharedPrefManager.getInstance(this).getUser().getUserLogin(), getIntent().getStringExtra("nama"));
+
         String [] achieve = new String[] {"Finalis", "Juara Favorite/Kategori","Juara III (Perunggu)", "Juara II (Perak)", "Juara I (Emas)"};
         String [] typeAchieve = new String[] {"Akademik", "Non Akademik"};
         String [] levelAchieve = new String[] {"Lokal (Universitas Lampung)", "Wilayah (Kab/Kota, Provinsi, Regional", "Nasional", "Internasional"};
@@ -60,34 +67,10 @@ public class AddAchievmentActivity extends AppCompatActivity implements View.OnC
         ArrayAdapter<String> levelAchieveAdapter = new ArrayAdapter<>(this, R.layout.act_item_achieve, levelAchieve);
         ArrayAdapter<String> categoryAchieveAdapter = new ArrayAdapter<>(this, R.layout.act_item_achieve, categoryAchieve);
 
-        Button btnSave = findViewById(R.id.btn_save_achieve);
-        btnAddTeam = findViewById(R.id.btn_add_team);
-        btnDeleteTeam = findViewById(R.id.btn_delete_team);
-        btnUpload = findViewById(R.id.btn_upload_achieve);
-
-        edtNpm = findViewById(R.id.edt_npm_achieve);
-        edtName = findViewById(R.id.edt_name_achieve);
-        edtJurusan = findViewById(R.id.edt_jurusan_achieve);
-        edtProdi = findViewById(R.id.edt_prodi_achieve);
-
-        spCategory = findViewById(R.id.sp_category);
-        spType = findViewById(R.id.sp_type);
-        spAchieve = findViewById(R.id.sp_achieve);
-        spLevel = findViewById(R.id.sp_level);
-
         spCategory.setAdapter(categoryAchieveAdapter);
         spType.setAdapter(typeAchieveAdapter);
         spAchieve.setAdapter(achieveAdapter);
         spLevel.setAdapter(levelAchieveAdapter);
-
-        tvNameFile = findViewById(R.id.tv_name_file);
-
-        btnSave.setOnClickListener(this);
-        btnAddTeam.setOnClickListener(this);
-        btnDeleteTeam.setOnClickListener(this);
-        btnUpload.setOnClickListener(this);
-
-        setDataReadonly(SharedPrefManager.getInstance(this).getUser().getUserLogin(), getIntent().getStringExtra("name"));
 
         spCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -108,6 +91,12 @@ public class AddAchievmentActivity extends AppCompatActivity implements View.OnC
 
             }
         });
+
+        btnSave.setOnClickListener(this);
+        btnAddTeam.setOnClickListener(this);
+        btnDeleteTeam.setOnClickListener(this);
+        btnUpload.setOnClickListener(this);
+
     }
 
     private void setDataReadonly(String userLogin, String name) {
@@ -148,27 +137,106 @@ public class AddAchievmentActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    private void init(){
+        btnSave = findViewById(R.id.btn_save_achieve);
+        btnAddTeam = findViewById(R.id.btn_add_team);
+        btnDeleteTeam = findViewById(R.id.btn_delete_team);
+        btnUpload = findViewById(R.id.btn_upload_achieve);
+
+        edtNpm = findViewById(R.id.edt_npm_achieve);
+        edtName = findViewById(R.id.edt_name_achieve);
+        edtJurusan = findViewById(R.id.edt_jurusan_achieve);
+        edtProdi = findViewById(R.id.edt_prodi_achieve);
+        edtNamaKegiatan = findViewById(R.id.edt_event_achieve);
+        edtTahun = findViewById(R.id.edt_year_achieve);
+        edtPenyelenggara = findViewById(R.id.edt_organize_achieve);
+
+        spCategory = findViewById(R.id.sp_category);
+        spType = findViewById(R.id.sp_type);
+        spAchieve = findViewById(R.id.sp_achieve);
+        spLevel = findViewById(R.id.sp_level);
+
+        tvNameFile = findViewById(R.id.tv_name_file);
+    }
+
     @Override
     public void onClick(View view) {
-//        switch (view.getId()){
-//            case R.id
-//        }
-        if (view.getId() == R.id.btn_save_achieve){
-//            String a = spAchieve.getSelectedItem().toString();
-//            String b = spLevel.getSelectedItem().toString();
-//            String c = spType.getSelectedItem().toString();
-////
-            Toast. makeText(this, uriFix+" "+file_path, Toast.LENGTH_SHORT).show();
-            uploadFIle(uriFix,file_path,file_path);
+
+        switch (view.getId()){
+            case R.id.btn_save_achieve:
+                String namaKegiatan = edtNamaKegiatan.getText().toString();
+                String penyelenggara = edtPenyelenggara.getText().toString();
+                String tahun = edtPenyelenggara.getText().toString();
+                String npm = edtNpm.getText().toString();
+
+
+                String tingkat = spLevel.getSelectedItem().toString();
+                String prestasi = spAchieve.getSelectedItem().toString();
+                String kategori = spType.getSelectedItem().toString();
+                String jenis;
+
+                if (spCategory.getSelectedItem().toString().equals("Tim")){
+                    jenis = "2";
+                }else{
+                    jenis = "1";
+                }
+
+//                Toast. makeText(this, uriFix+" "+file_path, Toast.LENGTH_SHORT).show();
+//                uploadFIle(uriFix,file_path,file_path);
+                if (TextUtils.isEmpty(tahun)){
+                    edtTahun.setError("Tahun Kegiatan harus diisi");
+                }else if (TextUtils.isEmpty(namaKegiatan)){
+                    edtNamaKegiatan.setError("Nama Kegiatan harus diisi");
+                }else if (TextUtils.isEmpty(penyelenggara)) {
+                    edtPenyelenggara.setError("Penyelenggara harus diisi");
+                }else if (TextUtils.isEmpty(file_path)) {
+                    btnUpload.setError("File harus dipilih");
+                }else {
+                    uploadForm(namaKegiatan, penyelenggara, kategori, tingkat, prestasi, tahun, jenis, file_path, npm );
+                }
+                break;
+            case R.id.btn_upload_achieve:
+                Intent fileIntent = new Intent();
+                fileIntent.setType("*/*");
+                fileIntent.setAction(Intent.ACTION_PICK);
+                startActivityForResult(Intent.createChooser(fileIntent, "Pilih File Upload"), 102);//must constant
+                break;
         }
 
-        if (view == btnUpload){
-            //get all files
-            Intent fileIntent = new Intent();
-            fileIntent.setType("*/*");
-            fileIntent.setAction(Intent.ACTION_PICK);
-            startActivityForResult(Intent.createChooser(fileIntent, "Pilih File Upload"), 102);//must constant
-        }
+    }
+
+    private void uploadForm(String namaKegiatan, String penyelenggara, String kategori, String tingkat, String prestasi,
+                            String tahun, String jenis, String file_path, String npm) {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<Value> call = apiInterface.addAchieveStudent(namaKegiatan, penyelenggara, kategori, tingkat, prestasi,
+                Integer.parseInt(tahun),jenis , file_path, npm);
+
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(@NonNull Call<Value> call, @NonNull Response<Value> response) {
+                progressDialog.dismiss();
+                assert response.body() != null;
+                if (response.body().getError().equals("false")){
+                    Toast.makeText(AddAchievmentActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
+                    startActivity(new Intent(AddAchievmentActivity.this, AchievementActivity.class));
+                }else{
+                    Toast.makeText(AddAchievmentActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Value> call, @NonNull Throwable t) {
+                Toast.makeText(AddAchievmentActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+        });
+
     }
 
     @Override
@@ -183,7 +251,7 @@ public class AddAchievmentActivity extends AppCompatActivity implements View.OnC
                 uriFix = data.getData();
                 String paths = FilePath.getFilePath(AddAchievmentActivity.this, uriFix);
                 if (paths != null){
-                    tvNameFile.setText(""+ new File(paths).getName());
+                    tvNameFile.setText(new File(paths).getName());
                 }
                 file_path = paths;
 //                Toast.makeText()
@@ -191,6 +259,8 @@ public class AddAchievmentActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+
+    //belum pake upload file sebenarnya
     private void uploadFIle(Uri uri, String desc, String filePath){
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
