@@ -15,6 +15,7 @@ import com.vincode.simipa.model.PracticeScheduleResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.PresenceSeminarResponse;
 import com.vincode.simipa.model.ProfileResponse;
+import com.vincode.simipa.model.ScholarshipPost;
 import com.vincode.simipa.model.SeminarPresenceResponse;
 import com.vincode.simipa.model.SeminarResponse;
 import com.vincode.simipa.model.SeminarScheduleResponse;
@@ -227,5 +228,11 @@ public interface ApiInterface {
             @Field("jenis_peserta") String jenis,
             @Field("sertifikat") String sertifikat,
             @Field("npm") String npm
+    );
+
+    @Headers("Content-Type: application/json")
+    @POST("create-beasiswa.php")
+    Call<ScholarshipPost> insertBeasiswa(
+            @Body String result
     );
 }

@@ -77,6 +77,8 @@
     <!-- Preference Titles -->
 
     <!-- Messages Preferences -->
+    <string name="field_kosong">Isian ini harus diisi</string>
+    <string name="koneksi_lambat">Mohon perika kembali jaringan anda</string>
 
     <!-- Sync Preferences -->
     <string name="ruangan">Ruangan</string>
