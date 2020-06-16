@@ -363,16 +363,22 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.showAll:
                 if (rvKuliah.getVisibility() == View.GONE || rvPraktikum.getVisibility() == View.GONE || rvKP.getVisibility() == View.GONE || rvUsul.getVisibility() == View.GONE || rvHasil.getVisibility() == View.GONE){
-                    rvKuliah.setVisibility(View.VISIBLE);
-                    rvPraktikum.setVisibility(View.VISIBLE);
-                    rvKP.setVisibility(View.VISIBLE);
-                    rvUsul.setVisibility(View.VISIBLE);
-                    rvHasil.setVisibility(View.VISIBLE);
-                    clsKuliah.setImageResource(R.drawable.ic_add_white);
-                    clsPraktikum.setImageResource(R.drawable.ic_add_white);
-                    clsKP.setImageResource(R.drawable.ic_add_white);
-                    clsUsul.setImageResource(R.drawable.ic_add_white);
-                    clsHasil.setImageResource(R.drawable.ic_add_white);
+                    if (rlKuliah.getVisibility() == View.VISIBLE) {
+                        rvKuliah.setVisibility(View.VISIBLE);
+                        clsKuliah.setImageResource(R.drawable.ic_add_white);
+                    } if (rlPraktikum.getVisibility() == View.VISIBLE) {
+                        rvPraktikum.setVisibility(View.VISIBLE);
+                        clsPraktikum.setImageResource(R.drawable.ic_add_white);
+                    } if (rlKP.getVisibility() == View.VISIBLE) {
+                        rvKP.setVisibility(View.VISIBLE);
+                        clsKP.setImageResource(R.drawable.ic_add_white);
+                    } if (rlUsul.getVisibility() == View.VISIBLE) {
+                        rvUsul.setVisibility(View.VISIBLE);
+                        clsUsul.setImageResource(R.drawable.ic_add_white);
+                    } if (rlHasil.getVisibility() == View.VISIBLE) {
+                        rvHasil.setVisibility(View.VISIBLE);
+                        clsHasil.setImageResource(R.drawable.ic_add_white);
+                    }
                 } else {
                     Toast.makeText(this, "Semua agenda telah tampil", Toast.LENGTH_LONG).show();
                 }
