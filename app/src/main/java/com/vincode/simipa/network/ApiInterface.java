@@ -15,6 +15,7 @@ import com.vincode.simipa.model.PracticeScheduleResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.PresenceSeminarResponse;
 import com.vincode.simipa.model.ProfileResponse;
+import com.vincode.simipa.model.ScholarshipPost;
 import com.vincode.simipa.model.SeminarPresenceResponse;
 import com.vincode.simipa.model.SeminarResponse;
 import com.vincode.simipa.model.SeminarScheduleResponse;
@@ -26,6 +27,7 @@ import com.vincode.simipa.model.StudyResponse;
 import com.vincode.simipa.model.Value;
 
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -210,22 +212,23 @@ public interface ApiInterface {
     );
 
     @Multipart
-    @POST("Api.php?apicall=upload")
-    Call<Status> uploadFile(
-            @Part("image\"; filename=\"myfile.jpg\" ") RequestBody file, @Part("desc") RequestBody desc
-    );
-
-    @FormUrlEncoded
     @POST("create-prestasi-mhs.php")
     Call<Value> addAchieveStudent(
-            @Field("nama_kegiatan") String namaKegiatan,
-            @Field("penyelenggara") String penyelenggara,
-            @Field("kategori") String kategori,
-            @Field("tingkat") String tingkat,
-            @Field("prestasi") String prestasi,
-            @Field("tahun_pelaksanaan") int tahun,
-            @Field("jenis_peserta") String jenis,
-            @Field("sertifikat") String sertifikat,
-            @Field("npm") String npm
+            @Part MultipartBody.Part fileSertifikat,
+            @Part("nama_kegiatan") RequestBody namaKegiatan,
+            @Part("penyelenggara") RequestBody penyelenggara,
+            @Part("kategori") RequestBody kategori,
+            @Part("tingkat") RequestBody tingkat,
+            @Part("prestasi") RequestBody prestasi,
+            @Part("tahun_pelaksanaan") RequestBody tahun,
+            @Part("jenis_peserta") RequestBody jenis,
+            @Part("npm") RequestBody npm
+    );
+
+
+    @Headers("Content-Type: application/json")
+    @POST("create-beasiswa.php")
+    Call<ScholarshipPost> insertBeasiswa(
+            @Body String result
     );
 }

@@ -3,10 +3,14 @@ package com.vincode.simipa.ui.achievement;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,7 +26,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vincode.simipa.R;
-import com.vincode.simipa.model.Status;
 import com.vincode.simipa.model.Value;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
@@ -33,6 +36,7 @@ import java.io.File;
 import java.util.Objects;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,8 +48,13 @@ public class AddAchievmentActivity extends AppCompatActivity implements View.OnC
     private EditText edtNpm, edtName, edtJurusan, edtProdi, edtNamaKegiatan, edtPenyelenggara, edtTahun;
     private Spinner spCategory, spType, spAchieve, spLevel;
     private TextView tvNameFile;
-    String file_path;
-    Uri uriFix;
+    String filePath;
+    Uri uri;
+
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String [] PERMISSION_STORAGE = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,8 @@ public class AddAchievmentActivity extends AppCompatActivity implements View.OnC
         Objects.requireNonNull(getSupportActionBar()).setTitle("Form Data Prestasi");
 
         init();
+        verifyStoragePermissions(AddAchievmentActivity.this);
+
         setDataReadonly(SharedPrefManager.getInstance(this).getUser().getUserLogin(), getIntent().getStringExtra("nama"));
 
         String [] achieve = new String[] {"Finalis", "Juara Favorite/Kategori","Juara III (Perunggu)", "Juara II (Perak)", "Juara I (Emas)"};
@@ -159,6 +170,7 @@ public class AddAchievmentActivity extends AppCompatActivity implements View.OnC
         tvNameFile = findViewById(R.id.tv_name_file);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onClick(View view) {
 
@@ -181,41 +193,54 @@ public class AddAchievmentActivity extends AppCompatActivity implements View.OnC
                     jenis = "1";
                 }
 
-//                Toast. makeText(this, uriFix+" "+file_path, Toast.LENGTH_SHORT).show();
-//                uploadFIle(uriFix,file_path,file_path);
                 if (TextUtils.isEmpty(tahun)){
                     edtTahun.setError("Tahun Kegiatan harus diisi");
                 }else if (TextUtils.isEmpty(namaKegiatan)){
                     edtNamaKegiatan.setError("Nama Kegiatan harus diisi");
                 }else if (TextUtils.isEmpty(penyelenggara)) {
                     edtPenyelenggara.setError("Penyelenggara harus diisi");
-                }else if (TextUtils.isEmpty(file_path)) {
+                }else if (TextUtils.isEmpty(filePath)) {
                     btnUpload.setError("File harus dipilih");
                 }else {
-                    uploadForm(namaKegiatan, penyelenggara, kategori, tingkat, prestasi, tahun, jenis, file_path, npm );
+
+                    File file = new File(filePath);
+                    RequestBody fileSertifikat = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                    MultipartBody.Part fileUpload = MultipartBody.Part.createFormData("sertifikat", file.getName(), fileSertifikat);
+
+                    RequestBody reqNamaKegiatan = RequestBody.create(MediaType.parse("text/plain"), namaKegiatan);
+                    RequestBody reqPenyelenggara = RequestBody.create(MediaType.parse("text/plain"), penyelenggara);
+                    RequestBody reqKategori = RequestBody.create(MediaType.parse("text/plain"), kategori);
+                    RequestBody reqTingkat = RequestBody.create(MediaType.parse("text/plain"), tingkat);
+                    RequestBody reqPrestasi = RequestBody.create(MediaType.parse("text/plain"), prestasi);
+                    RequestBody reqTahun = RequestBody.create(MediaType.parse("text/plain"), tahun);
+                    RequestBody reqJenis = RequestBody.create(MediaType.parse("text/plain"), jenis);
+                    RequestBody reqNPM= RequestBody.create(MediaType.parse("text/plain"), npm);
+
+
+                    addFormAchieve(fileUpload, reqNamaKegiatan, reqPenyelenggara, reqKategori, reqTingkat, reqPrestasi,
+                            reqTahun, reqJenis, reqNPM);
                 }
                 break;
             case R.id.btn_upload_achieve:
-                Intent fileIntent = new Intent();
-                fileIntent.setType("*/*");
-                fileIntent.setAction(Intent.ACTION_PICK);
-                startActivityForResult(Intent.createChooser(fileIntent, "Pilih File Upload"), 102);//must constant
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, 102);
                 break;
         }
 
     }
 
-    private void uploadForm(String namaKegiatan, String penyelenggara, String kategori, String tingkat, String prestasi,
-                            String tahun, String jenis, String file_path, String npm) {
+    private void addFormAchieve(MultipartBody.Part fileUpload, RequestBody reqNamaKegiatan, RequestBody reqPenyelenggara,
+                                RequestBody reqKategori, RequestBody reqTingkat, RequestBody reqPrestasi, RequestBody reqTahun,
+                                RequestBody reqJenis, RequestBody reqNPM) {
+
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-
-        Call<Value> call = apiInterface.addAchieveStudent(namaKegiatan, penyelenggara, kategori, tingkat, prestasi,
-                Integer.parseInt(tahun),jenis , file_path, npm);
-
+        Call<Value> call = apiInterface.addAchieveStudent(fileUpload, reqNamaKegiatan, reqPenyelenggara, reqKategori, reqTingkat,
+                reqPrestasi, reqTahun, reqJenis, reqNPM );
         call.enqueue(new Callback<Value>() {
             @Override
             public void onResponse(@NonNull Call<Value> call, @NonNull Response<Value> response) {
@@ -236,75 +261,45 @@ public class AddAchievmentActivity extends AppCompatActivity implements View.OnC
                 progressDialog.dismiss();
             }
         });
-
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK){
             if (requestCode == 102){
-                if (data == null){
-                    return;
-                }
-//                belum kelar
-                uriFix = data.getData();
-                String paths = FilePath.getFilePath(AddAchievmentActivity.this, uriFix);
-                if (paths != null){
-                    tvNameFile.setText(new File(paths).getName());
-                }
-                file_path = paths;
-//                Toast.makeText()
+                assert data != null;
+                uri = data.getData();
+                filePath = getRealPathFromUri(uri, AddAchievmentActivity.this);
+                tvNameFile.setText(new File(filePath).getName());
             }
         }
     }
 
 
-    //belum pake upload file sebenarnya
-    private void uploadFIle(Uri uri, String desc, String filePath){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-        File file = new File(filePath);
 
-        RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(uri)), file);
-        RequestBody descBody = RequestBody.create(MediaType.parse("text/plain"), desc);
-
-        ApiInterface apiInterface = ApiClient.getClientMovie().create(ApiInterface.class);
-
-        Call<Status> call = apiInterface.uploadFile(requestFile, descBody);
-
-        call.enqueue(new Callback<Status>() {
-
-            @Override
-            public void onResponse(Call<Status> call, Response<Status> response) {
-                progressDialog.dismiss();
-                assert response.body() != null;
-                if (response.body().getError().equals("false")){
-                    Toast.makeText(AddAchievmentActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(AddAchievmentActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Status> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(AddAchievmentActivity.this, "Error!!!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public String getRealPathFromUri(Uri uri){
-        String[] proj = { MediaStore.Images.Media.DATA };
-        Cursor cursor=getContentResolver().query(uri,proj,null,null,null);
-        if(cursor==null){
+    public String getRealPathFromUri(Uri uri, Activity activity){
+        @SuppressLint("Recycle") Cursor cursor = activity.getContentResolver().query(uri, null, null, null, null);
+        if (cursor == null){
             return uri.getPath();
-        }
-        else{
+        }else{
             cursor.moveToFirst();
-            int id=cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-            return cursor.getString(id);
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            return cursor.getString(idx);
+        }
+    }
+
+    public static void verifyStoragePermissions(Activity activity){
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSION_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
         }
     }
 }
