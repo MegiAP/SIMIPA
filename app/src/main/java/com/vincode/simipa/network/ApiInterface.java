@@ -231,4 +231,10 @@ public interface ApiInterface {
     Call<ScholarshipPost> insertBeasiswa(
             @Body String result
     );
+
+    @Headers("Content-Type: application/json")
+    @POST("create-beasiswa.php")
+    Call<ScholarshipPost> insertBeasiswa(
+            @Body String result
+    );
 }

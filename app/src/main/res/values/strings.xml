@@ -77,6 +77,11 @@
     <!-- Preference Titles -->
 
     <!-- Messages Preferences -->
+    <string name="field_kosong">Isian ini harus diisi</string>
+    <string name="koneksi_lambat">Mohon perika kembali jaringan anda</string>
+    <string name="empty_warning">Ops! Semua isian harus diisi</string>
+    <string name="show_less">Show less</string>
+    <string name="show_all">Show all</string>
 
     <!-- Sync Preferences -->
     <string name="ruangan">Ruangan</string>
@@ -133,5 +138,4 @@
     <string name="achieve">Capaian Prestasi</string>
     <string name="not_finish">Belum Selesai</string>
     <string name="finish">Selesai</string>
-
 </resources>

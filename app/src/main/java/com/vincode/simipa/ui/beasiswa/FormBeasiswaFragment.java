@@ -1,5 +1,7 @@
 package com.vincode.simipa.ui.beasiswa;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,7 +11,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vincode.simipa.R;
@@ -31,6 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,7 +42,8 @@ public class FormBeasiswaFragment extends Fragment {
     private Spinner spinYear,semester;
     private EditText etBeasiswa,etPenyelenggara,etNama,etNpm,etJurusan,etProdi;
     private LinearLayout linearLayout;
-    private Button tambah;
+    private Button tambah,batal;
+    private TextView showDetail;
 
     public FormBeasiswaFragment() {
         // Required empty public constructor
@@ -76,7 +80,7 @@ public class FormBeasiswaFragment extends Fragment {
         for (int i = tahunIni; i >= tahunMasuk; i--) {
             years.add(Integer.toString(i));
         }
-        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, years);
+        ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_item, years);
 
         // data spinner semester
         int hitungSem;
@@ -97,7 +101,7 @@ public class FormBeasiswaFragment extends Fragment {
             }
         }
 
-        ArrayAdapter<String> adapterSems = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, sems);
+        ArrayAdapter<String> adapterSems = new ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_item, sems);
 
         spinYear = view.findViewById(R.id.yearspin);
         spinYear.setAdapter(adapterYear);
@@ -119,44 +123,64 @@ public class FormBeasiswaFragment extends Fragment {
         etProdi = view.findViewById(R.id.et_prodi);
         linearLayout = view.findViewById(R.id.linear_id);
 
+        etNama.setTextColor(Color.GRAY);
+        etNpm.setTextColor(Color.GRAY);
+        etJurusan.setTextColor(Color.GRAY);
+        etProdi.setTextColor(Color.GRAY);
+
+        showDetail = view.findViewById(R.id.show_detail);
+        showDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (linearLayout.getVisibility() == View.GONE) {
+                    showDetail.setText(R.string.show_less);
+                    linearLayout.setVisibility(View.VISIBLE);
+                } else if (linearLayout.getVisibility() == View.VISIBLE) {
+                    showDetail.setText(R.string.show_all);
+                    linearLayout.setVisibility(View.GONE);
+                }
+            }
+        });
+
         tambah = view.findViewById(R.id.tambah_beasiswa);
+        batal = view.findViewById(R.id.batal_beasiswa);
 
         String kdJurusan = SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin().substring(4,6);
         String kdProdi = SharedPrefManager.getInstance(getActivity()).getUser().getUserLogin().substring(2,3);
 
         switch (kdJurusan) {
             case "01":
-                etJurusan.setText("Fisika");
-                etProdi.setText("Fisika");
+                etJurusan.setText(R.string.physics);
+                etProdi.setText(R.string.physics);
                 etJurusan.setEnabled(false);
                 etProdi.setEnabled(false);
                 break;
             case "02":
-                etJurusan.setText("Biologi");
-                etProdi.setText("Biologi");
+                etJurusan.setText(R.string.biology);
+                etProdi.setText(R.string.biology);
                 etJurusan.setEnabled(false);
                 etProdi.setEnabled(false);
                 break;
             case "03":
-                etJurusan.setText("Matematika");
-                etProdi.setText("Matematika");
+                etJurusan.setText(R.string.math);
+                etProdi.setText(R.string.math);
                 etJurusan.setEnabled(false);
                 etProdi.setEnabled(false);
                 break;
             case "04":
-                etJurusan.setText("Kimia");
-                etProdi.setText("Kimia");
+                etJurusan.setText(R.string.chemistry);
+                etProdi.setText(R.string.chemistry);
                 etJurusan.setEnabled(false);
                 etProdi.setEnabled(false);
                 break;
             case "05":
-                etJurusan.setText("Ilmu Komputer");
+                etJurusan.setText(R.string.cs);
                 if (kdProdi.equals("1") || kdProdi.equals("5")) {
-                    etProdi.setText("S1 Ilmu Komputer");
+                    etProdi.setText(R.string.cs1);
                     etJurusan.setEnabled(false);
                     etProdi.setEnabled(false);
                 } else {
-                    etProdi.setText("D3 Manajemen Informatika");
+                    etProdi.setText(R.string.cs2);
                     etJurusan.setEnabled(false);
                     etProdi.setEnabled(false);
                 }
@@ -172,8 +196,15 @@ public class FormBeasiswaFragment extends Fragment {
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //linearLayout.setVisibility(View.GONE);
                 getData();
+            }
+        });
+        batal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requireActivity().finish();
+                Intent back = new Intent(getActivity(), BeasiswaActivity.class);
+                startActivity(back);
             }
         });
     }
@@ -185,12 +216,21 @@ public class FormBeasiswaFragment extends Fragment {
         String smstr = semester.getSelectedItem().toString();
         String text = spinYear.getSelectedItem().toString();
 
-//        Toast.makeText(getActivity(), peny+namaB+npm, Toast.LENGTH_LONG).show();
-        Log.d(peny+namaB, "AAAAAAAAAAAAAAAAAAAAAAA");
-        if (peny.isEmpty() || namaB.isEmpty() || smstr.equals("Semester") || text.equals("Tahun")){
-            Toast.makeText(getActivity(), "Ops! there is an empty field", Toast.LENGTH_LONG).show();
+        if (peny.isEmpty() || namaB.isEmpty() || semester.getSelectedItemPosition() == 0 || spinYear.getSelectedItemPosition() == 0){
+            Toast.makeText(getActivity(), R.string.empty_warning, Toast.LENGTH_LONG).show();
+            if (namaB.isEmpty()) {
+                etBeasiswa.setError(getText(R.string.field_kosong));
+            }
+            if (peny.isEmpty()) {
+                etPenyelenggara.setError(getText(R.string.field_kosong));
+            }
+            if (semester.getSelectedItemPosition() == 0){
+                ((TextView)semester.getSelectedView()).setError("Pilih salah satu");
+            }
+            if (spinYear.getSelectedItemPosition() == 0){
+                ((TextView)spinYear.getSelectedView()).setError("Pilih salah satu");
+            }
         } else {
-            Toast.makeText(getActivity(), peny, Toast.LENGTH_LONG).show();
             insert(npm, smstr, text, peny, namaB);
         }
     }
@@ -221,7 +261,7 @@ public class FormBeasiswaFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ScholarshipPost> call, Throwable t) {
-
+                Toast.makeText(getActivity(), getText(R.string.koneksi_lambat), Toast.LENGTH_LONG).show();
             }
         });
     }
