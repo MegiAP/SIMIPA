@@ -54,4 +54,12 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
     <!-- akhir style untuk login   -->
 
+    <!-- start style Simipa modul Orang tua -->
+    <!-- style animation dialog-->
+    <style name="DialogAnimation_up_down">
+        <item name="android:windowEnterAnimation">@anim/anim_simipa_parents_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/anim_simipa_parents_slide_down</item>
+    </style>
+    <!-- end style Simipa modul Orang tua -->
+
 </resources>

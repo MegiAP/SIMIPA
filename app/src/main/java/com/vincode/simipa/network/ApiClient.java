@@ -1,5 +1,11 @@
 package com.vincode.simipa.network;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.vincode.simipa.BuildConfig;
+
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -57,5 +63,25 @@ public class ApiClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build();
+    }
+
+    public static Retrofit getClientNotification() {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(10, TimeUnit.SECONDS)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .build();
+
+        String BASE_URL = BuildConfig.BASE_URL_NOTIFICATION;
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        return retrofit;
     }
 }

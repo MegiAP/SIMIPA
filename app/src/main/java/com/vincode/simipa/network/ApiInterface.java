@@ -1,7 +1,8 @@
 package com.vincode.simipa.network;
 
 
-
+import com.vincode.simipa.BuildConfig;
+import com.vincode.simipa.Notification.simipa_parents.NotificationSender;
 import com.vincode.simipa.model.AchievementResponse;
 import com.vincode.simipa.model.BeritaResponse;
 import com.vincode.simipa.model.CalendarResponse;
@@ -16,16 +17,25 @@ import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.PresenceSeminarResponse;
 import com.vincode.simipa.model.ProfileResponse;
 import com.vincode.simipa.model.ScholarshipPost;
+import com.vincode.simipa.model.ScholarshipResponse;
 import com.vincode.simipa.model.SeminarPresenceResponse;
 import com.vincode.simipa.model.SeminarResponse;
 import com.vincode.simipa.model.SeminarScheduleResponse;
-import com.vincode.simipa.model.ScholarshipResponse;
 import com.vincode.simipa.model.ServiceResponse;
+import com.vincode.simipa.model.SimipaParentsApprovedParentModel;
+import com.vincode.simipa.model.SimipaParentsApprovedParentResponce;
+import com.vincode.simipa.model.SimipaParentsDeleteParentModel;
+import com.vincode.simipa.model.SimipaParentsDeleteParentResponce;
+import com.vincode.simipa.model.SimipaParentsListParentResponce;
+import com.vincode.simipa.model.SimipaParentsNotificationResponce;
+import com.vincode.simipa.model.SimipaParentsRejectParentModel;
+import com.vincode.simipa.model.SimipaParentsRejectParentResponce;
+import com.vincode.simipa.model.SimipaParentsUpdateTokenModel;
+import com.vincode.simipa.model.SimipaParentsUpdateTokenResponce;
 import com.vincode.simipa.model.SplashResponse;
 import com.vincode.simipa.model.Status;
 import com.vincode.simipa.model.StudyResponse;
 import com.vincode.simipa.model.Value;
-
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -43,10 +53,13 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
     @FormUrlEncoded
-    @POST("login.php")
+    @POST("login-new.php")
     Call<LoginResponse> userLogin(
             @Field("user") String username,
             @Field("pass") String password,
+            @Field("imei") String imei,
+            @Field("ip") String ip,
+            @Field("token") String token,
             @Query("status") String status
     );
 
@@ -231,5 +244,44 @@ public interface ApiInterface {
     Call<ScholarshipPost> insertBeasiswa(
             @Body String result
     );
+
+
+//Start SIMIPA modul Orang tua
+
+    @POST("update-token.php")
+    Call<SimipaParentsUpdateTokenResponce> updateToken(
+            @Body SimipaParentsUpdateTokenModel updateTokenModel
+    );
+
+    @GET("read-list-parent.php")
+    Call<SimipaParentsListParentResponce> listParent(
+            @Query("npm") String npm
+    );
+
+    @POST("delete-parent.php")
+    Call<SimipaParentsDeleteParentResponce> deleteParent(
+            @Body SimipaParentsDeleteParentModel deleteParentModel
+    );
+
+    @POST("update-tolak-parent.php")
+    Call<SimipaParentsRejectParentResponce> rejectParent(
+            @Body SimipaParentsRejectParentModel rejectParentModel
+    );
+
+    @POST("update-validasi-parent.php")
+    Call<SimipaParentsApprovedParentResponce> approvedParent(
+            @Body SimipaParentsApprovedParentModel approvedParentModel
+    );
+
+    @Headers(
+            {
+                    "Content-Type:application/json",
+                    "Authorization:key=" + BuildConfig.BASE_URL_SERVER_FIREBASE_NOTIFICATION
+            }
+    )
+    @POST("fcm/send")
+    Call<SimipaParentsNotificationResponce> sendNotifcation(@Body NotificationSender body);
+
+//End SIMIPA modul Orang tua
 
 }

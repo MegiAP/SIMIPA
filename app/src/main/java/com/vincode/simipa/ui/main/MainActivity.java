@@ -1,11 +1,5 @@
 package com.vincode.simipa.ui.main;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,28 +7,35 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.vincode.simipa.R;
 import com.vincode.simipa.adapter.BeritaAdapter;
 import com.vincode.simipa.model.BeritaResponse;
-import com.vincode.simipa.ui.berita.BeritaActivity;
-import com.vincode.simipa.ui.presence.PresenceSeminarActivity;
-import com.vincode.simipa.util.SharedPrefManager;
-import com.vincode.simipa.ui.beasiswa.BeasiswaActivity;
 import com.vincode.simipa.model.ProfileResponse;
 import com.vincode.simipa.model.UserProfile;
 import com.vincode.simipa.network.ApiClient;
 import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.ui.achievement.AchievementActivity;
 import com.vincode.simipa.ui.agenda.AgendaActivity;
+import com.vincode.simipa.ui.beasiswa.BeasiswaActivity;
+import com.vincode.simipa.ui.berita.BeritaActivity;
+import com.vincode.simipa.ui.calendar.AcademicCalendarActivity;
 import com.vincode.simipa.ui.login.LoginActivity;
+import com.vincode.simipa.ui.presence.PresenceSeminarActivity;
+import com.vincode.simipa.ui.profil.ProfilActivity;
 import com.vincode.simipa.ui.recapitulation.RecapMenuActivity;
 import com.vincode.simipa.ui.schedule.ScheduleMenu;
-import com.vincode.simipa.ui.calendar.AcademicCalendarActivity;
-import com.vincode.simipa.ui.profil.ProfilActivity;
 import com.vincode.simipa.ui.service.ServiceActivity;
 import com.vincode.simipa.ui.settings.SettingActivity;
+import com.vincode.simipa.ui.simipa_parents.SimipaParentsActivity;
+import com.vincode.simipa.util.SharedPrefManager;
 
 import java.util.List;
 
@@ -120,15 +121,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onResponse(@NonNull Call<ProfileResponse> call, @NonNull Response<ProfileResponse> response) {
                 if (response.body() != null) {
-                    if (!response.body().getError().equals("true")){
+                    if (!response.body().getError().equals("true")) {
                         List<UserProfile> userProfiles = response.body().getUserProfiles();
-                        if (userProfiles.get(0).getFoto() != null){
+
+                        //Start SIMIPA modul Orang tua
+
+                        SharedPrefManager.getInstance(getApplicationContext()).setDataStudent(
+                                userProfiles.get(0).getNpm(),
+                                userProfiles.get(0).getDisplayName(),
+                                userProfiles.get(0).getJurusan(),
+                                userProfiles.get(0).getFoto());
+
+                        //End SIMIPA modul Orang tua
+
+                        if (userProfiles.get(0).getFoto() != null) {
                             Glide.with(getApplicationContext())
                                     .load(userProfiles.get(0).getFoto())
                                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                             .error(R.drawable.ic_error))
                                     .into(imageUser);
-                        }else {
+                        } else {
                             imageUser.setImageResource(R.drawable.ic_account_circle_black);
                         }
                         tvName.setText(userProfiles.get(0).getDisplayName());
@@ -187,6 +199,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CardView cvAchieve = findViewById(R.id.cv_achieve);
         cvAchieve.setOnClickListener(this);
 
+        CardView cvSimipaParents = findViewById(R.id.cv_simipa_parents);
+        cvSimipaParents.setOnClickListener(this);
+
         TextView tvBerita = findViewById(R.id.tv_berita);
         tvBerita.setOnClickListener(this);
     }
@@ -243,13 +258,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(ScheduleIntent );
                 break;
             case R.id.cv_agenda:
-                Intent Agenda = new Intent (this, AgendaActivity.class);
+                Intent Agenda = new Intent(this, AgendaActivity.class);
                 startActivity(Agenda);
                 break;
 
             case R.id.cv_achieve:
-                Intent Achieve = new Intent (this, AchievementActivity.class);
+                Intent Achieve = new Intent(this, AchievementActivity.class);
                 startActivity(Achieve);
+                break;
+
+            case R.id.cv_simipa_parents:
+                Intent simipaParents = new Intent(this, SimipaParentsActivity.class);
+                startActivity(simipaParents);
                 break;
         }
     }

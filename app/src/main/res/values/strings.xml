@@ -138,4 +138,73 @@
     <string name="achieve">Capaian Prestasi</string>
     <string name="not_finish">Belum Selesai</string>
     <string name="finish">Selesai</string>
+    <string name="orang_tua_wali">Orang tua/wali</string>
+
+    <!--Start Simipa modul Orang tua-->
+    <string name="teks_konfirmasi_hapus">Apakah anda yakin untuk menghapus Orang Tua/Wali tersebut dari daftar anda?</string>
+    <string name="teks_konfirmasi_approved">Apakah anda yakin untuk mengkonfirmasi Orang Tua/Wali tersebut?</string>
+    <string name="teks_konfirmasi_reject">Apakah anda yakin untuk menolak Orang Tua/Wali tersebut?</string>
+    <string name="hapus">Hapus</string>
+    <string name="batal">Batal</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="tolak">Tolak</string>
+    <string name="server_error">Gagal terhubung ke server!</string>
+    <string name="terjadi_kesalahan">Terjadi kesalahan!</string>
+    <string name="gagal_dihapus">Gagal dihapus. Coba lagi!</string>
+    <string name="gagal_ditolak">Gagal ditolak. Coba lagi!</string>
+    <string name="gagal_disetujui">Gagal dikonfirmasi. Coba lagi!</string>
+    <string name="berhasil_dihapus">Data permintaan dihapus</string>
+    <string name="berhasil_ditolak">Data permintaan ditolak</string>
+    <string name="berhasil_disetujui">Data permintaan dikonfirmasi</string>
+    <string name="gagal_update_token">Gagal memperbaharui token</string>
+    <string name="terjadi_kesalahan_update_token">Terjadi kesalahan saat memperbaharui token</string>
+    <string name="izin_diberikan">Izin diberikan</string>
+    <string name="izin_ditolak">Izin ditolak</string>
+    <string name="gagal_mengirim_notifikasi">Gagal mengirim notifikasi!</string>
+
+    <!--Start notification for parent-->
+    <string name="parent_notification_channel_name_1">PARENT_CHANNEL_SIMIPA_REQUEST</string>
+    <string name="parent_notification_channel_name_2">PARENT_CHANNEL_SIMIPA_DELETE</string>
+    <string name="parent_notification_channel_name_3">PARENT_CHANNEL_SIMIPA_REJECT</string>
+    <string name="parent_notification_channel_name_4">PARENT_CHANNEL_SIMIPA_APPROVED</string>
+    <string name="parent_notification_channel_id_1">PARENT_CHANNEL_SIMIPA_1</string>
+    <string name="parent_notification_channel_id_2">PARENT_CHANNEL_SIMIPA_2</string>
+    <string name="parent_notification_channel_id_3">PARENT_CHANNEL_SIMIPA_3</string>
+    <string name="parent_notification_channel_id_4">PARENT_CHANNEL_SIMIPA_4</string>
+    <string name="parent_notification_group_name_1">PARENT_GROUP_SIMIPA_REQUEST</string>
+    <string name="parent_notification_group_name_2">PARENT_GROUP_SIMIPA_DELETE</string>
+    <string name="parent_notification_group_name_3">PARENT_GROUP_SIMIPA_REJECT</string>
+    <string name="parent_notification_group_name_4">PARENT_GROUP_SIMIPA_APPROVED</string>
+    <string name="parent_notification_group_id_1">PARENT_GROUP_SIMIPA_1</string>
+    <string name="parent_notification_group_id_2">PARENT_GROUP_SIMIPA_2</string>
+    <string name="parent_notification_group_id_3">PARENT_GROUP_SIMIPA_3</string>
+    <string name="parent_notification_group_id_4">PARENT_GROUP_SIMIPA_4</string>
+    <string name="parent_notification_title_id_1">TBA</string>
+    <string name="parent_notification_title_id_2">Akses dihapus mahasiswa</string>
+    <string name="parent_notification_title_id_3">Permintaan ditolak</string>
+    <string name="parent_notification_title_id_4">Permintaan dikonfirmasi</string>
+    <string name="parent_notification_message_id_1">TBA</string>
+    <string name="parent_notification_message_id_2">menghapus anda dalam daftar perizinan akses data perkuliahannya.</string>
+    <string name="parent_notification_message_id_3">menolak permintaan anda untuk mengakses data perkuliahannya.</string>
+    <string name="parent_notification_message_id_4">mengkonfirmasi permintaan anda untuk mengakses data perkuliahannya.</string>
+    <!--End notification for parent-->
+
+    <!--Start notification for student-->
+    <string name="student_notification_channel_name_1">STUDENT_CHANNEL_SIMIPA_REQUEST</string>
+    <string name="student_notification_channel_name_2">STUDENT_CHANNEL_SIMIPA_DELETE</string>
+    <string name="student_notification_channel_id_1">STUDENT_CHANNEL_SIMIPA_1</string>
+    <string name="student_notification_channel_id_2">STUDENT_CHANNEL_SIMIPA_2</string>
+    <string name="student_notification_group_name_1">STUDENT_GROUP_SIMIPA_REQUEST</string>
+    <string name="student_notification_group_name_2">STUDENT_GROUP_SIMIPA_DELETE</string>
+    <string name="student_notification_group_id_1">STUDENT_GROUP_SIMIPA_1</string>
+    <string name="student_notification_group_id_2">STUDENT_GROUP_SIMIPA_2</string>
+    <string name="student_notification_title_id_1">Permintaan akses data</string>
+    <string name="student_notification_title_id_2">Perizinan akses data dihapus</string>
+    <string name="student_notification_message_id_1">meminta untuk mengakses data perkuliahan anda.</string>
+    <string name="student_notification_message_id_2">menghapus izinnya untuk mengakses data perkuliahan anda.</string>
+    <string name="data_kosong">Data kosong</string>
+    <!--End notification for student-->
+
+    <!--End Simipa modul Orang tua-->
+
 </resources>

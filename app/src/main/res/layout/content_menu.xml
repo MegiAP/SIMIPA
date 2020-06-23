@@ -394,14 +394,58 @@
 
         </androidx.cardview.widget.CardView>
 
-
-        <TextView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_simipa_parents"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="0.33"
+            android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"/>
+            android:layout_marginStart="5dp"
+            android:layout_weight="0.33"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            tools:ignore="KeyboardInaccessibleWidget">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_above="@+id/tv_simipa_parents"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/bg_simipa_parents_icon_blue_solid"
+                        android:contentDescription="@string/content_description"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_simipa_parents" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_simipa_parents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:maxLines="1"
+                    android:text="@string/orang_tua_wali"
+                    android:textColor="#000" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
 
 
     </LinearLayout>
