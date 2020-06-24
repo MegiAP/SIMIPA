@@ -28,6 +28,7 @@ public class TimeUtil {
         return tanggal.format(new Date());
     }
 
+    //tanggal format indonesia
     public String getTanggalFormatInd(String oldDateString) {
         final String OLD_FORMAT = "yyyy-MM-dd";
         final String NEW_FORMAT = "dd-MMM-yyyy";

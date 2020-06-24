@@ -38,7 +38,7 @@ public class BeasiswaActivity extends AppCompatActivity {
 
         ScholarshipPagerAdapter fragmentPagerAdapter = new ScholarshipPagerAdapter(getSupportFragmentManager());
         fragmentPagerAdapter.addFragment(new BeasiswaFragment(), getResources().getString(R.string.history));
-        fragmentPagerAdapter.addFragment(new FormBeasiswaFragment(), getResources().getString(R.string.form_beasiswa));
+        fragmentPagerAdapter.addFragment(new DaftarBeasiswaFragment(), getResources().getString(R.string.form_beasiswa));
 
         viewPager.setAdapter(fragmentPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

@@ -45,6 +45,8 @@ public class FormBeasiswaFragment extends Fragment {
     private Button tambah,batal;
     private TextView showDetail;
 
+    public static final String EXTRA_NAME = "extra_name";
+
     public FormBeasiswaFragment() {
         // Required empty public constructor
     }
@@ -187,6 +189,11 @@ public class FormBeasiswaFragment extends Fragment {
                 break;
         }
 
+        Bundle bundle = getArguments();
+        assert bundle != null;
+        String nama = bundle.getString(EXTRA_NAME);
+        etBeasiswa.setText(nama);
+
     }
 
     @Override
@@ -235,7 +242,7 @@ public class FormBeasiswaFragment extends Fragment {
         }
     }
 
-    public void insert(String npm, String semester, String tahunBeasiswa, String penyelenggara, String namaBeasiswa){
+    public void insert(String npm, String semester, String tahunBeasiswa, String penyelenggara, String namaBeasiswa) {
 
         JSONObject jsonObject = new JSONObject();
         try {

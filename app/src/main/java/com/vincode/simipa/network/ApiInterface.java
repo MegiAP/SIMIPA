@@ -16,6 +16,7 @@ import com.vincode.simipa.model.PracticeScheduleResponse;
 import com.vincode.simipa.model.PresenceResponse;
 import com.vincode.simipa.model.PresenceSeminarResponse;
 import com.vincode.simipa.model.ProfileResponse;
+import com.vincode.simipa.model.ScholarshipListResponse;
 import com.vincode.simipa.model.ScholarshipPost;
 import com.vincode.simipa.model.ScholarshipResponse;
 import com.vincode.simipa.model.SeminarPresenceResponse;
@@ -243,6 +244,11 @@ public interface ApiInterface {
     @POST("create-beasiswa.php")
     Call<ScholarshipPost> insertBeasiswa(
             @Body String result
+    );
+
+    @GET("read-daftar-beasiswa-aktif.php")
+    Call<ScholarshipListResponse> getDaftarBeasiswa(
+            @Query("tanggal") String tanggal
     );
 
 

@@ -207,7 +207,7 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
     private void getDataSeminarKP(final String jrsn, String tanggal) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<SeminarScheduleResponse> call = apiInterface.getSeminarData("Seminar Kerja Praktek", "Fisika", "2019-05-10");
+        Call<SeminarScheduleResponse> call = apiInterface.getSeminarData("Seminar Kerja Praktek", "Ilmu Komputer", "2019-05-10");
 
         call.enqueue(new Callback<SeminarScheduleResponse>() {
             @Override
@@ -271,7 +271,7 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
     public void getDataSeminarHasil() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<SeminarScheduleResponse> call = apiInterface.getSeminarData("Seminar Hasil", "Fisika", "2019-05-10");
+        Call<SeminarScheduleResponse> call = apiInterface.getSeminarData("Seminar Hasil", "Ilmu Komputer", "2019-05-10");
 
         call.enqueue(new Callback<SeminarScheduleResponse>() {
             @Override
