@@ -30,7 +30,7 @@ public class FormBeasiswaActivity extends AppCompatActivity {
     private EditText etTahun,etSemester;
     private EditText etBeasiswa,etPenyelenggara,etNama,etNpm,etJurusan,etProdi;
     private LinearLayout linearLayout;
-    private Button tambah,batal;
+    private Button tambah,batal,upload;
     private TextView showDetail;
 
     public static final String EXTRA_NAME = "extra_name";
@@ -38,13 +38,14 @@ public class FormBeasiswaActivity extends AppCompatActivity {
     public static final String EXTRA_YEAR = "extra_year";
     public static final String EXTRA_DATE = "extra_date";
 
+    private int PICK_IMAGE_REQUEST = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_beasiswa);
         
         String npm = SharedPrefManager.getInstance(this).getUser().getUserLogin();
-        int angkatan = Integer.parseInt(npm.substring(0,2));
 
         etTahun = findViewById(R.id.yearspin);
         etSemester = findViewById(R.id.semesterspin);
@@ -84,6 +85,17 @@ public class FormBeasiswaActivity extends AppCompatActivity {
 
         tambah = findViewById(R.id.tambah_beasiswa);
         batal = findViewById(R.id.batal_beasiswa);
+        upload = findViewById(R.id.upload_photo);
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+            }
+        });
+
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

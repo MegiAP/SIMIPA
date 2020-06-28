@@ -95,9 +95,23 @@ public class SeminarRecapActivity extends AppCompatActivity implements View.OnCl
                     seminarRecapAdapter.setListSeminar(response.body().getResult());
                     seminarRecapUsulAdapter.setListSeminar(response.body().getResult());
                     seminarRecapHasilAdapter.SeminarRecapHasilAdapter(response.body().getResult());
-                    jmlHasil.setText(response.body().getJumlahSemHas());
-                    jmlUsul.setText(response.body().getJumlahSemUsul());
-                    jmlKP.setText(response.body().getJumlahSemKP());
+
+                    if (response.body().getJumlahSemKP() == null) {
+                        jmlKP.setText("0");
+                    } else {
+                        jmlKP.setText(response.body().getJumlahSemKP());
+                    }
+                    if (response.body().getJumlahSemUsul() == null) {
+                        jmlUsul.setText("0");
+                    } else {
+                        jmlUsul.setText(response.body().getJumlahSemUsul());
+                    }
+                    if (response.body().getJumlahSemHas() == null) {
+                        jmlHasil.setText("0");
+                    } else {
+                        jmlHasil.setText(response.body().getJumlahSemHas());
+                    }
+
                     seminarRecapAdapter.notifyDataSetChanged();
                     pgBar.setVisibility(View.GONE);
                 } else {
@@ -135,32 +149,45 @@ public class SeminarRecapActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.klikKP :
-                icPresentation.setImageResource(R.drawable.presentation_active);
-                icPresentation1.setImageResource(R.drawable.presentation);
-                icPresentation2.setImageResource(R.drawable.presentation);
+                if (jmlKP.getText().toString().equals("0")) {
+                    relativeLayout.setEnabled(false);
+                } else {
+                    icPresentation.setImageResource(R.drawable.presentation_active);
+                    icPresentation1.setImageResource(R.drawable.presentation);
+                    icPresentation2.setImageResource(R.drawable.presentation);
 
-                rvCategory.setAdapter(seminarRecapAdapter);
-                seminarRecapAdapter.getFilter().filter("seminar kerja");
+                    rvCategory.setAdapter(seminarRecapAdapter);
+                    seminarRecapAdapter.getFilter().filter("seminar kerja");
+                }
                 break;
             case R.id.klikUsul :
-                icPresentation1.setImageResource(R.drawable.presentation_active);
-                icPresentation2.setImageResource(R.drawable.presentation);
-                icPresentation.setImageResource(R.drawable.presentation);
+                if (jmlUsul.getText().toString().equals("0")) {
+                    relativeLayout1.setEnabled(false);
+                }
+                else{
+                    icPresentation1.setImageResource(R.drawable.presentation_active);
+                    icPresentation2.setImageResource(R.drawable.presentation);
+                    icPresentation.setImageResource(R.drawable.presentation);
 
-                rvCategory.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-                rvCategory.setHasFixedSize(true);
-                rvCategory.setAdapter(seminarRecapUsulAdapter);
-                seminarRecapUsulAdapter.getFilter().filter("seminar usul");
+                    rvCategory.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                    rvCategory.setHasFixedSize(true);
+                    rvCategory.setAdapter(seminarRecapUsulAdapter);
+                    seminarRecapUsulAdapter.getFilter().filter("seminar usul");
+                }
                 break;
             case R.id.klikHasil :
-                icPresentation2.setImageResource(R.drawable.presentation_active);
-                icPresentation1.setImageResource(R.drawable.presentation);
-                icPresentation.setImageResource(R.drawable.presentation);
+                if (jmlHasil.getText().toString().equals("0")) {
+                    relativeLayout2.setEnabled(false);
+                } else {
+                    icPresentation2.setImageResource(R.drawable.presentation_active);
+                    icPresentation1.setImageResource(R.drawable.presentation);
+                    icPresentation.setImageResource(R.drawable.presentation);
 
-                rvCategory.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-                rvCategory.setHasFixedSize(true);
-                rvCategory.setAdapter(seminarRecapHasilAdapter);
-                seminarRecapHasilAdapter.getFilter().filter("seminar hasil");
+                    rvCategory.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                    rvCategory.setHasFixedSize(true);
+                    rvCategory.setAdapter(seminarRecapHasilAdapter);
+                    seminarRecapHasilAdapter.getFilter().filter("seminar hasil");
+                }
                 break;
         }
     }
