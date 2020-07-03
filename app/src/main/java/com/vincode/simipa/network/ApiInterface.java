@@ -239,11 +239,15 @@ public interface ApiInterface {
             @Part("npm") RequestBody npm
     );
 
-
-    @Headers("Content-Type: application/json")
+    @Multipart
     @POST("create-beasiswa.php")
     Call<ScholarshipPost> insertBeasiswa(
-            @Body String result
+            @Part MultipartBody.Part fileBeasiswa,
+            @Part("npm") RequestBody npm,
+            @Part("semester") RequestBody semester,
+            @Part("tahun_beasiswa") RequestBody tahunBeasiswa,
+            @Part("penyelenggara") RequestBody penyelenggara,
+            @Part("nama_beasiswa") RequestBody namaBeasiswa
     );
 
     @GET("read-daftar-beasiswa-aktif.php")

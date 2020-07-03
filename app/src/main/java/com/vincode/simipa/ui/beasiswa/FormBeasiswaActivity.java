@@ -1,13 +1,25 @@
 package com.vincode.simipa.ui.beasiswa;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,8 +34,7 @@ import com.vincode.simipa.network.ApiInterface;
 import com.vincode.simipa.util.SharedPrefManager;
 import com.vincode.simipa.util.TimeUtil;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.io.File;
 
 public class FormBeasiswaActivity extends AppCompatActivity {
 
@@ -38,7 +49,13 @@ public class FormBeasiswaActivity extends AppCompatActivity {
     public static final String EXTRA_YEAR = "extra_year";
     public static final String EXTRA_DATE = "extra_date";
 
-    private int PICK_IMAGE_REQUEST = 1;
+    private TextView tvNameFile;
+    String filePath;
+    Uri uri;
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String [] PERMISSION_STORAGE = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +64,8 @@ public class FormBeasiswaActivity extends AppCompatActivity {
         
         String npm = SharedPrefManager.getInstance(this).getUser().getUserLogin();
 
-        etTahun = findViewById(R.id.yearspin);
-        etSemester = findViewById(R.id.semesterspin);
+        etTahun = findViewById(R.id.et_year);
+        etSemester = findViewById(R.id.et_semester);
 
         etBeasiswa = findViewById(R.id.et_beasiswa);
         etPenyelenggara = findViewById(R.id.et_penyelenggara);
@@ -89,10 +106,9 @@ public class FormBeasiswaActivity extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+                startActivityForResult(intent, 102);
             }
         });
 
@@ -164,8 +180,13 @@ public class FormBeasiswaActivity extends AppCompatActivity {
         etTahun.setText(tahun);
         etPenyelenggara.setText(penyelenggara);
         etSemester.setText(sem);
+
+        //upload file
+        tvNameFile = findViewById(R.id.tv_nama_file);
+        verifyStoragePermissions(FormBeasiswaActivity.this);
     }
 
+    @SuppressWarnings("deprecation")
     public void getData() {
         String npm = SharedPrefManager.getInstance(this).getUser().getUserLogin();
         String peny = etPenyelenggara.getText().toString().trim();
@@ -188,32 +209,34 @@ public class FormBeasiswaActivity extends AppCompatActivity {
                 etTahun.setError(getText(R.string.field_kosong));
             }
         } else {
-            insert(npm, smstr, tahun, peny, namaB);
+
+            File file = new File(filePath);
+            RequestBody fileBeasiswa = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            MultipartBody.Part fileUpload = MultipartBody.Part.createFormData("file", file.getName(), fileBeasiswa);
+
+            RequestBody postNpm = RequestBody.create(MediaType.parse("text/plain"), npm);
+            RequestBody postNama = RequestBody.create(MediaType.parse("text/plain"), namaB);
+            RequestBody postTahun = RequestBody.create(MediaType.parse("text/plain"), tahun);
+            RequestBody postSemester = RequestBody.create(MediaType.parse("text/plain"), smstr);
+            RequestBody postPeny = RequestBody.create(MediaType.parse("text/plain"), peny);
+
+            insert(fileUpload, postNpm, postSemester, postTahun, postPeny, postNama);
         }
     }
 
-    public void insert(String npm, String semester, String tahunBeasiswa, String penyelenggara, String namaBeasiswa) {
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("npm", npm);
-            jsonObject.put("semester", semester);
-            jsonObject.put("tahun_beasiswa", tahunBeasiswa);
-            jsonObject.put("penyelenggara", penyelenggara);
-            jsonObject.put("nama_beasiswa", namaBeasiswa);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    public void insert(MultipartBody.Part file, RequestBody npm, RequestBody semester, RequestBody tahun, RequestBody penyelenggara, RequestBody namaBeasiswa) {
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<ScholarshipPost> call = apiInterface.insertBeasiswa(jsonObject.toString());
+        Call<ScholarshipPost> call = apiInterface.insertBeasiswa(file, npm, semester, tahun, penyelenggara, namaBeasiswa);
         call.enqueue(new Callback<ScholarshipPost>() {
             @Override
             public void onResponse(Call<ScholarshipPost> call, Response<ScholarshipPost> response) {
                 assert response.body() != null;
                 String message = response.body().getMessage();
 
-                Toast.makeText(FormBeasiswaActivity.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(FormBeasiswaActivity.this, message, Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(FormBeasiswaActivity.this, BeasiswaActivity.class));
             }
 
             @Override
@@ -221,5 +244,42 @@ public class FormBeasiswaActivity extends AppCompatActivity {
                 Toast.makeText(FormBeasiswaActivity.this, getText(R.string.koneksi_lambat), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK){
+            if (requestCode == 102){
+                assert data != null;
+                uri = data.getData();
+                filePath = getRealPathFromUri(uri, FormBeasiswaActivity.this);
+                tvNameFile.setText(new File(filePath).getName());
+            }
+        }
+    }
+
+    public String getRealPathFromUri(Uri uri, Activity activity){
+        @SuppressLint("Recycle") Cursor cursor = activity.getContentResolver().query(uri, null, null, null, null);
+        if (cursor == null){
+            return uri.getPath();
+        }else{
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            return cursor.getString(idx);
+        }
+    }
+
+    public static void verifyStoragePermissions(Activity activity){
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSION_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
 }

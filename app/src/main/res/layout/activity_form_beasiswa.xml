@@ -124,7 +124,7 @@
                 android:layout_marginBottom="4dp">
 
                 <EditText
-                    android:id="@+id/semesterspin"
+                    android:id="@+id/et_semester"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:hint="Semester"/>
@@ -138,7 +138,7 @@
                 android:layout_marginBottom="4dp">
 
                 <EditText
-                    android:id="@+id/yearspin"
+                    android:id="@+id/et_year"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:hint="Tahun"/>
@@ -160,6 +160,15 @@
                 android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_nama_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show less"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginEnd="6dp"
+            android:layout_gravity="end|top"/>
 
         <Button
             android:id="@+id/upload_photo"
